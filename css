@@ -1,5 +1,7 @@
 .logo {
-width: 440px;
+display: block;
+width: 260px;
 max-width: 100%;
 height: auto;
+margin: 0 auto 20px;
 }
