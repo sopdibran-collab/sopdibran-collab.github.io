@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sopjani Tech Sàrl – Chauffage, Ventilation, Sprinkler & Protection Incendie en Suisse</title>
-  <meta name="description" content="Sopjani Tech Sàrl : installation, maintenance et dépannage en chauffage, ventilation, sprinkler et protection incendie en Suisse. Expertise technique, réactivité et fiabilité pour bâtiments résidentiels et commerciaux." />
+  <meta name="description"
+    content="Sopjani Tech Sàrl : installation, maintenance et dépannage en chauffage, ventilation, sprinkler et protection incendie en Suisse. Expertise technique, réactivité et fiabilité pour bâtiments résidentiels et commerciaux." />
   <link rel="canonical" href="https://www.sopjanitech.ch/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Sopjani Tech Sàrl – Chauffage, Ventilation, Sprinkler & Protection Incendie en Suisse" />
-  <meta property="og:description" content="Installation, maintenance et dépannage en chauffage, ventilation, sprinkler et protection incendie pour bâtiments résidentiels et commerciaux en Suisse." />
+  <meta property="og:title"
+    content="Sopjani Tech Sàrl – Chauffage, Ventilation, Sprinkler & Protection Incendie en Suisse" />
+  <meta property="og:description"
+    content="Installation, maintenance et dépannage en chauffage, ventilation, sprinkler et protection incendie pour bâtiments résidentiels et commerciaux en Suisse." />
   <meta property="og:url" content="https://www.sopjanitech.ch/" />
   <meta property="og:site_name" content="Sopjani Tech Sàrl" />
 
@@ -57,18 +61,26 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --c-bg: #09090d;
       --c-bg2: #0f0f15;
       --c-bg3: #13131a;
       --c-surface: #16161f;
-      --c-border: rgba(61,184,232,0.12);
-      --c-border2: rgba(255,255,255,0.06);
+      --c-border: rgba(61, 184, 232, 0.12);
+      --c-border2: rgba(255, 255, 255, 0.06);
       --c-accent: #3db8e8;
       --c-accent2: #5ccbf5;
       --c-text: #e8eaf0;
@@ -80,7 +92,9 @@
       --radius: 2px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: var(--font-body);
@@ -91,7 +105,10 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .container {
       max-width: var(--max-w);
@@ -154,27 +171,39 @@
       background: var(--c-accent);
       color: #06080f;
     }
-    .btn-primary:hover { background: var(--c-accent2); transform: translateY(-1px); }
+
+    .btn-primary:hover {
+      background: var(--c-accent2);
+      transform: translateY(-1px);
+    }
 
     .btn-ghost {
       background: transparent;
       color: var(--c-text);
       border: 1px solid var(--c-border);
     }
-    .btn-ghost:hover { border-color: var(--c-accent); color: var(--c-accent); }
+
+    .btn-ghost:hover {
+      border-color: var(--c-accent);
+      color: var(--c-accent);
+    }
 
     .btn-whatsapp {
       background: #1a7a3e;
       color: #fff;
     }
-    .btn-whatsapp:hover { background: #1f9450; transform: translateY(-1px); }
+
+    .btn-whatsapp:hover {
+      background: #1f9450;
+      transform: translateY(-1px);
+    }
 
     /* ── HEADER ──────────────────────────────── */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(9,9,13,0.95);
+      background: rgba(9, 9, 13, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--c-border2);
     }
@@ -232,7 +261,10 @@
       color: var(--c-muted);
       transition: color 0.2s;
     }
-    nav a:hover { color: var(--c-accent); }
+
+    nav a:hover {
+      color: var(--c-accent);
+    }
 
     .header-cta {
       display: flex;
@@ -252,7 +284,10 @@
       letter-spacing: 0.02em;
       transition: color 0.2s;
     }
-    .tel-btn:hover { color: var(--c-accent2); }
+
+    .tel-btn:hover {
+      color: var(--c-accent2);
+    }
 
     .burger {
       display: none;
@@ -263,6 +298,7 @@
       cursor: pointer;
       padding: 4px;
     }
+
     .burger span {
       display: block;
       width: 24px;
@@ -279,7 +315,11 @@
       padding: 20px 24px;
       gap: 16px;
     }
-    .mobile-nav.open { display: flex; }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
     .mobile-nav a {
       font-family: var(--font-display);
       font-size: 15px;
@@ -290,7 +330,10 @@
       padding: 8px 0;
       border-bottom: 1px solid var(--c-border2);
     }
-    .mobile-nav a:hover { color: var(--c-accent); }
+
+    .mobile-nav a:hover {
+      color: var(--c-accent);
+    }
 
     /* ── HERO ────────────────────────────────── */
     .hero {
@@ -366,7 +409,10 @@
       padding: 20px 22px;
       border-right: 1px solid var(--c-border);
     }
-    .stat:last-child { border-right: none; }
+
+    .stat:last-child {
+      border-right: none;
+    }
 
     .stat-val {
       font-family: var(--font-display);
@@ -408,7 +454,9 @@
       color: #06080f;
     }
 
-    .panel-body { padding: 24px; }
+    .panel-body {
+      padding: 24px;
+    }
 
     .panel-item {
       display: flex;
@@ -417,8 +465,15 @@
       padding: 14px 0;
       border-bottom: 1px solid var(--c-border2);
     }
-    .panel-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .panel-item:first-child { padding-top: 0; }
+
+    .panel-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .panel-item:first-child {
+      padding-top: 0;
+    }
 
     .pi-icon {
       width: 32px;
@@ -431,7 +486,13 @@
       border-radius: var(--radius);
     }
 
-    .pi-icon svg { width: 16px; height: 16px; stroke: var(--c-accent); fill: none; stroke-width: 1.5; }
+    .pi-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--c-accent);
+      fill: none;
+      stroke-width: 1.5;
+    }
 
     .pi-name {
       font-family: var(--font-display);
@@ -492,7 +553,10 @@
       position: relative;
       transition: background 0.25s;
     }
-    .service-card:hover { background: var(--c-surface); }
+
+    .service-card:hover {
+      background: var(--c-surface);
+    }
 
     .service-number {
       font-family: var(--font-display);
@@ -521,8 +585,11 @@
     }
 
     .service-icon svg {
-      width: 24px; height: 24px;
-      stroke: var(--c-accent); fill: none; stroke-width: 1.5;
+      width: 24px;
+      height: 24px;
+      stroke: var(--c-accent);
+      fill: none;
+      stroke-width: 1.5;
     }
 
     h2.service-title {
@@ -592,8 +659,14 @@
       border-bottom: 1px solid var(--c-border2);
       transition: background 0.2s;
     }
-    .exp-item:last-child { border-bottom: none; }
-    .exp-item:hover { background: var(--c-surface); }
+
+    .exp-item:last-child {
+      border-bottom: none;
+    }
+
+    .exp-item:hover {
+      background: var(--c-surface);
+    }
 
     .exp-num {
       font-family: var(--font-display);
@@ -652,8 +725,8 @@
       font-weight: 600;
       letter-spacing: 0.06em;
       color: var(--c-accent);
-      background: rgba(61,184,232,0.07);
-      border: 1px solid rgba(61,184,232,0.2);
+      background: rgba(61, 184, 232, 0.07);
+      border: 1px solid rgba(61, 184, 232, 0.2);
       padding: 6px 12px;
       border-radius: var(--radius);
     }
@@ -709,13 +782,16 @@
       border-right: 1px solid var(--c-border2);
       position: relative;
     }
-    .step:last-child { border-right: none; }
+
+    .step:last-child {
+      border-right: none;
+    }
 
     .step-num {
       font-family: var(--font-display);
       font-size: 52px;
       font-weight: 800;
-      color: rgba(61,184,232,0.08);
+      color: rgba(61, 184, 232, 0.08);
       line-height: 1;
       margin-bottom: 20px;
     }
@@ -772,7 +848,11 @@
       letter-spacing: 0.04em;
       transition: all 0.2s;
     }
-    .canton:hover { border-color: var(--c-accent); color: var(--c-accent); }
+
+    .canton:hover {
+      border-color: var(--c-accent);
+      color: var(--c-accent);
+    }
 
     .zones-text {
       padding-top: 12px;
@@ -847,9 +927,19 @@
       gap: 16px;
       transition: background 0.2s;
     }
-    .faq-item:last-child .faq-q { border-bottom: none; }
-    .faq-q:hover { background: var(--c-surface); }
-    .faq-q.active { color: var(--c-accent); background: var(--c-surface); }
+
+    .faq-item:last-child .faq-q {
+      border-bottom: none;
+    }
+
+    .faq-q:hover {
+      background: var(--c-surface);
+    }
+
+    .faq-q.active {
+      color: var(--c-accent);
+      background: var(--c-surface);
+    }
 
     .faq-icon {
       width: 20px;
@@ -857,6 +947,7 @@
       flex-shrink: 0;
       position: relative;
     }
+
     .faq-icon::before,
     .faq-icon::after {
       content: '';
@@ -865,9 +956,27 @@
       border-radius: 1px;
       transition: transform 0.3s, opacity 0.3s;
     }
-    .faq-icon::before { width: 10px; height: 1.5px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-    .faq-icon::after { width: 1.5px; height: 10px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-    .faq-q.active .faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+
+    .faq-icon::before {
+      width: 10px;
+      height: 1.5px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .faq-icon::after {
+      width: 1.5px;
+      height: 10px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .faq-q.active .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+      opacity: 0;
+    }
 
     .faq-a {
       display: none;
@@ -877,8 +986,14 @@
       line-height: 1.7;
       border-bottom: 1px solid var(--c-border2);
     }
-    .faq-item:last-child .faq-a { border-bottom: none; }
-    .faq-a.open { display: block; }
+
+    .faq-item:last-child .faq-a {
+      border-bottom: none;
+    }
+
+    .faq-a.open {
+      display: block;
+    }
 
     /* ── CONTACT ─────────────────────────────── */
     .contact {
@@ -910,7 +1025,11 @@
       text-decoration: none;
       transition: border-color 0.2s, background 0.2s;
     }
-    .contact-method:hover { border-color: var(--c-accent); background: rgba(61,184,232,0.04); }
+
+    .contact-method:hover {
+      border-color: var(--c-accent);
+      background: rgba(61, 184, 232, 0.04);
+    }
 
     .cm-icon {
       width: 40px;
@@ -921,7 +1040,14 @@
       justify-content: center;
       border: 1px solid var(--c-border);
     }
-    .cm-icon svg { width: 18px; height: 18px; stroke: var(--c-accent); fill: none; stroke-width: 1.5; }
+
+    .cm-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--c-accent);
+      fill: none;
+      stroke-width: 1.5;
+    }
 
     .cm-label {
       font-size: 11px;
@@ -1012,21 +1138,32 @@
       background: var(--c-accent);
       color: #06080f;
     }
-    .da-tel:hover { background: var(--c-accent2); }
+
+    .da-tel:hover {
+      background: var(--c-accent2);
+    }
 
     .da-wa {
       background: transparent;
       color: #25d366;
-      border: 1px solid rgba(37,211,102,0.3);
+      border: 1px solid rgba(37, 211, 102, 0.3);
     }
-    .da-wa:hover { background: rgba(37,211,102,0.06); border-color: #25d366; }
+
+    .da-wa:hover {
+      background: rgba(37, 211, 102, 0.06);
+      border-color: #25d366;
+    }
 
     .da-mail {
       background: transparent;
       color: var(--c-muted);
       border: 1px solid var(--c-border2);
     }
-    .da-mail:hover { color: var(--c-text); border-color: var(--c-border); }
+
+    .da-mail:hover {
+      color: var(--c-text);
+      border-color: var(--c-border);
+    }
 
     /* ── FOOTER ──────────────────────────────── */
     footer {
@@ -1089,7 +1226,10 @@
       color: var(--c-muted);
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--c-accent); }
+
+    .footer-links a:hover {
+      color: var(--c-accent);
+    }
 
     .footer-contact-list {
       list-style: none;
@@ -1107,7 +1247,10 @@
       color: var(--c-muted);
       transition: color 0.2s;
     }
-    .footer-contact-list a:hover { color: var(--c-accent); }
+
+    .footer-contact-list a:hover {
+      color: var(--c-accent);
+    }
 
     .footer-bottom {
       border-top: 1px solid var(--c-border2);
@@ -1134,796 +1277,1005 @@
 
     /* ── RESPONSIVE ──────────────────────────── */
     @media (max-width: 960px) {
-      nav { display: none; }
-      .burger { display: flex; }
-      .header-cta .tel-btn { display: none; }
+      nav {
+        display: none;
+      }
 
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-panel { display: none; }
+      .burger {
+        display: flex;
+      }
 
-      .hero-stats { grid-template-columns: repeat(3,1fr); }
+      .header-cta .tel-btn {
+        display: none;
+      }
 
-      .services-grid { grid-template-columns: 1fr; }
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
 
-      .expertise-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-panel {
+        display: none;
+      }
 
-      .methode-steps { grid-template-columns: 1fr 1fr; }
-      .step { border-bottom: 1px solid var(--c-border2); }
-      .step:nth-child(2) { border-right: none; }
+      .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
 
-      .zones-grid { grid-template-columns: 1fr; }
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
 
-      .faq-grid { grid-template-columns: 1fr; gap: 40px; }
+      .expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
 
-      .contact-inner { grid-template-columns: 1fr; }
+      .methode-steps {
+        grid-template-columns: 1fr 1fr;
+      }
 
-      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-      .footer-seo { text-align: left; }
+      .step {
+        border-bottom: 1px solid var(--c-border2);
+      }
+
+      .step:nth-child(2) {
+        border-right: none;
+      }
+
+      .zones-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-seo {
+        text-align: left;
+      }
     }
 
     @media (max-width: 600px) {
-      .hero { padding: 64px 0 56px; }
-      h1 { font-size: 36px; }
-      .hero-stats { grid-template-columns: 1fr; }
-      .stat { border-right: none; border-bottom: 1px solid var(--c-border); }
-      .stat:last-child { border-bottom: none; }
-      .methode-steps { grid-template-columns: 1fr; }
-      .step { border-right: none; }
-      .cantons-grid { grid-template-columns: 1fr 1fr; }
-      .type-grid { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; }
-      .service-card { padding: 28px 20px; }
+      .hero {
+        padding: 64px 0 56px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: none;
+        border-bottom: 1px solid var(--c-border);
+      }
+
+      .stat:last-child {
+        border-bottom: none;
+      }
+
+      .methode-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        border-right: none;
+      }
+
+      .cantons-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .type-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .service-card {
+        padding: 28px 20px;
+      }
     }
 
     /* ── ANIMATIONS ──────────────────────────── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .hero-content > * {
+    .hero-content>* {
       animation: fadeUp 0.6s ease both;
     }
-    .hero-content > *:nth-child(1) { animation-delay: 0.05s; }
-    .hero-content > *:nth-child(2) { animation-delay: 0.15s; }
-    .hero-content > *:nth-child(3) { animation-delay: 0.25s; }
-    .hero-content > *:nth-child(4) { animation-delay: 0.35s; }
-    .hero-content > *:nth-child(5) { animation-delay: 0.45s; }
+
+    .hero-content>*:nth-child(1) {
+      animation-delay: 0.05s;
+    }
+
+    .hero-content>*:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+
+    .hero-content>*:nth-child(3) {
+      animation-delay: 0.25s;
+    }
+
+    .hero-content>*:nth-child(4) {
+      animation-delay: 0.35s;
+    }
+
+    .hero-content>*:nth-child(5) {
+      animation-delay: 0.45s;
+    }
   </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header>
-  <div class="container">
-    <div class="header-inner">
-      <a href="#" class="logo-wrap" aria-label="Sopjani Tech Sàrl – Accueil">
-        <svg class="logo-hex" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <polygon points="22,2 40,12 40,32 22,42 4,32 4,12" stroke="#3db8e8" stroke-width="1.5" fill="none"/>
-          <line x1="4" y1="12" x2="10" y2="12" stroke="#3db8e8" stroke-width="1.5"/>
-          <line x1="34" y1="12" x2="40" y2="12" stroke="#3db8e8" stroke-width="1.5"/>
-          <!-- sprinkler -->
-          <rect x="19" y="10" width="6" height="3" rx="0.5" fill="#3db8e8"/>
-          <line x1="22" y1="13" x2="22" y2="16" stroke="#3db8e8" stroke-width="1.2"/>
-          <line x1="18" y1="16" x2="26" y2="16" stroke="#3db8e8" stroke-width="1.2"/>
-          <line x1="18" y1="16" x2="16" y2="19" stroke="#3db8e8" stroke-width="1"/>
-          <line x1="22" y1="16" x2="22" y2="19" stroke="#3db8e8" stroke-width="1"/>
-          <line x1="26" y1="16" x2="28" y2="19" stroke="#3db8e8" stroke-width="1"/>
-          <!-- flame -->
-          <path d="M22 34 C20 31 19 29 21 27 C21 29 22.5 29 22.5 27.5 C24 29 24.5 31 22 34Z" fill="#3db8e8"/>
-        </svg>
-        <div>
-          <div class="logo-text">SOPJANI TECH</div>
-          <div class="logo-sub">Sàrl · Suisse</div>
-        </div>
-      </a>
-
-      <nav aria-label="Navigation principale">
-        <a href="#services">Services</a>
-        <a href="#expertise">Expertise</a>
-        <a href="#zones">Zones</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <div class="header-cta">
-        <a href="tel:+41799326862" class="tel-btn" aria-label="Appeler Sopjani Tech">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-          </svg>
-          +41 79 932 68 62
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a href="#" class="logo-wrap" aria-label="Sopjani Tech Sàrl – Accueil">
+          <img src="/assets/logo.svg" alt="Logo" class="logo-hex">
+          <div>
+            <div class="logo-text">SOPJANI TECH</div>
+            <div class="logo-sub">Sàrl · Suisse</div>
+          </div>
         </a>
-        <a href="#contact" class="btn btn-primary">Demander un devis</a>
-      </div>
 
-      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile">
-    <a href="#services">Services</a>
-    <a href="#expertise">Expertise</a>
-    <a href="#methode">Méthode</a>
-    <a href="#zones">Zones d'intervention</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Contact</a>
-    <a href="tel:+41799326862" style="color:var(--c-accent)">+41 79 932 68 62</a>
-  </nav>
-</header>
+        <nav aria-label="Navigation principale">
+          <a href="#services">Services</a>
+          <a href="#expertise">Expertise</a>
+          <a href="#zones">Zones</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-<!-- HERO -->
-<section class="hero" aria-labelledby="hero-h1">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-content">
-        <div class="hero-eyebrow">
-          <span class="label">Installation · Maintenance · Dépannage</span>
-        </div>
-        <h1 id="hero-h1">
-          Expertise technique<br />pour vos <em>installations</em><br />en Suisse
-        </h1>
-        <p class="hero-sub">
-          Chauffage, ventilation, sprinkler et protection incendie : Sopjani Tech Sàrl assure l'installation, la maintenance et le dépannage de vos équipements techniques avec rigueur et fiabilité.
-        </p>
-        <div class="hero-ctas">
-          <a href="#contact" class="btn btn-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            Demander un devis
-          </a>
-          <a href="https://wa.me/41799326862" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            WhatsApp
-          </a>
-          <a href="tel:+41799326862" class="btn btn-ghost">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            Appeler directement
-          </a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <div class="stat-val">5+</div>
-            <div class="stat-label">Domaines d'expertise</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">CH</div>
-            <div class="stat-label">Intervention Suisse</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">24h</div>
-            <div class="stat-label">Réactivité dépannage</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sidebar panel -->
-      <aside class="hero-panel" aria-label="Nos services principaux">
-        <div class="panel-header">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#06080f" stroke-width="2" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-          <span class="panel-header-text">Nos spécialités</span>
-        </div>
-        <div class="panel-body">
-          <div class="panel-item">
-            <div class="pi-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div>
-              <div class="pi-name">Chauffage</div>
-              <div class="pi-desc">Installation, entretien, dépannage de chaudières et systèmes thermiques</div>
-            </div>
-          </div>
-          <div class="panel-item">
-            <div class="pi-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            </div>
-            <div>
-              <div class="pi-name">Ventilation</div>
-              <div class="pi-desc">Systèmes VMC, CTA, traitement de l'air pour bâtiments</div>
-            </div>
-          </div>
-          <div class="panel-item">
-            <div class="pi-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            </div>
-            <div>
-              <div class="pi-name">Sprinkler</div>
-              <div class="pi-desc">Conception et installation de réseaux sprinkler incendie</div>
-            </div>
-          </div>
-          <div class="panel-item">
-            <div class="pi-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            </div>
-            <div>
-              <div class="pi-name">Sanitaire</div>
-              <div class="pi-desc">Plomberie, distribution eau, travaux sanitaires complets</div>
-            </div>
-          </div>
-
-          <div class="panel-contact">
-            <a href="tel:+41799326862" class="panel-tel">+41 79 932 68 62</a>
-            <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Demander un devis gratuit</a>
-          </div>
-        </div>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- SERVICES -->
-<section class="services" id="services" aria-labelledby="services-title">
-  <div class="container">
-    <div class="services-header">
-      <span class="label">Ce que nous faisons</span>
-      <div class="rule"></div>
-      <h2 class="section-title" id="services-title">Nos domaines<br />d'intervention</h2>
-      <p class="section-lead" style="margin-top:16px;">
-        De l'étude technique à la mise en service, en passant par la maintenance préventive et le dépannage, nous couvrons l'ensemble des installations techniques du bâtiment.
-      </p>
-    </div>
-
-    <div class="services-grid" role="list">
-
-      <!-- Chauffage -->
-      <article class="service-card" role="listitem">
-        <div class="service-number">01 / 04</div>
-        <div class="service-icon-row">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.93 0 3.68.79 4.95 2.05L5.05 16.95A6.973 6.973 0 015 12c0-3.87 3.13-7 7-7zm0 14c-1.93 0-3.68-.79-4.95-2.05l11.9-11.9A6.973 6.973 0 0119 12c0 3.87-3.13 7-7 7z"/></svg>
-          </div>
-          <h2 class="service-title">Chauffage</h2>
-        </div>
-        <p class="service-text">
-          Sopjani Tech Sàrl assure l'installation et la maintenance de systèmes de chauffage pour les bâtiments résidentiels, commerciaux et industriels en Suisse. Chaudières gaz, mazout, pompes à chaleur ou planchers chauffants : chaque projet est traité avec la précision que la réglementation suisse exige.
-        </p>
-        <ul class="service-points">
-          <li>Installation de chaudières à condensation et pompes à chaleur</li>
-          <li>Entretien annuel et vérification réglementaire</li>
-          <li>Dépannage rapide et remplacement de composants</li>
-          <li>Équilibrage des réseaux et optimisation énergétique</li>
-        </ul>
-      </article>
-
-      <!-- Ventilation -->
-      <article class="service-card" role="listitem">
-        <div class="service-number">02 / 04</div>
-        <div class="service-icon-row">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
-          </div>
-          <h2 class="service-title">Ventilation</h2>
-        </div>
-        <p class="service-text">
-          La qualité de l'air intérieur est un enjeu de santé et de confort. Nous concevons et installons des systèmes de ventilation mécanique contrôlée (VMC), de traitement de l'air (CTA) et de désenfumage conformes aux normes SIA et aux exigences des bâtiments suisses.
-        </p>
-        <ul class="service-points">
-          <li>Installation de systèmes VMC simple et double flux</li>
-          <li>Centrales de traitement de l'air (CTA) pour locaux techniques</li>
-          <li>Réseaux de gaines et équipements terminaux</li>
-          <li>Maintenance préventive et nettoyage des conduits</li>
-        </ul>
-      </article>
-
-      <!-- Sprinkler -->
-      <article class="service-card" role="listitem">
-        <div class="service-number">03 / 04</div>
-        <div class="service-icon-row">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="9" y="2" width="6" height="4" rx="1"/>
-              <line x1="12" y1="6" x2="12" y2="10"/>
-              <line x1="7" y1="10" x2="17" y2="10"/>
-              <line x1="7" y1="10" x2="4" y2="14"/>
-              <line x1="12" y1="10" x2="12" y2="14"/>
-              <line x1="17" y1="10" x2="20" y2="14"/>
+        <div class="header-cta">
+          <a href="tel:+41799326862" class="tel-btn" aria-label="Appeler Sopjani Tech">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              aria-hidden="true">
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
             </svg>
-          </div>
-          <h2 class="service-title">Sprinkler & Protection incendie</h2>
+            +41 79 932 68 62
+          </a>
+          <a href="#contact" class="btn btn-primary">Demander un devis</a>
         </div>
-        <p class="service-text">
-          L'installation de systèmes sprinkler est une obligation légale pour de nombreux bâtiments en Suisse. Nous réalisons la conception, l'installation et la maintenance de réseaux sprinkler conformes aux directives AEAI et aux normes EN 12845, garantissant une protection incendie efficace et certifiée.
-        </p>
-        <ul class="service-points">
-          <li>Étude et dimensionnement des réseaux sprinkler</li>
-          <li>Installation conforme aux directives AEAI</li>
-          <li>Mise en service, tests hydrauliques et réception</li>
-          <li>Maintenance annuelle et contrats d'entretien</li>
-        </ul>
-      </article>
 
-      <!-- Sanitaire -->
-      <article class="service-card" role="listitem">
-        <div class="service-number">04 / 04</div>
-        <div class="service-icon-row">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
-          </div>
-          <h2 class="service-title">Sanitaire & Dépannage</h2>
-        </div>
-        <p class="service-text">
-          Travaux de plomberie, distribution d'eau froide et chaude, installation de points d'eau et évacuations : notre équipe prend en charge l'ensemble des installations sanitaires neuves ou en rénovation. Nous assurons également un service de dépannage réactif pour toute panne ou urgence technique.
-        </p>
-        <ul class="service-points">
-          <li>Installation et rénovation de réseaux sanitaires</li>
-          <li>Pose et raccordement d'appareils sanitaires</li>
-          <li>Dépannage d'urgence : fuite, panne, casse</li>
-          <li>Maintenance préventive et contrats de service</li>
-        </ul>
-      </article>
-
+        <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
-  </div>
-</section>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile">
+      <a href="#services">Services</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#methode">Méthode</a>
+      <a href="#zones">Zones d'intervention</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a href="tel:+41799326862" style="color:var(--c-accent)">+41 79 932 68 62</a>
+    </nav>
+  </header>
 
-<div class="section-divider"></div>
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-h1">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="label">Installation · Maintenance · Dépannage</span>
+          </div>
+          <h1 id="hero-h1">
+            Expertise technique<br />pour vos <em>installations</em><br />en Suisse
+          </h1>
+          <p class="hero-sub">
+            Chauffage, ventilation, sprinkler et protection incendie : Sopjani Tech Sàrl assure l'installation, la
+            maintenance et le dépannage de vos équipements techniques avec rigueur et fiabilité.
+          </p>
+          <div class="hero-ctas">
+            <a href="#contact" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                aria-hidden="true">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+              Demander un devis
+            </a>
+            <a href="https://wa.me/41799326862" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+              </svg>
+              WhatsApp
+            </a>
+            <a href="tel:+41799326862" class="btn btn-ghost">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                aria-hidden="true">
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+              </svg>
+              Appeler directement
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="stat-val">5+</div>
+              <div class="stat-label">Domaines d'expertise</div>
+            </div>
+            <div class="stat">
+              <div class="stat-val">CH</div>
+              <div class="stat-label">Intervention Suisse</div>
+            </div>
+            <div class="stat">
+              <div class="stat-val">24h</div>
+              <div class="stat-label">Réactivité dépannage</div>
+            </div>
+          </div>
+        </div>
 
-<!-- EXPERTISE -->
-<section class="expertise" id="expertise" aria-labelledby="expertise-title">
-  <div class="container">
-    <div class="expertise-grid">
-      <div class="expertise-left">
-        <span class="label">Pourquoi nous choisir</span>
+        <!-- Sidebar panel -->
+        <aside class="hero-panel" aria-label="Nos services principaux">
+          <div class="panel-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#06080f" stroke-width="2"
+              aria-hidden="true">
+              <polyline points="9 11 12 14 22 4" />
+              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+            </svg>
+            <span class="panel-header-text">Nos spécialités</span>
+          </div>
+          <div class="panel-body">
+            <div class="panel-item">
+              <div class="pi-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <div>
+                <div class="pi-name">Chauffage</div>
+                <div class="pi-desc">Installation, entretien, dépannage de chaudières et systèmes thermiques</div>
+              </div>
+            </div>
+            <div class="panel-item">
+              <div class="pi-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
+              <div>
+                <div class="pi-name">Ventilation</div>
+                <div class="pi-desc">Systèmes VMC, CTA, traitement de l'air pour bâtiments</div>
+              </div>
+            </div>
+            <div class="panel-item">
+              <div class="pi-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+              </div>
+              <div>
+                <div class="pi-name">Sprinkler</div>
+                <div class="pi-desc">Conception et installation de réseaux sprinkler incendie</div>
+              </div>
+            </div>
+            <div class="panel-item">
+              <div class="pi-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+              </div>
+              <div>
+                <div class="pi-name">Sanitaire</div>
+                <div class="pi-desc">Plomberie, distribution eau, travaux sanitaires complets</div>
+              </div>
+            </div>
+
+            <div class="panel-contact">
+              <a href="tel:+41799326862" class="panel-tel">+41 79 932 68 62</a>
+              <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Demander un devis
+                gratuit</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services" aria-labelledby="services-title">
+    <div class="container">
+      <div class="services-header">
+        <span class="label">Ce que nous faisons</span>
         <div class="rule"></div>
-        <h2 class="section-title" id="expertise-title">Une exécution<br />technique sans<br />compromis</h2>
+        <h2 class="section-title" id="services-title">Nos domaines<br />d'intervention</h2>
         <p class="section-lead" style="margin-top:16px;">
-          En Suisse, les standards d'installation technique sont parmi les plus exigeants d'Europe. Sopjani Tech Sàrl est constitué pour y répondre — avec méthode, transparence et engagement.
+          De l'étude technique à la mise en service, en passant par la maintenance préventive et le dépannage, nous
+          couvrons l'ensemble des installations techniques du bâtiment.
         </p>
-
-        <div class="exp-list">
-          <div class="exp-item">
-            <div class="exp-num">01</div>
-            <div class="exp-content">
-              <h3>Rigueur d'exécution</h3>
-              <p>Chaque installation est réalisée dans le respect des normes SIA, SUVA et AEAI. Nos travaux sont documentés, traçables et prêts pour toute inspection.</p>
-            </div>
-          </div>
-          <div class="exp-item">
-            <div class="exp-num">02</div>
-            <div class="exp-content">
-              <h3>Réactivité dépannage</h3>
-              <p>Une panne ne prévient pas. Nous intervenons rapidement pour limiter l'impact sur votre bâtiment ou votre activité.</p>
-            </div>
-          </div>
-          <div class="exp-item">
-            <div class="exp-num">03</div>
-            <div class="exp-content">
-              <h3>Interlocuteur direct</h3>
-              <p>Pas de sous-traitance opaque. Vous traitez directement avec l'équipe technique qui réalise les travaux.</p>
-            </div>
-          </div>
-          <div class="exp-item">
-            <div class="exp-num">04</div>
-            <div class="exp-content">
-              <h3>Accompagnement complet</h3>
-              <p>De l'analyse du besoin à la maintenance courante, nous sommes présents à chaque étape du cycle de vie de vos équipements.</p>
-            </div>
-          </div>
-          <div class="exp-item">
-            <div class="exp-num">05</div>
-            <div class="exp-content">
-              <h3>Devis transparent</h3>
-              <p>Nos offres sont claires, détaillées et sans surprise. Nous présentons les solutions adaptées à votre budget et à vos contraintes techniques.</p>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <div class="expertise-right">
-        <div class="cert-block">
-          <div class="cert-title">Domaines de compétence</div>
-          <div class="cert-items">
-            <span class="cert-tag">Chauffage</span>
-            <span class="cert-tag">Ventilation</span>
-            <span class="cert-tag">Sprinkler</span>
-            <span class="cert-tag">Protection incendie</span>
-            <span class="cert-tag">Sanitaire</span>
-            <span class="cert-tag">Maintenance</span>
-            <span class="cert-tag">Dépannage urgence</span>
-            <span class="cert-tag">Normes SIA</span>
-            <span class="cert-tag">Directives AEAI</span>
-          </div>
-        </div>
+      <div class="services-grid" role="list">
 
-        <div class="type-block">
-          <div class="cert-title">Types de bâtiments</div>
-          <div class="type-grid">
-            <div class="type-item">
-              <div class="type-item-name">Résidentiel</div>
-              <div class="type-item-sub">Immeubles, villas, PPE</div>
+        <!-- Chauffage -->
+        <article class="service-card" role="listitem">
+          <div class="service-number">01 / 04</div>
+          <div class="service-icon-row">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.93 0 3.68.79 4.95 2.05L5.05 16.95A6.973 6.973 0 015 12c0-3.87 3.13-7 7-7zm0 14c-1.93 0-3.68-.79-4.95-2.05l11.9-11.9A6.973 6.973 0 0119 12c0 3.87-3.13 7-7 7z" />
+              </svg>
             </div>
-            <div class="type-item">
-              <div class="type-item-name">Commercial</div>
-              <div class="type-item-sub">Bureaux, commerces, hôtels</div>
+            <h2 class="service-title">Chauffage</h2>
+          </div>
+          <p class="service-text">
+            Sopjani Tech Sàrl assure l'installation et la maintenance de systèmes de chauffage pour les bâtiments
+            résidentiels, commerciaux et industriels en Suisse. Chaudières gaz, mazout, pompes à chaleur ou planchers
+            chauffants : chaque projet est traité avec la précision que la réglementation suisse exige.
+          </p>
+          <ul class="service-points">
+            <li>Installation de chaudières à condensation et pompes à chaleur</li>
+            <li>Entretien annuel et vérification réglementaire</li>
+            <li>Dépannage rapide et remplacement de composants</li>
+            <li>Équilibrage des réseaux et optimisation énergétique</li>
+          </ul>
+        </article>
+
+        <!-- Ventilation -->
+        <article class="service-card" role="listitem">
+          <div class="service-number">02 / 04</div>
+          <div class="service-icon-row">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" />
+              </svg>
             </div>
-            <div class="type-item">
-              <div class="type-item-name">Industriel</div>
-              <div class="type-item-sub">Entrepôts, ateliers</div>
+            <h2 class="service-title">Ventilation</h2>
+          </div>
+          <p class="service-text">
+            La qualité de l'air intérieur est un enjeu de santé et de confort. Nous concevons et installons des systèmes
+            de ventilation mécanique contrôlée (VMC), de traitement de l'air (CTA) et de désenfumage conformes aux
+            normes SIA et aux exigences des bâtiments suisses.
+          </p>
+          <ul class="service-points">
+            <li>Installation de systèmes VMC simple et double flux</li>
+            <li>Centrales de traitement de l'air (CTA) pour locaux techniques</li>
+            <li>Réseaux de gaines et équipements terminaux</li>
+            <li>Maintenance préventive et nettoyage des conduits</li>
+          </ul>
+        </article>
+
+        <!-- Sprinkler -->
+        <article class="service-card" role="listitem">
+          <div class="service-number">03 / 04</div>
+          <div class="service-icon-row">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="9" y="2" width="6" height="4" rx="1" />
+                <line x1="12" y1="6" x2="12" y2="10" />
+                <line x1="7" y1="10" x2="17" y2="10" />
+                <line x1="7" y1="10" x2="4" y2="14" />
+                <line x1="12" y1="10" x2="12" y2="14" />
+                <line x1="17" y1="10" x2="20" y2="14" />
+              </svg>
             </div>
-            <div class="type-item">
-              <div class="type-item-name">Public</div>
-              <div class="type-item-sub">ERP, établissements scolaires</div>
+            <h2 class="service-title">Sprinkler & Protection incendie</h2>
+          </div>
+          <p class="service-text">
+            L'installation de systèmes sprinkler est une obligation légale pour de nombreux bâtiments en Suisse. Nous
+            réalisons la conception, l'installation et la maintenance de réseaux sprinkler conformes aux directives AEAI
+            et aux normes EN 12845, garantissant une protection incendie efficace et certifiée.
+          </p>
+          <ul class="service-points">
+            <li>Étude et dimensionnement des réseaux sprinkler</li>
+            <li>Installation conforme aux directives AEAI</li>
+            <li>Mise en service, tests hydrauliques et réception</li>
+            <li>Maintenance annuelle et contrats d'entretien</li>
+          </ul>
+        </article>
+
+        <!-- Sanitaire -->
+        <article class="service-card" role="listitem">
+          <div class="service-number">04 / 04</div>
+          <div class="service-icon-row">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+              </svg>
             </div>
+            <h2 class="service-title">Sanitaire & Dépannage</h2>
           </div>
-        </div>
-
-        <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:3px solid var(--c-accent);padding:28px;">
-          <div class="cert-title">Contactez-nous</div>
-          <p style="font-size:14px;color:var(--c-muted);margin-bottom:20px;line-height:1.65;">Un projet, une question, un dépannage urgence — notre équipe répond rapidement.</p>
-          <a href="tel:+41799326862" style="display:block;font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--c-accent);margin-bottom:12px;">+41 79 932 68 62</a>
-          <a href="https://wa.me/41799326862" class="btn btn-whatsapp" style="width:100%;justify-content:center;" target="_blank" rel="noopener noreferrer">
-            Écrire sur WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- METHODE -->
-<section class="methode" id="methode" aria-labelledby="methode-title">
-  <div class="container">
-    <span class="label">Notre approche</span>
-    <div class="rule"></div>
-    <h2 class="section-title" id="methode-title">Déroulement d'une intervention</h2>
-    <p class="section-lead" style="margin-top:16px;">
-      Chaque projet, qu'il s'agisse d'une installation neuve ou d'un dépannage, suit un processus structuré pour garantir qualité et transparence.
-    </p>
-
-    <div class="methode-steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div class="step-accent"></div>
-        <div class="step-name">Analyse du besoin</div>
-        <p class="step-desc">Nous échangeons avec vous pour comprendre votre contexte technique, les contraintes du bâtiment et vos attentes. Un premier diagnostic peut être réalisé sur place.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <div class="step-accent"></div>
-        <div class="step-name">Proposition technique</div>
-        <p class="step-desc">Nous établissons une offre détaillée avec les solutions recommandées, le matériel utilisé, le planning d'intervention et le budget total — sans ligne cachée.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <div class="step-accent"></div>
-        <div class="step-name">Installation & Intervention</div>
-        <p class="step-desc">Nos techniciens réalisent les travaux dans le respect des délais convenus, des normes en vigueur et avec un soin particulier pour la propreté du chantier.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <div class="step-accent"></div>
-        <div class="step-name">Suivi & Maintenance</div>
-        <p class="step-desc">Après chaque intervention, un récapitulatif des travaux effectués est transmis. Nous proposons des contrats d'entretien pour assurer la durabilité de vos installations.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ZONES -->
-<section class="zones" id="zones" aria-labelledby="zones-title">
-  <div class="container">
-    <div class="zones-grid">
-      <div>
-        <span class="label">Zones d'intervention</span>
-        <div class="rule"></div>
-        <h2 class="section-title" id="zones-title">Nous intervenons<br />en Suisse</h2>
-
-        <div class="cantons-grid">
-          <div class="canton">Genève</div>
-          <div class="canton">Vaud</div>
-          <div class="canton">Fribourg</div>
-          <div class="canton">Valais</div>
-          <div class="canton">Neuchâtel</div>
-          <div class="canton">Berne</div>
-          <div class="canton">Zurich</div>
-          <div class="canton">Jura</div>
-          <div class="canton">Suisse romande</div>
-        </div>
-      </div>
-
-      <div class="zones-text">
-        <p>
-          Sopjani Tech Sàrl intervient principalement en Suisse romande — Genève, Vaud, Fribourg, Valais et Neuchâtel — et peut se déplacer dans d'autres cantons selon la nature des travaux. Notre réactivité est un atout particulier pour les interventions de dépannage ou d'urgence.
-        </p>
-        <p>
-          Que vous soyez propriétaire d'un immeuble à Genève, gérant d'un hôtel en Valais, responsable technique d'un bâtiment industriel dans le canton de Vaud ou régie immobilière basée à Lausanne, nous adaptons notre organisation à vos contraintes géographiques et calendaires.
-        </p>
-
-        <div class="urgence-block">
-          <div class="urgence-title">Urgence ou dépannage ?</div>
-          <p class="urgence-text">Pour toute panne de chauffage, fuite ou incident technique, contactez-nous directement par téléphone ou WhatsApp. Nous évaluons la situation et organisons une intervention dans les meilleurs délais.</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <a href="tel:+41799326862" class="btn btn-primary">Appeler maintenant</a>
-            <a href="https://wa.me/41799326862" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- FAQ -->
-<section class="faq" id="faq" aria-labelledby="faq-title">
-  <div class="container">
-    <div class="faq-grid">
-      <div>
-        <span class="label">Questions fréquentes</span>
-        <div class="rule"></div>
-        <h2 class="section-title" id="faq-title">Réponses aux questions courantes</h2>
-        <p class="section-lead" style="margin-top:16px;">
-          Vous avez un projet ou une urgence ? Trouvez les réponses ci-contre, ou contactez-nous directement.
-        </p>
-        <div style="margin-top:32px;">
-          <a href="tel:+41799326862" class="btn btn-primary">+41 79 932 68 62</a>
-        </div>
-      </div>
-
-      <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <button class="faq-q" aria-expanded="false">
-            <span itemprop="name">Proposez-vous des contrats de maintenance pour les systèmes de chauffage et ventilation ?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <span itemprop="text">Oui. Nous proposons des contrats d'entretien annuels pour les installations de chauffage, ventilation et sprinkler. Ces contrats incluent les visites préventives, les vérifications réglementaires et la priorité d'intervention en cas de panne. Un entretien régulier prolonge la durée de vie des équipements et prévient les pannes coûteuses.</span>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <button class="faq-q" aria-expanded="false">
-            <span itemprop="name">Intervenez-vous en urgence pour un dépannage de chauffage en Suisse ?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <span itemprop="text">Oui. Nous sommes disponibles pour les interventions urgentes, notamment en cas de panne de chaudière, de fuite ou de problème sur un système de protection incendie. Contactez-nous directement par téléphone ou WhatsApp pour évaluer votre situation et organiser une intervention rapide.</span>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <button class="faq-q" aria-expanded="false">
-            <span itemprop="name">L'installation d'un système sprinkler est-elle obligatoire en Suisse ?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <span itemprop="text">Selon les directives de l'Établissement cantonal d'assurance (AEAI), les systèmes sprinkler sont obligatoires pour certaines catégories de bâtiments : établissements recevant du public, hôtels, bâtiments industriels ou logistiques dépassant certains seuils de surface ou de hauteur. Nous pouvons analyser votre situation et vous indiquer les obligations applicables à votre bâtiment.</span>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <button class="faq-q" aria-expanded="false">
-            <span itemprop="name">Dans quels cantons suisses intervenez-vous ?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <span itemprop="text">Nous intervenons principalement en Suisse romande : Genève, Vaud, Fribourg, Valais, Neuchâtel et Berne. Pour les projets importants ou les contrats d'entretien, nous pouvons également nous déplacer dans d'autres cantons. Contactez-nous pour évaluer la faisabilité selon votre localisation.</span>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <button class="faq-q" aria-expanded="false">
-            <span itemprop="name">Travaillez-vous avec les régies immobilières et les propriétaires institutionnels ?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <span itemprop="text">Oui. Nous collaborons régulièrement avec des régies immobilières, des propriétaires institutionnels et des sociétés de facility management. Nous sommes en mesure de gérer plusieurs bâtiments en parallèle et d'adapter notre planning aux contraintes de locataires en place.</span>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <button class="faq-q" aria-expanded="false">
-            <span itemprop="name">Comment obtenir un devis pour une installation de ventilation ?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <span itemprop="text">Contactez-nous par téléphone, WhatsApp ou email en décrivant votre projet (type de bâtiment, surface, état existant, contraintes). Nous organisons une visite technique si nécessaire, puis vous transmettons une offre détaillée dans les meilleurs délais, sans engagement.</span>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <button class="faq-q" aria-expanded="false">
-            <span itemprop="name">Réalisez-vous également des travaux de rénovation de réseaux existants ?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <span itemprop="text">Oui. La rénovation de réseaux existants (chauffage, ventilation, sanitaire) représente une part importante de notre activité. Nous évaluons l'état des installations en place, identifions les points à remplacer ou moderniser, et proposons une solution adaptée à votre budget et aux exigences techniques actuelles.</span>
-          </div>
-        </div>
-
-        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <button class="faq-q" aria-expanded="false">
-            <span itemprop="name">Quelle est la fréquence d'entretien recommandée pour un système de sprinkler ?</span>
-            <span class="faq-icon" aria-hidden="true"></span>
-          </button>
-          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <span itemprop="text">Selon la norme EN 12845 et les directives AEAI, un système sprinkler doit faire l'objet d'une inspection complète au minimum une fois par an, incluant les tests de déclenchement, la vérification des pressions hydrauliques et le contrôle visuel des têtes sprinkler. Des vérifications trimestrielles partielles sont également recommandées. Nous proposons des contrats d'entretien adaptés à ces exigences.</span>
-          </div>
-        </div>
+          <p class="service-text">
+            Travaux de plomberie, distribution d'eau froide et chaude, installation de points d'eau et évacuations :
+            notre équipe prend en charge l'ensemble des installations sanitaires neuves ou en rénovation. Nous assurons
+            également un service de dépannage réactif pour toute panne ou urgence technique.
+          </p>
+          <ul class="service-points">
+            <li>Installation et rénovation de réseaux sanitaires</li>
+            <li>Pose et raccordement d'appareils sanitaires</li>
+            <li>Dépannage d'urgence : fuite, panne, casse</li>
+            <li>Maintenance préventive et contrats de service</li>
+          </ul>
+        </article>
 
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="section-divider"></div>
+  <div class="section-divider"></div>
 
-<!-- CONTACT -->
-<section class="contact" id="contact" aria-labelledby="contact-title">
-  <div class="container">
-    <div class="contact-inner">
-      <div>
-        <span class="label">Prendre contact</span>
-        <div class="rule"></div>
-        <h2 class="section-title" id="contact-title">Un projet ?<br />Parlons-en.</h2>
-        <p class="section-lead" style="margin-top:16px;">
-          Que vous ayez un projet d'installation, un contrat d'entretien à mettre en place ou une urgence technique à gérer — nous sommes disponibles. Choisissez le canal qui vous convient.
-        </p>
+  <!-- EXPERTISE -->
+  <section class="expertise" id="expertise" aria-labelledby="expertise-title">
+    <div class="container">
+      <div class="expertise-grid">
+        <div class="expertise-left">
+          <span class="label">Pourquoi nous choisir</span>
+          <div class="rule"></div>
+          <h2 class="section-title" id="expertise-title">Une exécution<br />technique sans<br />compromis</h2>
+          <p class="section-lead" style="margin-top:16px;">
+            En Suisse, les standards d'installation technique sont parmi les plus exigeants d'Europe. Sopjani Tech Sàrl
+            est constitué pour y répondre — avec méthode, transparence et engagement.
+          </p>
 
-        <div class="contact-methods">
-          <a href="tel:+41799326862" class="contact-method" aria-label="Appeler Sopjani Tech">
-            <div class="cm-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <div class="exp-list">
+            <div class="exp-item">
+              <div class="exp-num">01</div>
+              <div class="exp-content">
+                <h3>Rigueur d'exécution</h3>
+                <p>Chaque installation est réalisée dans le respect des normes SIA, SUVA et AEAI. Nos travaux sont
+                  documentés, traçables et prêts pour toute inspection.</p>
+              </div>
             </div>
-            <div>
-              <div class="cm-label">Téléphone</div>
-              <div class="cm-value">+41 79 932 68 62</div>
+            <div class="exp-item">
+              <div class="exp-num">02</div>
+              <div class="exp-content">
+                <h3>Réactivité dépannage</h3>
+                <p>Une panne ne prévient pas. Nous intervenons rapidement pour limiter l'impact sur votre bâtiment ou
+                  votre activité.</p>
+              </div>
             </div>
-          </a>
-
-          <a href="https://wa.me/41799326862" class="contact-method" target="_blank" rel="noopener noreferrer" aria-label="Contacter via WhatsApp">
-            <div class="cm-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor" style="stroke:none" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" style="fill:#25d366"/></svg>
+            <div class="exp-item">
+              <div class="exp-num">03</div>
+              <div class="exp-content">
+                <h3>Interlocuteur direct</h3>
+                <p>Pas de sous-traitance opaque. Vous traitez directement avec l'équipe technique qui réalise les
+                  travaux.</p>
+              </div>
             </div>
-            <div>
-              <div class="cm-label">WhatsApp</div>
-              <div class="cm-value">wa.me/41799326862</div>
+            <div class="exp-item">
+              <div class="exp-num">04</div>
+              <div class="exp-content">
+                <h3>Accompagnement complet</h3>
+                <p>De l'analyse du besoin à la maintenance courante, nous sommes présents à chaque étape du cycle de vie
+                  de vos équipements.</p>
+              </div>
             </div>
-          </a>
-
-          <a href="mailto:sopjanitech@gmail.com" class="contact-method" aria-label="Envoyer un email">
-            <div class="cm-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div class="exp-item">
+              <div class="exp-num">05</div>
+              <div class="exp-content">
+                <h3>Devis transparent</h3>
+                <p>Nos offres sont claires, détaillées et sans surprise. Nous présentons les solutions adaptées à votre
+                  budget et à vos contraintes techniques.</p>
+              </div>
             </div>
-            <div>
-              <div class="cm-label">Email</div>
-              <div class="cm-value">sopjanitech@gmail.com</div>
-            </div>
-          </a>
+          </div>
         </div>
-      </div>
 
-      <div class="devis-block">
-        <div class="devis-title">Demande de devis gratuit</div>
-        <p class="devis-sub">Sans engagement. Réponse sous 24h ouvrables.</p>
-        <div class="devis-items">
-          <div class="devis-item">Étude de votre projet ou besoin</div>
-          <div class="devis-item">Proposition technique adaptée</div>
-          <div class="devis-item">Offre chiffrée détaillée et transparente</div>
-          <div class="devis-item">Disponible pour toute la Suisse romande</div>
-        </div>
-        <div class="devis-actions">
-          <a href="tel:+41799326862" class="da-tel">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            Appeler : +41 79 932 68 62
-          </a>
-          <a href="https://wa.me/41799326862" class="da-wa" target="_blank" rel="noopener noreferrer">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#25d366" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            WhatsApp
-          </a>
-          <a href="mailto:sopjanitech@gmail.com" class="da-mail">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            sopjanitech@gmail.com
-          </a>
+        <div class="expertise-right">
+          <div class="cert-block">
+            <div class="cert-title">Domaines de compétence</div>
+            <div class="cert-items">
+              <span class="cert-tag">Chauffage</span>
+              <span class="cert-tag">Ventilation</span>
+              <span class="cert-tag">Sprinkler</span>
+              <span class="cert-tag">Protection incendie</span>
+              <span class="cert-tag">Sanitaire</span>
+              <span class="cert-tag">Maintenance</span>
+              <span class="cert-tag">Dépannage urgence</span>
+              <span class="cert-tag">Normes SIA</span>
+              <span class="cert-tag">Directives AEAI</span>
+            </div>
+          </div>
+
+          <div class="type-block">
+            <div class="cert-title">Types de bâtiments</div>
+            <div class="type-grid">
+              <div class="type-item">
+                <div class="type-item-name">Résidentiel</div>
+                <div class="type-item-sub">Immeubles, villas, PPE</div>
+              </div>
+              <div class="type-item">
+                <div class="type-item-name">Commercial</div>
+                <div class="type-item-sub">Bureaux, commerces, hôtels</div>
+              </div>
+              <div class="type-item">
+                <div class="type-item-name">Industriel</div>
+                <div class="type-item-sub">Entrepôts, ateliers</div>
+              </div>
+              <div class="type-item">
+                <div class="type-item-name">Public</div>
+                <div class="type-item-sub">ERP, établissements scolaires</div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="background:var(--c-surface);border:1px solid var(--c-border);border-left:3px solid var(--c-accent);padding:28px;">
+            <div class="cert-title">Contactez-nous</div>
+            <p style="font-size:14px;color:var(--c-muted);margin-bottom:20px;line-height:1.65;">Un projet, une question,
+              un dépannage urgence — notre équipe répond rapidement.</p>
+            <a href="tel:+41799326862"
+              style="display:block;font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--c-accent);margin-bottom:12px;">+41
+              79 932 68 62</a>
+            <a href="https://wa.me/41799326862" class="btn btn-whatsapp" style="width:100%;justify-content:center;"
+              target="_blank" rel="noopener noreferrer">
+              Écrire sur WhatsApp
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <svg width="32" height="32" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <polygon points="22,2 40,12 40,32 22,42 4,32 4,12" stroke="#3db8e8" stroke-width="1.5" fill="none"/>
-          </svg>
-          <div class="footer-logo-text">SOPJANI TECH SÀRL</div>
+  <div class="section-divider"></div>
+
+  <!-- METHODE -->
+  <section class="methode" id="methode" aria-labelledby="methode-title">
+    <div class="container">
+      <span class="label">Notre approche</span>
+      <div class="rule"></div>
+      <h2 class="section-title" id="methode-title">Déroulement d'une intervention</h2>
+      <p class="section-lead" style="margin-top:16px;">
+        Chaque projet, qu'il s'agisse d'une installation neuve ou d'un dépannage, suit un processus structuré pour
+        garantir qualité et transparence.
+      </p>
+
+      <div class="methode-steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-accent"></div>
+          <div class="step-name">Analyse du besoin</div>
+          <p class="step-desc">Nous échangeons avec vous pour comprendre votre contexte technique, les contraintes du
+            bâtiment et vos attentes. Un premier diagnostic peut être réalisé sur place.</p>
         </div>
-        <p class="footer-tagline">
-          Entreprise spécialisée en installations techniques du bâtiment : chauffage, ventilation, sprinkler, protection incendie et sanitaire en Suisse.
-        </p>
-        <div style="display:flex;gap:10px;">
-          <a href="tel:+41799326862" style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--c-accent);">+41 79 932 68 62</a>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-accent"></div>
+          <div class="step-name">Proposition technique</div>
+          <p class="step-desc">Nous établissons une offre détaillée avec les solutions recommandées, le matériel
+            utilisé, le planning d'intervention et le budget total — sans ligne cachée.</p>
         </div>
-      </div>
-
-      <div>
-        <div class="footer-col-title">Services</div>
-        <ul class="footer-links">
-          <li><a href="#services">Chauffage</a></li>
-          <li><a href="#services">Ventilation</a></li>
-          <li><a href="#services">Sprinkler & Protection incendie</a></li>
-          <li><a href="#services">Sanitaire</a></li>
-          <li><a href="#services">Maintenance & Dépannage</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <div class="footer-col-title">Contact</div>
-        <ul class="footer-contact-list">
-          <li><a href="tel:+41799326862">+41 79 932 68 62</a></li>
-          <li><a href="mailto:sopjanitech@gmail.com">sopjanitech@gmail.com</a></li>
-          <li><a href="https://wa.me/41799326862" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-          <li style="margin-top:8px;font-size:13px;">Suisse romande<br />& alentours</li>
-        </ul>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-accent"></div>
+          <div class="step-name">Installation & Intervention</div>
+          <p class="step-desc">Nos techniciens réalisent les travaux dans le respect des délais convenus, des normes en
+            vigueur et avec un soin particulier pour la propreté du chantier.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-accent"></div>
+          <div class="step-name">Suivi & Maintenance</div>
+          <p class="step-desc">Après chaque intervention, un récapitulatif des travaux effectués est transmis. Nous
+            proposons des contrats d'entretien pour assurer la durabilité de vos installations.</p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2024 Sopjani Tech Sàrl · Suisse · Tous droits réservés</p>
-      <p class="footer-seo">Installation chauffage Suisse · Ventilation bâtiment · Sprinkler Suisse · Protection incendie · Maintenance technique · Dépannage chauffage Suisse romande</p>
+  <div class="section-divider"></div>
+
+  <!-- ZONES -->
+  <section class="zones" id="zones" aria-labelledby="zones-title">
+    <div class="container">
+      <div class="zones-grid">
+        <div>
+          <span class="label">Zones d'intervention</span>
+          <div class="rule"></div>
+          <h2 class="section-title" id="zones-title">Nous intervenons<br />en Suisse</h2>
+
+          <div class="cantons-grid">
+            <div class="canton">Genève</div>
+            <div class="canton">Vaud</div>
+            <div class="canton">Fribourg</div>
+            <div class="canton">Valais</div>
+            <div class="canton">Neuchâtel</div>
+            <div class="canton">Berne</div>
+            <div class="canton">Zurich</div>
+            <div class="canton">Jura</div>
+            <div class="canton">Suisse romande</div>
+          </div>
+        </div>
+
+        <div class="zones-text">
+          <p>
+            Sopjani Tech Sàrl intervient principalement en Suisse romande — Genève, Vaud, Fribourg, Valais et Neuchâtel
+            — et peut se déplacer dans d'autres cantons selon la nature des travaux. Notre réactivité est un atout
+            particulier pour les interventions de dépannage ou d'urgence.
+          </p>
+          <p>
+            Que vous soyez propriétaire d'un immeuble à Genève, gérant d'un hôtel en Valais, responsable technique d'un
+            bâtiment industriel dans le canton de Vaud ou régie immobilière basée à Lausanne, nous adaptons notre
+            organisation à vos contraintes géographiques et calendaires.
+          </p>
+
+          <div class="urgence-block">
+            <div class="urgence-title">Urgence ou dépannage ?</div>
+            <p class="urgence-text">Pour toute panne de chauffage, fuite ou incident technique, contactez-nous
+              directement par téléphone ou WhatsApp. Nous évaluons la situation et organisons une intervention dans les
+              meilleurs délais.</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <a href="tel:+41799326862" class="btn btn-primary">Appeler maintenant</a>
+              <a href="https://wa.me/41799326862" class="btn btn-whatsapp" target="_blank"
+                rel="noopener noreferrer">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+  </section>
 
-<script>
-  // Burger menu
-  const burger = document.getElementById('burger');
-  const mobileNav = document.getElementById('mobileNav');
-  burger.addEventListener('click', () => {
-    const isOpen = mobileNav.classList.toggle('open');
-    burger.setAttribute('aria-expanded', isOpen);
-  });
-  mobileNav.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      mobileNav.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
+  <div class="section-divider"></div>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="faq-grid">
+        <div>
+          <span class="label">Questions fréquentes</span>
+          <div class="rule"></div>
+          <h2 class="section-title" id="faq-title">Réponses aux questions courantes</h2>
+          <p class="section-lead" style="margin-top:16px;">
+            Vous avez un projet ou une urgence ? Trouvez les réponses ci-contre, ou contactez-nous directement.
+          </p>
+          <div style="margin-top:32px;">
+            <a href="tel:+41799326862" class="btn btn-primary">+41 79 932 68 62</a>
+          </div>
+        </div>
+
+        <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <button class="faq-q" aria-expanded="false">
+              <span itemprop="name">Proposez-vous des contrats de maintenance pour les systèmes de chauffage et
+                ventilation ?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <span itemprop="text">Oui. Nous proposons des contrats d'entretien annuels pour les installations de
+                chauffage, ventilation et sprinkler. Ces contrats incluent les visites préventives, les vérifications
+                réglementaires et la priorité d'intervention en cas de panne. Un entretien régulier prolonge la durée de
+                vie des équipements et prévient les pannes coûteuses.</span>
+            </div>
+          </div>
+
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <button class="faq-q" aria-expanded="false">
+              <span itemprop="name">Intervenez-vous en urgence pour un dépannage de chauffage en Suisse ?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <span itemprop="text">Oui. Nous sommes disponibles pour les interventions urgentes, notamment en cas de
+                panne de chaudière, de fuite ou de problème sur un système de protection incendie. Contactez-nous
+                directement par téléphone ou WhatsApp pour évaluer votre situation et organiser une intervention
+                rapide.</span>
+            </div>
+          </div>
+
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <button class="faq-q" aria-expanded="false">
+              <span itemprop="name">L'installation d'un système sprinkler est-elle obligatoire en Suisse ?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <span itemprop="text">Selon les directives de l'Établissement cantonal d'assurance (AEAI), les systèmes
+                sprinkler sont obligatoires pour certaines catégories de bâtiments : établissements recevant du public,
+                hôtels, bâtiments industriels ou logistiques dépassant certains seuils de surface ou de hauteur. Nous
+                pouvons analyser votre situation et vous indiquer les obligations applicables à votre bâtiment.</span>
+            </div>
+          </div>
+
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <button class="faq-q" aria-expanded="false">
+              <span itemprop="name">Dans quels cantons suisses intervenez-vous ?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <span itemprop="text">Nous intervenons principalement en Suisse romande : Genève, Vaud, Fribourg, Valais,
+                Neuchâtel et Berne. Pour les projets importants ou les contrats d'entretien, nous pouvons également nous
+                déplacer dans d'autres cantons. Contactez-nous pour évaluer la faisabilité selon votre
+                localisation.</span>
+            </div>
+          </div>
+
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <button class="faq-q" aria-expanded="false">
+              <span itemprop="name">Travaillez-vous avec les régies immobilières et les propriétaires institutionnels
+                ?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <span itemprop="text">Oui. Nous collaborons régulièrement avec des régies immobilières, des propriétaires
+                institutionnels et des sociétés de facility management. Nous sommes en mesure de gérer plusieurs
+                bâtiments en parallèle et d'adapter notre planning aux contraintes de locataires en place.</span>
+            </div>
+          </div>
+
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <button class="faq-q" aria-expanded="false">
+              <span itemprop="name">Comment obtenir un devis pour une installation de ventilation ?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <span itemprop="text">Contactez-nous par téléphone, WhatsApp ou email en décrivant votre projet (type de
+                bâtiment, surface, état existant, contraintes). Nous organisons une visite technique si nécessaire, puis
+                vous transmettons une offre détaillée dans les meilleurs délais, sans engagement.</span>
+            </div>
+          </div>
+
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <button class="faq-q" aria-expanded="false">
+              <span itemprop="name">Réalisez-vous également des travaux de rénovation de réseaux existants ?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <span itemprop="text">Oui. La rénovation de réseaux existants (chauffage, ventilation, sanitaire)
+                représente une part importante de notre activité. Nous évaluons l'état des installations en place,
+                identifions les points à remplacer ou moderniser, et proposons une solution adaptée à votre budget et
+                aux exigences techniques actuelles.</span>
+            </div>
+          </div>
+
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <button class="faq-q" aria-expanded="false">
+              <span itemprop="name">Quelle est la fréquence d'entretien recommandée pour un système de sprinkler
+                ?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <span itemprop="text">Selon la norme EN 12845 et les directives AEAI, un système sprinkler doit faire
+                l'objet d'une inspection complète au minimum une fois par an, incluant les tests de déclenchement, la
+                vérification des pressions hydrauliques et le contrôle visuel des têtes sprinkler. Des vérifications
+                trimestrielles partielles sont également recommandées. Nous proposons des contrats d'entretien adaptés à
+                ces exigences.</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="contact-inner">
+        <div>
+          <span class="label">Prendre contact</span>
+          <div class="rule"></div>
+          <h2 class="section-title" id="contact-title">Un projet ?<br />Parlons-en.</h2>
+          <p class="section-lead" style="margin-top:16px;">
+            Que vous ayez un projet d'installation, un contrat d'entretien à mettre en place ou une urgence technique à
+            gérer — nous sommes disponibles. Choisissez le canal qui vous convient.
+          </p>
+
+          <div class="contact-methods">
+            <a href="tel:+41799326862" class="contact-method" aria-label="Appeler Sopjani Tech">
+              <div class="cm-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                </svg>
+              </div>
+              <div>
+                <div class="cm-label">Téléphone</div>
+                <div class="cm-value">+41 79 932 68 62</div>
+              </div>
+            </a>
+
+            <a href="https://wa.me/41799326862" class="contact-method" target="_blank" rel="noopener noreferrer"
+              aria-label="Contacter via WhatsApp">
+              <div class="cm-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor" style="stroke:none" aria-hidden="true">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                    style="fill:#25d366" />
+                </svg>
+              </div>
+              <div>
+                <div class="cm-label">WhatsApp</div>
+                <div class="cm-value">wa.me/41799326862</div>
+              </div>
+            </a>
+
+            <a href="mailto:sopjanitech@gmail.com" class="contact-method" aria-label="Envoyer un email">
+              <div class="cm-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </div>
+              <div>
+                <div class="cm-label">Email</div>
+                <div class="cm-value">sopjanitech@gmail.com</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="devis-block">
+          <div class="devis-title">Demande de devis gratuit</div>
+          <p class="devis-sub">Sans engagement. Réponse sous 24h ouvrables.</p>
+          <div class="devis-items">
+            <div class="devis-item">Étude de votre projet ou besoin</div>
+            <div class="devis-item">Proposition technique adaptée</div>
+            <div class="devis-item">Offre chiffrée détaillée et transparente</div>
+            <div class="devis-item">Disponible pour toute la Suisse romande</div>
+          </div>
+          <div class="devis-actions">
+            <a href="tel:+41799326862" class="da-tel">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                aria-hidden="true">
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+              </svg>
+              Appeler : +41 79 932 68 62
+            </a>
+            <a href="https://wa.me/41799326862" class="da-wa" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#25d366" aria-hidden="true">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+              </svg>
+              WhatsApp
+            </a>
+            <a href="mailto:sopjanitech@gmail.com" class="da-mail">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              sopjanitech@gmail.com
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg width="32" height="32" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true">
+              <polygon points="22,2 40,12 40,32 22,42 4,32 4,12" stroke="#3db8e8" stroke-width="1.5" fill="none" />
+            </svg>
+            <div class="footer-logo-text">SOPJANI TECH SÀRL</div>
+          </div>
+          <p class="footer-tagline">
+            Entreprise spécialisée en installations techniques du bâtiment : chauffage, ventilation, sprinkler,
+            protection incendie et sanitaire en Suisse.
+          </p>
+          <div style="display:flex;gap:10px;">
+            <a href="tel:+41799326862"
+              style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--c-accent);">+41 79 932
+              68 62</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="#services">Chauffage</a></li>
+            <li><a href="#services">Ventilation</a></li>
+            <li><a href="#services">Sprinkler & Protection incendie</a></li>
+            <li><a href="#services">Sanitaire</a></li>
+            <li><a href="#services">Maintenance & Dépannage</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-contact-list">
+            <li><a href="tel:+41799326862">+41 79 932 68 62</a></li>
+            <li><a href="mailto:sopjanitech@gmail.com">sopjanitech@gmail.com</a></li>
+            <li><a href="https://wa.me/41799326862" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+            <li style="margin-top:8px;font-size:13px;">Suisse romande<br />& alentours</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2024 Sopjani Tech Sàrl · Suisse · Tous droits réservés</p>
+        <p class="footer-seo">Installation chauffage Suisse · Ventilation bâtiment · Sprinkler Suisse · Protection
+          incendie · Maintenance technique · Dépannage chauffage Suisse romande</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Burger menu
+    const burger = document.getElementById('burger');
+    const mobileNav = document.getElementById('mobileNav');
+    burger.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      burger.setAttribute('aria-expanded', isOpen);
     });
-  });
-
-  // FAQ accordion
-  document.querySelectorAll('.faq-q').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const answer = btn.nextElementSibling;
-      const isActive = btn.classList.contains('active');
-
-      // Close all
-      document.querySelectorAll('.faq-q').forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-expanded', 'false');
-        b.nextElementSibling.classList.remove('open');
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
       });
-
-      // Open clicked if was closed
-      if (!isActive) {
-        btn.classList.add('active');
-        btn.setAttribute('aria-expanded', 'true');
-        answer.classList.add('open');
-      }
     });
-  });
 
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const isActive = btn.classList.contains('active');
+
+        // Close all
+        document.querySelectorAll('.faq-q').forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-expanded', 'false');
+          b.nextElementSibling.classList.remove('open');
+        });
+
+        // Open clicked if was closed
+        if (!isActive) {
+          btn.classList.add('active');
+          btn.setAttribute('aria-expanded', 'true');
+          answer.classList.add('open');
+        }
+      });
     });
-  });
-</script>
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
 
 </body>
+
 </html>
