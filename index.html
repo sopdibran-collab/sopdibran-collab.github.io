@@ -20,44 +20,48 @@
 
   <!-- JSON-LD Schema -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": ["HVACBusiness", "Contractor"],
-    "name": "Sopjani Tech Sàrl",
-    "url": "https://www.sopjanitech.ch",
-    "telephone": "+41799326862",
-    "email": "sopjanitech@gmail.com",
-    "description": "Entreprise spécialisée en installation, maintenance et dépannage de systèmes de chauffage, ventilation, sprinkler, protection incendie et sanitaire en Suisse.",
-    "areaServed": {
-      "@type": "Country",
-      "name": "Suisse"
-    },
-    "serviceArea": [
-      {"@type": "State", "name": "Genève"},
-      {"@type": "State", "name": "Vaud"},
-      {"@type": "State", "name": "Fribourg"},
-      {"@type": "State", "name": "Neuchâtel"},
-      {"@type": "State", "name": "Valais"},
-      {"@type": "State", "name": "Berne"},
-      {"@type": "State", "name": "Zurich"}
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Services techniques du bâtiment",
-      "itemListElement": [
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Installation et maintenance de systèmes de chauffage"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Ventilation et traitement de l'air"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Installation de sprinklers et protection incendie"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Travaux sanitaires"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Dépannage et maintenance technique"}}
-      ]
-    },
-    "priceRange": "$$",
-    "currenciesAccepted": "CHF",
-    "paymentAccepted": "Virement bancaire, Facture",
-    "inLanguage": "fr"
-  }
-  </script>
+{
+  "@context": "https://schema.org",
+  "@type": "HVACBusiness",
+  "name": "Sopjani Tech Sàrl",
+  "url": "https://www.sopjanitech.ch",
+  "telephone": "+41799326862",
+  "email": "sopjanitech@gmail.com",
+  "description": "Entreprise spécialisée en installation, maintenance et dépannage de systèmes de chauffage, ventilation, sprinkler, protection incendie et sanitaire en Suisse.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "CH"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Suisse"
+  },
+  "serviceArea": [
+    {"@type": "AdministrativeArea", "name": "Genève"},
+    {"@type": "AdministrativeArea", "name": "Vaud"},
+    {"@type": "AdministrativeArea", "name": "Fribourg"},
+    {"@type": "AdministrativeArea", "name": "Neuchâtel"},
+    {"@type": "AdministrativeArea", "name": "Valais"},
+    {"@type": "AdministrativeArea", "name": "Berne"},
+    {"@type": "AdministrativeArea", "name": "Zurich"}
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services techniques du bâtiment",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Installation et maintenance de systèmes de chauffage"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Ventilation et traitement de l'air"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Installation de sprinklers et protection incendie"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Travaux sanitaires"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Dépannage et maintenance technique"}}
+    ]
+  },
+  "priceRange": "$$",
+  "currenciesAccepted": "CHF",
+  "paymentAccepted": "Virement bancaire, Facture",
+  "inLanguage": "fr"
+}
+</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
