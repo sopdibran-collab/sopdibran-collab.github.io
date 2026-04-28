@@ -293,3 +293,21 @@ width: 100%;
 align-items: flex-start;
 }
 }
+body,
+.hero,
+section,
+main,
+header,
+footer {
+background-image: none !important;
+}
+
+.hero::before,
+.hero::after,
+section::before,
+section::after,
+body::before,
+body::after {
+display: none !important;
+content: none !important;
+}
