@@ -1624,6 +1624,167 @@
         text-align: left;
       }
     }
+
+    .services-grid--clean {
+      gap: 1px;
+    }
+
+    .service-card--clean {
+      padding: 34px 28px 32px;
+    }
+
+    .service-icon-row--clean {
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .service-icon--clean {
+      width: 18px;
+      height: 42px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      border-left: 3px solid var(--c-accent);
+      padding-left: 12px;
+      flex-shrink: 0;
+    }
+
+    .service-icon--clean svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--c-accent);
+      fill: none;
+      margin-top: 1px;
+    }
+
+    .service-card--clean .service-title {
+      font-size: 22px;
+      line-height: 1.05;
+      margin: 0;
+    }
+
+    .service-card--clean .service-text {
+      margin-bottom: 22px;
+      max-width: 58ch;
+    }
+
+    .service-points--clean {
+      gap: 12px;
+    }
+
+    .service-points--clean li {
+      display: grid;
+      grid-template-columns: 14px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .service-points--clean li::before {
+      content: "";
+      width: 9px;
+      height: 2px;
+      background: var(--c-accent);
+      border-radius: 999px;
+      margin-top: 11px;
+      display: block;
+    }
+
+    .service-points--clean li strong {
+      display: inline-block;
+      min-width: 150px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--c-text);
+      margin-right: 12px;
+    }
+
+    .service-points--clean li span {
+      display: inline;
+      font-size: 14px;
+      color: var(--c-muted);
+      line-height: 1.7;
+    }
+
+    .service-points--clean li {
+      color: var(--c-muted);
+    }
+
+    .service-points--clean li>strong,
+    .service-points--clean li>span {
+      grid-column: 2;
+    }
+
+    @media (min-width: 769px) {
+      .service-points--clean li {
+        grid-template-columns: 14px minmax(0, 1fr);
+      }
+
+      .service-points--clean li>strong,
+      .service-points--clean li>span {
+        grid-column: auto;
+      }
+
+      .service-points--clean li {
+        position: relative;
+      }
+
+      .service-points--clean li>strong,
+      .service-points--clean li>span {
+        display: inline-block;
+      }
+
+      .service-points--clean li {
+        padding-left: 0;
+      }
+
+      .service-points--clean li>span {
+        margin-left: 0;
+      }
+
+      .service-points--clean li .service-line {
+        display: contents;
+      }
+
+      .service-points--clean li {
+        grid-template-areas: "dash content";
+      }
+
+      .service-points--clean li::before {
+        grid-area: dash;
+      }
+
+      .service-points--clean li>strong,
+      .service-points--clean li>span {
+        grid-area: content;
+      }
+
+      .service-points--clean li>strong {
+        min-width: 155px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .service-card--clean {
+        padding: 24px 18px;
+      }
+
+      .service-card--clean .service-title {
+        font-size: 20px;
+      }
+
+      .service-points--clean li>strong,
+      .service-points--clean li>span {
+        display: block;
+      }
+
+      .service-points--clean li>strong {
+        min-width: 0;
+        margin-right: 0;
+        margin-bottom: 2px;
+      }
+    }
   </style>
 </head>
 
@@ -1833,120 +1994,151 @@
 
       </div>
 
-      <div class="services-grid" role="list">
+      <div class="services-grid services-grid--clean" role="list">
 
-        <!-- Chauffage -->
-        <article class="service-card" role="listitem">
+        <article class="service-card service-card--clean" role="listitem">
           <div class="service-number">01 / 04</div>
-          <div class="service-icon-row">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
+
+          <div class="service-icon-row service-icon-row--clean">
+            <div class="service-icon service-icon--clean">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v10"></path>
                 <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.93 0 3.68.79 4.95 2.05L5.05 16.95A6.973 6.973 0 0 1 5 12c0-3.87 3.13-7 7-7zm0 14c-1.93 0-3.68-.79-4.95-2.05l11.9-11.9A6.973 6.973 0 0 1 19 12c0 3.87-3.13 7-7 7z" />
+                  d="M8.5 6.5c0 1.8 1.2 2.8 1.2 4.2S8 12.9 8 14.8A4 4 0 0 0 12 19a4 4 0 0 0 4-4.2c0-1.9-1.7-2.7-1.7-4.1s1.2-2.4 1.2-4.2">
+                </path>
               </svg>
             </div>
             <h2 class="service-title">Chauffage</h2>
           </div>
+
           <p class="service-text">
-            Nous concevons et réalisons des installations de chauffage adaptées aux besoins du
-            bâtiment, aux normes en vigueur et aux objectifs de performance énergétique.
+            Nous concevons et réalisons des installations de chauffage adaptées aux besoins du bâtiment,
+            aux normes en vigueur et aux objectifs de performance énergétique.
           </p>
-          <ul class="service-points">
-            <li><strong>Conception :</strong> étude thermique selon les normes SIA et choix du système.</li>
-            <li><strong>Dimensionnement :</strong> réseaux hydrauliques, émetteurs et besoins du bâtiment.</li>
-            <li><strong>Réalisation :</strong> installation complète des systèmes de production et de distribution.</li>
-            <li><strong>Émetteurs :</strong> chauffage au sol, radiateurs, batteries et terminaux.</li>
-            <li><strong>Mise en service :</strong> réglages, équilibrage et optimisation des performances.</li>
+
+          <ul class="service-points service-points--clean">
+            <li><strong>Conception</strong><span>Étude thermique selon les normes SIA et choix du système de
+                production.</span></li>
+            <li><strong>Dimensionnement</strong><span>Réseaux hydrauliques, émetteurs et besoins du bâtiment.</span>
+            </li>
+            <li><strong>Réalisation</strong><span>Installation complète des systèmes de production et pose des réseaux
+                de distribution.</span></li>
+            <li><strong>Émetteurs</strong><span>Chauffage au sol, radiateurs, batteries et équipements terminaux.</span>
+            </li>
+            <li><strong>Mise en service</strong><span>Réglages, équilibrage et optimisation du rendement global.</span>
+            </li>
           </ul>
         </article>
 
-        <!-- Ventilation -->
-        <article class="service-card" role="listitem">
+        <article class="service-card service-card--clean" role="listitem">
           <div class="service-number">02 / 04</div>
-          <div class="service-icon-row">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" />
+
+          <div class="service-icon-row service-icon-row--clean">
+            <div class="service-icon service-icon--clean">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 8h11"></path>
+                <path d="M4 12h16"></path>
+                <path d="M4 16h9"></path>
+                <path d="M17 8l3-3"></path>
+                <path d="M17 8l3 3"></path>
               </svg>
             </div>
             <h2 class="service-title">Ventilation</h2>
           </div>
+
           <p class="service-text">
-            Nous dimensionnons et réalisons des installations de ventilation garantissant qualité
-            d’air, confort d’usage et maîtrise énergétique pour les bâtiments résidentiels,
-            tertiaires et techniques.
+            Nous dimensionnons et réalisons des installations de ventilation garantissant qualité d’air,
+            confort d’usage et maîtrise énergétique pour les bâtiments résidentiels, tertiaires et techniques.
           </p>
-          <ul class="service-points">
-            <li><strong>Conception :</strong> calcul des débits d’air selon normes SIA</li>
-            <li><strong>Dimensionnement :</strong> réseaux aérauliques et besoins des locaux</li>
-            <li><strong>Choix système :</strong> ventilation naturelle, simple flux ou double flux avec récupération de
-              chaleur</li>
-            <li><strong>Réalisation :</strong> installation de monoblocs de ventilation, réseaux et gaines</li>
-            <li><strong>Finitions :</strong> pose des diffuseurs, grilles et équipements terminaux</li>
-            <li><strong>Mise en service :</strong> réglages et équilibrage des débits</li>
+
+          <ul class="service-points service-points--clean">
+            <li><strong>Conception</strong><span>Calcul des débits d’air selon les normes SIA.</span></li>
+            <li><strong>Dimensionnement</strong><span>Réseaux aérauliques et besoins des locaux.</span></li>
+            <li><strong>Choix système</strong><span>Ventilation naturelle, simple flux ou double flux avec récupération
+                de chaleur.</span></li>
+            <li><strong>Réalisation</strong><span>Installation de monoblocs de ventilation, réseaux et gaines.</span>
+            </li>
+            <li><strong>Finitions</strong><span>Pose des diffuseurs, grilles et équipements terminaux.</span></li>
+            <li><strong>Mise en service</strong><span>Réglages et équilibrage des débits.</span></li>
           </ul>
         </article>
 
-
-        <!-- Sprinkler -->
-        <article class="service-card" role="listitem">
+        <article class="service-card service-card--clean" role="listitem">
           <div class="service-number">03 / 04</div>
-          <div class="service-icon-row">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="9" y="2" width="6" height="4" rx="1" />
-                <line x1="12" y1="6" x2="12" y2="10" />
-                <line x1="7" y1="10" x2="17" y2="10" />
-                <line x1="7" y1="10" x2="4" y2="14" />
-                <line x1="12" y1="10" x2="12" y2="14" />
-                <line x1="17" y1="10" x2="20" y2="14" />
+
+          <div class="service-icon-row service-icon-row--clean">
+            <div class="service-icon service-icon--clean">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v6"></path>
+                <path d="M9 9h6"></path>
+                <path d="M10 9v4a2 2 0 0 1-2 2H7v4"></path>
+                <path d="M14 9v4a2 2 0 0 0 2 2h1v4"></path>
+                <path d="M7 19h10"></path>
               </svg>
             </div>
             <h2 class="service-title">Sprinkler / Protection incendie</h2>
           </div>
+
           <p class="service-text">
-            Nous intervenons exclusivement en sous-traitance pour les installations sprinkler sur
-            des projets en Suisse. Nos équipes collaborent avec les entreprises générales, bureaux
-            d’ingénieurs et installateurs techniques pour assurer une exécution rigoureuse, conforme
-            aux exigences de chantier et aux normes en vigueur.
+            Nous intervenons exclusivement en sous-traitance pour les installations sprinkler,
+            en coordination avec les entreprises mandataires et selon les exigences des projets en Suisse.
           </p>
-          <ul class="service-points">
-            <li><strong>Sous-traitance spécialisée :</strong> pose et montage de réseaux sprinkler</li>
-            <li><strong>Conformité :</strong> respect des directives AEAI et des normes EN 12845</li>
-            <li><strong>Exécution chantier :</strong> lecture de plans, préfabrication et montage</li>
-            <li><strong>Coordination :</strong> interface avec les autres corps de métier techniques</li>
-            <li><strong>Contrôles :</strong> tests, mise en service et assistance à la réception</li>
-            <li><strong>Intervention :</strong> projets résidentiels, tertiaires, industriels et logistiques</li>
+
+          <ul class="service-points service-points--clean">
+            <li><strong>Exécution</strong><span>Montage et pose des réseaux sprinkler sur chantier.</span></li>
+            <li><strong>Sous-traitance</strong><span>Intervention encadrée sur des projets pilotés par des partenaires
+                spécialisés.</span></li>
+            <li><strong>Pose technique</strong><span>Supportage, tuyauterie, assemblage et adaptation aux contraintes du
+                site.</span></li>
+            <li><strong>Coordination</strong><span>Travail en lien avec les équipes de projet, le planning chantier et
+                les autres corps de métier.</span></li>
+            <li><strong>Conformité</strong><span>Respect des procédures de pose, des consignes de sécurité et des
+                standards applicables.</span></li>
           </ul>
         </article>
 
-
-        <!-- Sanitaire -->
-        <article class="service-card" role="listitem">
+        <article class="service-card service-card--clean" role="listitem">
           <div class="service-number">04 / 04</div>
-          <div class="service-icon-row">
-            <div class="service-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+
+          <div class="service-icon-row service-icon-row--clean">
+            <div class="service-icon service-icon--clean">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 4h10"></path>
+                <path d="M9 4v5"></path>
+                <path d="M15 4v5"></path>
+                <rect x="6" y="9" width="12" height="11" rx="2"></rect>
+                <path d="M10 13h4"></path>
+                <path d="M12 11v4"></path>
               </svg>
             </div>
             <h2 class="service-title">Sanitaire & Dépannage</h2>
           </div>
+
           <p class="service-text">
-            Travaux de plomberie, distribution d'eau froide et chaude, installation de points d'eau et évacuations :
-            notre équipe prend en charge l'ensemble des installations sanitaires neuves ou en rénovation. Nous assurons
-            également un service de dépannage réactif pour toute panne ou urgence technique.
+            Travaux de plomberie, distribution d’eau froide et chaude, installation de points d’eau et
+            interventions rapides de dépannage pour les bâtiments résidentiels et professionnels.
           </p>
-          <ul class="service-points">
-            <li>Installation et rénovation de réseaux sanitaires</li>
-            <li>Pose et raccordement d'appareils sanitaires</li>
-            <li>Dépannage d'urgence : fuite, panne, casse</li>
-            <li>Maintenance préventive et contrats de service</li>
+
+          <ul class="service-points service-points--clean">
+            <li><strong>Installation sanitaire</strong><span>Pose des réseaux EF/EC, appareillages et
+                raccordements.</span></li>
+            <li><strong>Équipements</strong><span>Lavabos, WC, robinetterie, douches, éviers et accessoires
+                techniques.</span></li>
+            <li><strong>Distribution</strong><span>Création, adaptation et reprise des réseaux d’alimentation et
+                d’évacuation.</span></li>
+            <li><strong>Dépannage</strong><span>Recherche de fuite, remplacement d’éléments défectueux et interventions
+                urgentes.</span></li>
+            <li><strong>Maintenance</strong><span>Contrôles, réglages et remise en état des installations
+                existantes.</span></li>
           </ul>
         </article>
 
       </div>
+
     </div>
   </section>
 
