@@ -1670,13 +1670,15 @@
     }
 
     .service-points--clean {
+      list-style: none;
+      display: grid;
       gap: 12px;
     }
 
     .service-points--clean li {
       display: grid;
-      grid-template-columns: 14px 1fr;
-      gap: 10px;
+      grid-template-columns: 14px 150px 1fr;
+      gap: 10px 12px;
       align-items: start;
     }
 
@@ -1691,98 +1693,32 @@
     }
 
     .service-points--clean li strong {
-      display: inline-block;
-      min-width: 150px;
-      font-family: var(--font-body);
+      display: block;
       font-size: 14px;
       font-weight: 700;
       color: var(--c-text);
-      margin-right: 12px;
+      line-height: 1.7;
     }
 
     .service-points--clean li span {
-      display: inline;
+      display: block;
       font-size: 14px;
       color: var(--c-muted);
       line-height: 1.7;
     }
 
-    .service-points--clean li {
-      color: var(--c-muted);
-    }
-
-    .service-points--clean li>strong,
-    .service-points--clean li>span {
-      grid-column: 2;
-    }
-
-    @media (min-width: 769px) {
-      .service-points--clean li {
-        grid-template-columns: 14px minmax(0, 1fr);
-      }
-
-      .service-points--clean li>strong,
-      .service-points--clean li>span {
-        grid-column: auto;
-      }
-
-      .service-points--clean li {
-        position: relative;
-      }
-
-      .service-points--clean li>strong,
-      .service-points--clean li>span {
-        display: inline-block;
-      }
-
-      .service-points--clean li {
-        padding-left: 0;
-      }
-
-      .service-points--clean li>span {
-        margin-left: 0;
-      }
-
-      .service-points--clean li .service-line {
-        display: contents;
-      }
-
-      .service-points--clean li {
-        grid-template-areas: "dash content";
-      }
-
-      .service-points--clean li::before {
-        grid-area: dash;
-      }
-
-      .service-points--clean li>strong,
-      .service-points--clean li>span {
-        grid-area: content;
-      }
-
-      .service-points--clean li>strong {
-        min-width: 155px;
-      }
-    }
-
     @media (max-width: 768px) {
-      .service-card--clean {
-        padding: 24px 18px;
+      .service-points--clean li {
+        grid-template-columns: 14px 1fr;
       }
 
-      .service-card--clean .service-title {
-        font-size: 20px;
+      .service-points--clean li strong,
+      .service-points--clean li span {
+        grid-column: 2;
       }
 
-      .service-points--clean li>strong,
-      .service-points--clean li>span {
-        display: block;
-      }
-
-      .service-points--clean li>strong {
-        min-width: 0;
-        margin-right: 0;
-        margin-bottom: 2px;
+      .service-points--clean li span {
+        margin-top: -2px;
       }
     }
   </style>
