@@ -66,8 +66,18 @@
     }
 
     header .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
       display: flex;
-      justify-content: flex-end;
+    }
+
+    header .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+      margin-left: auto;
     }
 
     .brand {
