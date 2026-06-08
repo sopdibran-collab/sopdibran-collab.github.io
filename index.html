@@ -4,451 +4,2188 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sopjani Tech Sàrl — Site en maintenance</title>
+  <title>Sopjani Tech Sàrl – Chauffage, Ventilation, Sprinkler & Protection Incendie en Suisse</title>
   <meta name="description"
-    content="Le site de Sopjani Tech Sàrl est temporairement en maintenance. Contactez-nous par téléphone ou par e-mail pour toute demande urgente." />
+    content="Sopjani Tech Sàrl : installation, maintenance et dépannage en chauffage, ventilation, sprinkler et protection incendie en Suisse. Expertise technique, réactivité et fiabilité pour bâtiments résidentiels et commerciaux." />
+  <link rel="canonical" href="https://www.sopjanitech.ch/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title"
+    content="Sopjani Tech Sàrl – Chauffage, Ventilation, Sprinkler & Protection Incendie en Suisse" />
+  <meta property="og:description"
+    content="Installation, maintenance et dépannage en chauffage, ventilation, sprinkler et protection incendie pour bâtiments résidentiels et commerciaux en Suisse." />
+  <meta property="og:url" content="https://www.sopjanitech.ch/" />
+  <meta property="og:site_name" content="Sopjani Tech Sàrl" />
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HVACBusiness",
+  "name": "Sopjani Tech Sàrl",
+  "url": "https://www.sopjanitech.ch",
+  "telephone": "+41799326862",
+  "email": "sopjanitech@gmail.com",
+  "description": "Entreprise spécialisée en installation, maintenance et dépannage de systèmes de chauffage, ventilation, sprinkler, protection incendie et sanitaire en Suisse.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "CH"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Suisse"
+  },
+  "serviceArea": [
+    {"@type": "AdministrativeArea", "name": "Genève"},
+    {"@type": "AdministrativeArea", "name": "Vaud"},
+    {"@type": "AdministrativeArea", "name": "Fribourg"},
+    {"@type": "AdministrativeArea", "name": "Neuchâtel"},
+    {"@type": "AdministrativeArea", "name": "Valais"},
+    {"@type": "AdministrativeArea", "name": "Berne"},
+    {"@type": "AdministrativeArea", "name": "Zurich"}
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services techniques du bâtiment",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Installation et maintenance de systèmes de chauffage"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Ventilation et traitement de l'air"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Installation de sprinklers et protection incendie"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Travaux sanitaires"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Dépannage et maintenance technique"}}
+    ]
+  },
+  "priceRange": "$$",
+  "currenciesAccepted": "CHF",
+  "paymentAccepted": "Virement bancaire, Facture",
+  "inLanguage": "fr"
+}
+</script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
     rel="stylesheet">
-  <style>
-    :root {
-      --bg: #f4f7f9;
-      --surface: rgba(255, 255, 255, 0.92);
-      --surface-2: #ffffff;
-      --border: rgba(30, 42, 51, 0.10);
-      --border-soft: rgba(30, 42, 51, 0.06);
-      --text: #1e2a33;
-      --muted: #61727d;
-      --faint: #98a7b1;
-      --accent: #3db8e8;
-      --accent-dark: #1e8fc4;
-      --dark: #10202b;
-      --radius: 18px;
-      --shadow: 0 18px 50px rgba(16, 32, 43, 0.08);
-      --max: 1180px;
-    }
 
-    * {
+
+  <style>
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    :root {
+      --c-bg: #f5f7f9;
+      --c-bg2: #ffffff;
+      --c-bg3: #eef3f6;
+      --c-surface: #ffffff;
+      --c-border: rgba(30, 42, 51, 0.10);
+      --c-border2: rgba(30, 42, 51, 0.08);
+      --c-accent: #3db8e8;
+      --c-accent2: #1e8fc4;
+      --c-text: #4f5457;
+      --c-muted: #5f6f7a;
+      --c-faint: #a7b3bc;
+      --c-dark: #10202b;
+      --c-dark-soft: #16303d;
+      --font-display: 'Manrope', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --max-w: 1160px;
+      --radius: 8px;
+    }
+
+
     html {
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
     }
 
     body {
-      min-height: 100vh;
-      font-family: 'Barlow', sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(61, 184, 232, 0.10), transparent 32%),
-        linear-gradient(180deg, #f8fbfc 0%, var(--bg) 100%);
-      color: var(--text);
+      font-family: var(--font-body);
+      background: #f5f7f9;
+      color: #1e2a33;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .shell {
-      min-height: 100vh;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     .container {
-      width: min(var(--max), calc(100% - 40px));
+      max-width: var(--max-w);
       margin: 0 auto;
+      padding: 0 24px;
     }
 
-    header {
-      padding: 22px 0;
-    }
-
-    header .container {
-      display: block;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: var(--text);
-      margin-left: clamp(20px, 10vw, 140px);
-    }
-
-    .brand-logo {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-      display: block;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
-    }
-
-    .brand-mark {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: linear-gradient(180deg, var(--dark), #17384b);
-      display: grid;
-      place-items: center;
-      box-shadow: 0 8px 20px rgba(16, 32, 43, 0.16);
-      flex-shrink: 0;
-    }
-
-    .brand-mark svg {
-      width: 26px;
-      height: 26px;
-      color: #dff7ff;
-    }
-
-    .brand-text strong {
-      display: block;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 24px;
-      line-height: 1;
-      letter-spacing: 0.03em;
-    }
-
-    .brand-text span {
-      display: block;
-      margin-top: 3px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-    }
-
-    main {
-      display: grid;
-      align-items: center;
-      padding: 16px 0 52px;
-    }
-
-    .maintenance-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      border-radius: 24px;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      padding: 22px;
-    }
-
-    .maintenance-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
-      gap: 22px;
-      align-items: stretch;
-    }
-
-    .visual-area {
-      background: #edf4f7;
-      border: 1px solid rgba(30, 42, 51, 0.06);
-      border-radius: 20px;
-      min-height: 620px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-      padding: 20px;
-    }
-
-    .maintenance-image {
-      width: 100%;
-      height: 100%;
-      max-width: 100%;
-      max-height: 100%;
-      min-height: 0;
-      object-fit: contain;
-      object-position: center;
-      display: block;
-    }
-
-    .visual-placeholder {
-      width: 100%;
-      height: 100%;
-      min-height: 620px;
-      display: grid;
-      place-items: center;
-      color: #93a4af;
-      background:
-        linear-gradient(135deg, rgba(61, 184, 232, 0.10), transparent 40%),
-        repeating-linear-gradient(45deg,
-          rgba(16, 32, 43, 0.025),
-          rgba(16, 32, 43, 0.025) 16px,
-          transparent 16px,
-          transparent 32px);
-    }
-
-    .visual-placeholder svg {
-      width: 82px;
-      height: 82px;
-    }
-
-    .content-area {
-      padding: 18px 12px 18px 8px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 18px;
-      font-size: 12px;
+    /* ── UTILITY ─────────────────────────────── */
+    .label {
+      font-family: var(--font-display);
+      font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--accent-dark);
+      color: var(--c-accent);
     }
 
-    .eyebrow::before {
-      content: "";
-      width: 34px;
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--c-text);
+      letter-spacing: -0.01em;
+    }
+
+    .section-lead {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--c-muted);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .rule {
+      width: 40px;
       height: 2px;
-      background: var(--accent);
-      border-radius: 999px;
-    }
-
-    .lead {
-      font-size: 18px;
-      line-height: 1.8;
-      color: var(--muted);
-      max-width: 34ch;
-      margin-bottom: 28px;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-
-    .info-box {
-      border: 1px solid var(--border-soft);
-      background: var(--surface-2);
-      border-radius: 16px;
-      padding: 18px 18px 16px;
-    }
-
-    .info-box small {
-      display: block;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--faint);
-      margin-bottom: 8px;
-    }
-
-    .info-box strong,
-    .info-box a {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 26px;
-      line-height: 1;
-      color: var(--text);
-      text-decoration: none;
-      word-break: break-word;
-    }
-
-    .info-box p {
-      margin-top: 8px;
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--muted);
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
+      background: var(--c-accent);
+      margin: 16px 0 24px;
     }
 
     .btn {
-      min-height: 48px;
-      padding: 14px 22px;
-      border-radius: 12px;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-decoration: none;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 15px;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 14px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      white-space: nowrap;
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: #071018;
+      background: var(--c-accent);
+      color: #06080f;
     }
 
     .btn-primary:hover {
-      background: var(--accent-dark);
+      background: var(--c-accent2);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--c-text);
+      border: 1px solid var(--c-border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--c-accent);
+      color: var(--c-accent);
+    }
+
+    .btn-whatsapp {
+      background: #1a7a3e;
       color: #fff;
     }
 
-    .btn-secondary {
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text);
+    .btn-whatsapp:hover {
+      background: #1f9450;
+      transform: translateY(-1px);
     }
 
-    footer {
-      padding: 20px 0 32px;
+    /* ── HEADER ──────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(16, 32, 43, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--c-border2);
     }
 
-    .footer-line {
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      gap: 24px;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .logo-hex {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--c-text);
+      line-height: 1.1;
+    }
+
+    .logo-sub {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--c-muted);
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    nav a {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--c-accent);
+    }
+
+    .header-cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .tel-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--c-accent);
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .tel-btn:hover {
+      color: var(--c-accent2);
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .burger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--c-text);
+      transition: all 0.3s;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: var(--c-bg2);
+      border-top: 1px solid var(--c-border2);
+      padding: 20px 24px;
+      gap: 16px;
+    }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--c-border2);
+    }
+
+    .mobile-nav a:hover {
+      color: var(--c-accent);
+    }
+
+    /* ── HERO ────────────────────────────────── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0 80px;
+      background: var(--c-bg);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--c-accent);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.6vw, 50px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--c-text);
+      margin-bottom: 20px;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--c-accent);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--c-muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .stat {
+      padding: 20px 22px;
+      border-right: 1px solid var(--c-border);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat-val {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--c-accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--c-muted);
+      margin-top: 4px;
+      font-weight: 400;
+    }
+
+    /* Hero panel */
+    .hero-panel {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      background: var(--c-accent);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-header-text {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #06080f;
+    }
+
+    .panel-body {
+      padding: 24px;
+    }
+
+    .panel-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--c-border2);
+    }
+
+    .panel-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .panel-item:first-child {
+      padding-top: 0;
+    }
+
+    .pi-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius);
+    }
+
+    .pi-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--c-accent);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .pi-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--c-text);
+    }
+
+    .pi-desc {
+      font-size: 12px;
+      color: var(--c-muted);
+      margin-top: 2px;
+    }
+
+    .panel-contact {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--c-border2);
+    }
+
+    .panel-tel {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--c-accent);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    /* ── DIVIDER ─────────────────────────────── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--c-border), transparent);
+    }
+
+    /* ── SERVICES ────────────────────────────── */
+    .services {
+      padding: 90px 0;
+      background: var(--c-bg2);
+    }
+
+    .services-header {
+      margin-bottom: 60px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--c-border2);
+      border: 1px solid var(--c-border2);
+    }
+
+    .service-card {
+      background: var(--c-bg2);
+      padding: 40px 36px;
+      position: relative;
+      transition: background 0.25s;
+    }
+
+    .service-card:hover {
+      background: var(--c-surface);
+    }
+
+    .service-number {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--c-faint);
+      margin-bottom: 20px;
+    }
+
+    .service-icon-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: 3px solid var(--c-accent);
+      padding-left: 12px;
+    }
+
+    .service-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--c-accent);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    h2.service-title {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.1vw, 28px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--c-text);
+      margin-bottom: 12px;
+    }
+
+
+    .service-text {
+      font-size: 15px;
+      color: var(--c-muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .service-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .service-points li {
+      font-size: 14px;
+      color: var(--c-muted);
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .service-points li::before {
+      content: '—';
+      color: var(--c-accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── EXPERTISE ───────────────────────────── */
+    .expertise {
+      padding: 90px 0;
+      background: var(--c-bg);
+    }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .expertise-left {}
+
+    .exp-list {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--c-border);
+    }
+
+    .exp-item {
+      display: flex;
+      gap: 24px;
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--c-border2);
+      transition: background 0.2s;
+    }
+
+    .exp-item:last-child {
+      border-bottom: none;
+    }
+
+    .exp-item:hover {
+      background: var(--c-surface);
+    }
+
+    .exp-num {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--c-accent);
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .exp-content h3 {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--c-text);
+      margin-bottom: 6px;
+    }
+
+    .exp-content p {
+      font-size: 14px;
+      color: var(--c-muted);
+      line-height: 1.6;
+    }
+
+    .expertise-right {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-top: 12px;
+    }
+
+    .cert-block {
+      border: 1px solid var(--c-border);
+      padding: 28px;
+    }
+
+    .cert-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+      margin-bottom: 16px;
+    }
+
+    .cert-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .cert-tag {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--c-accent);
+      background: rgba(61, 184, 232, 0.07);
+      border: 1px solid rgba(61, 184, 232, 0.2);
+      padding: 6px 12px;
+      border-radius: var(--radius);
+    }
+
+    .type-block {
+      border: 1px solid var(--c-border);
+      padding: 28px;
+    }
+
+    .type-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .type-item {
+      padding: 14px 16px;
+      background: var(--c-surface);
+      border-left: 2px solid var(--c-accent);
+    }
+
+    .type-item-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--c-text);
+    }
+
+    .type-item-sub {
+      font-size: 12px;
+      color: var(--c-muted);
+      margin-top: 2px;
+    }
+
+    /* ── METHODE ─────────────────────────────── */
+    .methode {
+      padding: 90px 0;
+      background: var(--c-bg2);
+    }
+
+    .methode-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 56px;
+      border: 1px solid var(--c-border);
+      overflow: hidden;
+    }
+
+    .step {
+      padding: 36px 28px;
+      border-right: 1px solid var(--c-border2);
+      position: relative;
+    }
+
+    .step:last-child {
+      border-right: none;
+    }
+
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 52px;
+      font-weight: 800;
+      color: rgba(61, 184, 232, 0.08);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .step-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--c-text);
+      margin-bottom: 12px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--c-muted);
+      line-height: 1.65;
+    }
+
+    .step-accent {
+      width: 32px;
+      height: 2px;
+      background: var(--c-accent);
+      margin-bottom: 20px;
+    }
+
+    /* ── ZONES ───────────────────────────────── */
+    .zones {
+      padding: 90px 0;
+      background: var(--c-bg);
+    }
+
+    .zones-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .cantons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 32px;
+    }
+
+    .canton {
+      padding: 12px 14px;
+      background: var(--c-surface);
+      border: 1px solid var(--c-border2);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--c-muted);
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+    }
+
+    .canton:hover {
+      border-color: var(--c-accent);
+      color: var(--c-accent);
+    }
+
+    .zones-text {
+      padding-top: 12px;
+    }
+
+    .zones-text p {
+      font-size: 15px;
+      color: var(--c-muted);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .urgence-block {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-left: 3px solid var(--c-accent);
+      padding: 24px 28px;
+      margin-top: 28px;
+    }
+
+    .urgence-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--c-text);
+      margin-bottom: 8px;
+    }
+
+    .urgence-text {
+      font-size: 14px;
+      color: var(--c-muted);
+      margin-bottom: 16px;
+    }
+
+    /* ── FAQ ─────────────────────────────────── */
+    .faq {
+      padding: 90px 0;
+      background: var(--c-bg2);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--c-border);
+    }
+
+    .faq-item {}
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--c-border2);
+      text-align: left;
+      padding: 22px 24px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--c-text);
+      cursor: pointer;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 16px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 14px;
-      border-top: 1px solid var(--border);
-      padding-top: 18px;
+      transition: background 0.2s;
     }
 
-    @media (max-width: 980px) {
-      .maintenance-layout {
+    .faq-item:last-child .faq-q {
+      border-bottom: none;
+    }
+
+    .faq-q:hover {
+      background: var(--c-surface);
+    }
+
+    .faq-q.active {
+      color: var(--c-accent);
+      background: var(--c-surface);
+    }
+
+    .faq-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--c-accent);
+      border-radius: 1px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .faq-icon::before {
+      width: 10px;
+      height: 1.5px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .faq-icon::after {
+      width: 1.5px;
+      height: 10px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .faq-q.active .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+      opacity: 0;
+    }
+
+    .faq-a {
+      display: none;
+      padding: 0 24px 20px;
+      font-size: 14px;
+      color: var(--c-muted);
+      line-height: 1.7;
+      border-bottom: 1px solid var(--c-border2);
+    }
+
+    .faq-item:last-child .faq-a {
+      border-bottom: none;
+    }
+
+    .faq-a.open {
+      display: block;
+    }
+
+    /* ── CONTACT ─────────────────────────────── */
+    .contact {
+      padding: 90px 0;
+      background: var(--c-bg);
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 22px 24px;
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .contact-method:hover {
+      border-color: var(--c-accent);
+      background: rgba(61, 184, 232, 0.04);
+    }
+
+    .cm-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--c-border);
+    }
+
+    .cm-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--c-accent);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .cm-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+      font-family: var(--font-display);
+    }
+
+    .cm-value {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--c-text);
+      margin-top: 2px;
+    }
+
+    /* Devis block */
+    .devis-block {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      padding: 36px;
+    }
+
+    .devis-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--c-text);
+      margin-bottom: 8px;
+    }
+
+    .devis-sub {
+      font-size: 14px;
+      color: var(--c-muted);
+      margin-bottom: 28px;
+    }
+
+    .devis-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .devis-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--c-muted);
+    }
+
+    .devis-item::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      background: var(--c-accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .devis-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .devis-actions a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+      border-radius: var(--radius);
+    }
+
+    .da-tel {
+      background: var(--c-accent);
+      color: #06080f;
+    }
+
+    .da-tel:hover {
+      background: var(--c-accent2);
+    }
+
+    .da-wa {
+      background: transparent;
+      color: #25d366;
+      border: 1px solid rgba(37, 211, 102, 0.3);
+    }
+
+    .da-wa:hover {
+      background: rgba(37, 211, 102, 0.06);
+      border-color: #25d366;
+    }
+
+    .da-mail {
+      background: transparent;
+      color: var(--c-muted);
+      border: 1px solid var(--c-border2);
+    }
+
+    .da-mail:hover {
+      color: var(--c-text);
+      border-color: var(--c-border);
+    }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer {
+      background: var(--c-bg2);
+      border-top: 1px solid var(--c-border2);
+      padding: 48px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand {}
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .footer-logo-text {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--c-text);
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--c-muted);
+      line-height: 1.65;
+      max-width: 280px;
+      margin-bottom: 20px;
+    }
+
+    .footer-col-title {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--c-muted);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--c-accent);
+    }
+
+    .footer-contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-contact-list li {
+      font-size: 14px;
+      color: var(--c-muted);
+    }
+
+    .footer-contact-list a {
+      color: var(--c-muted);
+      transition: color 0.2s;
+    }
+
+    .footer-contact-list a:hover {
+      color: var(--c-accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--c-border2);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--c-faint);
+    }
+
+    .footer-seo {
+      font-size: 11px;
+      color: var(--c-faint);
+      max-width: 480px;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 960px) {
+      nav {
+        display: none;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .header-cta .tel-btn {
+        display: none;
+      }
+
+      .hero-grid {
         grid-template-columns: 1fr;
       }
 
-      .content-area {
-        padding: 8px 4px 4px;
+      .hero-panel {
+        display: none;
       }
 
-      .visual-area,
-      .visual-placeholder {
-        min-height: 460px;
+      .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .methode-steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .step {
+        border-bottom: 1px solid var(--c-border2);
+      }
+
+      .step:nth-child(2) {
+        border-right: none;
+      }
+
+      .zones-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-seo {
+        text-align: left;
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 600px) {
+      .hero {
+        padding: 64px 0 56px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: none;
+        border-bottom: 1px solid var(--c-border);
+      }
+
+      .stat:last-child {
+        border-bottom: none;
+      }
+
+      .methode-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        border-right: none;
+      }
+
+      .cantons-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .type-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .service-card {
+        padding: 28px 20px;
+      }
+    }
+
+    /* ── ANIMATIONS ──────────────────────────── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-content>* {
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-content>*:nth-child(1) {
+      animation-delay: 0.05s;
+    }
+
+    .hero-content>*:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+
+    .hero-content>*:nth-child(3) {
+      animation-delay: 0.25s;
+    }
+
+    .hero-content>*:nth-child(4) {
+      animation-delay: 0.35s;
+    }
+
+    .hero-content>*:nth-child(5) {
+      animation-delay: 0.45s;
+    }
+
+    @media (max-width: 768px) {
       .container {
-        width: min(var(--max), calc(100% - 24px));
+        padding: 0 18px;
       }
 
-      header {
-        padding: 16px 0;
+      .header-inner {
+        height: 64px;
+        gap: 12px;
       }
 
-      .brand-mark {
-        width: 44px;
-        height: 44px;
+      .logo-wrap img {
+        width: 64px !important;
       }
 
-      .brand-text strong {
-        font-size: 22px;
+      .logo-text {
+        font-size: 15px;
       }
 
-      .maintenance-card {
-        padding: 14px;
+      .logo-sub {
+        font-size: 9px;
       }
 
-      .visual-area,
-      .visual-placeholder {
-        min-height: 320px;
+      .hero {
+        padding: 48px 0 40px;
       }
 
-      .lead {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      h1 {
+        font-size: 34px;
+        line-height: 1.02;
+        margin-bottom: 16px;
+      }
+
+      .hero-sub {
+        font-size: 16px;
+        line-height: 1.65;
+        margin-bottom: 24px;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+
+      .hero-ctas .btn,
+      .hero-ctas a {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: none;
+        border-bottom: 1px solid var(--c-border);
+      }
+
+      .stat:last-child {
+        border-bottom: none;
+      }
+
+      .section-title {
+        font-size: 30px;
+        line-height: 1.05;
+      }
+
+      .section-lead {
         font-size: 16px;
       }
 
-      .actions {
-        flex-direction: column;
+      .services,
+      .expertise,
+      .methode,
+      .zones,
+      .faq,
+      .contact {
+        padding: 64px 0;
       }
 
-      .btn {
+      .services-header,
+      .expertise-left,
+      .zones-text {
+        margin-bottom: 10px;
+      }
+
+      .service-card {
+        padding: 24px 18px;
+      }
+
+      .service-icon-row {
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .service-title {
+        font-size: 22px;
+      }
+
+      .service-text,
+      .service-points li,
+      .exp-content p,
+      .step-desc,
+      .zones-text p,
+      .faq-a,
+      .devis-sub {
+        font-size: 15px;
+      }
+
+      .exp-item {
+        padding: 20px 18px;
+        gap: 16px;
+      }
+
+      .methode-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        padding: 24px 18px;
+        border-right: none;
+        border-bottom: 1px solid var(--c-border2);
+      }
+
+      .step:last-child {
+        border-bottom: none;
+      }
+
+      .zones-grid,
+      .faq-grid,
+      .contact-inner,
+      .expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .cantons-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .urgence-block,
+      .cert-block,
+      .type-block,
+      .devis-block {
+        padding: 22px 18px;
+      }
+
+      .contact-method {
+        padding: 18px 16px;
+        gap: 14px;
+        align-items: flex-start;
+      }
+
+      .cm-value {
+        font-size: 16px;
+        word-break: break-word;
+      }
+
+      .devis-actions a,
+      .btn,
+      .da-tel,
+      .da-wa,
+      .da-mail {
         width: 100%;
+        justify-content: center;
       }
 
-      .footer-line {
-        font-size: 13px;
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-seo {
+        text-align: left;
+      }
+    }
+
+    .services-grid--clean {
+      gap: 1px;
+    }
+
+    .service-card--clean {
+      padding: 34px 28px 32px;
+    }
+
+    .service-icon-row--clean {
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .service-icon--clean {
+      width: 18px;
+      height: 42px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      border-left: 3px solid var(--c-accent);
+      padding-left: 12px;
+      flex-shrink: 0;
+    }
+
+    .service-icon--clean svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--c-accent);
+      fill: none;
+      margin-top: 1px;
+    }
+
+    .service-card--clean .service-title {
+      font-size: 22px;
+      line-height: 1.05;
+      margin: 0;
+    }
+
+    .service-card--clean .service-text {
+      margin-bottom: 22px;
+      max-width: 58ch;
+    }
+
+    .service-points--clean {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .service-points--clean li {
+      display: grid;
+      grid-template-columns: 14px 150px 1fr;
+      gap: 10px 12px;
+      align-items: start;
+    }
+
+    .service-points--clean li::before {
+      content: "";
+      width: 9px;
+      height: 2px;
+      background: var(--c-accent);
+      border-radius: 999px;
+      margin-top: 11px;
+      display: block;
+    }
+
+    .service-points--clean li strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--c-text);
+      line-height: 1.7;
+    }
+
+    .service-points--clean li span {
+      display: block;
+      font-size: 14px;
+      color: var(--c-muted);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .service-points--clean li {
+        grid-template-columns: 14px 1fr;
+      }
+
+      .service-points--clean li strong,
+      .service-points--clean li span {
+        grid-column: 2;
+      }
+
+      .service-points--clean li span {
+        margin-top: -2px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="shell">
-    <header>
-      <div class="brand">
-        <img src="assets/logo.png" alt="logo" class="brand-logo">
-        <div class="brand-text">
-          <span class="brand-title">SOPJANI TECH</span>
-          <span class="brand-subtitle">SARL SUISSE</span>
-        </div>
-      </div>
-    </header>
 
-    <main>
-      <div class="container">
-        <section class="maintenance-card" aria-label="Page de maintenance">
-          <div class="maintenance-layout">
-            <div class="visual-area">
-              <img src="assets/maintenance.png" alt="Site en maintenance Sopjani Tech" class="maintenance-image">
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a href="#" class="logo-wrap" aria-label="Sopjani Tech Sàrl – Accueil">
+          <img src="assets/logo.png" alt="Logo Sopjani Tech Sàrl" style="width: 75px; height: auto;">
+          <div>
+            <div class="logo-text">SOPJANI TECH</div>
+            <div class="logo-sub">Sàrl · Suisse</div>
+          </div>
+        </a>
+
+        <nav aria-label="Navigation principale">
+          <a href="index.html">Accueil</a>
+          <a href="prestations.html">Prestations</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="header-cta">
+          <a href="tel:+41799326862" class="tel-btn" aria-label="Appeler Sopjani Tech">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              aria-hidden="true">
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+            </svg>
+            +41 79 932 68 62
+          </a>
+          <a href="contact.html" class="btn btn-primary">Demander un devis</a>
+        </div>
+
+        <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile">
+      <a href="index.html">Accueil</a>
+      <a href="prestations.html">Prestations</a>
+      <a href="contact.html">Contact</a>
+      <a href="tel:+41799326862" style="color:var(--c-accent)">+41 79 932 68 62</a>
+    </nav>
+
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-h1">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="label">Étude · Installation · Maintenance · Dépannage</span>
+          </div>
+          <h1 id="hero-h1">
+            Chauffage, ventilation,<br />
+            climatisation et sanitaire<br />
+            en Suisse romande
+          </h1>
+          <p class="hero-sub">
+            Nous assurons l'étude, l'installation, la maintenance et le dépannage de vos équipements techniques avec
+            rigueur et fiabilité.
+
+          </p>
+          <div class="hero-ctas">
+            <a href="prestations.html" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                aria-hidden="true">
+                <path d="M9 18l6-6-6-6"></path>
+              </svg>
+              En savoir plus
+            </a>
+          </div>
+
+
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="stat-val">5+</div>
+              <div class="stat-label">Domaines d'expertise</div>
+            </div>
+            <div class="stat">
+              <div class="stat-val">CH</div>
+              <div class="stat-label">Intervention Suisse</div>
+            </div>
+            <div class="stat">
+              <div class="stat-val">24h</div>
+              <div class="stat-label">Réactivité dépannage</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar panel -->
+        <aside class="hero-panel" aria-label="Nos services principaux">
+          <div class="panel-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#06080f" stroke-width="2"
+              aria-hidden="true">
+              <polyline points="9 11 12 14 22 4" />
+              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+            </svg>
+            <span class="panel-header-text">Nos activités</span>
+          </div>
+          <div class="panel-body">
+            <div class="panel-item">
+              <div class="pi-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <div>
+                <div class="pi-name">Climatisation</div>
+                <div class="pi-desc">'Étude thermique selon normes en vigueur (SIA)'</div>
+              </div>
+            </div>
+            <div class="panel-item">
+              <div class="pi-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <div>
+                <div class="pi-name">Chauffage</div>
+                <div class="pi-desc">Installation, entretien, dépannage de chaudières et systèmes thermiques</div>
+              </div>
+            </div>
+            <div class="panel-item">
+              <div class="pi-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
+              <div>
+                <div class="pi-name">Ventilation</div>
+                <div class="pi-desc">Étude et dimensionnement du traitement de l'air pour bâtiments</div>
+              </div>
+            </div>
+            <div class="panel-item">
+              <div class="pi-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+              </div>
+              <div>
+                <div class="pi-name">Sprinkler</div>
+                <div class="pi-desc">Sous-traitance spécialisée pour réseaux sprinkler et protection incendie</div>
+              </div>
+            </div>
+            <div class="panel-item">
+              <div class="pi-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+              </div>
+              <div>
+                <div class="pi-name">Sanitaire</div>
+                <div class="pi-desc">Plomberie, distribution eau, travaux sanitaires complets</div>
+              </div>
             </div>
 
+            <div class="panel-contact">
+              <a href="tel:+41799326862" class="panel-tel">+41 79 932 68 62</a>
+              <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Demander un devis
+                gratuit</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
 
-            <div class="content-area">
-              <div class="eyebrow">Interruption temporaire</div>
+  <div class="section-divider"></div>
 
-              <p class="lead">
-                Notre site est actuellement en cours de mise à jour. Pendant cette période, notre équipe reste joignable
-                pour toute demande de devis, d'information ou d'intervention urgente.
-              </p>
+  <!-- SERVICES -->
 
-              <div class="info-grid">
-                <div class="info-box">
-                  <small>Téléphone</small>
-                  <a href="tel:+41799326862">+41 79 932 68 62</a>
-                  <p>Pour vos demandes rapides, urgences techniques et prise de contact directe.</p>
-                </div>
 
-                <div class="info-box">
-                  <small>E-mail</small>
-                  <a href="mailto:sopjanitech@gmail.com">sopjanitech@gmail.com</a>
-                  <p>Pour l'envoi de plans, demandes de devis et informations sur votre projet.</p>
-                </div>
+  <!-- EXPERTISE -->
+  <section class="expertise" id="expertise" aria-labelledby="expertise-title">
+    <div class="container">
+      <div class="expertise-grid">
+        <div class="expertise-left">
+          <span class="label">Pourquoi nous choisir</span>
+          <div class="rule"></div>
+          <h2 class="section-title" id="expertise-title">Une exécution<br /> technique rigoureuse<br /> en Suisse
+            romande</h2>
+          <p class="section-lead" style="margin-top:16px;">
+            En Suisse, les standards d'installation technique sont parmi les plus exigeants d'Europe. Sopjani Tech Sàrl
+            est constitué pour y répondre — avec méthode, transparence et engagement.
+          </p>
+
+          <div class="exp-list">
+            <div class="exp-item">
+              <div class="exp-num">01</div>
+              <div class="exp-content">
+                <h3>Rigueur d'exécution</h3>
+                <p>Chaque installation est réalisée dans le respect des normes SIA, SUVA et AEAI. Nos travaux sont
+                  documentés, traçables et prêts pour toute inspection.</p>
               </div>
-
-              <div class="actions">
-                <a class="btn btn-primary" href="tel:+41799326862">Appeler maintenant</a>
-                <a class="btn btn-secondary" href="mailto:sopjanitech@gmail.com">Envoyer un e-mail</a>
+            </div>
+            <div class="exp-item">
+              <div class="exp-num">02</div>
+              <div class="exp-content">
+                <h3>Réactivité dépannage</h3>
+                <p>Une panne ne prévient pas. Nous intervenons rapidement pour limiter l'impact sur votre bâtiment ou
+                  votre activité.</p>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-num">03</div>
+              <div class="exp-content">
+                <h3>Interlocuteur direct</h3>
+                <p>Pas de sous-traitance opaque. Vous traitez directement avec l'équipe technique qui réalise les
+                  travaux.</p>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-num">04</div>
+              <div class="exp-content">
+                <h3>Accompagnement complet</h3>
+                <p>De l'analyse du besoin à la maintenance courante, nous sommes présents à chaque étape du cycle de vie
+                  de vos équipements.</p>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-num">05</div>
+              <div class="exp-content">
+                <h3>Devis transparent</h3>
+                <p>Nos offres sont claires, détaillées et sans surprise. Nous présentons les solutions adaptées à votre
+                  budget et à vos contraintes techniques.</p>
               </div>
             </div>
           </div>
-        </section>
-      </div>
-    </main>
+        </div>
 
-    <footer>
-      <div class="container">
-        <div class="footer-line">
-          <span>Sopjani Tech Sàrl — Chauffage, Climatisation, Ventilation, Sprinkler & Sanitaire</span>
-          <span>Suisse</span>
+        <div class="expertise-right">
+          <div class="cert-block">
+            <div class="cert-title">Domaines de compétence</div>
+            <div class="cert-items">
+              <span class="cert-tag">Chauffage</span>
+              <span class="cert-tag">Ventilation</span>
+              <span class="cert-tag">Sprinkler</span>
+              <span class="cert-tag">Climatisation</span>
+              <span class="cert-tag">Sanitaire</span>
+              <span class="cert-tag">Maintenance</span>
+              <span class="cert-tag">Dépannage urgence</span>
+              <span class="cert-tag">Normes SIA</span>
+              <span class="cert-tag">Directives AEAI</span>
+            </div>
+          </div>
+
+          <div class="type-block">
+            <div class="cert-title">Types de bâtiments</div>
+            <div class="type-grid">
+              <div class="type-item">
+                <div class="type-item-name">Résidentiel</div>
+                <div class="type-item-sub">Immeubles, villas, PPE</div>
+              </div>
+              <div class="type-item">
+                <div class="type-item-name">Commercial</div>
+                <div class="type-item-sub">Bureaux, commerces, hôtels</div>
+              </div>
+              <div class="type-item">
+                <div class="type-item-name">Industriel</div>
+                <div class="type-item-sub">Entrepôts, ateliers</div>
+              </div>
+              <div class="type-item">
+                <div class="type-item-name">Public</div>
+                <div class="type-item-sub">ERP, établissements scolaires</div>
+              </div>
+            </div>
+          </div>
+
+
         </div>
       </div>
-    </footer>
-  </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- METHODE -->
+  <section class="methode" id="methode" aria-labelledby="methode-title">
+    <div class="container">
+      <span class="label">Notre approche</span>
+      <div class="rule"></div>
+      <h2 class="section-title" id="methode-title">Notre méthode<br /> d’intervention</h2>
+      <p class="section-lead" style="margin-top:16px;">
+        Chaque projet, qu'il s'agisse d'une installation neuve ou d'un dépannage, suit un processus structuré pour
+        garantir qualité et transparence.
+      </p>
+
+      <div class="methode-steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-accent"></div>
+          <div class="step-name">Analyse du besoin</div>
+          <p class="step-desc">Nous échangeons avec vous pour comprendre votre contexte technique, les contraintes du
+            bâtiment et vos attentes. Un premier diagnostic peut être réalisé sur place.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-accent"></div>
+          <div class="step-name">Proposition technique</div>
+          <p class="step-desc">Nous établissons une offre détaillée avec les solutions recommandées, le matériel
+            utilisé, le planning d'intervention et le budget total — sans ligne cachée.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-accent"></div>
+          <div class="step-name">Installation & Intervention</div>
+          <p class="step-desc">Nos techniciens réalisent les travaux dans le respect des délais convenus, des normes en
+            vigueur et avec un soin particulier pour la propreté du chantier.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-accent"></div>
+          <div class="step-name">Suivi & Maintenance</div>
+          <p class="step-desc">Après chaque intervention, un récapitulatif des travaux effectués est transmis. Nous
+            proposons des contrats d'entretien pour assurer la durabilité de vos installations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ZONES -->
+  <section class="zones" id="zones" aria-labelledby="zones-title">
+    <div class="container">
+      <div class="zones-grid">
+        <div>
+          <span class="label">Zones d'intervention</span>
+          <div class="rule"></div>
+          <h2 class="section-title" id="zones-title">Zones d’intervention<br /> en Suisse romande</h2>
+
+          <div class="cantons-grid">
+            <div class="canton">Genève</div>
+            <div class="canton">Vaud</div>
+            <div class="canton">Fribourg</div>
+            <div class="canton">Valais</div>
+            <div class="canton">Neuchâtel</div>
+            <div class="canton">Berne</div>
+            <div class="canton">Zurich</div>
+            <div class="canton">Jura</div>
+            <div class="canton">Suisse romande</div>
+          </div>
+        </div>
+
+        <div class="zones-text">
+          <p>
+            Sopjani Tech Sàrl intervient principalement en Suisse romande — Genève, Vaud, Fribourg, Valais et Neuchâtel
+            — et peut se déplacer dans d'autres cantons selon la nature des travaux. Notre réactivité est un atout
+            particulier pour les interventions de dépannage ou d'urgence.
+          </p>
+          <p>
+            Que vous soyez propriétaire d'un immeuble à Genève, gérant d'un hôtel en Valais, responsable technique d'un
+            bâtiment industriel dans le canton de Vaud ou régie immobilière basée à Lausanne, nous adaptons notre
+            organisation à vos contraintes géographiques et calendaires.
+          </p>
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+
+
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+
+
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="#services">Chauffage</a></li>
+            <li><a href="#services">Ventilation</a></li>
+            <li><a href="#services">Sprinkler en sous-traitance</a></li>
+            <li><a href="#services">Sanitaire</a></li>
+            <li><a href="#services">Maintenance & Dépannage</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-contact-list">
+            <li><a href="tel:+41799326862">+41 79 932 68 62</a></li>
+            <li><a href="mailto:sopjanitech@gmail.com">sopjanitech@gmail.com</a></li>
+            <li><a href="https://wa.me/41799326862" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+            <li style="margin-top:8px;font-size:13px;">Suisse romande<br />& alentours</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2024 Sopjani Tech Sàrl · Suisse · Tous droits réservés</p>
+        <p class="footer-seo">Installation chauffage Suisse · Ventilation bâtiment · Sprinkler Suisse · Protection
+          incendie · Maintenance technique · Dépannage chauffage Suisse romande</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Burger menu
+    const burger = document.getElementById('burger');
+    const mobileNav = document.getElementById('mobileNav');
+    burger.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      burger.setAttribute('aria-expanded', isOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const isActive = btn.classList.contains('active');
+
+        // Close all
+        document.querySelectorAll('.faq-q').forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-expanded', 'false');
+          b.nextElementSibling.classList.remove('open');
+        });
+
+        // Open clicked if was closed
+        if (!isActive) {
+          btn.classList.add('active');
+          btn.setAttribute('aria-expanded', 'true');
+          answer.classList.add('open');
+        }
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
 </body>
 
 </html>
