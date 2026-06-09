@@ -2,6 +2,7 @@
 """Generate Sopjani Tech static site pages."""
 import json
 import re
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).parent
@@ -10,9 +11,16 @@ PHONE = "+41799326862"
 PHONE_DISP = "+41 79 932 68 62"
 EMAIL = "info@sopjanitech.ch"
 WA = "https://wa.me/41799326862"
-# TODO GA4 : renseigner l'ID de mesure (ex. G-XXXXXXXXXX) puis régénérer le site
-GA4_MEASUREMENT_ID = ""
+# --- MESURE DU TRAFIC (à renseigner puis régénérer : python3 build_site.py) ---
+# GA4 : https://analytics.google.com → Admin → Flux de données Web → ID (G-XXXXXXXXXX)
+GA4_MEASUREMENT_ID = "G-KXN3RQB89P"
+# Search Console : https://search.google.com/search-console → Propriété → Vérification → Balise HTML
+GOOGLE_SITE_VERIFICATION = "ESyhz2gRqYIspy2MPXHOD9v4uMjd_KAdkQjRYWHWinw"
+# Formulaire contact (ex. https://formspree.io/f/xxxxxxxx) — laisser vide = message local sans envoi
+FORM_ENDPOINT = ""
 OG_IMAGE = f"{SITE}/assets/logo.png"
+FAVICON = f"{SITE}/assets/logo.png"
+THEME_COLOR = "#10202b"
 ADDRESS_STREET = "Rue Pierre de Savoie 9"
 ADDRESS_POSTAL = "1680"
 ADDRESS_LOCALITY = "Romont FR"
@@ -43,6 +51,7 @@ ORG_SCHEMA = {
     "@id": f"{SITE}/#organization",
     "name": "Sopjani Tech Sàrl",
     "url": SITE,
+    "description": "Chauffage, ventilation, climatisation, dépannage SAV et sprinkler en Suisse romande.",
     "telephone": PHONE,
     "email": EMAIL,
     "address": {
@@ -52,6 +61,21 @@ ORG_SCHEMA = {
         "addressLocality": ADDRESS_LOCALITY,
         "addressCountry": "CH",
     },
+    "geo": {
+        "@type": "GeoCoordinates",
+        "addressCountry": "CH",
+        "addressLocality": ADDRESS_LOCALITY,
+        "postalCode": ADDRESS_POSTAL,
+    },
+    "hasMap": MAP_URL,
+    "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": PHONE,
+        "email": EMAIL,
+        "contactType": "customer service",
+        "areaServed": "CH",
+        "availableLanguage": ["French"],
+    }],
     "openingHoursSpecification": [{
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -60,12 +84,22 @@ ORG_SCHEMA = {
     }],
     "areaServed": [
         {"@type": "AdministrativeArea", "name": n} for _, n, _ in ZONES
-    ],
+    ] + [{"@type": "AdministrativeArea", "name": "Suisse romande"}],
     "priceRange": "$$",
     "currenciesAccepted": "CHF",
     "inLanguage": "fr-CH",
     "logo": OG_IMAGE,
     "image": OG_IMAGE,
+}
+
+WEBSITE_SCHEMA = {
+    "@type": "WebSite",
+    "@id": f"{SITE}/#website",
+    "url": SITE,
+    "name": "Sopjani Tech Sàrl",
+    "description": "Chauffage, ventilation, climatisation et dépannage en Suisse romande.",
+    "publisher": {"@id": f"{SITE}/#organization"},
+    "inLanguage": "fr-CH",
 }
 
 QUI_SOMMES_NOUS_HTML = """
@@ -188,6 +222,41 @@ header .nav-submenu-all { font-weight: 600; border-bottom: 1px solid var(--c-bor
 
 def schema_json(graph):
     return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=2)
+
+
+def webpage_schema(title, description, url):
+    return {
+        "@type": "WebPage",
+        "@id": f"{url}#webpage",
+        "url": url,
+        "name": title,
+        "description": description,
+        "isPartOf": {"@id": f"{SITE}/#website"},
+        "about": {"@id": f"{SITE}/#organization"},
+        "inLanguage": "fr-CH",
+    }
+
+
+def faq_schema(items):
+    return {
+        "@type": "FAQPage",
+        "mainEntity": [{
+            "@type": "Question",
+            "name": q,
+            "acceptedAnswer": {"@type": "Answer", "text": a},
+        } for q, a in items],
+    }
+
+
+def base_graph(title, description, url, crumbs=None, faq=None, extra=None):
+    graph = [ORG_SCHEMA, WEBSITE_SCHEMA, webpage_schema(title, description, url)]
+    if crumbs:
+        graph.append(breadcrumb_schema(crumbs))
+    if faq:
+        graph.append(faq_schema(faq))
+    if extra:
+        graph.extend(extra if isinstance(extra, list) else [extra])
+    return graph
 
 
 def breadcrumbs_html(items):
@@ -329,14 +398,25 @@ def cta_band(title="Besoin d'un devis ou d'un dépannage ?", text="Contactez-nou
 </section>"""
 
 
+def gsc_verification_meta():
+    if GOOGLE_SITE_VERIFICATION:
+        return f'  <meta name="google-site-verification" content="{GOOGLE_SITE_VERIFICATION}">\n'
+    return "  <!-- TODO GSC : renseigner GOOGLE_SITE_VERIFICATION dans build_site.py -->\n"
+
+
 def analytics_head():
     if GA4_MEASUREMENT_ID:
-        return f"""  <script async src="https://www.googletagmanager.com/gtag/js?id={GA4_MEASUREMENT_ID}"></script>
+        return f"""  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id={GA4_MEASUREMENT_ID}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){{ dataLayer.push(arguments); }}
     gtag('js', new Date());
-    gtag('config', '{GA4_MEASUREMENT_ID}', {{ 'anonymize_ip': true }});
+    gtag('config', '{GA4_MEASUREMENT_ID}', {{
+      anonymize_ip: true,
+      cookie_flags: 'SameSite=None;Secure',
+      send_page_view: true
+    }});
   </script>"""
     return """  <!-- TODO GA4 : renseigner GA4_MEASUREMENT_ID dans build_site.py (ex. G-XXXXXXXXXX) -->
   <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); }</script>"""
@@ -353,9 +433,14 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
   <meta name="description" content="{description}">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="geo.region" content="CH-FR">
+  <meta name="geo.placename" content="Suisse romande">
+  <meta name="theme-color" content="{THEME_COLOR}">
   <link rel="canonical" href="{canonical}">
-  <meta property="og:type" content="website">
+  <link rel="icon" href="/assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+{gsc_verification_meta()}  <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_CH">
   <meta property="og:title" content="{safe_title}">
   <meta property="og:description" content="{safe_desc}">
@@ -381,7 +466,7 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
 {body}
 </main>
 {footer()}
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 </body>
 </html>"""
 
@@ -462,12 +547,16 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
   </div>
 </section>
 {cta_band()}"""
-    graph = [
-        ORG_SCHEMA,
-        {"@type": "WebSite", "@id": f"{SITE}/#website", "url": SITE, "name": "Sopjani Tech Sàrl", "publisher": {"@id": f"{SITE}/#organization"}},
-        breadcrumb_schema(crumbs),
-        {"@type": "Service", "name": name, "provider": {"@id": f"{SITE}/#organization"}, "areaServed": {"@type": "AdministrativeArea", "name": "Suisse romande"}, "description": desc, "url": SITE + url},
-    ]
+    service_schema = {
+        "@type": "Service",
+        "name": name,
+        "serviceType": name,
+        "provider": {"@id": f"{SITE}/#organization"},
+        "areaServed": {"@type": "AdministrativeArea", "name": "Suisse romande"},
+        "description": desc,
+        "url": SITE + url,
+    }
+    graph = base_graph(title, desc, SITE + url, crumbs, faq, service_schema)
     write_page([slug, "index.html"], page_shell(title, desc, SITE + url, graph, body, crumbs))
 
 
@@ -516,10 +605,7 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
   </div>
 </section>
 {cta_band(f"Un projet à {name} ?", "Décrivez votre besoin par téléphone, email ou WhatsApp.")}"""
-    graph = [
-        ORG_SCHEMA,
-        breadcrumb_schema(crumbs),
-    ]
+    graph = base_graph(title, desc, SITE + url, crumbs, faq)
     write_page([slug, "index.html"], page_shell(title, desc, SITE + url, graph, body, crumbs))
 
 
@@ -614,11 +700,10 @@ def build_home():
   </div>
 </section>
 {cta_band()}"""
-    graph = [ORG_SCHEMA, {"@type": "WebSite", "@id": f"{SITE}/#website", "url": SITE, "name": "Sopjani Tech Sàrl", "publisher": {"@id": f"{SITE}/#organization"}}]
-    write_page(["index.html"], page_shell(
-        "Sopjani Tech Sàrl | Chauffage, ventilation, climatisation et dépannage en Suisse romande",
-        "Sopjani Tech Sàrl : étude, installation, maintenance et dépannage en chauffage, ventilation, climatisation et protection incendie en Suisse romande.",
-        SITE + "/", graph, body))
+    home_title = "Sopjani Tech Sàrl | Chauffage, ventilation, climatisation et dépannage en Suisse romande"
+    home_desc = "Sopjani Tech Sàrl : étude, installation, maintenance et dépannage en chauffage, ventilation, climatisation et protection incendie en Suisse romande."
+    graph = base_graph(home_title, home_desc, SITE + "/", faq=faq)
+    write_page(["index.html"], page_shell(home_title, home_desc, SITE + "/", graph, body))
 
 
 def build_prestations():
@@ -640,11 +725,10 @@ def build_prestations():
 </section>
 {cta_band()}"""
     crumbs = [("Accueil", "/"), ("Prestations", "/prestations/")]
-    graph = [ORG_SCHEMA, breadcrumb_schema(crumbs)]
-    write_page(["prestations", "index.html"], page_shell(
-        "Prestations CVC | Chauffage, ventilation, climatisation | Sopjani Tech Sàrl",
-        "Découvrez les prestations de Sopjani Tech Sàrl : chauffage, ventilation, climatisation, dépannage SAV, sprinkler et sanitaire en Suisse romande.",
-        SITE + "/prestations/", graph, body, crumbs))
+    presta_title = "Prestations CVC | Chauffage, ventilation, climatisation | Sopjani Tech Sàrl"
+    presta_desc = "Découvrez les prestations de Sopjani Tech Sàrl : chauffage, ventilation, climatisation, dépannage SAV, sprinkler et sanitaire en Suisse romande."
+    graph = base_graph(presta_title, presta_desc, SITE + "/prestations/", crumbs)
+    write_page(["prestations", "index.html"], page_shell(presta_title, presta_desc, SITE + "/prestations/", graph, body, crumbs))
 
 
 def build_zones_hub():
@@ -669,11 +753,10 @@ def build_zones_hub():
 </section>
 {cta_band("Votre commune n'est pas listée ?", "Contactez-nous pour vérifier la faisabilité d'une intervention.")}"""
     crumbs = [("Accueil", "/"), ("Zones d'intervention", "/zones-intervention/")]
-    graph = [ORG_SCHEMA, breadcrumb_schema(crumbs)]
-    write_page(["zones-intervention", "index.html"], page_shell(
-        "Zones d'intervention | Suisse romande | Sopjani Tech Sàrl",
-        "Sopjani Tech Sàrl intervient en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais, Fribourg. Vérifiez la disponibilité pour votre secteur.",
-        SITE + "/zones-intervention/", graph, body, crumbs))
+    zones_title = "Zones d'intervention | Suisse romande | Sopjani Tech Sàrl"
+    zones_desc = "Sopjani Tech Sàrl intervient en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais, Fribourg. Vérifiez la disponibilité pour votre secteur."
+    graph = base_graph(zones_title, zones_desc, SITE + "/zones-intervention/", crumbs)
+    write_page(["zones-intervention", "index.html"], page_shell(zones_title, zones_desc, SITE + "/zones-intervention/", graph, body, crumbs))
 
 
 def build_about():
@@ -697,11 +780,10 @@ def build_about():
 </section>
 {cta_band()}"""
     crumbs = [("Accueil", "/"), ("À propos", "/a-propos/")]
-    graph = [ORG_SCHEMA, {"@type": "AboutPage", "name": "À propos", "url": SITE + "/a-propos/"}, breadcrumb_schema(crumbs)]
-    write_page(["a-propos", "index.html"], page_shell(
-        "À propos | Sopjani Tech Sàrl — CVC en Suisse romande",
-        "Sopjani Tech Sàrl : entreprise technique en chauffage, ventilation, climatisation et dépannage en Suisse romande.",
-        SITE + "/a-propos/", graph, body, crumbs))
+    about_title = "À propos | Sopjani Tech Sàrl — CVC en Suisse romande"
+    about_desc = "Sopjani Tech Sàrl : entreprise technique en chauffage, ventilation, climatisation et dépannage en Suisse romande."
+    graph = base_graph(about_title, about_desc, SITE + "/a-propos/", crumbs, extra={"@type": "AboutPage", "name": "À propos", "url": SITE + "/a-propos/"})
+    write_page(["a-propos", "index.html"], page_shell(about_title, about_desc, SITE + "/a-propos/", graph, body, crumbs))
 
 
 def build_contact():
@@ -740,9 +822,10 @@ def build_contact():
       </div>
       <div>
         <h2 class="section-title" style="font-size:24px;margin-bottom:8px;">Formulaire de demande</h2>
-        <form class="contact-form track-form" action="#" method="post">
+        <form class="contact-form track-form" action="{FORM_ENDPOINT or '#'}" method="post" data-form-endpoint="{FORM_ENDPOINT}">
           <div><label for="name">Nom</label><input id="name" name="name" type="text" required autocomplete="name"></div>
           <div><label for="phone">Téléphone</label><input id="phone" name="phone" type="tel" required autocomplete="tel"></div>
+          <div><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
           <div><label for="canton">Canton / Commune</label><input id="canton" name="canton" type="text" required></div>
           <div><label for="need">Type de besoin</label>
             <select id="need" name="need" required>
@@ -755,6 +838,7 @@ def build_contact():
           </div>
           <div><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
           <button type="submit" class="btn btn-primary track-form-submit">Envoyer la demande</button>
+          <p class="form-feedback" role="status" aria-live="polite" hidden></p>
         </form>
       </div>
     </div>
@@ -767,11 +851,10 @@ def build_contact():
   </div>
 </section>"""
     crumbs = [("Accueil", "/"), ("Contact", "/contact/")]
-    graph = [ORG_SCHEMA, {"@type": "ContactPage", "name": "Contact", "url": SITE + "/contact/"}, breadcrumb_schema(crumbs)]
-    write_page(["contact", "index.html"], page_shell(
-        "Contact et devis | Sopjani Tech Sàrl",
-        f"Contactez Sopjani Tech Sàrl par téléphone, email ou WhatsApp pour un devis ou un dépannage en Suisse romande. {PHONE_DISP}.",
-        SITE + "/contact/", graph, body))
+    contact_title = "Contact et devis | Sopjani Tech Sàrl — Suisse romande"
+    contact_desc = f"Contactez Sopjani Tech Sàrl pour un devis ou un dépannage CVC en Suisse romande. Tél. {PHONE_DISP}, email {EMAIL}."
+    graph = base_graph(contact_title, contact_desc, SITE + "/contact/", faq=faq, extra={"@type": "ContactPage", "name": "Contact", "url": SITE + "/contact/"})
+    write_page(["contact", "index.html"], page_shell(contact_title, contact_desc, SITE + "/contact/", graph, body))
 
 
 def build_services():
@@ -932,12 +1015,19 @@ def build_redirect(old_name, new_path):
 
 
 def build_sitemap():
-    urls = ["/", "/prestations/", "/a-propos/", "/contact/", "/zones-intervention/"]
-    urls += [f"/{s}/" for s, _, _ in SERVICES]
-    urls += [f"/{z}/" for z, _, _ in ZONES]
+    today = date.today().isoformat()
+    entries = [
+        ("/", "weekly", "1.0"),
+        ("/contact/", "monthly", "0.9"),
+        ("/prestations/", "monthly", "0.9"),
+        ("/zones-intervention/", "monthly", "0.9"),
+        ("/a-propos/", "monthly", "0.8"),
+    ]
+    entries += [(f"/{s}/", "monthly", "0.8") for s, _, _ in SERVICES]
+    entries += [(f"/{z}/", "monthly", "0.8") for z, _, _ in ZONES]
     lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    for u in urls:
-        lines.append(f"  <url><loc>{SITE}{u}</loc></url>")
+    for path, freq, priority in entries:
+        lines.append(f"  <url><loc>{SITE}{path}</loc><lastmod>{today}</lastmod><changefreq>{freq}</changefreq><priority>{priority}</priority></url>")
     lines.append("</urlset>")
     (ROOT / "sitemap.xml").write_text("\n".join(lines), encoding="utf-8")
 
@@ -1018,19 +1108,44 @@ function trackEvent(name, params) {
   if (typeof gtag === 'function') gtag('event', name, params || {});
 }
 document.querySelectorAll('.track-phone').forEach(el => {
-  el.addEventListener('click', () => trackEvent('click_phone', { event_category: 'contact', event_label: 'phone' }));
+  el.addEventListener('click', () => {
+    trackEvent('contact', { method: 'phone', event_category: 'contact' });
+    trackEvent('click_phone', { event_category: 'contact', event_label: 'phone' });
+  });
 });
 document.querySelectorAll('.track-email').forEach(el => {
-  el.addEventListener('click', () => trackEvent('click_email', { event_category: 'contact', event_label: 'email' }));
+  el.addEventListener('click', () => {
+    trackEvent('contact', { method: 'email', event_category: 'contact' });
+    trackEvent('click_email', { event_category: 'contact', event_label: 'email' });
+  });
 });
 document.querySelectorAll('.track-whatsapp').forEach(el => {
-  el.addEventListener('click', () => trackEvent('click_whatsapp', { event_category: 'contact', event_label: 'whatsapp' }));
+  el.addEventListener('click', () => {
+    trackEvent('contact', { method: 'whatsapp', event_category: 'contact' });
+    trackEvent('click_whatsapp', { event_category: 'contact', event_label: 'whatsapp' });
+  });
 });
 document.querySelectorAll('.track-devis').forEach(el => {
-  el.addEventListener('click', () => trackEvent('click_devis', { event_category: 'conversion', event_label: 'demande_devis' }));
+  el.addEventListener('click', () => {
+    trackEvent('generate_lead', { method: 'devis_button', event_category: 'conversion' });
+    trackEvent('click_devis', { event_category: 'conversion', event_label: 'demande_devis' });
+  });
 });
 document.querySelectorAll('.track-form').forEach(form => {
-  form.addEventListener('submit', () => trackEvent('form_submit', { event_category: 'conversion', event_label: 'contact_form' }));
+  form.addEventListener('submit', e => {
+    const endpoint = form.getAttribute('data-form-endpoint') || form.getAttribute('action') || '';
+    trackEvent('generate_lead', { method: 'contact_form', event_category: 'conversion' });
+    trackEvent('form_submit', { event_category: 'conversion', event_label: 'contact_form' });
+    if (!endpoint || endpoint === '#') {
+      e.preventDefault();
+      const feedback = form.querySelector('.form-feedback');
+      if (feedback) {
+        feedback.textContent = 'Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.';
+        feedback.hidden = false;
+      }
+      form.reset();
+    }
+  });
 });
 """
     (ROOT / "js" / "main.js").write_text(js, encoding="utf-8")

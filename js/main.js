@@ -69,17 +69,42 @@ function trackEvent(name, params) {
   if (typeof gtag === 'function') gtag('event', name, params || {});
 }
 document.querySelectorAll('.track-phone').forEach(el => {
-  el.addEventListener('click', () => trackEvent('click_phone', { event_category: 'contact', event_label: 'phone' }));
+  el.addEventListener('click', () => {
+    trackEvent('contact', { method: 'phone', event_category: 'contact' });
+    trackEvent('click_phone', { event_category: 'contact', event_label: 'phone' });
+  });
 });
 document.querySelectorAll('.track-email').forEach(el => {
-  el.addEventListener('click', () => trackEvent('click_email', { event_category: 'contact', event_label: 'email' }));
+  el.addEventListener('click', () => {
+    trackEvent('contact', { method: 'email', event_category: 'contact' });
+    trackEvent('click_email', { event_category: 'contact', event_label: 'email' });
+  });
 });
 document.querySelectorAll('.track-whatsapp').forEach(el => {
-  el.addEventListener('click', () => trackEvent('click_whatsapp', { event_category: 'contact', event_label: 'whatsapp' }));
+  el.addEventListener('click', () => {
+    trackEvent('contact', { method: 'whatsapp', event_category: 'contact' });
+    trackEvent('click_whatsapp', { event_category: 'contact', event_label: 'whatsapp' });
+  });
 });
 document.querySelectorAll('.track-devis').forEach(el => {
-  el.addEventListener('click', () => trackEvent('click_devis', { event_category: 'conversion', event_label: 'demande_devis' }));
+  el.addEventListener('click', () => {
+    trackEvent('generate_lead', { method: 'devis_button', event_category: 'conversion' });
+    trackEvent('click_devis', { event_category: 'conversion', event_label: 'demande_devis' });
+  });
 });
 document.querySelectorAll('.track-form').forEach(form => {
-  form.addEventListener('submit', () => trackEvent('form_submit', { event_category: 'conversion', event_label: 'contact_form' }));
+  form.addEventListener('submit', e => {
+    const endpoint = form.getAttribute('data-form-endpoint') || form.getAttribute('action') || '';
+    trackEvent('generate_lead', { method: 'contact_form', event_category: 'conversion' });
+    trackEvent('form_submit', { event_category: 'conversion', event_label: 'contact_form' });
+    if (!endpoint || endpoint === '#') {
+      e.preventDefault();
+      const feedback = form.querySelector('.form-feedback');
+      if (feedback) {
+        feedback.textContent = 'Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.';
+        feedback.hidden = false;
+      }
+      form.reset();
+    }
+  });
 });

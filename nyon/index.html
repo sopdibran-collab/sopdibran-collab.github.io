@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Climatisation et chauffage à Nyon | Sopjani Tech Sàrl</title>
   <meta name="description" content="Chauffage, ventilation et climatisation dans la région de Nyon.">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="geo.region" content="CH-FR">
+  <meta name="geo.placename" content="Suisse romande">
+  <meta name="theme-color" content="#10202b">
   <link rel="canonical" href="https://www.sopjanitech.ch/nyon/">
+  <link rel="icon" href="/assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+  <meta name="google-site-verification" content="ESyhz2gRqYIspy2MPXHOD9v4uMjd_KAdkQjRYWHWinw">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_CH">
   <meta property="og:title" content="Climatisation et chauffage à Nyon | Sopjani Tech Sàrl">
@@ -23,8 +29,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
-  <!-- TODO GA4 : renseigner GA4_MEASUREMENT_ID dans build_site.py (ex. G-XXXXXXXXXX) -->
-  <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); }</script>
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXN3RQB89P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-KXN3RQB89P', {
+      anonymize_ip: true,
+      cookie_flags: 'SameSite=None;Secure',
+      send_page_view: true
+    });
+  </script>
   <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
@@ -33,6 +49,7 @@
       "@id": "https://www.sopjanitech.ch/#organization",
       "name": "Sopjani Tech Sàrl",
       "url": "https://www.sopjanitech.ch",
+      "description": "Chauffage, ventilation, climatisation, dépannage SAV et sprinkler en Suisse romande.",
       "telephone": "+41799326862",
       "email": "info@sopjanitech.ch",
       "address": {
@@ -42,6 +59,25 @@
         "addressLocality": "Romont FR",
         "addressCountry": "CH"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "addressCountry": "CH",
+        "addressLocality": "Romont FR",
+        "postalCode": "1680"
+      },
+      "hasMap": "https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+9,+1680+Romont",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+41799326862",
+          "email": "info@sopjanitech.ch",
+          "contactType": "customer service",
+          "areaServed": "CH",
+          "availableLanguage": [
+            "French"
+          ]
+        }
+      ],
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
@@ -80,6 +116,10 @@
         {
           "@type": "AdministrativeArea",
           "name": "Fribourg"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Suisse romande"
         }
       ],
       "priceRange": "$$",
@@ -87,6 +127,31 @@
       "inLanguage": "fr-CH",
       "logo": "https://www.sopjanitech.ch/assets/logo.png",
       "image": "https://www.sopjanitech.ch/assets/logo.png"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.sopjanitech.ch/#website",
+      "url": "https://www.sopjanitech.ch",
+      "name": "Sopjani Tech Sàrl",
+      "description": "Chauffage, ventilation, climatisation et dépannage en Suisse romande.",
+      "publisher": {
+        "@id": "https://www.sopjanitech.ch/#organization"
+      },
+      "inLanguage": "fr-CH"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.sopjanitech.ch/nyon/#webpage",
+      "url": "https://www.sopjanitech.ch/nyon/",
+      "name": "Climatisation et chauffage à Nyon | Sopjani Tech Sàrl",
+      "description": "Chauffage, ventilation et climatisation dans la région de Nyon.",
+      "isPartOf": {
+        "@id": "https://www.sopjanitech.ch/#website"
+      },
+      "about": {
+        "@id": "https://www.sopjanitech.ch/#organization"
+      },
+      "inLanguage": "fr-CH"
     },
     {
       "@type": "BreadcrumbList",
@@ -108,6 +173,27 @@
           "position": 3,
           "name": "Nyon",
           "item": "https://www.sopjanitech.ch/nyon/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Couvrez-vous Nyon et environs ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, Nyon fait partie de nos zones d'intervention en Suisse romande."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Proposez-vous la climatisation à Nyon ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, étude et installation de systèmes de climatisation selon le projet."
+          }
         }
       ]
     }
@@ -255,6 +341,6 @@
     </div>
   </div>
 </footer>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 </body>
 </html>
