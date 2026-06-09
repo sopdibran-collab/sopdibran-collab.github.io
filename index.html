@@ -1286,124 +1286,6 @@
       line-height: 1.5;
     }
 
-    /* ── RESPONSIVE ──────────────────────────── */
-    @media (max-width: 960px) {
-      nav {
-        display: none;
-      }
-
-      .burger {
-        display: flex;
-      }
-
-      .header-cta .tel-btn {
-        display: none;
-      }
-
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-panel {
-        display: none;
-      }
-
-      .hero-stats {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .expertise-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .methode-steps {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .step {
-        border-bottom: 1px solid var(--c-border2);
-      }
-
-      .step:nth-child(2) {
-        border-right: none;
-      }
-
-      .zones-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .faq-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .contact-inner {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .footer-seo {
-        text-align: left;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .hero {
-        padding: 64px 0 56px;
-      }
-
-      h1 {
-        font-size: 36px;
-      }
-
-      .hero-stats {
-        grid-template-columns: 1fr;
-      }
-
-      .stat {
-        border-right: none;
-        border-bottom: 1px solid var(--c-border);
-      }
-
-      .stat:last-child {
-        border-bottom: none;
-      }
-
-      .methode-steps {
-        grid-template-columns: 1fr;
-      }
-
-      .step {
-        border-right: none;
-      }
-
-      .cantons-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .type-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .service-card {
-        padding: 28px 20px;
-      }
-    }
-
     /* ── ANIMATIONS ──────────────────────────── */
     @keyframes fadeUp {
       from {
@@ -1441,7 +1323,85 @@
       animation-delay: 0.45s;
     }
 
+    /* ── RESPONSIVE ──────────────────────────── */
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+      nav {
+        display: none;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .header-cta .tel-btn {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel {
+        display: none;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .services-grid,
+      .expertise-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .expertise-grid {
+        gap: 40px;
+      }
+
+      .methode-steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .step {
+        border-bottom: 1px solid var(--c-border2);
+      }
+
+      .step:nth-child(2) {
+        border-right: none;
+      }
+
+      .zones-grid,
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .faq-grid {
+        gap: 40px;
+      }
+
+      .contact-inner,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        gap: 32px;
+      }
+
+      .footer-seo {
+        text-align: left;
+      }
+    }
+
+    /* Mobile */
     @media (max-width: 768px) {
+      html,
+      body {
+        overflow-x: hidden;
+      }
+
       .container {
         padding: 0 18px;
       }
@@ -1467,15 +1427,41 @@
         padding: 48px 0 40px;
       }
 
-      .hero-grid {
+      .hero-grid,
+      .services-grid,
+      .expertise-grid,
+      .methode-steps,
+      .zones-grid,
+      .faq-grid,
+      .contact-inner,
+      .footer-grid {
         grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        gap: 28px;
+      }
+
+      .expertise-grid,
+      .zones-grid,
+      .faq-grid,
+      .footer-grid {
         gap: 28px;
       }
 
       h1 {
-        font-size: 34px;
-        line-height: 1.02;
+        font-size: 32px;
+        line-height: 1.05;
         margin-bottom: 16px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      .section-title {
+        font-size: 28px;
+        line-height: 1.08;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
       }
 
       .hero-sub {
@@ -1507,11 +1493,6 @@
 
       .stat:last-child {
         border-bottom: none;
-      }
-
-      .section-title {
-        font-size: 30px;
-        line-height: 1.05;
       }
 
       .section-lead {
@@ -1561,10 +1542,6 @@
         gap: 16px;
       }
 
-      .methode-steps {
-        grid-template-columns: 1fr;
-      }
-
       .step {
         padding: 24px 18px;
         border-right: none;
@@ -1575,16 +1552,12 @@
         border-bottom: none;
       }
 
-      .zones-grid,
-      .faq-grid,
-      .contact-inner,
-      .expertise-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-
       .cantons-grid {
         grid-template-columns: 1fr 1fr;
+      }
+
+      .type-grid {
+        grid-template-columns: 1fr;
       }
 
       .urgence-block,
@@ -1605,6 +1578,12 @@
         word-break: break-word;
       }
 
+      .btn {
+        white-space: normal;
+        text-align: center;
+        min-height: 48px;
+      }
+
       .devis-actions a,
       .btn,
       .da-tel,
@@ -1614,11 +1593,6 @@
         justify-content: center;
       }
 
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
       .footer-bottom {
         flex-direction: column;
         align-items: flex-start;
@@ -1626,6 +1600,64 @@
 
       .footer-seo {
         text-align: left;
+      }
+
+      .service-points--clean li {
+        grid-template-columns: 14px 1fr;
+      }
+
+      .service-points--clean li strong,
+      .service-points--clean li span {
+        grid-column: 2;
+      }
+
+      .service-points--clean li span {
+        margin-top: -2px;
+      }
+    }
+
+    /* Small mobile */
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero {
+        padding: 40px 0 36px;
+      }
+
+      h1 {
+        font-size: 26px;
+        line-height: 1.08;
+      }
+
+      .section-title {
+        font-size: 24px;
+        line-height: 1.1;
+      }
+
+      .section-lead {
+        font-size: 15px;
+      }
+
+      .service-card {
+        padding: 22px 16px;
+      }
+
+      .btn {
+        font-size: 13px;
+        padding: 12px 18px;
+        letter-spacing: 0.05em;
+      }
+
+      .devis-actions a {
+        font-size: 13px;
+        padding: 12px 18px;
+      }
+
+      .cantons-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
       }
     }
 
@@ -1709,21 +1741,6 @@
       font-size: 14px;
       color: var(--c-muted);
       line-height: 1.7;
-    }
-
-    @media (max-width: 768px) {
-      .service-points--clean li {
-        grid-template-columns: 14px 1fr;
-      }
-
-      .service-points--clean li strong,
-      .service-points--clean li span {
-        grid-column: 2;
-      }
-
-      .service-points--clean li span {
-        margin-top: -2px;
-      }
     }
   </style>
 </head>
