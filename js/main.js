@@ -65,3 +65,21 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
+function trackEvent(name, params) {
+  if (typeof gtag === 'function') gtag('event', name, params || {});
+}
+document.querySelectorAll('.track-phone').forEach(el => {
+  el.addEventListener('click', () => trackEvent('click_phone', { event_category: 'contact', event_label: 'phone' }));
+});
+document.querySelectorAll('.track-email').forEach(el => {
+  el.addEventListener('click', () => trackEvent('click_email', { event_category: 'contact', event_label: 'email' }));
+});
+document.querySelectorAll('.track-whatsapp').forEach(el => {
+  el.addEventListener('click', () => trackEvent('click_whatsapp', { event_category: 'contact', event_label: 'whatsapp' }));
+});
+document.querySelectorAll('.track-devis').forEach(el => {
+  el.addEventListener('click', () => trackEvent('click_devis', { event_category: 'conversion', event_label: 'demande_devis' }));
+});
+document.querySelectorAll('.track-form').forEach(form => {
+  form.addEventListener('submit', () => trackEvent('form_submit', { event_category: 'conversion', event_label: 'contact_form' }));
+});
