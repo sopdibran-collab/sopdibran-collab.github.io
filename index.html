@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr-CH">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sopjani Tech Sàrl | Chauffage, ventilation, climatisation et dépannage en Suisse romande</title>
   <meta name="description" content="Sopjani Tech Sàrl : étude, installation, maintenance et dépannage en chauffage, ventilation, climatisation et protection incendie en Suisse romande.">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.sopjanitech.ch/">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_CH">
   <meta property="og:title" content="Sopjani Tech Sàrl | Chauffage, ventilation, climatisation et dépannage en Suisse romande">
   <meta property="og:description" content="Sopjani Tech Sàrl : étude, installation, maintenance et dépannage en chauffage, ventilation, climatisation et protection incendie en Suisse romande.">
   <meta property="og:url" content="https://www.sopjanitech.ch/">
   <meta property="og:site_name" content="Sopjani Tech Sàrl">
+  <meta property="og:image" content="https://www.sopjanitech.ch/assets/logo.png">
+  <meta property="og:image:alt" content="Logo Sopjani Tech Sàrl">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sopjani Tech Sàrl | Chauffage, ventilation, climatisation et dépannage en Suisse romande">
+  <meta name="twitter:description" content="Sopjani Tech Sàrl : étude, installation, maintenance et dépannage en chauffage, ventilation, climatisation et protection incendie en Suisse romande.">
+  <meta name="twitter:image" content="https://www.sopjanitech.ch/assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
+  <!-- TODO GA4 : renseigner GA4_MEASUREMENT_ID dans build_site.py (ex. G-XXXXXXXXXX) -->
+  <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); }</script>
   <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
@@ -24,7 +34,7 @@
       "name": "Sopjani Tech Sàrl",
       "url": "https://www.sopjanitech.ch",
       "telephone": "+41799326862",
-      "email": "sopjanitech@gmail.com",
+      "email": "info@sopjanitech.ch",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Rue Pierre de Savoie 9",
@@ -74,7 +84,9 @@
       ],
       "priceRange": "$$",
       "currenciesAccepted": "CHF",
-      "inLanguage": "fr-CH"
+      "inLanguage": "fr-CH",
+      "logo": "https://www.sopjanitech.ch/assets/logo.png",
+      "image": "https://www.sopjanitech.ch/assets/logo.png"
     },
     {
       "@type": "WebSite",
@@ -113,11 +125,11 @@
         <a href="/contact/">Contact</a>
       </nav>
       <div class="header-cta">
-        <a href="tel:+41799326862" class="tel-btn" aria-label="Appeler Sopjani Tech">
+        <a href="tel:+41799326862" class="tel-btn track-phone" aria-label="Appeler Sopjani Tech">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           +41 79 932 68 62
         </a>
-        <a href="/contact/" class="btn btn-primary">Demander un devis</a>
+        <a href="/contact/" class="btn btn-primary track-devis">Demander un devis</a>
       </div>
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
@@ -134,7 +146,7 @@
     </div>
     <a href="/a-propos/">À propos</a>
     <a href="/contact/">Contact</a>
-    <a href="tel:+41799326862" style="color:var(--c-accent)">+41 79 932 68 62</a>
+    <a href="tel:+41799326862" class="track-phone" style="color:var(--c-accent)">+41 79 932 68 62</a>
   </nav>
 </header>
 <main>
@@ -146,10 +158,10 @@
       <div class="hero-content">
         <div class="hero-eyebrow"><span class="label">Étude · Installation · Maintenance · Dépannage</span></div>
         <h1 id="hero-h1">Chauffage, ventilation, climatisation et dépannage en Suisse romande</h1>
-        <p class="hero-sub">Nous assurons l'étude, l'installation, la maintenance et le dépannage de vos équipements techniques avec rigueur et fiabilité.</p>
+        <p class="hero-sub">Sopjani Tech Sàrl — installation, maintenance et dépannage CVC en Suisse romande. Genève, Vaud, Lausanne, Nyon, Valais, Fribourg. Contact : <a href="tel:+41799326862" class="track-phone">+41 79 932 68 62</a> · <a href="mailto:info@sopjanitech.ch" class="track-email">info@sopjanitech.ch</a></p>
         <div class="hero-ctas">
-          <a href="tel:+41799326862" class="btn btn-primary">+41 79 932 68 62</a>
-          <a href="/contact/" class="btn btn-ghost">Demander un devis</a>
+          <a href="tel:+41799326862" class="btn btn-primary track-phone">+41 79 932 68 62</a>
+          <a href="/contact/" class="btn btn-ghost track-devis">Demander un devis</a>
         </div>
         <div class="hero-stats">
           <div class="stat"><div class="stat-val">6</div><div class="stat-label">Domaines de prestations</div></div>
@@ -172,7 +184,18 @@
   </div>
 </section>
 <div class="section-divider"></div>
-<section class="expertise content-section alt" aria-labelledby="why-title">
+<section class="content-section alt" aria-labelledby="about-title">
+  <div class="container prose-block">
+    <span class="label">Entreprise</span>
+    <div class="rule"></div>
+    <h2 class="section-title" id="about-title">Qui sommes-nous</h2>
+    <p>Sopjani Tech Sàrl est une entreprise active dans les domaines du chauffage, de la ventilation, de la climatisation, du dépannage SAV et du sprinkler / protection incendie en Suisse romande.</p>
+    <p>Nous accompagnons nos clients avec une approche simple : comprendre le besoin, proposer une solution adaptée et intervenir avec sérieux selon la nature de la demande.</p>
+    <p style="margin-top:20px;"><a href="/a-propos/">Lire la suite →</a></p>
+  </div>
+</section>
+<div class="section-divider"></div>
+<section class="expertise content-section" aria-labelledby="why-title">
   <div class="container">
     <span class="label">Pourquoi nous choisir</span>
     <div class="rule"></div>
@@ -191,7 +214,7 @@
   </div>
 </section>
 <div class="section-divider"></div>
-<section class="zones content-section" aria-labelledby="zones-title">
+<section class="zones content-section alt" aria-labelledby="zones-title">
   <div class="container">
     <span class="label">Zones d'intervention</span>
     <div class="rule"></div>
@@ -213,7 +236,7 @@
   <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><span itemprop="text">Principalement en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. D'autres cantons peuvent être couverts selon la nature du projet.</span></div>
 </div><div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
   <button class="faq-q" aria-expanded="false"><span itemprop="name">Comment obtenir un devis ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><span itemprop="text">Par téléphone (+41 79 932 68 62), email (sopjanitech@gmail.com) ou WhatsApp. Indiquez le type de bâtiment, la localisation et la nature du besoin.</span></div>
+  <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><span itemprop="text">Par téléphone (+41 79 932 68 62), email (info@sopjanitech.ch) ou WhatsApp. Indiquez le type de bâtiment, la localisation et la nature du besoin.</span></div>
 </div><div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
   <button class="faq-q" aria-expanded="false"><span itemprop="name">Intervenez-vous en dépannage ?</span><span class="faq-icon" aria-hidden="true"></span></button>
   <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><span itemprop="text">Oui. Contactez-nous pour évaluer votre situation. La disponibilité dépend de la nature de la panne et du secteur.</span></div>
@@ -224,8 +247,8 @@
   <div class="container">
     <h2>Besoin d'un devis ou d'un dépannage ?</h2>
     <p>Contactez-nous pour décrire votre besoin. Nous vous répondrons dans les meilleurs délais.</p>
-    <a href="tel:+41799326862" class="btn btn-primary">+41 79 932 68 62</a>
-    <a href="/contact/" class="btn btn-ghost" style="border-color:rgba(255,255,255,.3);color:#fff;">Demander un devis</a>
+    <a href="tel:+41799326862" class="btn btn-primary track-phone">+41 79 932 68 62</a>
+    <a href="/contact/" class="btn btn-ghost track-devis" style="border-color:rgba(255,255,255,.3);color:#fff;">Demander un devis</a>
   </div>
 </section>
 </main>
@@ -251,9 +274,9 @@
       <div>
         <div class="footer-col-title">Contact</div>
         <ul class="footer-contact-list">
-          <li><a href="tel:+41799326862">+41 79 932 68 62</a></li>
-          <li><a href="mailto:sopjanitech@gmail.com">sopjanitech@gmail.com</a></li>
-          <li><a href="https://wa.me/41799326862" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="tel:+41799326862" class="track-phone">+41 79 932 68 62</a></li>
+          <li><a href="mailto:info@sopjanitech.ch" class="track-email">info@sopjanitech.ch</a></li>
+          <li><a href="https://wa.me/41799326862" class="track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
           <li style="margin-top:8px;font-size:13px;"><a href="https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+9,+1680+Romont" target="_blank" rel="noopener noreferrer">Rue Pierre de Savoie 9, 1680 Romont FR</a></li>
           <li style="font-size:13px;color:var(--c-faint);">Lundi au vendredi, 8h00 – 16h30</li>
         </ul>
