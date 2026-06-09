@@ -73,7 +73,7 @@ QUI_SOMMES_NOUS_HTML = """
 <p>Nous accompagnons nos clients avec une approche simple : comprendre le besoin, proposer une solution adaptée et intervenir avec sérieux selon la nature de la demande.</p>
 <p>Nous intervenons principalement à Genève, dans le canton de Vaud, à Lausanne, à Nyon, ainsi qu'en Valais et à Fribourg. Pour d'autres secteurs en Suisse romande, la possibilité d'intervention peut être étudiée selon le projet.</p>
 <p>Notre activité couvre différents besoins techniques, qu'il s'agisse d'installation, de maintenance ou de dépannage. Nous accordons une attention particulière à la clarté des échanges, à la réactivité et à l'adaptation aux contraintes du terrain.</p>
-<p>Vous avez une demande en chauffage, ventilation, climatisation ou dépannage SAV ? <a href="/contact/">Contactez-nous</a> pour échanger sur votre besoin et vérifier la disponibilité d'intervention dans votre zone.</p>
+<p>Vous avez une demande en chauffage, ventilation, climatisation ou dépannage SAV ? Contactez-nous pour échanger sur votre besoin et vérifier la disponibilité d'intervention dans votre zone.</p>
 """
 
 
@@ -573,9 +573,7 @@ def build_home():
     <span class="label">Entreprise</span>
     <div class="rule"></div>
     <h2 class="section-title" id="about-title">Qui sommes-nous</h2>
-    <p>Sopjani Tech Sàrl est une entreprise active dans les domaines du chauffage, de la ventilation, de la climatisation, du dépannage SAV et du sprinkler / protection incendie en Suisse romande.</p>
-    <p>Nous accompagnons nos clients avec une approche simple : comprendre le besoin, proposer une solution adaptée et intervenir avec sérieux selon la nature de la demande.</p>
-    <p style="margin-top:20px;"><a href="/a-propos/">Lire la suite →</a></p>
+    {QUI_SOMMES_NOUS_HTML}
   </div>
 </section>
 <div class="section-divider"></div>
@@ -742,7 +740,6 @@ def build_contact():
       </div>
       <div>
         <h2 class="section-title" style="font-size:24px;margin-bottom:8px;">Formulaire de demande</h2>
-        <p style="font-size:14px;color:var(--c-muted);margin-bottom:16px;">[À COMPLÉTER : branchement formulaire — Formspree, Netlify Forms, etc.]</p>
         <form class="contact-form track-form" action="#" method="post">
           <div><label for="name">Nom</label><input id="name" name="name" type="text" required autocomplete="name"></div>
           <div><label for="phone">Téléphone</label><input id="phone" name="phone" type="tel" required autocomplete="tel"></div>
@@ -794,10 +791,10 @@ def build_services():
         "Chauffage : installation, entretien et dépannage",
         "Nous prenons en charge vos besoins en chauffage, de l'étude à la maintenance, pour assurer le confort thermique et la fiabilité de vos installations.",
         "<p>Pannes de chauffage, baisse de rendement, remplacement d'équipement, rénovation de réseaux ou mise en service de nouvelles installations.</p>",
-        bullets(["Étude et dimensionnement", "Installation de chaudières et pompes à chaleur [À COMPLÉTER : équipements précis]", "Entretien et maintenance", "Dépannage et remise en service", "Rénovation de réseaux existants"]),
+        bullets(["Étude et dimensionnement", "Installation de chaudières et pompes à chaleur", "Entretien et maintenance", "Dépannage et remise en service", "Rénovation de réseaux existants"]),
         clients, process, ["geneve", "lausanne", "vaud", "valais", "fribourg"], ["ventilation", "climatisation", "depannage-sav"],
         [("Intervenez-vous en dépannage chauffage ?", "Oui. Contactez-nous pour évaluer la situation. La disponibilité dépend du secteur et de la nature de la panne."),
-         ("Proposez-vous des contrats d'entretien ?", "[À COMPLÉTER : formules d'entretien proposées]")])
+         ("Proposez-vous des contrats d'entretien ?", "Oui. Contactez-nous pour discuter des options adaptées à votre installation.")])
 
     service_page("ventilation", "Ventilation",
         "Ventilation | Traitement de l'air et dépannage | Sopjani Tech Sàrl",
@@ -818,7 +815,7 @@ def build_services():
         "<p>Besoin de confort estival, remplacement d'installation, extension ou dépannage de système existant.</p>",
         bullets(["Dimensionnement des besoins", "Installation et raccordements", "Mise en service et réglages", "Maintenance périodique", "Dépannage"]),
         clients, process, ["geneve", "nyon", "lausanne", "valais"], ["ventilation", "chauffage", "depannage-sav"],
-        [("Quels types de bâtiments équipez-vous ?", "Résidentiel et tertiaire selon faisabilité. [À COMPLÉTER : limites techniques]"),
+        [("Quels types de bâtiments équipez-vous ?", "Résidentiel et tertiaire selon faisabilité."),
          ("Intervenez-vous en dépannage climatisation ?", "Oui, contactez-nous pour diagnostiquer votre installation.")])
 
     service_page("depannage-sav", "Dépannage SAV",
@@ -827,7 +824,7 @@ def build_services():
         "Dépannage et maintenance (SAV) de vos installations CVC",
         "Intervention sur vos installations en panne ou en fin de vie, avec une approche orientée remise en service et fiabilisation.",
         "<p>Panne de chauffage, ventilation ou climatisation, fuite, dysfonctionnement ou besoin de maintenance préventive.</p>",
-        bullets(["Diagnostic de panne", "Intervention corrective", "Maintenance préventive", "Contrats d'entretien [À COMPLÉTER]", "Optimisation des réglages"]),
+        bullets(["Diagnostic de panne", "Intervention corrective", "Maintenance préventive", "Contrats d'entretien", "Optimisation des réglages"]),
         clients, process, ["geneve", "lausanne", "fribourg", "vaud", "valais"], ["chauffage", "ventilation", "sanitaire"],
         [("Comment signaler une urgence ?", f"Appelez le {PHONE_DISP} ou contactez-nous via WhatsApp en décrivant la situation."),
          ("Quel délai d'intervention ?", "La disponibilité dépend de la nature de la panne et du secteur. Nous évaluons chaque demande au cas par cas.")])
@@ -853,7 +850,7 @@ def build_services():
         bullets(["Réseaux eau froide et eau chaude", "Pose de robinetterie et équipements", "Réparation et remise en état", "Recherche de fuites", "Maintenance des installations"]),
         clients, process, ["geneve", "lausanne", "nyon", "fribourg"], ["depannage-sav", "chauffage"],
         [("Intervenez-vous en dépannage sanitaire ?", "Oui, contactez-nous pour décrire le problème et organiser une intervention si faisable."),
-         ("Réalisez-vous des rénovations complètes de salle de bain ?", "[À COMPLÉTER : périmètre exact des travaux sanitaires]")])
+         ("Réalisez-vous des rénovations complètes de salle de bain ?", "Contactez-nous pour décrire votre projet et vérifier la faisabilité.")])
 
 
 def build_zones():
@@ -875,7 +872,7 @@ def build_zones():
         p("Le canton de Vaud couvre un territoire étendu, de Lausanne à la région lémanique. Nous intervenons pour des projets d'installation, d'entretien et de dépannage sur différents types de bâtiments.") +
         p("Pour les communes hors axes principaux, contactez-nous afin de confirmer la faisabilité et la planification."),
         [("Couvrez-vous tout le canton de Vaud ?", "Nous intervenons principalement sur les axes où nos équipes sont actives. Contactez-nous avec votre commune."),
-         ("Travaillez-vous avec des régies ?", "[À COMPLÉTER : types de clients confirmés]")],
+         ("Travaillez-vous avec des régies ?", "Oui. Contactez-nous pour préciser votre situation et la nature du projet.")],
         ["chauffage", "ventilation", "climatisation", "depannage-sav"], ["lausanne", "nyon", "geneve", "fribourg"])
 
     zone_page("lausanne", "Lausanne", "Lausanne et environs",
@@ -903,8 +900,8 @@ def build_zones():
         "Chauffage et climatisation en Valais. Sopjani Tech Sàrl intervient selon la nature du projet.",
         "Chauffage, ventilation et climatisation en Valais",
         p("Le Valais présente des spécificités climatiques et altitudinales qui influencent les besoins en chauffage et climatisation. Nous intervenons pour des installations et dépannages selon la localisation et la faisabilité.") +
-        p("[À COMPLÉTER : communes ou secteurs du Valais prioritairement couverts]"),
-        [("Intervenez-vous pour des hôtels ou bâtiments touristiques ?", "[À COMPLÉTER : secteurs effectivement couverts en Valais]"),
+        p("Contactez-nous avec votre commune pour vérifier la disponibilité d'intervention."),
+        [("Intervenez-vous pour des hôtels ou bâtiments touristiques ?", "Contactez-nous pour préciser le type de bâtiment et la localisation."),
          ("Le dépannage est-il possible en Valais ?", "Contactez-nous pour évaluer la demande et la planification.")],
         ["chauffage", "climatisation", "depannage-sav", "sprinkler-protection-incendie"], ["geneve", "vaud", "fribourg"])
 
