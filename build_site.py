@@ -269,6 +269,14 @@ def breadcrumbs_html(items):
     return f'<nav class="breadcrumbs" aria-label="Fil d\'Ariane"><ol>{"".join(lis)}</ol></nav>'
 
 
+def mobile_quick_bar():
+    return f"""<div class="mobile-quick-bar" role="group" aria-label="Actions de contact rapides">
+  <a href="tel:{PHONE}" class="mobile-quick-btn track-phone">Appeler</a>
+  <a href="{WA}" class="mobile-quick-btn mobile-quick-btn--wa track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a href="/contact/#contact-form" class="mobile-quick-btn mobile-quick-btn--devis track-devis">Devis</a>
+</div>"""
+
+
 def header():
     svc_sub = '<a href="/prestations/" class="nav-submenu-all">Toutes les prestations</a>' + "".join(
         f'<a href="/{s}/" role="menuitem">{n}</a>' for s, n, _ in SERVICES
@@ -323,13 +331,20 @@ def header():
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile">
-    <a href="/">Accueil</a>
-    {mobile_svc}
-    {mobile_zones}
-    <a href="/a-propos/">À propos</a>
-    <a href="/contact/">Contact</a>
-    <a href="tel:{PHONE}" class="track-phone" style="color:var(--c-accent)">{PHONE_DISP}</a>
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" hidden></div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" aria-hidden="true">
+    <div class="mobile-nav-inner">
+      <a href="/" class="mobile-nav-link">Accueil</a>
+      {mobile_svc}
+      {mobile_zones}
+      <a href="/a-propos/" class="mobile-nav-link">À propos</a>
+      <a href="/contact/" class="mobile-nav-link">Contact</a>
+      <div class="mobile-nav-cta">
+        <a href="tel:{PHONE}" class="btn btn-primary track-phone">Appeler · {PHONE_DISP}</a>
+        <a href="{WA}" class="btn btn-whatsapp track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="/contact/#contact-form" class="btn btn-ghost track-devis">Demander un devis</a>
+      </div>
+    </div>
   </nav>
 </header>"""
 
@@ -794,13 +809,39 @@ def build_contact():
     ]
     body = f"""
 <section class="contact page-hero" aria-labelledby="page-h1">
-  <div class="container">
-    <span class="label">Contact</span>
-    <div class="rule"></div>
-    <h1 id="page-h1">Contactez Sopjani Tech Sàrl</h1>
-    <p class="section-lead" style="margin-top:16px;">Devis, maintenance ou dépannage : décrivez votre besoin et nous vous orienterons vers la solution adaptée.</p>
-    <div class="contact-inner" style="grid-template-columns:1fr 1fr;gap:48px;margin-top:40px;">
-      <div>
+  <div class="container contact-page">
+    <div class="contact-intro">
+      <span class="label">Contact</span>
+      <div class="rule"></div>
+      <h1 id="page-h1">Contactez Sopjani Tech Sàrl</h1>
+      <p class="section-lead contact-lead">Devis, maintenance ou dépannage : décrivez votre besoin et nous vous orienterons vers la solution adaptée.</p>
+    </div>
+    {mobile_quick_bar()}
+    <div class="contact-inner">
+      <div class="contact-form-section" id="contact-form">
+        <h2 class="contact-block-title">Formulaire de demande</h2>
+        <p class="contact-block-lead">Remplissez ce formulaire — nous vous répondons rapidement.</p>
+        <form class="contact-form track-form" action="{FORM_ENDPOINT or '#'}" method="post" data-form-endpoint="{FORM_ENDPOINT}">
+          <div class="form-field"><label for="name">Nom</label><input id="name" name="name" type="text" required autocomplete="name" placeholder="Votre nom"></div>
+          <div class="form-field"><label for="phone">Téléphone</label><input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+41 79 …"></div>
+          <div class="form-field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="vous@exemple.ch"></div>
+          <div class="form-field"><label for="canton">Canton / Commune</label><input id="canton" name="canton" type="text" required placeholder="Ex. Lausanne, Vaud"></div>
+          <div class="form-field"><label for="need">Type de besoin</label>
+            <select id="need" name="need" required>
+              <option value="">Choisir…</option>
+              <option>Devis installation</option>
+              <option>Maintenance / entretien</option>
+              <option>Dépannage</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="form-field"><label for="message">Message</label><textarea id="message" name="message" required placeholder="Décrivez votre besoin…"></textarea></div>
+          <button type="submit" class="btn btn-primary btn-block track-form-submit">Envoyer la demande</button>
+          <p class="form-feedback" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+      <div class="contact-details-section">
+        <h2 class="contact-block-title">Coordonnées</h2>
         <div class="contact-methods">
           <a href="tel:{PHONE}" class="contact-method track-phone" aria-label="Appeler Sopjani Tech">
             <div><div class="cm-label">Téléphone</div><div class="cm-value">{PHONE_DISP}</div></div>
@@ -814,32 +855,11 @@ def build_contact():
           <a href="{MAP_URL}" class="contact-method" target="_blank" rel="noopener noreferrer" aria-label="Voir l'adresse sur la carte">
             <div><div class="cm-label">Adresse</div><div class="cm-value">{ADDRESS_FULL}</div></div>
           </a>
-          <div class="contact-method" style="cursor:default;">
+          <div class="contact-method contact-method--static" aria-label="Horaires">
             <div><div class="cm-label">Horaires</div><div class="cm-value">{HOURS}</div></div>
           </div>
         </div>
-        <p style="margin-top:24px;font-size:14px;color:var(--c-muted);">Zone desservie : Suisse romande et alentours selon projet.</p>
-      </div>
-      <div>
-        <h2 class="section-title" style="font-size:24px;margin-bottom:8px;">Formulaire de demande</h2>
-        <form class="contact-form track-form" action="{FORM_ENDPOINT or '#'}" method="post" data-form-endpoint="{FORM_ENDPOINT}">
-          <div><label for="name">Nom</label><input id="name" name="name" type="text" required autocomplete="name"></div>
-          <div><label for="phone">Téléphone</label><input id="phone" name="phone" type="tel" required autocomplete="tel"></div>
-          <div><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
-          <div><label for="canton">Canton / Commune</label><input id="canton" name="canton" type="text" required></div>
-          <div><label for="need">Type de besoin</label>
-            <select id="need" name="need" required>
-              <option value="">Choisir…</option>
-              <option>Devis installation</option>
-              <option>Maintenance / entretien</option>
-              <option>Dépannage</option>
-              <option>Autre</option>
-            </select>
-          </div>
-          <div><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
-          <button type="submit" class="btn btn-primary track-form-submit">Envoyer la demande</button>
-          <p class="form-feedback" role="status" aria-live="polite" hidden></p>
-        </form>
+        <p class="contact-zone-note">Zone desservie : Suisse romande et alentours selon projet.</p>
       </div>
     </div>
   </div>
@@ -1039,16 +1059,36 @@ def build_robots():
 def build_js():
     js = """const burger = document.getElementById('burger');
 const mobileNav = document.getElementById('mobileNav');
+const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+
+function setMobileNav(open) {
+  if (!mobileNav || !burger) return;
+  mobileNav.classList.toggle('open', open);
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+  mobileNav.setAttribute('aria-hidden', !open);
+  document.body.classList.toggle('nav-open', open);
+  if (mobileNavOverlay) {
+    mobileNavOverlay.hidden = !open;
+  }
+}
+
+function closeMobileNav() {
+  setMobileNav(false);
+}
+
 if (burger && mobileNav) {
   burger.addEventListener('click', () => {
-    const isOpen = mobileNav.classList.toggle('open');
-    burger.setAttribute('aria-expanded', isOpen);
+    setMobileNav(!mobileNav.classList.contains('open'));
   });
   mobileNav.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      mobileNav.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
-    });
+    a.addEventListener('click', closeMobileNav);
+  });
+  if (mobileNavOverlay) {
+    mobileNavOverlay.addEventListener('click', closeMobileNav);
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeMobileNav();
   });
 }
 function closeNavDropdowns() {

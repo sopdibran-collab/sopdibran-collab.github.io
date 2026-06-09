@@ -224,32 +224,69 @@
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile">
-    <a href="/">Accueil</a>
-    <div class="mobile-nav-group">
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" hidden></div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" aria-hidden="true">
+    <div class="mobile-nav-inner">
+      <a href="/" class="mobile-nav-link">Accueil</a>
+      <div class="mobile-nav-group">
       <button type="button" class="mobile-nav-toggle" aria-expanded="false">Prestations</button>
       <div class="mobile-nav-panel"><a href="/prestations/">Toutes les prestations</a><a href="/chauffage/">Chauffage</a><a href="/ventilation/">Ventilation</a><a href="/climatisation/">Climatisation</a><a href="/depannage-sav/">Dépannage SAV</a><a href="/sprinkler-protection-incendie/">Sprinkler / protection incendie</a><a href="/sanitaire/">Sanitaire</a></div>
     </div>
-    <div class="mobile-nav-group">
+      <div class="mobile-nav-group">
       <button type="button" class="mobile-nav-toggle" aria-expanded="false">Zones d'intervention</button>
       <div class="mobile-nav-panel"><a href="/zones-intervention/">Toutes les zones</a><a href="/geneve/">Genève</a><a href="/vaud/">Vaud</a><a href="/lausanne/">Lausanne</a><a href="/nyon/">Nyon</a><a href="/valais/">Valais</a><a href="/fribourg/">Fribourg</a></div>
     </div>
-    <a href="/a-propos/">À propos</a>
-    <a href="/contact/">Contact</a>
-    <a href="tel:+41799326862" class="track-phone" style="color:var(--c-accent)">+41 79 932 68 62</a>
+      <a href="/a-propos/" class="mobile-nav-link">À propos</a>
+      <a href="/contact/" class="mobile-nav-link">Contact</a>
+      <div class="mobile-nav-cta">
+        <a href="tel:+41799326862" class="btn btn-primary track-phone">Appeler · +41 79 932 68 62</a>
+        <a href="https://wa.me/41799326862" class="btn btn-whatsapp track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="/contact/#contact-form" class="btn btn-ghost track-devis">Demander un devis</a>
+      </div>
+    </div>
   </nav>
 </header>
 <main>
 
 
 <section class="contact page-hero" aria-labelledby="page-h1">
-  <div class="container">
-    <span class="label">Contact</span>
-    <div class="rule"></div>
-    <h1 id="page-h1">Contactez Sopjani Tech Sàrl</h1>
-    <p class="section-lead" style="margin-top:16px;">Devis, maintenance ou dépannage : décrivez votre besoin et nous vous orienterons vers la solution adaptée.</p>
-    <div class="contact-inner" style="grid-template-columns:1fr 1fr;gap:48px;margin-top:40px;">
-      <div>
+  <div class="container contact-page">
+    <div class="contact-intro">
+      <span class="label">Contact</span>
+      <div class="rule"></div>
+      <h1 id="page-h1">Contactez Sopjani Tech Sàrl</h1>
+      <p class="section-lead contact-lead">Devis, maintenance ou dépannage : décrivez votre besoin et nous vous orienterons vers la solution adaptée.</p>
+    </div>
+    <div class="mobile-quick-bar" role="group" aria-label="Actions de contact rapides">
+  <a href="tel:+41799326862" class="mobile-quick-btn track-phone">Appeler</a>
+  <a href="https://wa.me/41799326862" class="mobile-quick-btn mobile-quick-btn--wa track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a href="/contact/#contact-form" class="mobile-quick-btn mobile-quick-btn--devis track-devis">Devis</a>
+</div>
+    <div class="contact-inner">
+      <div class="contact-form-section" id="contact-form">
+        <h2 class="contact-block-title">Formulaire de demande</h2>
+        <p class="contact-block-lead">Remplissez ce formulaire — nous vous répondons rapidement.</p>
+        <form class="contact-form track-form" action="#" method="post" data-form-endpoint="">
+          <div class="form-field"><label for="name">Nom</label><input id="name" name="name" type="text" required autocomplete="name" placeholder="Votre nom"></div>
+          <div class="form-field"><label for="phone">Téléphone</label><input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+41 79 …"></div>
+          <div class="form-field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="vous@exemple.ch"></div>
+          <div class="form-field"><label for="canton">Canton / Commune</label><input id="canton" name="canton" type="text" required placeholder="Ex. Lausanne, Vaud"></div>
+          <div class="form-field"><label for="need">Type de besoin</label>
+            <select id="need" name="need" required>
+              <option value="">Choisir…</option>
+              <option>Devis installation</option>
+              <option>Maintenance / entretien</option>
+              <option>Dépannage</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="form-field"><label for="message">Message</label><textarea id="message" name="message" required placeholder="Décrivez votre besoin…"></textarea></div>
+          <button type="submit" class="btn btn-primary btn-block track-form-submit">Envoyer la demande</button>
+          <p class="form-feedback" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+      <div class="contact-details-section">
+        <h2 class="contact-block-title">Coordonnées</h2>
         <div class="contact-methods">
           <a href="tel:+41799326862" class="contact-method track-phone" aria-label="Appeler Sopjani Tech">
             <div><div class="cm-label">Téléphone</div><div class="cm-value">+41 79 932 68 62</div></div>
@@ -263,32 +300,11 @@
           <a href="https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+9,+1680+Romont" class="contact-method" target="_blank" rel="noopener noreferrer" aria-label="Voir l'adresse sur la carte">
             <div><div class="cm-label">Adresse</div><div class="cm-value">Rue Pierre de Savoie 9, 1680 Romont FR</div></div>
           </a>
-          <div class="contact-method" style="cursor:default;">
+          <div class="contact-method contact-method--static" aria-label="Horaires">
             <div><div class="cm-label">Horaires</div><div class="cm-value">Lundi au vendredi, 8h00 – 16h30</div></div>
           </div>
         </div>
-        <p style="margin-top:24px;font-size:14px;color:var(--c-muted);">Zone desservie : Suisse romande et alentours selon projet.</p>
-      </div>
-      <div>
-        <h2 class="section-title" style="font-size:24px;margin-bottom:8px;">Formulaire de demande</h2>
-        <form class="contact-form track-form" action="#" method="post" data-form-endpoint="">
-          <div><label for="name">Nom</label><input id="name" name="name" type="text" required autocomplete="name"></div>
-          <div><label for="phone">Téléphone</label><input id="phone" name="phone" type="tel" required autocomplete="tel"></div>
-          <div><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
-          <div><label for="canton">Canton / Commune</label><input id="canton" name="canton" type="text" required></div>
-          <div><label for="need">Type de besoin</label>
-            <select id="need" name="need" required>
-              <option value="">Choisir…</option>
-              <option>Devis installation</option>
-              <option>Maintenance / entretien</option>
-              <option>Dépannage</option>
-              <option>Autre</option>
-            </select>
-          </div>
-          <div><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
-          <button type="submit" class="btn btn-primary track-form-submit">Envoyer la demande</button>
-          <p class="form-feedback" role="status" aria-live="polite" hidden></p>
-        </form>
+        <p class="contact-zone-note">Zone desservie : Suisse romande et alentours selon projet.</p>
       </div>
     </div>
   </div>
