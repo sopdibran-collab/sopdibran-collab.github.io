@@ -771,7 +771,7 @@ def build_contact():
     write_page(["contact", "index.html"], page_shell(
         "Contact et devis | Sopjani Tech Sàrl",
         f"Contactez Sopjani Tech Sàrl par téléphone, email ou WhatsApp pour un devis ou un dépannage en Suisse romande. {PHONE_DISP}.",
-        SITE + "/contact/", graph, body, crumbs))
+        SITE + "/contact/", graph, body))
 
 
 def build_services():
