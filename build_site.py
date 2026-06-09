@@ -8,8 +8,11 @@ ROOT = Path(__file__).parent
 SITE = "https://www.sopjanitech.ch"
 PHONE = "+41799326862"
 PHONE_DISP = "+41 79 932 68 62"
-EMAIL = "sopjanitech@gmail.com"
+EMAIL = "info@sopjanitech.ch"
 WA = "https://wa.me/41799326862"
+# TODO GA4 : renseigner l'ID de mesure (ex. G-XXXXXXXXXX) puis régénérer le site
+GA4_MEASUREMENT_ID = ""
+OG_IMAGE = f"{SITE}/assets/logo.png"
 ADDRESS_STREET = "Rue Pierre de Savoie 9"
 ADDRESS_POSTAL = "1680"
 ADDRESS_LOCALITY = "Romont FR"
@@ -61,7 +64,17 @@ ORG_SCHEMA = {
     "priceRange": "$$",
     "currenciesAccepted": "CHF",
     "inLanguage": "fr-CH",
+    "logo": OG_IMAGE,
+    "image": OG_IMAGE,
 }
+
+QUI_SOMMES_NOUS_HTML = """
+<p>Sopjani Tech Sàrl est une entreprise active dans les domaines du chauffage, de la ventilation, de la climatisation, du dépannage SAV et du sprinkler / protection incendie en Suisse romande.</p>
+<p>Nous accompagnons nos clients avec une approche simple : comprendre le besoin, proposer une solution adaptée et intervenir avec sérieux selon la nature de la demande.</p>
+<p>Nous intervenons principalement à Genève, dans le canton de Vaud, à Lausanne, à Nyon, ainsi qu'en Valais et à Fribourg. Pour d'autres secteurs en Suisse romande, la possibilité d'intervention peut être étudiée selon le projet.</p>
+<p>Notre activité couvre différents besoins techniques, qu'il s'agisse d'installation, de maintenance ou de dépannage. Nous accordons une attention particulière à la clarté des échanges, à la réactivité et à l'adaptation aux contraintes du terrain.</p>
+<p>Vous avez une demande en chauffage, ventilation, climatisation ou dépannage SAV ? <a href="/contact/">Contactez-nous</a> pour échanger sur votre besoin et vérifier la disponibilité d'intervention dans votre zone.</p>
+"""
 
 
 def extract_css():
@@ -232,11 +245,11 @@ def header():
         <a href="/contact/">Contact</a>
       </nav>
       <div class="header-cta">
-        <a href="tel:{PHONE}" class="tel-btn" aria-label="Appeler Sopjani Tech">
+        <a href="tel:{PHONE}" class="tel-btn track-phone" aria-label="Appeler Sopjani Tech">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           {PHONE_DISP}
         </a>
-        <a href="/contact/" class="btn btn-primary">Demander un devis</a>
+        <a href="/contact/" class="btn btn-primary track-devis">Demander un devis</a>
       </div>
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
@@ -247,7 +260,7 @@ def header():
     {mobile_zones}
     <a href="/a-propos/">À propos</a>
     <a href="/contact/">Contact</a>
-    <a href="tel:{PHONE}" style="color:var(--c-accent)">{PHONE_DISP}</a>
+    <a href="tel:{PHONE}" class="track-phone" style="color:var(--c-accent)">{PHONE_DISP}</a>
   </nav>
 </header>"""
 
@@ -279,9 +292,9 @@ def footer():
       <div>
         <div class="footer-col-title">Contact</div>
         <ul class="footer-contact-list">
-          <li><a href="tel:{PHONE}">{PHONE_DISP}</a></li>
-          <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
-          <li><a href="{WA}" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          <li><a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a></li>
+          <li><a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a></li>
+          <li><a href="{WA}" class="track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
           <li style="margin-top:8px;font-size:13px;"><a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a></li>
           <li style="font-size:13px;color:var(--c-faint);">{HOURS}</li>
         </ul>
@@ -310,31 +323,55 @@ def cta_band(title="Besoin d'un devis ou d'un dépannage ?", text="Contactez-nou
   <div class="container">
     <h2>{title}</h2>
     <p>{text}</p>
-    <a href="tel:{PHONE}" class="btn btn-primary">{PHONE_DISP}</a>
-    <a href="/contact/" class="btn btn-ghost" style="border-color:rgba(255,255,255,.3);color:#fff;">Demander un devis</a>
+    <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
+    <a href="/contact/" class="btn btn-ghost track-devis" style="border-color:rgba(255,255,255,.3);color:#fff;">Demander un devis</a>
   </div>
 </section>"""
 
 
+def analytics_head():
+    if GA4_MEASUREMENT_ID:
+        return f"""  <script async src="https://www.googletagmanager.com/gtag/js?id={GA4_MEASUREMENT_ID}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{ dataLayer.push(arguments); }}
+    gtag('js', new Date());
+    gtag('config', '{GA4_MEASUREMENT_ID}', {{ 'anonymize_ip': true }});
+  </script>"""
+    return """  <!-- TODO GA4 : renseigner GA4_MEASUREMENT_ID dans build_site.py (ex. G-XXXXXXXXXX) -->
+  <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); }</script>"""
+
+
 def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
     crumbs_html = breadcrumbs_html(crumbs) if crumbs else ""
+    safe_title = title.replace('"', "&quot;")
+    safe_desc = description.replace('"', "&quot;")
     return f"""<!DOCTYPE html>
-<html lang="fr">
+<html lang="fr-CH">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
   <meta name="description" content="{description}">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="{canonical}">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="{title}">
-  <meta property="og:description" content="{description}">
+  <meta property="og:locale" content="fr_CH">
+  <meta property="og:title" content="{safe_title}">
+  <meta property="og:description" content="{safe_desc}">
   <meta property="og:url" content="{canonical}">
   <meta property="og:site_name" content="Sopjani Tech Sàrl">
+  <meta property="og:image" content="{OG_IMAGE}">
+  <meta property="og:image:alt" content="Logo Sopjani Tech Sàrl">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{safe_title}">
+  <meta name="twitter:description" content="{safe_desc}">
+  <meta name="twitter:image" content="{OG_IMAGE}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
+{analytics_head()}
   <script type="application/ld+json">{schema_json(schema_graph)}</script>
 </head>
 <body>
@@ -378,8 +415,8 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
     <h1 id="page-h1">{h1}</h1>
     <p class="hero-sub">{intro}</p>
     <div class="hero-ctas" style="margin-top:24px;">
-      <a href="tel:{PHONE}" class="btn btn-primary">{PHONE_DISP}</a>
-      <a href="/contact/" class="btn btn-ghost">Demander un devis</a>
+      <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
+      <a href="/contact/" class="btn btn-ghost track-devis">Demander un devis</a>
     </div>
   </div>
 </section>
@@ -447,8 +484,8 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
     <h1 id="page-h1">{h1}</h1>
     <p class="hero-sub">Sopjani Tech Sàrl intervient dans {region} pour vos projets et dépannages en chauffage, ventilation, climatisation et installations techniques. Contactez-nous pour vérifier la disponibilité selon votre localisation.</p>
     <div class="hero-ctas" style="margin-top:24px;">
-      <a href="tel:{PHONE}" class="btn btn-primary">{PHONE_DISP}</a>
-      <a href="/contact/" class="btn btn-ghost">Demander un devis</a>
+      <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
+      <a href="/contact/" class="btn btn-ghost track-devis">Demander un devis</a>
     </div>
   </div>
 </section>
@@ -505,10 +542,10 @@ def build_home():
       <div class="hero-content">
         <div class="hero-eyebrow"><span class="label">Étude · Installation · Maintenance · Dépannage</span></div>
         <h1 id="hero-h1">Chauffage, ventilation, climatisation et dépannage en Suisse romande</h1>
-        <p class="hero-sub">Nous assurons l'étude, l'installation, la maintenance et le dépannage de vos équipements techniques avec rigueur et fiabilité.</p>
+        <p class="hero-sub">Sopjani Tech Sàrl — installation, maintenance et dépannage CVC en Suisse romande. Genève, Vaud, Lausanne, Nyon, Valais, Fribourg. Contact : <a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a> · <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a></p>
         <div class="hero-ctas">
-          <a href="tel:{PHONE}" class="btn btn-primary">{PHONE_DISP}</a>
-          <a href="/contact/" class="btn btn-ghost">Demander un devis</a>
+          <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
+          <a href="/contact/" class="btn btn-ghost track-devis">Demander un devis</a>
         </div>
         <div class="hero-stats">
           <div class="stat"><div class="stat-val">6</div><div class="stat-label">Domaines de prestations</div></div>
@@ -531,7 +568,18 @@ def build_home():
   </div>
 </section>
 <div class="section-divider"></div>
-<section class="expertise content-section alt" aria-labelledby="why-title">
+<section class="content-section alt" aria-labelledby="about-title">
+  <div class="container prose-block">
+    <span class="label">Entreprise</span>
+    <div class="rule"></div>
+    <h2 class="section-title" id="about-title">Qui sommes-nous</h2>
+    <p>Sopjani Tech Sàrl est une entreprise active dans les domaines du chauffage, de la ventilation, de la climatisation, du dépannage SAV et du sprinkler / protection incendie en Suisse romande.</p>
+    <p>Nous accompagnons nos clients avec une approche simple : comprendre le besoin, proposer une solution adaptée et intervenir avec sérieux selon la nature de la demande.</p>
+    <p style="margin-top:20px;"><a href="/a-propos/">Lire la suite →</a></p>
+  </div>
+</section>
+<div class="section-divider"></div>
+<section class="expertise content-section" aria-labelledby="why-title">
   <div class="container">
     <span class="label">Pourquoi nous choisir</span>
     <div class="rule"></div>
@@ -550,7 +598,7 @@ def build_home():
   </div>
 </section>
 <div class="section-divider"></div>
-<section class="zones content-section" aria-labelledby="zones-title">
+<section class="zones content-section alt" aria-labelledby="zones-title">
   <div class="container">
     <span class="label">Zones d'intervention</span>
     <div class="rule"></div>
@@ -617,7 +665,7 @@ def build_zones_hub():
   <div class="container">
     <div class="hub-grid">{cards}</div>
     <div class="prose-block" style="margin-top:40px;">
-      <p>Nous pouvons également étudier des demandes en Neuchâtel, Berne ou ailleurs en Suisse selon la nature du projet. [À COMPLÉTER : périmètre exact hors zones listées]</p>
+      <p>Pour d'autres secteurs en Suisse romande, contactez-nous afin de vérifier la faisabilité d'une intervention selon la nature du projet.</p>
     </div>
   </div>
 </section>
@@ -644,15 +692,9 @@ def build_about():
 <section class="content-section">
   <div class="container prose-block">
     <h2 class="section-title" style="font-size:clamp(26px,3vw,40px);">Qui sommes-nous</h2>
-    <p>[À COMPLÉTER : histoire de l'entreprise, fondateur, année de création]</p>
-    <h3>Notre mission</h3>
-    <p>Accompagner les maîtres d'ouvrage, régies et propriétaires dans l'installation, la maintenance et le dépannage de leurs équipements CVC avec une approche rigoureuse et transparente.</p>
-    <h3>Notre approche</h3>
-    <p>Analyse du besoin, proposition technique claire, exécution soignée et suivi des installations. Respect des normes en vigueur selon le type de travaux (SIA, SUVA, AEAI).</p>
-    <h3>Zones couvertes</h3>
-    <p>Principalement Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais, Fribourg. Autres cantons possibles selon projet.</p>
+    {QUI_SOMMES_NOUS_HTML}
     <h3>Coordonnées</h3>
-    <p>Téléphone : <a href="tel:{PHONE}">{PHONE_DISP}</a><br>Email : <a href="mailto:{EMAIL}">{EMAIL}</a><br>Adresse : <a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a><br>Horaires : {HOURS}</p>
+    <p>Téléphone : <a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a><br>Email : <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a><br>Adresse : <a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a><br>Horaires : {HOURS}</p>
   </div>
 </section>
 {cta_band()}"""
@@ -680,13 +722,13 @@ def build_contact():
     <div class="contact-inner" style="grid-template-columns:1fr 1fr;gap:48px;margin-top:40px;">
       <div>
         <div class="contact-methods">
-          <a href="tel:{PHONE}" class="contact-method" aria-label="Appeler Sopjani Tech">
+          <a href="tel:{PHONE}" class="contact-method track-phone" aria-label="Appeler Sopjani Tech">
             <div><div class="cm-label">Téléphone</div><div class="cm-value">{PHONE_DISP}</div></div>
           </a>
-          <a href="mailto:{EMAIL}" class="contact-method" aria-label="Envoyer un email">
+          <a href="mailto:{EMAIL}" class="contact-method track-email" aria-label="Envoyer un email">
             <div><div class="cm-label">Email</div><div class="cm-value">{EMAIL}</div></div>
           </a>
-          <a href="{WA}" class="contact-method" target="_blank" rel="noopener noreferrer" aria-label="Contacter via WhatsApp">
+          <a href="{WA}" class="contact-method track-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contacter via WhatsApp">
             <div><div class="cm-label">WhatsApp</div><div class="cm-value">Envoyer un message</div></div>
           </a>
           <a href="{MAP_URL}" class="contact-method" target="_blank" rel="noopener noreferrer" aria-label="Voir l'adresse sur la carte">
@@ -701,7 +743,7 @@ def build_contact():
       <div>
         <h2 class="section-title" style="font-size:24px;margin-bottom:8px;">Formulaire de demande</h2>
         <p style="font-size:14px;color:var(--c-muted);margin-bottom:16px;">[À COMPLÉTER : branchement formulaire — Formspree, Netlify Forms, etc.]</p>
-        <form class="contact-form" action="#" method="post">
+        <form class="contact-form track-form" action="#" method="post">
           <div><label for="name">Nom</label><input id="name" name="name" type="text" required autocomplete="name"></div>
           <div><label for="phone">Téléphone</label><input id="phone" name="phone" type="tel" required autocomplete="tel"></div>
           <div><label for="canton">Canton / Commune</label><input id="canton" name="canton" type="text" required></div>
@@ -715,7 +757,7 @@ def build_contact():
             </select>
           </div>
           <div><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
-          <button type="submit" class="btn btn-primary">Envoyer la demande</button>
+          <button type="submit" class="btn btn-primary track-form-submit">Envoyer la demande</button>
         </form>
       </div>
     </div>
@@ -974,6 +1016,24 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const target = document.querySelector(a.getAttribute('href'));
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
+});
+function trackEvent(name, params) {
+  if (typeof gtag === 'function') gtag('event', name, params || {});
+}
+document.querySelectorAll('.track-phone').forEach(el => {
+  el.addEventListener('click', () => trackEvent('click_phone', { event_category: 'contact', event_label: 'phone' }));
+});
+document.querySelectorAll('.track-email').forEach(el => {
+  el.addEventListener('click', () => trackEvent('click_email', { event_category: 'contact', event_label: 'email' }));
+});
+document.querySelectorAll('.track-whatsapp').forEach(el => {
+  el.addEventListener('click', () => trackEvent('click_whatsapp', { event_category: 'contact', event_label: 'whatsapp' }));
+});
+document.querySelectorAll('.track-devis').forEach(el => {
+  el.addEventListener('click', () => trackEvent('click_devis', { event_category: 'conversion', event_label: 'demande_devis' }));
+});
+document.querySelectorAll('.track-form').forEach(form => {
+  form.addEventListener('submit', () => trackEvent('form_submit', { event_category: 'conversion', event_label: 'contact_form' }));
 });
 """
     (ROOT / "js" / "main.js").write_text(js, encoding="utf-8")
