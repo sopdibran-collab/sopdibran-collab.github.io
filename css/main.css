@@ -7,19 +7,21 @@
     }
 
     :root {
-      --c-bg: #f5f7f9;
+      --c-bg: #f4f2ee;
       --c-bg2: #ffffff;
-      --c-bg3: #eef3f6;
+      --c-bg3: #ebe8e2;
       --c-surface: #ffffff;
-      --c-border: rgba(30, 42, 51, 0.10);
+      --c-border: rgba(30, 42, 51, 0.12);
       --c-border2: rgba(30, 42, 51, 0.08);
-      --c-accent: #3db8e8;
-      --c-accent2: #1e8fc4;
-      --c-text: #4f5457;
-      --c-muted: #5f6f7a;
-      --c-faint: #a7b3bc;
-      --c-dark: #10202b;
-      --c-dark-soft: #16303d;
+      --c-accent: #7a6a4f;
+      --c-accent2: #5e5240;
+      --c-cta: #1e2a33;
+      --c-cta-hover: #2f3f4d;
+      --c-text: #2a3238;
+      --c-muted: #5a6570;
+      --c-faint: #8a939c;
+      --c-dark: #1a242c;
+      --c-dark-soft: #243038;
       --font-display: 'Manrope', sans-serif;
       --font-body: 'Inter', sans-serif;
       --max-w: 1160px;
@@ -103,13 +105,36 @@
     }
 
     .btn-primary {
-      background: var(--c-accent);
-      color: #06080f;
+      background: var(--c-cta);
+      color: #f7f5f1;
+      border: 1px solid var(--c-cta);
     }
 
     .btn-primary:hover {
-      background: var(--c-accent2);
-      transform: translateY(-1px);
+      background: var(--c-cta-hover);
+      border-color: var(--c-cta-hover);
+    }
+
+    .btn-secondary {
+      background: var(--c-surface);
+      color: var(--c-text);
+      border: 1px solid var(--c-border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--c-accent);
+      color: var(--c-accent2);
+    }
+
+    .btn-secondary-on-dark {
+      background: transparent;
+      color: #f7f5f1;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .btn-secondary-on-dark:hover {
+      border-color: rgba(255, 255, 255, 0.6);
+      color: #fff;
     }
 
     .btn-ghost {
@@ -120,18 +145,29 @@
 
     .btn-ghost:hover {
       border-color: var(--c-accent);
-      color: var(--c-accent);
+      color: var(--c-accent2);
     }
 
-    .btn-whatsapp {
-      background: #1a7a3e;
-      color: #fff;
+    .btn-whatsapp,
+    .btn-secondary.track-whatsapp {
+      background: var(--c-surface);
+      color: var(--c-text);
+      border: 1px solid var(--c-border);
     }
 
     .btn-whatsapp:hover {
-      background: #1f9450;
-      transform: translateY(-1px);
+      border-color: var(--c-accent);
+      color: var(--c-accent2);
     }
+
+    .text-link {
+      font-weight: 600;
+      color: var(--c-accent2);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .text-link:hover { color: var(--c-cta); }
 
     /* ── HEADER ──────────────────────────────── */
     header {
@@ -213,15 +249,15 @@
       align-items: center;
       gap: 8px;
       font-family: var(--font-display);
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--c-accent);
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
       letter-spacing: 0.02em;
       transition: color 0.2s;
     }
 
     .tel-btn:hover {
-      color: var(--c-accent2);
+      color: #fff;
     }
 
     .burger {
@@ -1693,7 +1729,13 @@
 .cta-band { background: var(--c-dark); color: #fff; padding: 48px 0; text-align: center; }
 .cta-band h2 { font-family: var(--font-display); font-size: clamp(24px, 3vw, 36px); font-weight: 700; margin-bottom: 12px; }
 .cta-band p { color: rgba(255,255,255,.75); margin-bottom: 24px; max-width: 520px; margin-left: auto; margin-right: auto; }
-.cta-band .btn-primary { margin: 0 6px 8px; }
+.cta-band .btn-primary {
+  margin: 0 6px 8px;
+  background: #f7f5f1;
+  color: var(--c-cta);
+  border-color: #f7f5f1;
+}
+.cta-band .btn-primary:hover { background: #fff; color: var(--c-cta-hover); }
 .zone-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
 .zone-pill { display: inline-flex; padding: 10px 18px; background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius); font-size: 14px; font-weight: 600; transition: border-color .2s; }
 .zone-pill:hover { border-color: var(--c-accent); color: var(--c-accent); }
@@ -1709,7 +1751,15 @@ header .logo-text { font-size: 15px; }
 header .logo-sub { font-size: 9px; }
 header .header-cta { gap: 8px; }
 header .tel-btn { font-size: 13px; gap: 6px; }
-header .header-cta .btn-primary { padding: 9px 14px; font-size: 11px; letter-spacing: 0.06em; }
+header .header-cta .btn-primary {
+  padding: 9px 14px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  background: #f7f5f1;
+  color: var(--c-cta);
+  border-color: #f7f5f1;
+}
+header .header-cta .btn-primary:hover { background: #fff; color: var(--c-cta-hover); }
 header .nav-main { display: flex; align-items: center; gap: 18px; }
 header .nav-item { position: relative; }
 header .nav-main > a, header .nav-trigger {
@@ -1854,6 +1904,10 @@ nav.mobile-nav.open { display: flex !important; }
   justify-content: center;
   min-height: 48px;
 }
+.mobile-nav-cta .btn-primary { background: #f7f5f1; color: var(--c-cta); border-color: #f7f5f1; }
+.mobile-nav-cta .btn-primary:hover { background: #fff; color: var(--c-cta-hover); }
+.mobile-nav-cta .btn-secondary { background: transparent; color: #f7f5f1; border-color: rgba(255,255,255,0.3); }
+.mobile-nav-cta .btn-secondary:hover { border-color: rgba(255,255,255,0.55); color: #fff; }
 
 .mobile-quick-bar {
   display: none;
@@ -1870,30 +1924,20 @@ nav.mobile-nav.open { display: flex !important; }
   border-radius: var(--radius);
   font-family: var(--font-display);
   font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   text-align: center;
   background: var(--c-surface);
   border: 1px solid var(--c-border);
   color: var(--c-text);
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color 0.2s, color 0.2s;
 }
 .mobile-quick-btn:hover,
 .mobile-quick-btn:focus-visible {
   border-color: var(--c-accent);
-  color: var(--c-accent);
-  outline: none;
-}
-.mobile-quick-btn--wa {
-  background: rgba(26, 122, 62, 0.08);
-  border-color: rgba(26, 122, 62, 0.25);
-  color: #1a7a3e;
-}
-.mobile-quick-btn--devis {
-  background: rgba(61, 184, 232, 0.1);
-  border-color: rgba(61, 184, 232, 0.35);
   color: var(--c-accent2);
+  outline: none;
 }
 
 .contact-page .contact-lead { margin-top: 16px; max-width: 640px; }
@@ -1984,6 +2028,7 @@ nav.mobile-nav.open { display: flex !important; }
   }
   .cta-band { padding: 40px 0; }
   .cta-band .btn-primary,
+  .cta-band .btn-secondary-on-dark,
   .cta-band .btn-ghost {
     display: flex;
     width: 100%;

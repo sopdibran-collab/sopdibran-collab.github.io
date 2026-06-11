@@ -20,7 +20,7 @@ GOOGLE_SITE_VERIFICATION = "ESyhz2gRqYIspy2MPXHOD9v4uMjd_KAdkQjRYWHWinw"
 FORM_ENDPOINT = ""
 OG_IMAGE = f"{SITE}/assets/logo.png"
 FAVICON = f"{SITE}/assets/logo.png"
-THEME_COLOR = "#10202b"
+THEME_COLOR = "#1e2a33"
 ADDRESS_STREET = "Rue Pierre de Savoie 9"
 ADDRESS_POSTAL = "1680"
 ADDRESS_LOCALITY = "Romont FR"
@@ -107,7 +107,12 @@ QUI_SOMMES_NOUS_HTML = """
 <p>Nous accompagnons nos clients avec une approche simple : comprendre le besoin, proposer une solution adaptée et intervenir avec sérieux selon la nature de la demande.</p>
 <p>Nous intervenons principalement à Genève, dans le canton de Vaud, à Lausanne, à Nyon, ainsi qu'en Valais et à Fribourg. Pour d'autres secteurs en Suisse romande, la possibilité d'intervention peut être étudiée selon le projet.</p>
 <p>Notre activité couvre différents besoins techniques, qu'il s'agisse d'installation, de maintenance ou de dépannage. Nous accordons une attention particulière à la clarté des échanges, à la réactivité et à l'adaptation aux contraintes du terrain.</p>
-<p>Vous avez une demande en chauffage, ventilation, climatisation ou dépannage SAV ? Contactez-nous pour échanger sur votre besoin et vérifier la disponibilité d'intervention dans votre zone.</p>
+<p>Vous avez une demande en chauffage, ventilation, climatisation ou dépannage SAV ? <a href="/contact/">Contactez-nous</a> pour échanger sur votre besoin et vérifier la disponibilité d'intervention dans votre zone.</p>
+"""
+
+HOME_ABOUT_TEASER = """
+<p>Entreprise technique en Suisse romande, nous réalisons installations, maintenance et dépannage CVC pour bâtiments résidentiels, tertiaires et industriels.</p>
+<p><a href="/a-propos/" class="text-link">Présentation de l'entreprise →</a></p>
 """
 
 
@@ -272,8 +277,8 @@ def breadcrumbs_html(items):
 def mobile_quick_bar():
     return f"""<div class="mobile-quick-bar" role="group" aria-label="Actions de contact rapides">
   <a href="tel:{PHONE}" class="mobile-quick-btn track-phone">Appeler</a>
-  <a href="{WA}" class="mobile-quick-btn mobile-quick-btn--wa track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-  <a href="/contact/#contact-form" class="mobile-quick-btn mobile-quick-btn--devis track-devis">Devis</a>
+  <a href="{WA}" class="mobile-quick-btn track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a href="/contact/#contact-form" class="mobile-quick-btn track-devis">Devis</a>
 </div>"""
 
 
@@ -342,8 +347,8 @@ def header():
     <a href="/contact/" class="mobile-nav-link">Contact</a>
     <div class="mobile-nav-cta">
       <a href="tel:{PHONE}" class="btn btn-primary track-phone">Appeler · {PHONE_DISP}</a>
-      <a href="{WA}" class="btn btn-whatsapp track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      <a href="/contact/#contact-form" class="btn btn-ghost track-devis">Demander un devis</a>
+      <a href="{WA}" class="btn btn-secondary track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <a href="/contact/#contact-form" class="btn btn-secondary track-devis">Demander un devis</a>
     </div>
   </div>
 </nav>"""
@@ -408,7 +413,7 @@ def cta_band(title="Besoin d'un devis ou d'un dépannage ?", text="Contactez-nou
     <h2>{title}</h2>
     <p>{text}</p>
     <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
-    <a href="/contact/" class="btn btn-ghost track-devis" style="border-color:rgba(255,255,255,.3);color:#fff;">Demander un devis</a>
+    <a href="/contact/" class="btn btn-secondary-on-dark track-devis">Demander un devis</a>
   </div>
 </section>"""
 
@@ -516,7 +521,7 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
     <p class="hero-sub">{intro}</p>
     <div class="hero-ctas" style="margin-top:24px;">
       <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
-      <a href="/contact/" class="btn btn-ghost track-devis">Demander un devis</a>
+      <a href="/contact/" class="btn btn-secondary track-devis">Demander un devis</a>
     </div>
   </div>
 </section>
@@ -589,7 +594,7 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
     <p class="hero-sub">Sopjani Tech Sàrl intervient dans {region} pour vos projets et dépannages en chauffage, ventilation, climatisation et installations techniques. Contactez-nous pour vérifier la disponibilité selon votre localisation.</p>
     <div class="hero-ctas" style="margin-top:24px;">
       <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
-      <a href="/contact/" class="btn btn-ghost track-devis">Demander un devis</a>
+      <a href="/contact/" class="btn btn-secondary track-devis">Demander un devis</a>
     </div>
   </div>
 </section>
@@ -598,7 +603,6 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
   <div class="container prose-block">
     <h2 class="section-title" id="local-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Interventions dans {region}</h2>
     {local_text}
-    <p><strong>Note :</strong> il ne s'agit pas d'une agence locale mais d'une zone desservie par notre équipe mobile en Suisse romande.</p>
   </div>
 </section>
 <section class="content-section alt" aria-labelledby="svc-title">
@@ -633,7 +637,7 @@ def build_home():
     faq = [
         ("Quels services proposez-vous ?", "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler en sous-traitance et sanitaire. Consultez nos pages prestations pour le détail."),
         ("Dans quelles zones intervenez-vous ?", "Principalement en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. D'autres cantons peuvent être couverts selon la nature du projet."),
-        ("Comment obtenir un devis ?", f"Par téléphone ({PHONE_DISP}), email ({EMAIL}) ou WhatsApp. Indiquez le type de bâtiment, la localisation et la nature du besoin."),
+        ("Comment obtenir un devis ?", "Via notre page contact : décrivez le type de bâtiment, la localisation et la nature du besoin."),
         ("Intervenez-vous en dépannage ?", "Oui. Contactez-nous pour évaluer votre situation. La disponibilité dépend de la nature de la panne et du secteur."),
     ]
     body = f"""
@@ -643,15 +647,10 @@ def build_home():
       <div class="hero-content">
         <div class="hero-eyebrow"><span class="label">Étude · Installation · Maintenance · Dépannage</span></div>
         <h1 id="hero-h1">Chauffage, ventilation, climatisation et dépannage en Suisse romande</h1>
-        <p class="hero-sub">Sopjani Tech Sàrl — installation, maintenance et dépannage CVC en Suisse romande. Genève, Vaud, Lausanne, Nyon, Valais, Fribourg. Contact : <a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a> · <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a></p>
+        <p class="hero-sub">Installation, maintenance et dépannage CVC pour bâtiments résidentiels, tertiaires et industriels en Suisse romande.</p>
         <div class="hero-ctas">
-          <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
-          <a href="/contact/" class="btn btn-ghost track-devis">Demander un devis</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat"><div class="stat-val">6</div><div class="stat-label">Domaines de prestations</div></div>
-          <div class="stat"><div class="stat-val">CH</div><div class="stat-label">Suisse romande</div></div>
-          <div class="stat"><div class="stat-val">24h</div><div class="stat-label">Réactivité dépannage</div></div>
+          <a href="tel:{PHONE}" class="btn btn-primary track-phone">Appeler · {PHONE_DISP}</a>
+          <a href="/contact/" class="btn btn-secondary track-devis">Demander un devis</a>
         </div>
       </div>
     </div>
@@ -673,8 +672,8 @@ def build_home():
   <div class="container prose-block">
     <span class="label">Entreprise</span>
     <div class="rule"></div>
-    <h2 class="section-title" id="about-title">Qui sommes-nous</h2>
-    {QUI_SOMMES_NOUS_HTML}
+    <h2 class="section-title" id="about-title">L'entreprise</h2>
+    {HOME_ABOUT_TEASER}
   </div>
 </section>
 <div class="section-divider"></div>
@@ -763,6 +762,7 @@ def build_zones_hub():
     <div class="hub-grid">{cards}</div>
     <div class="prose-block" style="margin-top:40px;">
       <p>Pour d'autres secteurs en Suisse romande, contactez-nous afin de vérifier la faisabilité d'une intervention selon la nature du projet.</p>
+      <p style="margin-top:12px;font-size:14px;color:var(--c-muted);">Nos interventions sont assurées par une équipe mobile : il ne s'agit pas d'agences locales dans chaque canton.</p>
     </div>
   </div>
 </section>
