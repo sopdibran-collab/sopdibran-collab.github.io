@@ -331,22 +331,22 @@ def header():
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <div class="mobile-nav-overlay" id="mobileNavOverlay" hidden></div>
-  <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" aria-hidden="true">
-    <div class="mobile-nav-inner">
-      <a href="/" class="mobile-nav-link">Accueil</a>
-      {mobile_svc}
-      {mobile_zones}
-      <a href="/a-propos/" class="mobile-nav-link">À propos</a>
-      <a href="/contact/" class="mobile-nav-link">Contact</a>
-      <div class="mobile-nav-cta">
-        <a href="tel:{PHONE}" class="btn btn-primary track-phone">Appeler · {PHONE_DISP}</a>
-        <a href="{WA}" class="btn btn-whatsapp track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        <a href="/contact/#contact-form" class="btn btn-ghost track-devis">Demander un devis</a>
-      </div>
+</header>
+<div class="mobile-nav-overlay" id="mobileNavOverlay" hidden></div>
+<nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" aria-hidden="true">
+  <div class="mobile-nav-inner">
+    <a href="/" class="mobile-nav-link">Accueil</a>
+    {mobile_svc}
+    {mobile_zones}
+    <a href="/a-propos/" class="mobile-nav-link">À propos</a>
+    <a href="/contact/" class="mobile-nav-link">Contact</a>
+    <div class="mobile-nav-cta">
+      <a href="tel:{PHONE}" class="btn btn-primary track-phone">Appeler · {PHONE_DISP}</a>
+      <a href="{WA}" class="btn btn-whatsapp track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <a href="/contact/#contact-form" class="btn btn-ghost track-devis">Demander un devis</a>
     </div>
-  </nav>
-</header>"""
+  </div>
+</nav>"""
 
 
 def footer():
