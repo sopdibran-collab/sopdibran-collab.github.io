@@ -443,7 +443,8 @@ def analytics_head():
 
 
 def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
-    crumbs_html = breadcrumbs_html(crumbs) if crumbs else ""
+    # Fil d'Ariane : conservé en JSON-LD uniquement (pas d'affichage visible)
+    crumbs_html = ""
     safe_title = title.replace('"', "&quot;")
     safe_desc = description.replace('"', "&quot;")
     return f"""<!DOCTYPE html>
