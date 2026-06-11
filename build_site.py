@@ -27,6 +27,7 @@ ADDRESS_LOCALITY = "Romont FR"
 ADDRESS_FULL = "Rue Pierre de Savoie 9, 1680 Romont FR"
 HOURS = "Lundi au vendredi, 8h00 – 16h30"
 MAP_URL = "https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+9,+1680+Romont"
+MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1481964.3806735645!2d5.895466104411914!3d46.67378415677807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9458f52305e1fe3%3A0x31fd51d876fffe44!2sSopjani-tech%20s%C3%A0rl!5e1!3m2!1sfr!2sch!4v1781214251877!5m2!1sfr!2sch"
 
 SERVICES = [
     ("chauffage", "Chauffage", "Installation, entretien et dépannage de systèmes de chauffage."),
@@ -863,6 +864,17 @@ def build_contact():
         <p class="contact-zone-note">Zone desservie : Suisse romande et alentours selon projet.</p>
       </div>
     </div>
+  </div>
+  <div class="contact-map-wrap">
+    <iframe
+      src="{MAP_EMBED}"
+      title="Localisation de Sopjani Tech Sàrl — {ADDRESS_FULL}"
+      width="1200"
+      height="400"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </section>
 <section class="faq content-section alt" aria-labelledby="faq-title">
