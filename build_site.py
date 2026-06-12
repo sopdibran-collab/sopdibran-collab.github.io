@@ -6,7 +6,7 @@ from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-SITE = "https://www.sopjanitech.ch"
+SITE = "https://sopjanitech.ch"
 PHONE = "+41799326862"
 PHONE_DISP = "+41 79 932 68 62"
 EMAIL = "info@sopjanitech.ch"
