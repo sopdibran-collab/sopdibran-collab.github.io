@@ -33,6 +33,30 @@ HOST_ADDRESS = "88 Colin P. Kelly Jr. St, San Francisco, CA 94107, États-Unis"
 HOURS = "Lundi au vendredi, 8h00 – 16h30"
 MAP_URL = "https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+9,+1680+Romont"
 MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1481964.3806735645!2d5.895466104411914!3d46.67378415677807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9458f52305e1fe3%3A0x31fd51d876fffe44!2sSopjani-tech%20s%C3%A0rl!5e1!3m2!1sfr!2sch!4v1781214251877!5m2!1sfr!2sch"
+GOOGLE_BUSINESS_URL = "https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7"
+COPYRIGHT_YEAR = 2026
+
+META_DESCRIPTIONS = {
+    "home": "Sopjani Tech Sàrl : étude, installation et dépannage en chauffage, ventilation, climatisation et sprinkler en Suisse romande. Devis gratuit.",
+    "prestations": "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler et sanitaire en Suisse romande. Découvrez toutes les prestations CVC de Sopjani Tech Sàrl.",
+    "zones-intervention": "Sopjani Tech Sàrl intervient en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Vérifiez la disponibilité pour votre secteur.",
+    "a-propos": "Sopjani Tech Sàrl : entreprise CVC en Suisse romande. Chauffage, ventilation, climatisation, sprinkler et dépannage depuis Romont FR.",
+    "contact": f"Contactez Sopjani Tech Sàrl pour un devis ou dépannage CVC. Tél. {PHONE_DISP} · {EMAIL} · {ADDRESS_FULL}.",
+    "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
+    "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
+    "chauffage": "Étude, installation et dépannage de chauffage en Suisse romande. Pompes à chaleur, chaudières et entretien. Devis gratuit.",
+    "ventilation": "Installation et maintenance de ventilation en Suisse romande. VMC, traitement de l'air et dépannage pour bâtiments résidentiels et tertiaires.",
+    "climatisation": "Étude et installation de climatisation en Suisse romande. Confort estival pour résidentiel et tertiaire. Devis gratuit.",
+    "depannage-sav": "Dépannage et maintenance CVC en Suisse romande. Remise en service pour chauffage, ventilation et climatisation.",
+    "sprinkler-protection-incendie": "Installation de réseaux sprinkler en sous-traitance en Suisse romande. Protection incendie pour ERP et bâtiments industriels.",
+    "sanitaire": "Travaux sanitaires et dépannage en Suisse romande. Réseaux eau chaude/froide, fuites et rénovations.",
+    "geneve": "Installation et dépannage CVC dans la région de Genève. Chauffage, ventilation, climatisation et sprinkler pour bâtiments résidentiels et professionnels.",
+    "vaud": "Installation et dépannage CVC dans le canton de Vaud. Chauffage, ventilation et climatisation à Lausanne, Nyon et environs.",
+    "lausanne": "Installation et dépannage CVC à Lausanne et environs. Chauffage, ventilation, climatisation et maintenance en Suisse romande.",
+    "nyon": "Installation et dépannage CVC dans la région de Nyon. Chauffage, ventilation et climatisation entre Genève et Lausanne.",
+    "valais": "Installation et dépannage CVC en Valais. Chauffage, climatisation et sprinkler selon la nature du projet.",
+    "fribourg": "Installation et dépannage CVC dans le canton de Fribourg. Chauffage, ventilation et maintenance pour bâtiments résidentiels et professionnels.",
+}
 
 SERVICES = [
     ("chauffage", "Chauffage", "Installation, entretien et dépannage de systèmes de chauffage."),
@@ -392,22 +416,37 @@ def footer():
           <li><a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a></li>
           <li><a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a></li>
           <li><a href="{WA}" class="track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-          <li style="margin-top:8px;font-size:13px;"><a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a></li>
-          <li style="font-size:13px;color:var(--c-faint);">{HOURS}</li>
+          <li class="footer-contact-address"><a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a></li>
+          <li class="footer-contact-hours">{HOURS}</li>
+          <li><a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Voir nos avis sur Google</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2024 {COMPANY_NAME} · Suisse · Tous droits réservés</p>
-      <nav class="footer-legal" aria-label="Informations légales">
-        <a href="/mentions-legales/">Mentions légales</a>
-        <span aria-hidden="true">·</span>
-        <a href="/politique-confidentialite/">Politique de confidentialité</a>
-      </nav>
+      <div class="footer-bottom-main">
+        <p class="footer-copy">© {COPYRIGHT_YEAR} {COMPANY_NAME} · Tous droits réservés</p>
+        <p class="footer-address"><a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a></p>
+        <nav class="footer-legal" aria-label="Informations légales">
+          <a href="/mentions-legales/">Mentions légales</a>
+          <span aria-hidden="true">·</span>
+          <a href="/politique-confidentialite/">Politique de confidentialité</a>
+          <span aria-hidden="true">·</span>
+          <a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google</a>
+        </nav>
+      </div>
       <p class="footer-seo">Chauffage · Ventilation · Climatisation · Dépannage SAV · Sprinkler · Sanitaire · Suisse romande</p>
     </div>
   </div>
 </footer>"""
+
+
+def cookie_banner():
+    return """<div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Information sur les cookies" aria-live="polite" hidden>
+  <div class="cookie-banner__inner container">
+    <p class="cookie-banner__text">Ce site utilise des cookies techniques essentiels. En continuant, vous acceptez leur utilisation.</p>
+    <button type="button" class="btn btn-primary cookie-banner__accept" id="cookieAccept">Accepter</button>
+  </div>
+</div>"""
 
 
 def faq_html(items):
@@ -438,21 +477,7 @@ def gsc_verification_meta():
 
 
 def analytics_head():
-    if GA4_MEASUREMENT_ID:
-        return f"""  <link rel="preconnect" href="https://www.googletagmanager.com">
-  <script async src="https://www.googletagmanager.com/gtag/js?id={GA4_MEASUREMENT_ID}"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){{ dataLayer.push(arguments); }}
-    gtag('js', new Date());
-    gtag('config', '{GA4_MEASUREMENT_ID}', {{
-      anonymize_ip: true,
-      cookie_flags: 'SameSite=None;Secure',
-      send_page_view: true
-    }});
-  </script>"""
-    return """  <!-- TODO GA4 : renseigner GA4_MEASUREMENT_ID dans build_site.py (ex. G-XXXXXXXXXX) -->
-  <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); }</script>"""
+    return """  <script>window.dataLayer = window.dataLayer || []; function gtag(){ dataLayer.push(arguments); }</script>"""
 
 
 def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
@@ -500,6 +525,7 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
 {body}
 </main>
 {footer()}
+{cookie_banner()}
 <script src="/js/main.js" defer></script>
 </body>
 </html>"""
@@ -729,7 +755,7 @@ def build_home():
 </section>
 {cta_band()}"""
     home_title = "Sopjani Tech Sàrl | Chauffage, ventilation, climatisation et dépannage en Suisse romande"
-    home_desc = "Sopjani Tech Sàrl : étude, installation, maintenance et dépannage en chauffage, ventilation, climatisation et protection incendie en Suisse romande."
+    home_desc = META_DESCRIPTIONS["home"]
     graph = base_graph(home_title, home_desc, SITE + "/", faq=faq)
     write_page(["index.html"], page_shell(home_title, home_desc, SITE + "/", graph, body))
 
@@ -754,7 +780,7 @@ def build_prestations():
 {cta_band()}"""
     crumbs = [("Accueil", "/"), ("Prestations", "/prestations/")]
     presta_title = "Prestations CVC | Chauffage, ventilation, climatisation | Sopjani Tech Sàrl"
-    presta_desc = "Découvrez les prestations de Sopjani Tech Sàrl : chauffage, ventilation, climatisation, dépannage SAV, sprinkler et sanitaire en Suisse romande."
+    presta_desc = META_DESCRIPTIONS["prestations"]
     graph = base_graph(presta_title, presta_desc, SITE + "/prestations/", crumbs)
     write_page(["prestations", "index.html"], page_shell(presta_title, presta_desc, SITE + "/prestations/", graph, body, crumbs))
 
@@ -783,7 +809,7 @@ def build_zones_hub():
 {cta_band("Votre commune n'est pas listée ?", "Contactez-nous pour vérifier la faisabilité d'une intervention.")}"""
     crumbs = [("Accueil", "/"), ("Zones d'intervention", "/zones-intervention/")]
     zones_title = "Zones d'intervention | Suisse romande | Sopjani Tech Sàrl"
-    zones_desc = "Sopjani Tech Sàrl intervient en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais, Fribourg. Vérifiez la disponibilité pour votre secteur."
+    zones_desc = META_DESCRIPTIONS["zones-intervention"]
     graph = base_graph(zones_title, zones_desc, SITE + "/zones-intervention/", crumbs)
     write_page(["zones-intervention", "index.html"], page_shell(zones_title, zones_desc, SITE + "/zones-intervention/", graph, body, crumbs))
 
@@ -810,7 +836,7 @@ def build_about():
 {cta_band()}"""
     crumbs = [("Accueil", "/"), ("À propos", "/a-propos/")]
     about_title = "À propos | Sopjani Tech Sàrl — CVC en Suisse romande"
-    about_desc = "Sopjani Tech Sàrl : entreprise technique en chauffage, ventilation, climatisation et dépannage en Suisse romande."
+    about_desc = META_DESCRIPTIONS["a-propos"]
     graph = base_graph(about_title, about_desc, SITE + "/a-propos/", crumbs, extra={"@type": "AboutPage", "name": "À propos", "url": SITE + "/a-propos/"})
     write_page(["a-propos", "index.html"], page_shell(about_title, about_desc, SITE + "/a-propos/", graph, body, crumbs))
 
@@ -872,6 +898,9 @@ def build_contact():
           <div class="contact-method contact-method--static" aria-label="Horaires">
             <div><div class="cm-label">Horaires</div><div class="cm-value">{HOURS}</div></div>
           </div>
+          <a href="{GOOGLE_BUSINESS_URL}" class="contact-method contact-google-link track-google" target="_blank" rel="noopener noreferrer" aria-label="Voir nos avis sur Google">
+            <div><div class="cm-label">Google</div><div class="cm-value">Voir nos avis sur Google</div></div>
+          </a>
         </div>
         <p class="contact-zone-note">Zone desservie : Suisse romande et alentours selon projet.</p>
       </div>
@@ -897,7 +926,7 @@ def build_contact():
 </section>"""
     crumbs = [("Accueil", "/"), ("Contact", "/contact/")]
     contact_title = "Contact et devis | Sopjani Tech Sàrl — Suisse romande"
-    contact_desc = f"Contactez Sopjani Tech Sàrl pour un devis ou un dépannage CVC en Suisse romande. Tél. {PHONE_DISP}, email {EMAIL}."
+    contact_desc = META_DESCRIPTIONS["contact"]
     graph = base_graph(contact_title, contact_desc, SITE + "/contact/", faq=faq, extra={"@type": "ContactPage", "name": "Contact", "url": SITE + "/contact/"})
     write_page(["contact", "index.html"], page_shell(contact_title, contact_desc, SITE + "/contact/", graph, body))
 
@@ -915,7 +944,7 @@ def build_services():
 
     service_page("chauffage", "Chauffage",
         "Chauffage | Installation, entretien et dépannage | Sopjani Tech Sàrl",
-        "Sopjani Tech Sàrl : étude, installation, maintenance et dépannage de systèmes de chauffage en Suisse romande.",
+        META_DESCRIPTIONS["chauffage"],
         "Chauffage : installation, entretien et dépannage",
         "Nous prenons en charge vos besoins en chauffage, de l'étude à la maintenance, pour assurer le confort thermique et la fiabilité de vos installations.",
         "<p>Pannes de chauffage, baisse de rendement, remplacement d'équipement, rénovation de réseaux ou mise en service de nouvelles installations.</p>",
@@ -926,7 +955,7 @@ def build_services():
 
     service_page("ventilation", "Ventilation",
         "Ventilation | Traitement de l'air et dépannage | Sopjani Tech Sàrl",
-        "Étude, installation et maintenance de systèmes de ventilation pour bâtiments en Suisse romande.",
+        META_DESCRIPTIONS["ventilation"],
         "Ventilation et traitement de l'air",
         "Mise en place et suivi de systèmes de ventilation pour le confort, la qualité de l'air et la maîtrise énergétique de votre bâtiment.",
         "<p>Qualité d'air insuffisante, dysfonctionnements VMC, besoin de renouvellement d'air ou rénovation de réseaux existants.</p>",
@@ -937,7 +966,7 @@ def build_services():
 
     service_page("climatisation", "Climatisation",
         "Climatisation | Étude et installation | Sopjani Tech Sàrl",
-        "Étude et installation de systèmes de climatisation adaptés à votre bâtiment en Suisse romande.",
+        META_DESCRIPTIONS["climatisation"],
         "Climatisation : étude et installation",
         "Nous réalisons l'étude et l'installation de systèmes de climatisation adaptés aux besoins des particuliers et des professionnels.",
         "<p>Besoin de confort estival, remplacement d'installation, extension ou dépannage de système existant.</p>",
@@ -948,7 +977,7 @@ def build_services():
 
     service_page("depannage-sav", "Dépannage SAV",
         "Dépannage SAV CVC | Maintenance et urgence | Sopjani Tech Sàrl",
-        "Dépannage et maintenance de vos installations CVC en Suisse romande. Contactez Sopjani Tech Sàrl.",
+        META_DESCRIPTIONS["depannage-sav"],
         "Dépannage et maintenance (SAV) de vos installations CVC",
         "Intervention sur vos installations en panne ou en fin de vie, avec une approche orientée remise en service et fiabilisation.",
         "<p>Panne de chauffage, ventilation ou climatisation, fuite, dysfonctionnement ou besoin de maintenance préventive.</p>",
@@ -959,7 +988,7 @@ def build_services():
 
     service_page("sprinkler-protection-incendie", "Sprinkler / protection incendie",
         "Sprinkler et protection incendie | Sopjani Tech Sàrl",
-        "Installation de réseaux sprinkler en sous-traitance spécialisée. Sopjani Tech Sàrl, Suisse romande.",
+        META_DESCRIPTIONS["sprinkler-protection-incendie"],
         "Sprinkler et protection incendie",
         "Intervention en sous-traitance sur des installations sprinkler, avec exécution soignée et coordination chantier.",
         "<p>Montage de réseaux sprinkler, coordination avec autres corps de métier, conformité aux exigences du chantier.</p>",
@@ -971,7 +1000,7 @@ def build_services():
 
     service_page("sanitaire", "Sanitaire",
         "Sanitaire | Travaux et dépannage | Sopjani Tech Sàrl",
-        "Travaux sanitaires, adaptation de réseaux et dépannage en Suisse romande. Sopjani Tech Sàrl.",
+        META_DESCRIPTIONS["sanitaire"],
         "Travaux sanitaires et dépannage",
         "Travaux sanitaires, adaptation de réseaux et interventions sur installations existantes en résidentiel et professionnel.",
         "<p>Fuites, remplacement d'équipements, rénovation de réseaux eau chaude/froide et évacuations.</p>",
@@ -985,7 +1014,7 @@ def build_zones():
     p = lambda t: f"<p>{t}</p>"
     zone_page("geneve", "Genève", "la région de Genève",
         "Chauffage et climatisation à Genève | Sopjani Tech Sàrl",
-        "Sopjani Tech Sàrl intervient dans la région de Genève pour chauffage, ventilation, climatisation et dépannage.",
+        META_DESCRIPTIONS["geneve"],
         "Chauffage, ventilation, climatisation et dépannage dans la région de Genève",
         p("Le canton de Genève présente un parc bâti dense, des immeubles résidentiels, des commerces et des bâtiments tertiaires aux contraintes techniques variées. Nous pouvons prendre en charge des besoins en installation, maintenance et dépannage selon la nature du projet.") +
         p("Que vous soyez propriétaire, régie ou responsable technique, contactez-nous pour vérifier la disponibilité d'intervention dans votre secteur."),
@@ -995,7 +1024,7 @@ def build_zones():
 
     zone_page("vaud", "Vaud", "le canton de Vaud",
         "CVC dans le canton de Vaud | Sopjani Tech Sàrl",
-        "Chauffage, ventilation et climatisation dans le canton de Vaud. Sopjani Tech Sàrl.",
+        META_DESCRIPTIONS["vaud"],
         "Chauffage, ventilation, climatisation et dépannage dans le canton de Vaud",
         p("Le canton de Vaud couvre un territoire étendu, de Lausanne à la région lémanique. Nous intervenons pour des projets d'installation, d'entretien et de dépannage sur différents types de bâtiments.") +
         p("Pour les communes hors axes principaux, contactez-nous afin de confirmer la faisabilité et la planification."),
@@ -1005,7 +1034,7 @@ def build_zones():
 
     zone_page("lausanne", "Lausanne", "Lausanne et environs",
         "Chauffage et dépannage à Lausanne | Sopjani Tech Sàrl",
-        "Chauffage, ventilation, climatisation et dépannage à Lausanne et environs.",
+        META_DESCRIPTIONS["lausanne"],
         "Chauffage, ventilation, climatisation et dépannage à Lausanne",
         p("L'agglomération lausannoise concentre immeubles résidentiels, bâtiments tertiaires et équipements techniques nécessitant un suivi régulier. Nous intervenons pour l'installation, la maintenance et le dépannage CVC.") +
         p("Indiquez le quartier ou la commune exacte lors de votre demande pour une réponse adaptée."),
@@ -1015,7 +1044,7 @@ def build_zones():
 
     zone_page("nyon", "Nyon", "la région de Nyon",
         "Climatisation et chauffage à Nyon | Sopjani Tech Sàrl",
-        "Chauffage, ventilation et climatisation dans la région de Nyon.",
+        META_DESCRIPTIONS["nyon"],
         "Chauffage, ventilation et climatisation dans la région de Nyon",
         p("La région de Nyon, entre Genève et Lausanne, comprend des zones résidentielles et des activités commerciales. Nous pouvons intervenir pour des projets CVC et des dépannages selon disponibilité.") +
         p("Contactez-nous en précisant l'adresse et la nature des travaux."),
@@ -1025,7 +1054,7 @@ def build_zones():
 
     zone_page("valais", "Valais", "le canton du Valais",
         "Chauffage et climatisation en Valais | Sopjani Tech Sàrl",
-        "Chauffage et climatisation en Valais. Sopjani Tech Sàrl intervient selon la nature du projet.",
+        META_DESCRIPTIONS["valais"],
         "Chauffage, ventilation et climatisation en Valais",
         p("Le Valais présente des spécificités climatiques et altitudinales qui influencent les besoins en chauffage et climatisation. Nous intervenons pour des installations et dépannages selon la localisation et la faisabilité.") +
         p("Contactez-nous avec votre commune pour vérifier la disponibilité d'intervention."),
@@ -1035,7 +1064,7 @@ def build_zones():
 
     zone_page("fribourg", "Fribourg", "le canton de Fribourg",
         "Dépannage CVC à Fribourg | Sopjani Tech Sàrl",
-        "Chauffage, ventilation et dépannage dans le canton de Fribourg.",
+        META_DESCRIPTIONS["fribourg"],
         "Chauffage, ventilation et dépannage dans le canton de Fribourg",
         p("Le canton de Fribourg, à cheval sur les régions linguistiques, compte un parc bâti varié. Nous pouvons prendre en charge des interventions en chauffage, ventilation et dépannage selon la nature du projet.") +
         p("Précisez la commune et l'urgence de votre demande lors du premier contact."),
@@ -1086,14 +1115,15 @@ def build_legal_pages():
   </div>
 </section>"""
     mentions_title = f"Mentions légales | {COMPANY_NAME}"
-    mentions_desc = f"Mentions légales du site {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, contact et conditions d'utilisation."
+    mentions_desc = META_DESCRIPTIONS["mentions-legales"]
     mentions_url = SITE + "/mentions-legales/"
     mentions_crumbs = [("Accueil", "/"), ("Mentions légales", "/mentions-legales/")]
     mentions_graph = base_graph(mentions_title, mentions_desc, mentions_url, mentions_crumbs)
     write_page(["mentions-legales", "index.html"], page_shell(mentions_title, mentions_desc, mentions_url, mentions_graph, mentions_body, mentions_crumbs))
 
     ga4_note = (
-        f"Ce site utilise Google Analytics 4 (ID de mesure : {GA4_MEASUREMENT_ID}) pour mesurer l'audience et améliorer le site. "
+        f"Ce site peut utiliser Google Analytics 4 (ID de mesure : {GA4_MEASUREMENT_ID}) pour mesurer l'audience. "
+        "Le script n'est chargé qu'après votre acceptation via le bandeau cookies. "
         "Google peut traiter des données techniques (adresse IP anonymisée, pages consultées, type d'appareil, navigateur). "
         "Pour en savoir plus : <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\">politique de confidentialité de Google</a>."
         if GA4_MEASUREMENT_ID else
@@ -1146,7 +1176,7 @@ def build_legal_pages():
   </div>
 </section>"""
     privacy_title = f"Politique de confidentialité | {COMPANY_NAME}"
-    privacy_desc = f"Politique de confidentialité de {COMPANY_NAME} : traitement des données personnelles, cookies et droits selon la nLPD suisse."
+    privacy_desc = META_DESCRIPTIONS["politique-confidentialite"]
     privacy_url = SITE + "/politique-confidentialite/"
     privacy_crumbs = [("Accueil", "/"), ("Politique de confidentialité", "/politique-confidentialite/")]
     privacy_graph = base_graph(privacy_title, privacy_desc, privacy_url, privacy_crumbs)
@@ -1193,7 +1223,72 @@ def build_robots():
 
 
 def build_js():
-    js = """const burger = document.getElementById('burger');
+    ga4_js = ""
+    if GA4_MEASUREMENT_ID:
+        ga4_js = f"""
+const GA4_ID = '{GA4_MEASUREMENT_ID}';
+let ga4Loaded = false;
+
+function hasCookieConsent() {{
+  try {{ return localStorage.getItem(COOKIE_CONSENT_KEY) === '1'; }} catch (e) {{ return false; }}
+}}
+
+function loadGA4() {{
+  if (!GA4_ID || ga4Loaded) return;
+  ga4Loaded = true;
+  const link = document.createElement('link');
+  link.rel = 'preconnect';
+  link.href = 'https://www.googletagmanager.com';
+  document.head.appendChild(link);
+  const s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+  document.head.appendChild(s);
+  s.onload = () => {{
+    gtag('js', new Date());
+    gtag('config', GA4_ID, {{
+      anonymize_ip: true,
+      cookie_flags: 'SameSite=None;Secure',
+      send_page_view: true
+    }});
+  }};
+}}
+"""
+    else:
+        ga4_js = """
+function hasCookieConsent() {
+  try { return localStorage.getItem(COOKIE_CONSENT_KEY) === '1'; } catch (e) { return false; }
+}
+function loadGA4() {}
+"""
+
+    js_head = """const COOKIE_CONSENT_KEY = 'sopjanitech_cookie_consent';
+const cookieBanner = document.getElementById('cookieBanner');
+const cookieAccept = document.getElementById('cookieAccept');
+"""
+    js_cookie = """
+function initCookieBanner() {
+  if (!cookieBanner) return;
+  if (hasCookieConsent()) return;
+  cookieBanner.hidden = false;
+}
+
+function acceptCookies() {
+  try {
+    localStorage.setItem(COOKIE_CONSENT_KEY, '1');
+  } catch (e) {}
+  if (cookieBanner) cookieBanner.hidden = true;
+  loadGA4();
+}
+
+if (cookieAccept) {
+  cookieAccept.addEventListener('click', acceptCookies);
+}
+initCookieBanner();
+if (hasCookieConsent()) loadGA4();
+"""
+    js_tail = """
+const burger = document.getElementById('burger');
 const mobileNav = document.getElementById('mobileNav');
 const mobileNavOverlay = document.getElementById('mobileNavOverlay');
 
@@ -1323,7 +1418,13 @@ document.querySelectorAll('.track-form').forEach(form => {
     }
   });
 });
+document.querySelectorAll('.track-google').forEach(el => {
+  el.addEventListener('click', () => {
+    trackEvent('click_google', { event_category: 'contact', event_label: 'google_business' });
+  });
+});
 """
+    js = js_head + ga4_js + js_cookie + js_tail
     (ROOT / "js" / "main.js").write_text(js, encoding="utf-8")
 
 

@@ -1,3 +1,55 @@
+const COOKIE_CONSENT_KEY = 'sopjanitech_cookie_consent';
+const cookieBanner = document.getElementById('cookieBanner');
+const cookieAccept = document.getElementById('cookieAccept');
+
+const GA4_ID = 'G-KXN3RQB89P';
+let ga4Loaded = false;
+
+function hasCookieConsent() {
+  try { return localStorage.getItem(COOKIE_CONSENT_KEY) === '1'; } catch (e) { return false; }
+}
+
+function loadGA4() {
+  if (!GA4_ID || ga4Loaded) return;
+  ga4Loaded = true;
+  const link = document.createElement('link');
+  link.rel = 'preconnect';
+  link.href = 'https://www.googletagmanager.com';
+  document.head.appendChild(link);
+  const s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+  document.head.appendChild(s);
+  s.onload = () => {
+    gtag('js', new Date());
+    gtag('config', GA4_ID, {
+      anonymize_ip: true,
+      cookie_flags: 'SameSite=None;Secure',
+      send_page_view: true
+    });
+  };
+}
+
+function initCookieBanner() {
+  if (!cookieBanner) return;
+  if (hasCookieConsent()) return;
+  cookieBanner.hidden = false;
+}
+
+function acceptCookies() {
+  try {
+    localStorage.setItem(COOKIE_CONSENT_KEY, '1');
+  } catch (e) {}
+  if (cookieBanner) cookieBanner.hidden = true;
+  loadGA4();
+}
+
+if (cookieAccept) {
+  cookieAccept.addEventListener('click', acceptCookies);
+}
+initCookieBanner();
+if (hasCookieConsent()) loadGA4();
+
 const burger = document.getElementById('burger');
 const mobileNav = document.getElementById('mobileNav');
 const mobileNavOverlay = document.getElementById('mobileNavOverlay');
@@ -126,5 +178,10 @@ document.querySelectorAll('.track-form').forEach(form => {
       }
       form.reset();
     }
+  });
+});
+document.querySelectorAll('.track-google').forEach(el => {
+  el.addEventListener('click', () => {
+    trackEvent('click_google', { event_category: 'contact', event_label: 'google_business' });
   });
 });
