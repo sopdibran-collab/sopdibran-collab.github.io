@@ -451,13 +451,14 @@ def cookie_banner():
 
 
 def faq_html(items):
+    # FAQ visible uniquement — le balisage FAQPage est fourni en JSON-LD (évite le doublon GSC).
     blocks = []
     for q, a in items:
-        blocks.append(f"""<div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-  <button class="faq-q" aria-expanded="false"><span itemprop="name">{q}</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><span itemprop="text">{a}</span></div>
+        blocks.append(f"""<div class="faq-item">
+  <button class="faq-q" aria-expanded="false"><span>{q}</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><span>{a}</span></div>
 </div>""")
-    return f'<div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">{"".join(blocks)}</div>'
+    return f'<div class="faq-list">{"".join(blocks)}</div>'
 
 
 def cta_band(title="Besoin d'un devis ou d'un dépannage ?", text="Contactez-nous pour décrire votre besoin. Nous vous répondrons dans les meilleurs délais."):
