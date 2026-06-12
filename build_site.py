@@ -120,6 +120,7 @@ ORG_SCHEMA = {
     "inLanguage": "fr-CH",
     "logo": OG_IMAGE,
     "image": OG_IMAGE,
+    "sameAs": [GOOGLE_BUSINESS_URL],
 }
 
 WEBSITE_SCHEMA = {
