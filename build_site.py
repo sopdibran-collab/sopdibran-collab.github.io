@@ -25,6 +25,11 @@ ADDRESS_STREET = "Rue Pierre de Savoie 9"
 ADDRESS_POSTAL = "1680"
 ADDRESS_LOCALITY = "Romont FR"
 ADDRESS_FULL = "Rue Pierre de Savoie 9, 1680 Romont FR"
+COMPANY_NAME = "Sopjani Tech Sàrl"
+COMPANY_UID = "CHE-177.567.012"
+PUBLICATION_MANAGER = "Shkodran Sopjani"
+HOST_NAME = "GitHub, Inc. (GitHub Pages)"
+HOST_ADDRESS = "88 Colin P. Kelly Jr. St, San Francisco, CA 94107, États-Unis"
 HOURS = "Lundi au vendredi, 8h00 – 16h30"
 MAP_URL = "https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+9,+1680+Romont"
 MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1481964.3806735645!2d5.895466104411914!3d46.67378415677807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9458f52305e1fe3%3A0x31fd51d876fffe44!2sSopjani-tech%20s%C3%A0rl!5e1!3m2!1sfr!2sch!4v1781214251877!5m2!1sfr!2sch"
@@ -377,6 +382,8 @@ def footer():
           <li><a href="/">Accueil</a></li>
           <li><a href="/a-propos/">À propos</a></li>
           <li><a href="/contact/">Contact</a></li>
+          <li><a href="/mentions-legales/">Mentions légales</a></li>
+          <li><a href="/politique-confidentialite/">Politique de confidentialité</a></li>
         </ul>
       </div>
       <div>
@@ -391,7 +398,12 @@ def footer():
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2024 Sopjani Tech Sàrl · Suisse · Tous droits réservés</p>
+      <p class="footer-copy">© 2024 {COMPANY_NAME} · Suisse · Tous droits réservés</p>
+      <nav class="footer-legal" aria-label="Informations légales">
+        <a href="/mentions-legales/">Mentions légales</a>
+        <span aria-hidden="true">·</span>
+        <a href="/politique-confidentialite/">Politique de confidentialité</a>
+      </nav>
       <p class="footer-seo">Chauffage · Ventilation · Climatisation · Dépannage SAV · Sprinkler · Sanitaire · Suisse romande</p>
     </div>
   </div>
@@ -1032,6 +1044,115 @@ def build_zones():
         ["chauffage", "ventilation", "depannage-sav", "sanitaire"], ["vaud", "lausanne", "valais"])
 
 
+def legal_identity_block():
+    return f"""<dl class="legal-meta">
+  <div><dt>Raison sociale</dt><dd>{COMPANY_NAME}</dd></div>
+  <div><dt>Forme juridique</dt><dd>Société à responsabilité limitée (Sàrl)</dd></div>
+  <div><dt>Siège social</dt><dd>{ADDRESS_FULL}, Suisse</dd></div>
+  <div><dt>Numéro IDE (UID)</dt><dd>{COMPANY_UID}</dd></div>
+  <div><dt>Responsable de publication</dt><dd>{PUBLICATION_MANAGER}</dd></div>
+  <div><dt>Téléphone</dt><dd><a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a></dd></div>
+  <div><dt>Email</dt><dd><a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a></dd></div>
+</dl>"""
+
+
+def build_legal_pages():
+    mentions_body = f"""
+<section class="page-hero hero" aria-labelledby="page-h1">
+  <div class="container">
+    <span class="label">Informations légales</span>
+    <div class="rule"></div>
+    <h1 id="page-h1">Mentions légales</h1>
+    <p class="hero-sub">Informations relatives à l'éditeur du site {SITE.replace('https://', '')} et aux conditions d'utilisation.</p>
+  </div>
+</section>
+<div class="section-divider"></div>
+<section class="content-section">
+  <div class="container prose-block">
+    <h2 class="section-title" style="font-size:clamp(26px,3vw,40px);">Éditeur du site</h2>
+    {legal_identity_block()}
+    <h3>Hébergement</h3>
+    <p>Ce site est hébergé par {HOST_NAME}, {HOST_ADDRESS}.</p>
+    <h3>Propriété intellectuelle</h3>
+    <p>L'ensemble des contenus présents sur ce site (textes, images, graphismes, logo, structure) est la propriété de {COMPANY_NAME} ou de ses partenaires, sauf mention contraire. Toute reproduction, représentation ou diffusion, totale ou partielle, sans autorisation écrite préalable est interdite.</p>
+    <h3>Limitation de responsabilité</h3>
+    <p>{COMPANY_NAME} s'efforce d'assurer l'exactitude des informations publiées sur ce site. Toutefois, elle ne peut garantir l'absence d'erreurs ou d'omissions et décline toute responsabilité pour les dommages directs ou indirects résultant de l'accès ou de l'utilisation du site.</p>
+    <p>Les informations techniques et commerciales ne constituent pas une offre contractuelle. Seul un devis ou un contrat signé fait foi.</p>
+    <h3>Liens hypertextes</h3>
+    <p>Le site peut contenir des liens vers des sites tiers. {COMPANY_NAME} n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.</p>
+    <h3>Droit applicable</h3>
+    <p>Le présent site et les présentes mentions légales sont soumis au droit suisse. Le for juridique est celui du siège de l'entreprise, sous réserve des dispositions légales impératives.</p>
+    <p style="margin-top:28px;"><a href="/politique-confidentialite/" class="text-link">Politique de confidentialité →</a></p>
+  </div>
+</section>"""
+    mentions_title = f"Mentions légales | {COMPANY_NAME}"
+    mentions_desc = f"Mentions légales du site {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, contact et conditions d'utilisation."
+    mentions_url = SITE + "/mentions-legales/"
+    mentions_crumbs = [("Accueil", "/"), ("Mentions légales", "/mentions-legales/")]
+    mentions_graph = base_graph(mentions_title, mentions_desc, mentions_url, mentions_crumbs)
+    write_page(["mentions-legales", "index.html"], page_shell(mentions_title, mentions_desc, mentions_url, mentions_graph, mentions_body, mentions_crumbs))
+
+    ga4_note = (
+        f"Ce site utilise Google Analytics 4 (ID de mesure : {GA4_MEASUREMENT_ID}) pour mesurer l'audience et améliorer le site. "
+        "Google peut traiter des données techniques (adresse IP anonymisée, pages consultées, type d'appareil, navigateur). "
+        "Pour en savoir plus : <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\">politique de confidentialité de Google</a>."
+        if GA4_MEASUREMENT_ID else
+        "Ce site ne dispose actuellement d'aucun outil de mesure d'audience tiers activé."
+    )
+    privacy_body = f"""
+<section class="page-hero hero" aria-labelledby="page-h1">
+  <div class="container">
+    <span class="label">Protection des données</span>
+    <div class="rule"></div>
+    <h1 id="page-h1">Politique de confidentialité</h1>
+    <p class="hero-sub">Comment {COMPANY_NAME} traite les données personnelles collectées via ce site, conformément à la loi suisse sur la protection des données (nLPD).</p>
+  </div>
+</section>
+<div class="section-divider"></div>
+<section class="content-section">
+  <div class="container prose-block">
+    <h2 class="section-title" style="font-size:clamp(26px,3vw,40px);">Responsable du traitement</h2>
+    {legal_identity_block()}
+    <h3>Données collectées</h3>
+    <p>Nous pouvons traiter les catégories de données suivantes :</p>
+    <ul class="bullet-list">
+      <li><strong>Formulaire de contact</strong> : nom, téléphone, adresse email, canton/commune, type de besoin et message que vous nous transmettez volontairement.</li>
+      <li><strong>Données de navigation</strong> : pages consultées, durée de visite, type d'appareil et navigateur, dans le cadre de la mesure d'audience si activée.</li>
+      <li><strong>Données techniques</strong> : journaux serveur et cookies strictement nécessaires au fonctionnement du site.</li>
+    </ul>
+    <h3>Finalités du traitement</h3>
+    <p>Les données sont traitées pour : répondre à vos demandes de contact ou de devis, assurer le suivi commercial, améliorer le site et mesurer son audience, et garantir la sécurité technique du site.</p>
+    <h3>Base légale</h3>
+    <p>Le traitement repose sur l'exécution de mesures précontractuelles à votre demande (formulaire de contact), sur l'intérêt légitime de {COMPANY_NAME} à assurer la sécurité et le bon fonctionnement du site, et sur votre consentement lorsque la loi l'exige (notamment pour certains cookies de mesure).</p>
+    <h3>Destinataires et sous-traitants</h3>
+    <p>Les données peuvent être accessibles aux collaborateurs habilités de {COMPANY_NAME}, ainsi qu'à nos prestataires techniques dans la mesure nécessaire :</p>
+    <ul class="bullet-list">
+      <li><strong>{HOST_NAME}</strong> — hébergement du site ({HOST_ADDRESS}).</li>
+      {"<li><strong>Google LLC</strong> — mesure d'audience via Google Analytics 4.</li>" if GA4_MEASUREMENT_ID else ""}
+    </ul>
+    <h3>Durée de conservation</h3>
+    <p>Les demandes de contact sont conservées le temps nécessaire au traitement de votre demande et au suivi commercial, puis archivées ou supprimées selon les obligations légales applicables. Les données de mesure d'audience sont conservées selon les paramètres configurés dans l'outil concerné.</p>
+    <h3>Cookies et mesure d'audience</h3>
+    <p>{ga4_note}</p>
+    <p>Vous pouvez limiter le dépôt de cookies via les paramètres de votre navigateur. La désactivation de certains cookies peut affecter le fonctionnement du site.</p>
+    <h3>Vos droits</h3>
+    <p>Conformément à la nLPD, vous disposez notamment d'un droit d'accès, de rectification et, le cas échéant, d'effacement de vos données personnelles, ainsi que du droit de vous opposer à certains traitements ou de demander leur limitation.</p>
+    <p>Pour exercer vos droits, contactez-nous à <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a> ou par téléphone au <a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a>. Vous pouvez également saisir le Préposé fédéral à la protection des données et à la transparence (PFPDT) en cas de litige.</p>
+    <h3>Sécurité</h3>
+    <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre l'accès non autorisé, la perte ou la divulgation.</p>
+    <h3>Modifications</h3>
+    <p>Cette politique peut être mise à jour pour refléter l'évolution du site ou de la réglementation. La version en vigueur est celle publiée sur cette page.</p>
+    <p style="margin-top:28px;"><a href="/mentions-legales/" class="text-link">Mentions légales →</a></p>
+  </div>
+</section>"""
+    privacy_title = f"Politique de confidentialité | {COMPANY_NAME}"
+    privacy_desc = f"Politique de confidentialité de {COMPANY_NAME} : traitement des données personnelles, cookies et droits selon la nLPD suisse."
+    privacy_url = SITE + "/politique-confidentialite/"
+    privacy_crumbs = [("Accueil", "/"), ("Politique de confidentialité", "/politique-confidentialite/")]
+    privacy_graph = base_graph(privacy_title, privacy_desc, privacy_url, privacy_crumbs)
+    write_page(["politique-confidentialite", "index.html"], page_shell(privacy_title, privacy_desc, privacy_url, privacy_graph, privacy_body, privacy_crumbs))
+
+
 def build_redirect(old_name, new_path):
     content = f"""<!DOCTYPE html>
 <html lang="fr">
@@ -1055,6 +1176,8 @@ def build_sitemap():
         ("/prestations/", "monthly", "0.9"),
         ("/zones-intervention/", "monthly", "0.9"),
         ("/a-propos/", "monthly", "0.8"),
+        ("/mentions-legales/", "yearly", "0.3"),
+        ("/politique-confidentialite/", "yearly", "0.3"),
     ]
     entries += [(f"/{s}/", "monthly", "0.8") for s, _, _ in SERVICES]
     entries += [(f"/{z}/", "monthly", "0.8") for z, _, _ in ZONES]
@@ -1214,8 +1337,11 @@ def main():
     build_zones()
     build_about()
     build_contact()
+    build_legal_pages()
     build_redirect("prestations.html", "/prestations/")
     build_redirect("contact.html", "/contact/")
+    build_redirect("mentions-legales.html", "/mentions-legales/")
+    build_redirect("politique-confidentialite.html", "/politique-confidentialite/")
     build_sitemap()
     build_robots()
     print("Site generated successfully.")
