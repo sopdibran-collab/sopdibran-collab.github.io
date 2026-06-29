@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>À propos | Sopjani Tech Sàrl — CVC en Suisse romande</title>
-  <meta name="description" content="Sopjani Tech Sàrl : entreprise CVC en Suisse romande. Chauffage, ventilation, climatisation, sprinkler et dépannage depuis Romont FR.">
+  <title>Sopjani Tech Sàrl | Entreprise CVC à Romont, Suisse romande</title>
+  <meta name="description" content="Sopjani Tech Sàrl, entreprise CVC basée à Rue Pierre de Savoie 9, 1680 Romont FR. Chauffage, ventilation, climatisation, sprinkler et dépannage en Suisse romande.">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="geo.region" content="CH-FR">
   <meta name="geo.placename" content="Suisse romande">
+  <meta name="geo.position" content="46.6917;6.9119">
+  <meta name="ICBM" content="46.6917, 6.9119">
   <meta name="theme-color" content="#1e2a33">
   <link rel="canonical" href="https://sopjanitech.ch/a-propos/">
   <link rel="icon" href="/assets/logo.png" type="image/png">
@@ -15,15 +17,15 @@
   <meta name="google-site-verification" content="ESyhz2gRqYIspy2MPXHOD9v4uMjd_KAdkQjRYWHWinw">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_CH">
-  <meta property="og:title" content="À propos | Sopjani Tech Sàrl — CVC en Suisse romande">
-  <meta property="og:description" content="Sopjani Tech Sàrl : entreprise CVC en Suisse romande. Chauffage, ventilation, climatisation, sprinkler et dépannage depuis Romont FR.">
+  <meta property="og:title" content="Sopjani Tech Sàrl | Entreprise CVC à Romont, Suisse romande">
+  <meta property="og:description" content="Sopjani Tech Sàrl, entreprise CVC basée à Rue Pierre de Savoie 9, 1680 Romont FR. Chauffage, ventilation, climatisation, sprinkler et dépannage en Suisse romande.">
   <meta property="og:url" content="https://sopjanitech.ch/a-propos/">
   <meta property="og:site_name" content="Sopjani Tech Sàrl">
   <meta property="og:image" content="https://sopjanitech.ch/assets/logo.png">
   <meta property="og:image:alt" content="Logo Sopjani Tech Sàrl">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="À propos | Sopjani Tech Sàrl — CVC en Suisse romande">
-  <meta name="twitter:description" content="Sopjani Tech Sàrl : entreprise CVC en Suisse romande. Chauffage, ventilation, climatisation, sprinkler et dépannage depuis Romont FR.">
+  <meta name="twitter:title" content="Sopjani Tech Sàrl | Entreprise CVC à Romont, Suisse romande">
+  <meta name="twitter:description" content="Sopjani Tech Sàrl, entreprise CVC basée à Rue Pierre de Savoie 9, 1680 Romont FR. Chauffage, ventilation, climatisation, sprinkler et dépannage en Suisse romande.">
   <meta name="twitter:image" content="https://sopjanitech.ch/assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +36,10 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "HVACBusiness",
+      "@type": [
+        "HVACBusiness",
+        "LocalBusiness"
+      ],
       "@id": "https://sopjanitech.ch/#organization",
       "name": "Sopjani Tech Sàrl",
       "url": "https://sopjanitech.ch",
@@ -46,6 +51,7 @@
         "streetAddress": "Rue Pierre de Savoie 9",
         "postalCode": "1680",
         "addressLocality": "Romont FR",
+        "addressRegion": "FR",
         "addressCountry": "CH"
       },
       "geo": {
@@ -129,14 +135,19 @@
       "publisher": {
         "@id": "https://sopjanitech.ch/#organization"
       },
-      "inLanguage": "fr-CH"
+      "inLanguage": "fr-CH",
+      "potentialAction": {
+        "@type": "CommunicateAction",
+        "name": "Demander un devis",
+        "target": "https://sopjanitech.ch/contact/"
+      }
     },
     {
       "@type": "WebPage",
       "@id": "https://sopjanitech.ch/a-propos/#webpage",
       "url": "https://sopjanitech.ch/a-propos/",
-      "name": "À propos | Sopjani Tech Sàrl — CVC en Suisse romande",
-      "description": "Sopjani Tech Sàrl : entreprise CVC en Suisse romande. Chauffage, ventilation, climatisation, sprinkler et dépannage depuis Romont FR.",
+      "name": "Sopjani Tech Sàrl | Entreprise CVC à Romont, Suisse romande",
+      "description": "Sopjani Tech Sàrl, entreprise CVC basée à Rue Pierre de Savoie 9, 1680 Romont FR. Chauffage, ventilation, climatisation, sprinkler et dépannage en Suisse romande.",
       "isPartOf": {
         "@id": "https://sopjanitech.ch/#website"
       },
@@ -159,6 +170,35 @@
           "position": 2,
           "name": "À propos",
           "item": "https://sopjanitech.ch/a-propos/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Où est située Sopjani Tech Sàrl ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Notre siège est à Rue Pierre de Savoie 9, 1680 Romont FR. Nous intervenons en Suisse romande pour le chauffage, la ventilation, la climatisation et le dépannage CVC."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels services propose l'entreprise ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler en sous-traitance et sanitaire."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment contacter Sopjani Tech Sàrl ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Par téléphone au +41 79 932 68 62, par email (info@sopjanitech.ch) ou via WhatsApp. Horaires : Lundi au vendredi, 8h00 – 16h30."
+          }
         }
       ]
     },
@@ -252,6 +292,22 @@
     <p>Téléphone : <a href="tel:+41799326862" class="track-phone">+41 79 932 68 62</a><br>Email : <a href="mailto:info@sopjanitech.ch" class="track-email">info@sopjanitech.ch</a><br>Adresse : <a href="https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+9,+1680+Romont" target="_blank" rel="noopener noreferrer">Rue Pierre de Savoie 9, 1680 Romont FR</a><br>Horaires : Lundi au vendredi, 8h00 – 16h30</p>
   </div>
 </section>
+<div class="section-divider"></div>
+<section class="faq content-section alt" aria-labelledby="faq-title">
+  <div class="container">
+    <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
+    <div class="faq-list"><div class="faq-item">
+  <button class="faq-q" aria-expanded="false"><span>Où est située Sopjani Tech Sàrl ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><span>Notre siège est à Rue Pierre de Savoie 9, 1680 Romont FR. Nous intervenons en Suisse romande pour le chauffage, la ventilation, la climatisation et le dépannage CVC.</span></div>
+</div><div class="faq-item">
+  <button class="faq-q" aria-expanded="false"><span>Quels services propose l'entreprise ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><span>Chauffage, ventilation, climatisation, dépannage SAV, sprinkler en sous-traitance et sanitaire.</span></div>
+</div><div class="faq-item">
+  <button class="faq-q" aria-expanded="false"><span>Comment contacter Sopjani Tech Sàrl ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><span>Par téléphone au +41 79 932 68 62, par email (info@sopjanitech.ch) ou via WhatsApp. Horaires : Lundi au vendredi, 8h00 – 16h30.</span></div>
+</div></div>
+  </div>
+</section>
 <section class="cta-band" aria-label="Appel à l'action">
   <div class="container">
     <h2>Besoin d'un devis ou d'un dépannage ?</h2>
@@ -278,6 +334,7 @@
           <li><a href="/">Accueil</a></li>
           <li><a href="/a-propos/">À propos</a></li>
           <li><a href="/contact/">Contact</a></li>
+          <li><a href="/plan-du-site/">Plan du site</a></li>
           <li><a href="/mentions-legales/">Mentions légales</a></li>
           <li><a href="/politique-confidentialite/">Politique de confidentialité</a></li>
         </ul>
@@ -302,6 +359,8 @@
           <a href="/mentions-legales/">Mentions légales</a>
           <span aria-hidden="true">·</span>
           <a href="/politique-confidentialite/">Politique de confidentialité</a>
+          <span aria-hidden="true">·</span>
+          <a href="/plan-du-site/">Plan du site</a>
           <span aria-hidden="true">·</span>
           <a href="https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google</a>
         </nav>

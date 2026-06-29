@@ -8,6 +8,8 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="geo.region" content="CH-FR">
   <meta name="geo.placename" content="Suisse romande">
+  <meta name="geo.position" content="46.6917;6.9119">
+  <meta name="ICBM" content="46.6917, 6.9119">
   <meta name="theme-color" content="#1e2a33">
   <link rel="canonical" href="https://sopjanitech.ch/prestations/">
   <link rel="icon" href="/assets/logo.png" type="image/png">
@@ -34,7 +36,10 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "HVACBusiness",
+      "@type": [
+        "HVACBusiness",
+        "LocalBusiness"
+      ],
       "@id": "https://sopjanitech.ch/#organization",
       "name": "Sopjani Tech Sàrl",
       "url": "https://sopjanitech.ch",
@@ -46,6 +51,7 @@
         "streetAddress": "Rue Pierre de Savoie 9",
         "postalCode": "1680",
         "addressLocality": "Romont FR",
+        "addressRegion": "FR",
         "addressCountry": "CH"
       },
       "geo": {
@@ -129,7 +135,12 @@
       "publisher": {
         "@id": "https://sopjanitech.ch/#organization"
       },
-      "inLanguage": "fr-CH"
+      "inLanguage": "fr-CH",
+      "potentialAction": {
+        "@type": "CommunicateAction",
+        "name": "Demander un devis",
+        "target": "https://sopjanitech.ch/contact/"
+      }
     },
     {
       "@type": "WebPage",
@@ -159,6 +170,35 @@
           "position": 2,
           "name": "Prestations",
           "item": "https://sopjanitech.ch/prestations/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quelles prestations CVC proposez-vous ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler en sous-traitance et sanitaire."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment choisir la bonne prestation ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Décrivez votre bâtiment et votre besoin via notre page contact : nous vous orienterons vers la prestation adaptée."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Intervenez-vous en Suisse romande ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, principalement à Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à Romont FR."
+          }
         }
       ]
     }
@@ -238,6 +278,22 @@
     <div class="hub-grid"><a class="hub-card" href="/chauffage/"><h3>Chauffage</h3><p>Installation, entretien et dépannage de systèmes de chauffage.</p><span class="link-arrow">Voir la prestation →</span></a><a class="hub-card" href="/ventilation/"><h3>Ventilation</h3><p>Ventilation et traitement de l'air pour bâtiments.</p><span class="link-arrow">Voir la prestation →</span></a><a class="hub-card" href="/climatisation/"><h3>Climatisation</h3><p>Étude et installation de systèmes de climatisation.</p><span class="link-arrow">Voir la prestation →</span></a><a class="hub-card" href="/depannage-sav/"><h3>Dépannage SAV</h3><p>Maintenance et dépannage de vos installations CVC.</p><span class="link-arrow">Voir la prestation →</span></a><a class="hub-card" href="/sprinkler-protection-incendie/"><h3>Sprinkler / protection incendie</h3><p>Réseaux sprinkler en sous-traitance spécialisée.</p><span class="link-arrow">Voir la prestation →</span></a><a class="hub-card" href="/sanitaire/"><h3>Sanitaire</h3><p>Travaux sanitaires et interventions sur réseaux existants.</p><span class="link-arrow">Voir la prestation →</span></a></div>
   </div>
 </section>
+<div class="section-divider"></div>
+<section class="faq content-section alt" aria-labelledby="faq-title">
+  <div class="container">
+    <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
+    <div class="faq-list"><div class="faq-item">
+  <button class="faq-q" aria-expanded="false"><span>Quelles prestations CVC proposez-vous ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><span>Chauffage, ventilation, climatisation, dépannage SAV, sprinkler en sous-traitance et sanitaire.</span></div>
+</div><div class="faq-item">
+  <button class="faq-q" aria-expanded="false"><span>Comment choisir la bonne prestation ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><span>Décrivez votre bâtiment et votre besoin via notre page contact : nous vous orienterons vers la prestation adaptée.</span></div>
+</div><div class="faq-item">
+  <button class="faq-q" aria-expanded="false"><span>Intervenez-vous en Suisse romande ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><span>Oui, principalement à Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à Romont FR.</span></div>
+</div></div>
+  </div>
+</section>
 <section class="cta-band" aria-label="Appel à l'action">
   <div class="container">
     <h2>Besoin d'un devis ou d'un dépannage ?</h2>
@@ -264,6 +320,7 @@
           <li><a href="/">Accueil</a></li>
           <li><a href="/a-propos/">À propos</a></li>
           <li><a href="/contact/">Contact</a></li>
+          <li><a href="/plan-du-site/">Plan du site</a></li>
           <li><a href="/mentions-legales/">Mentions légales</a></li>
           <li><a href="/politique-confidentialite/">Politique de confidentialité</a></li>
         </ul>
@@ -288,6 +345,8 @@
           <a href="/mentions-legales/">Mentions légales</a>
           <span aria-hidden="true">·</span>
           <a href="/politique-confidentialite/">Politique de confidentialité</a>
+          <span aria-hidden="true">·</span>
+          <a href="/plan-du-site/">Plan du site</a>
           <span aria-hidden="true">·</span>
           <a href="https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google</a>
         </nav>

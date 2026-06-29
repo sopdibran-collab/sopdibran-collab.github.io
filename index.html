@@ -8,6 +8,8 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="geo.region" content="CH-FR">
   <meta name="geo.placename" content="Suisse romande">
+  <meta name="geo.position" content="46.6917;6.9119">
+  <meta name="ICBM" content="46.6917, 6.9119">
   <meta name="theme-color" content="#1e2a33">
   <link rel="canonical" href="https://sopjanitech.ch/">
   <link rel="icon" href="/assets/logo.png" type="image/png">
@@ -34,7 +36,10 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "HVACBusiness",
+      "@type": [
+        "HVACBusiness",
+        "LocalBusiness"
+      ],
       "@id": "https://sopjanitech.ch/#organization",
       "name": "Sopjani Tech Sàrl",
       "url": "https://sopjanitech.ch",
@@ -46,6 +51,7 @@
         "streetAddress": "Rue Pierre de Savoie 9",
         "postalCode": "1680",
         "addressLocality": "Romont FR",
+        "addressRegion": "FR",
         "addressCountry": "CH"
       },
       "geo": {
@@ -129,7 +135,12 @@
       "publisher": {
         "@id": "https://sopjanitech.ch/#organization"
       },
-      "inLanguage": "fr-CH"
+      "inLanguage": "fr-CH",
+      "potentialAction": {
+        "@type": "CommunicateAction",
+        "name": "Demander un devis",
+        "target": "https://sopjanitech.ch/contact/"
+      }
     },
     {
       "@type": "WebPage",
@@ -161,7 +172,7 @@
           "name": "Dans quelles zones intervenez-vous ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Principalement en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. D'autres cantons peuvent être couverts selon la nature du projet."
+            "text": "Principalement en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à Romont FR. D'autres cantons peuvent être couverts selon la nature du projet."
           }
         },
         {
@@ -169,7 +180,7 @@
           "name": "Comment obtenir un devis ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Via notre page contact : décrivez le type de bâtiment, la localisation et la nature du besoin."
+            "text": "Via notre page contact ou par téléphone : décrivez le type de bâtiment, la localisation et la nature du besoin."
           }
         },
         {
@@ -178,6 +189,30 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Oui. Contactez-nous pour évaluer votre situation. La disponibilité dépend de la nature de la panne et du secteur."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qui contacter pour un dépannage CVC en Suisse romande ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Contactez Sopjani Tech Sàrl au +41 79 932 68 62, par email (info@sopjanitech.ch) ou WhatsApp. Décrivez votre panne et votre localisation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien de temps pour obtenir un devis ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Après votre demande via le formulaire contact ou par téléphone, nous vous répondons dans les meilleurs délais selon la complexité du projet."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Intervenez-vous près de chez moi ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nous sommes basés à Rue Pierre de Savoie 9, 1680 Romont FR et intervenons principalement en Suisse romande. Contactez-nous pour vérifier la disponibilité dans votre commune."
           }
         }
       ]
@@ -256,10 +291,44 @@
           <a href="/contact/" class="btn btn-secondary track-devis">Demander un devis</a>
         </div>
       </div>
+      <aside class="hero-panel" aria-label="Contact et zones d'intervention">
+  <div class="panel-header"><span class="panel-header-text">Interventions près de vous</span></div>
+  <div class="panel-body">
+    <div class="panel-item">
+      <div>
+        <div class="pi-name">Siège — Romont FR</div>
+        <p class="pi-desc">Rue Pierre de Savoie 9, 1680 Romont FR</p>
+      </div>
+    </div>
+    <div class="panel-item">
+      <div>
+        <div class="pi-name"><a href="tel:+41799326862" class="track-phone">+41 79 932 68 62</a></div>
+        <p class="pi-desc"><a href="mailto:info@sopjanitech.ch" class="track-email">info@sopjanitech.ch</a></p>
+      </div>
+    </div>
+    <div class="panel-item">
+      <div>
+        <div class="pi-name">Zones prioritaires</div>
+        <div class="zone-links" style="margin-top:8px;"><a class="zone-pill" href="/geneve/">Genève</a><a class="zone-pill" href="/vaud/">Vaud</a><a class="zone-pill" href="/lausanne/">Lausanne</a><a class="zone-pill" href="/nyon/">Nyon</a></div>
+        <p class="pi-desc" style="margin-top:8px;"><a href="/zones-intervention/">Toutes les zones →</a></p>
+      </div>
+    </div>
+  </div>
+</aside>
     </div>
   </div>
 </section>
 <div class="section-divider"></div>
+<section class="geo-presence content-section alt" aria-labelledby="geo-title">
+  <div class="container">
+    <span class="label">Proximité</span>
+    <div class="rule"></div>
+    <h2 class="section-title" id="geo-title">Une entreprise CVC près de vous en Suisse romande</h2>
+    <p class="section-lead">Basés à Rue Pierre de Savoie 9, 1680 Romont FR, nous intervenons en Suisse romande pour l'installation, la maintenance et le dépannage CVC. Contactez-nous pour vérifier la disponibilité dans votre commune.</p>
+    <div class="zone-links"><a class="zone-pill" href="/geneve/">Genève</a><a class="zone-pill" href="/vaud/">Vaud</a><a class="zone-pill" href="/lausanne/">Lausanne</a><a class="zone-pill" href="/nyon/">Nyon</a><a class="zone-pill" href="/valais/">Valais</a><a class="zone-pill" href="/fribourg/">Fribourg</a></div>
+    <p style="margin-top:16px;"><a href="/contact/" class="text-link">Demander un devis ou un dépannage →</a></p>
+  </div>
+</section>
 <section class="services content-section" aria-labelledby="svc-title">
   <div class="container">
     <span class="label">Nos prestations</span>
@@ -321,13 +390,22 @@
   <div class="faq-a"><span>Chauffage, ventilation, climatisation, dépannage SAV, sprinkler en sous-traitance et sanitaire. Consultez nos pages prestations pour le détail.</span></div>
 </div><div class="faq-item">
   <button class="faq-q" aria-expanded="false"><span>Dans quelles zones intervenez-vous ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>Principalement en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. D'autres cantons peuvent être couverts selon la nature du projet.</span></div>
+  <div class="faq-a"><span>Principalement en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à Romont FR. D'autres cantons peuvent être couverts selon la nature du projet.</span></div>
 </div><div class="faq-item">
   <button class="faq-q" aria-expanded="false"><span>Comment obtenir un devis ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>Via notre page contact : décrivez le type de bâtiment, la localisation et la nature du besoin.</span></div>
+  <div class="faq-a"><span>Via notre page contact ou par téléphone : décrivez le type de bâtiment, la localisation et la nature du besoin.</span></div>
 </div><div class="faq-item">
   <button class="faq-q" aria-expanded="false"><span>Intervenez-vous en dépannage ?</span><span class="faq-icon" aria-hidden="true"></span></button>
   <div class="faq-a"><span>Oui. Contactez-nous pour évaluer votre situation. La disponibilité dépend de la nature de la panne et du secteur.</span></div>
+</div><div class="faq-item">
+  <button class="faq-q" aria-expanded="false"><span>Qui contacter pour un dépannage CVC en Suisse romande ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><span>Contactez Sopjani Tech Sàrl au +41 79 932 68 62, par email (info@sopjanitech.ch) ou WhatsApp. Décrivez votre panne et votre localisation.</span></div>
+</div><div class="faq-item">
+  <button class="faq-q" aria-expanded="false"><span>Combien de temps pour obtenir un devis ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><span>Après votre demande via le formulaire contact ou par téléphone, nous vous répondons dans les meilleurs délais selon la complexité du projet.</span></div>
+</div><div class="faq-item">
+  <button class="faq-q" aria-expanded="false"><span>Intervenez-vous près de chez moi ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><span>Nous sommes basés à Rue Pierre de Savoie 9, 1680 Romont FR et intervenons principalement en Suisse romande. Contactez-nous pour vérifier la disponibilité dans votre commune.</span></div>
 </div></div>
   </div>
 </section>
@@ -357,6 +435,7 @@
           <li><a href="/">Accueil</a></li>
           <li><a href="/a-propos/">À propos</a></li>
           <li><a href="/contact/">Contact</a></li>
+          <li><a href="/plan-du-site/">Plan du site</a></li>
           <li><a href="/mentions-legales/">Mentions légales</a></li>
           <li><a href="/politique-confidentialite/">Politique de confidentialité</a></li>
         </ul>
@@ -381,6 +460,8 @@
           <a href="/mentions-legales/">Mentions légales</a>
           <span aria-hidden="true">·</span>
           <a href="/politique-confidentialite/">Politique de confidentialité</a>
+          <span aria-hidden="true">·</span>
+          <a href="/plan-du-site/">Plan du site</a>
           <span aria-hidden="true">·</span>
           <a href="https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google</a>
         </nav>

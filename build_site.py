@@ -39,23 +39,45 @@ COPYRIGHT_YEAR = 2026
 META_DESCRIPTIONS = {
     "home": "Sopjani Tech Sàrl : étude, installation et dépannage en chauffage, ventilation, climatisation et sprinkler en Suisse romande. Devis gratuit.",
     "prestations": "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler et sanitaire en Suisse romande. Découvrez toutes les prestations CVC de Sopjani Tech Sàrl.",
-    "zones-intervention": "Sopjani Tech Sàrl intervient en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Vérifiez la disponibilité pour votre secteur.",
-    "a-propos": "Sopjani Tech Sàrl : entreprise CVC en Suisse romande. Chauffage, ventilation, climatisation, sprinkler et dépannage depuis Romont FR.",
-    "contact": f"Contactez Sopjani Tech Sàrl pour un devis ou dépannage CVC. Tél. {PHONE_DISP} · {EMAIL} · {ADDRESS_FULL}.",
-    "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
-    "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
-    "chauffage": "Étude, installation et dépannage de chauffage en Suisse romande. Pompes à chaleur, chaudières et entretien. Devis gratuit.",
-    "ventilation": "Installation et maintenance de ventilation en Suisse romande. VMC, traitement de l'air et dépannage pour bâtiments résidentiels et tertiaires.",
-    "climatisation": "Étude et installation de climatisation en Suisse romande. Confort estival pour résidentiel et tertiaire. Devis gratuit.",
-    "depannage-sav": "Dépannage et maintenance CVC en Suisse romande. Remise en service pour chauffage, ventilation et climatisation.",
+    "zones-intervention": f"{COMPANY_NAME} intervient près de vous en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais, Fribourg. Siège à {ADDRESS_LOCALITY}.",
+    "a-propos": f"{COMPANY_NAME}, entreprise CVC basée à {ADDRESS_FULL}. Chauffage, ventilation, climatisation, sprinkler et dépannage en Suisse romande.",
+    "contact": f"Devis gratuit et dépannage CVC urgent. {COMPANY_NAME} — {PHONE_DISP} · {EMAIL} · {ADDRESS_FULL}.",
+    "depannage-sav": f"Dépannage chauffage, climatisation et ventilation en Suisse romande. Urgence : appelez le {PHONE_DISP}.",
+    "chauffage": "Chauffagiste en Suisse romande : installation, entretien et dépannage. Pompes à chaleur et chaudières. Devis gratuit.",
+    "ventilation": "Entreprise de ventilation en Suisse romande. VMC, traitement de l'air, dépannage et maintenance.",
+    "climatisation": "Climatisation et installation près de vous en Suisse romande. Étude, pose et dépannage. Devis gratuit.",
     "sprinkler-protection-incendie": "Installation de réseaux sprinkler en sous-traitance en Suisse romande. Protection incendie pour ERP et bâtiments industriels.",
     "sanitaire": "Travaux sanitaires et dépannage en Suisse romande. Réseaux eau chaude/froide, fuites et rénovations.",
     "geneve": "Installation et dépannage CVC dans la région de Genève. Chauffage, ventilation, climatisation et sprinkler pour bâtiments résidentiels et professionnels.",
-    "vaud": "Installation et dépannage CVC dans le canton de Vaud. Chauffage, ventilation et climatisation à Lausanne, Nyon et environs.",
+    "vaud": "Entreprise de ventilation, chauffage et climatisation dans le canton de Vaud. Lausanne, Nyon et environs.",
     "lausanne": "Installation et dépannage CVC à Lausanne et environs. Chauffage, ventilation, climatisation et maintenance en Suisse romande.",
-    "nyon": "Installation et dépannage CVC dans la région de Nyon. Chauffage, ventilation et climatisation entre Genève et Lausanne.",
-    "valais": "Installation et dépannage CVC en Valais. Chauffage, climatisation et sprinkler selon la nature du projet.",
+    "nyon": "Chauffagiste, climatisation et ventilation à Nyon et environs. Devis et dépannage CVC par Sopjani Tech Sàrl.",
+    "valais": "Entreprise de ventilation et chauffage en Valais. Installation et dépannage CVC selon votre commune.",
     "fribourg": "Installation et dépannage CVC dans le canton de Fribourg. Chauffage, ventilation et maintenance pour bâtiments résidentiels et professionnels.",
+    "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
+    "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
+    "plan-du-site": "Plan du site Sopjani Tech Sàrl : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
+}
+
+PAGE_TITLES = {
+    "home": "Sopjani Tech Sàrl | Chauffage, ventilation, climatisation et dépannage en Suisse romande",
+    "a-propos": "Sopjani Tech Sàrl | Entreprise CVC à Romont, Suisse romande",
+    "contact": "Devis et dépannage CVC | Contact | Sopjani Tech Sàrl",
+    "prestations": "Prestations CVC | Chauffage, ventilation, climatisation | Sopjani Tech Sàrl",
+    "zones-intervention": "Zones d'intervention CVC | Suisse romande | Sopjani Tech Sàrl",
+    "plan-du-site": "Plan du site | Sopjani Tech Sàrl",
+    "chauffage": "Chauffagiste Suisse romande | Installation et dépannage | Sopjani Tech Sàrl",
+    "ventilation": "Entreprise ventilation Suisse romande | Sopjani Tech Sàrl",
+    "climatisation": "Climatisation et installation | Sopjani Tech Sàrl",
+    "depannage-sav": "Dépannage chauffage et climatisation | Urgence CVC | Sopjani Tech Sàrl",
+    "sanitaire": "Sanitaire | Travaux et dépannage | Sopjani Tech Sàrl",
+    "sprinkler-protection-incendie": "Sprinkler et protection incendie | Sopjani Tech Sàrl",
+    "geneve": "Chauffage et climatisation Genève | Sopjani Tech Sàrl",
+    "vaud": "Ventilation et climatisation Vaud | Entreprise CVC | Sopjani Tech Sàrl",
+    "lausanne": "Chauffagiste et CVC Lausanne | Sopjani Tech Sàrl",
+    "nyon": "Chauffagiste et climatisation Nyon | Sopjani Tech Sàrl",
+    "valais": "Entreprise ventilation Valais | Chauffage & CVC | Sopjani Tech Sàrl",
+    "fribourg": "Dépannage CVC Fribourg | Sopjani Tech Sàrl",
 }
 
 SERVICES = [
@@ -77,7 +99,7 @@ ZONES = [
 ]
 
 ORG_SCHEMA = {
-    "@type": "HVACBusiness",
+    "@type": ["HVACBusiness", "LocalBusiness"],
     "@id": f"{SITE}/#organization",
     "name": "Sopjani Tech Sàrl",
     "url": SITE,
@@ -89,6 +111,7 @@ ORG_SCHEMA = {
         "streetAddress": ADDRESS_STREET,
         "postalCode": ADDRESS_POSTAL,
         "addressLocality": ADDRESS_LOCALITY,
+        "addressRegion": "FR",
         "addressCountry": "CH",
     },
     "geo": {
@@ -131,6 +154,11 @@ WEBSITE_SCHEMA = {
     "description": "Chauffage, ventilation, climatisation et dépannage en Suisse romande.",
     "publisher": {"@id": f"{SITE}/#organization"},
     "inLanguage": "fr-CH",
+    "potentialAction": {
+        "@type": "CommunicateAction",
+        "name": "Demander un devis",
+        "target": SITE + "/contact/",
+    },
 }
 
 QUI_SOMMES_NOUS_HTML = """
@@ -145,6 +173,78 @@ HOME_ABOUT_TEASER = """
 <p>Entreprise technique en Suisse romande, nous réalisons installations, maintenance et dépannage CVC pour bâtiments résidentiels, tertiaires et industriels.</p>
 <p><a href="/a-propos/" class="text-link">Présentation de l'entreprise →</a></p>
 """
+
+
+def hero_side_panel():
+    zone_links = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES[:4])
+    return f"""<aside class="hero-panel" aria-label="Contact et zones d'intervention">
+  <div class="panel-header"><span class="panel-header-text">Interventions près de vous</span></div>
+  <div class="panel-body">
+    <div class="panel-item">
+      <div>
+        <div class="pi-name">Siège — {ADDRESS_LOCALITY}</div>
+        <p class="pi-desc">{ADDRESS_FULL}</p>
+      </div>
+    </div>
+    <div class="panel-item">
+      <div>
+        <div class="pi-name"><a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a></div>
+        <p class="pi-desc"><a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a></p>
+      </div>
+    </div>
+    <div class="panel-item">
+      <div>
+        <div class="pi-name">Zones prioritaires</div>
+        <div class="zone-links" style="margin-top:8px;">{zone_links}</div>
+        <p class="pi-desc" style="margin-top:8px;"><a href="/zones-intervention/">Toutes les zones →</a></p>
+      </div>
+    </div>
+  </div>
+</aside>"""
+
+
+def geo_presence_block(compact=False):
+    zones = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES)
+    lead = (
+        f"Basés à {ADDRESS_FULL}, nous intervenons en Suisse romande pour l'installation, la maintenance et le dépannage CVC."
+        if not compact else
+        f"Entreprise CVC basée à {ADDRESS_LOCALITY}, active en Suisse romande."
+    )
+    return f"""<section class="geo-presence content-section{' alt' if not compact else ''}" aria-labelledby="geo-title">
+  <div class="container">
+    <span class="label">Proximité</span>
+    <div class="rule"></div>
+    <h2 class="section-title" id="geo-title">Une entreprise CVC près de vous en Suisse romande</h2>
+    <p class="section-lead">{lead} Contactez-nous pour vérifier la disponibilité dans votre commune.</p>
+    <div class="zone-links">{zones}</div>
+    <p style="margin-top:16px;"><a href="/contact/" class="text-link">Demander un devis ou un dépannage →</a></p>
+  </div>
+</section>"""
+
+
+def urgence_band():
+    return f"""<section class="urgence-band" aria-label="Dépannage urgent">
+  <div class="container urgence-band__inner">
+    <div>
+      <p class="urgence-band__label">Dépannage urgent</p>
+      <p class="urgence-band__text">Panne de chauffage, climatisation ou ventilation ? Contactez-nous pour évaluer la situation et la disponibilité d'intervention.</p>
+    </div>
+    <div class="urgence-band__actions">
+      <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
+      <a href="{WA}" class="btn btn-secondary track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+  </div>
+</section>"""
+
+
+def zone_aeo_faq(name, region):
+    """FAQ orientée requêtes locales et moteurs de réponse."""
+    return [
+        (f"Qui appeler pour un dépannage CVC à {name} ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp. Indiquez votre commune, le type de bâtiment et la nature de la panne."),
+        (f"Intervenez-vous pour la ventilation dans {region} ?", f"Oui, nous réalisons installation, maintenance et dépannage de ventilation dans {region}, selon faisabilité et planning."),
+        (f"Proposez-vous la climatisation et le chauffage à {name} ?", "Oui. Étude, installation, entretien et dépannage en chauffage, climatisation et ventilation selon votre projet."),
+        (f"Comment obtenir un devis à {name} ?", "Via notre page contact ou par téléphone : décrivez le bâtiment, la localisation exacte et le type de travaux (installation, maintenance ou dépannage)."),
+    ]
 
 
 def extract_css():
@@ -407,6 +507,7 @@ def footer():
           <li><a href="/">Accueil</a></li>
           <li><a href="/a-propos/">À propos</a></li>
           <li><a href="/contact/">Contact</a></li>
+          <li><a href="/plan-du-site/">Plan du site</a></li>
           <li><a href="/mentions-legales/">Mentions légales</a></li>
           <li><a href="/politique-confidentialite/">Politique de confidentialité</a></li>
         </ul>
@@ -431,6 +532,8 @@ def footer():
           <a href="/mentions-legales/">Mentions légales</a>
           <span aria-hidden="true">·</span>
           <a href="/politique-confidentialite/">Politique de confidentialité</a>
+          <span aria-hidden="true">·</span>
+          <a href="/plan-du-site/">Plan du site</a>
           <span aria-hidden="true">·</span>
           <a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google</a>
         </nav>
@@ -497,6 +600,8 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="geo.region" content="CH-FR">
   <meta name="geo.placename" content="Suisse romande">
+  <meta name="geo.position" content="46.6917;6.9119">
+  <meta name="ICBM" content="46.6917, 6.9119">
   <meta name="theme-color" content="{THEME_COLOR}">
   <link rel="canonical" href="{canonical}">
   <link rel="icon" href="/assets/logo.png" type="image/png">
@@ -549,11 +654,12 @@ def breadcrumb_schema(crumbs):
     return {"@type": "BreadcrumbList", "itemListElement": items}
 
 
-def service_page(slug, name, title, desc, h1, intro, problems, interventions, clients, process, zone_slugs, related_svc, faq):
+def service_page(slug, name, title, desc, h1, intro, problems, interventions, clients, process, zone_slugs, related_svc, faq, show_urgence=False):
     url = f"/{slug}/"
     crumbs = [("Accueil", "/"), ("Prestations", "/prestations/"), (name, url)]
     zones_html = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES if z in zone_slugs)
     related = "".join(f'<a class="zone-pill" href="/{s}/">{n}</a>' for s, n, _ in SERVICES if s in related_svc)
+    urgence_html = f'<div class="section-divider"></div>{urgence_band()}' if show_urgence else ""
     body = f"""
 <section class="page-hero hero" aria-labelledby="page-h1">
   <div class="container">
@@ -567,6 +673,7 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
     </div>
   </div>
 </section>
+{urgence_html}
 <div class="section-divider"></div>
 <section class="content-section" aria-labelledby="problems-title">
   <div class="container prose-block">
@@ -645,6 +752,7 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
   <div class="container prose-block">
     <h2 class="section-title" id="local-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Interventions dans {region}</h2>
     {local_text}
+    <p class="geo-local-note">Siège à <strong>{ADDRESS_FULL}</strong> — équipe mobile en Suisse romande. <a href="/contact/">Contactez-nous</a> pour vérifier la disponibilité à {name}.</p>
   </div>
 </section>
 <section class="content-section alt" aria-labelledby="svc-title">
@@ -678,9 +786,12 @@ def build_home():
     zone_pills = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES)
     faq = [
         ("Quels services proposez-vous ?", "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler en sous-traitance et sanitaire. Consultez nos pages prestations pour le détail."),
-        ("Dans quelles zones intervenez-vous ?", "Principalement en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. D'autres cantons peuvent être couverts selon la nature du projet."),
-        ("Comment obtenir un devis ?", "Via notre page contact : décrivez le type de bâtiment, la localisation et la nature du besoin."),
+        ("Dans quelles zones intervenez-vous ?", f"Principalement en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à {ADDRESS_LOCALITY}. D'autres cantons peuvent être couverts selon la nature du projet."),
+        ("Comment obtenir un devis ?", "Via notre page contact ou par téléphone : décrivez le type de bâtiment, la localisation et la nature du besoin."),
         ("Intervenez-vous en dépannage ?", "Oui. Contactez-nous pour évaluer votre situation. La disponibilité dépend de la nature de la panne et du secteur."),
+        ("Qui contacter pour un dépannage CVC en Suisse romande ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp. Décrivez votre panne et votre localisation."),
+        ("Combien de temps pour obtenir un devis ?", "Après votre demande via le formulaire contact ou par téléphone, nous vous répondons dans les meilleurs délais selon la complexité du projet."),
+        ("Intervenez-vous près de chez moi ?", f"Nous sommes basés à {ADDRESS_FULL} et intervenons principalement en Suisse romande. Contactez-nous pour vérifier la disponibilité dans votre commune."),
     ]
     body = f"""
 <section class="hero" aria-labelledby="hero-h1">
@@ -695,10 +806,12 @@ def build_home():
           <a href="/contact/" class="btn btn-secondary track-devis">Demander un devis</a>
         </div>
       </div>
+      {hero_side_panel()}
     </div>
   </div>
 </section>
 <div class="section-divider"></div>
+{geo_presence_block()}
 <section class="services content-section" aria-labelledby="svc-title">
   <div class="container">
     <span class="label">Nos prestations</span>
@@ -756,13 +869,18 @@ def build_home():
   </div>
 </section>
 {cta_band()}"""
-    home_title = "Sopjani Tech Sàrl | Chauffage, ventilation, climatisation et dépannage en Suisse romande"
+    home_title = PAGE_TITLES["home"]
     home_desc = META_DESCRIPTIONS["home"]
     graph = base_graph(home_title, home_desc, SITE + "/", faq=faq)
     write_page(["index.html"], page_shell(home_title, home_desc, SITE + "/", graph, body))
 
 
 def build_prestations():
+    faq = [
+        ("Quelles prestations CVC proposez-vous ?", "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler en sous-traitance et sanitaire."),
+        ("Comment choisir la bonne prestation ?", "Décrivez votre bâtiment et votre besoin via notre page contact : nous vous orienterons vers la prestation adaptée."),
+        ("Intervenez-vous en Suisse romande ?", f"Oui, principalement à Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à {ADDRESS_LOCALITY}."),
+    ]
     cards = "".join(f'<a class="hub-card" href="/{s}/"><h3>{n}</h3><p>{d}</p><span class="link-arrow">Voir la prestation →</span></a>' for s, n, d in SERVICES)
     body = f"""
 <section class="page-hero hero" aria-labelledby="page-h1">
@@ -779,15 +897,27 @@ def build_prestations():
     <div class="hub-grid">{cards}</div>
   </div>
 </section>
+<div class="section-divider"></div>
+<section class="faq content-section alt" aria-labelledby="faq-title">
+  <div class="container">
+    <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
+    {faq_html(faq)}
+  </div>
+</section>
 {cta_band()}"""
     crumbs = [("Accueil", "/"), ("Prestations", "/prestations/")]
-    presta_title = "Prestations CVC | Chauffage, ventilation, climatisation | Sopjani Tech Sàrl"
+    presta_title = PAGE_TITLES["prestations"]
     presta_desc = META_DESCRIPTIONS["prestations"]
-    graph = base_graph(presta_title, presta_desc, SITE + "/prestations/", crumbs)
+    graph = base_graph(presta_title, presta_desc, SITE + "/prestations/", crumbs, faq)
     write_page(["prestations", "index.html"], page_shell(presta_title, presta_desc, SITE + "/prestations/", graph, body, crumbs))
 
 
 def build_zones_hub():
+    faq = [
+        ("Dans quelles zones intervenez-vous ?", "Genève, Vaud, Lausanne, Nyon, Valais et Fribourg, ainsi que d'autres secteurs en Suisse romande selon le projet."),
+        ("Comment savoir si vous intervenez chez moi ?", f"Contactez-nous avec votre commune. Nous sommes basés à {ADDRESS_LOCALITY} et nous déplaçons selon la nature des travaux."),
+        ("Avez-vous une agence dans chaque canton ?", "Non. Nos interventions sont assurées par une équipe mobile depuis notre siège à Romont FR."),
+    ]
     cards = "".join(f'<a class="hub-card" href="/{z}/"><h3>{n}</h3><p>Interventions CVC dans {r}</p><span class="link-arrow">Voir la zone →</span></a>' for z, n, r in ZONES)
     body = f"""
 <section class="page-hero hero" aria-labelledby="page-h1">
@@ -799,6 +929,8 @@ def build_zones_hub():
   </div>
 </section>
 <div class="section-divider"></div>
+{geo_presence_block(compact=True)}
+<div class="section-divider"></div>
 <section class="content-section">
   <div class="container">
     <div class="hub-grid">{cards}</div>
@@ -808,15 +940,27 @@ def build_zones_hub():
     </div>
   </div>
 </section>
+<div class="section-divider"></div>
+<section class="faq content-section alt" aria-labelledby="faq-title">
+  <div class="container">
+    <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
+    {faq_html(faq)}
+  </div>
+</section>
 {cta_band("Votre commune n'est pas listée ?", "Contactez-nous pour vérifier la faisabilité d'une intervention.")}"""
     crumbs = [("Accueil", "/"), ("Zones d'intervention", "/zones-intervention/")]
-    zones_title = "Zones d'intervention | Suisse romande | Sopjani Tech Sàrl"
+    zones_title = PAGE_TITLES["zones-intervention"]
     zones_desc = META_DESCRIPTIONS["zones-intervention"]
-    graph = base_graph(zones_title, zones_desc, SITE + "/zones-intervention/", crumbs)
+    graph = base_graph(zones_title, zones_desc, SITE + "/zones-intervention/", crumbs, faq)
     write_page(["zones-intervention", "index.html"], page_shell(zones_title, zones_desc, SITE + "/zones-intervention/", graph, body, crumbs))
 
 
 def build_about():
+    faq = [
+        (f"Où est située {COMPANY_NAME} ?", f"Notre siège est à {ADDRESS_FULL}. Nous intervenons en Suisse romande pour le chauffage, la ventilation, la climatisation et le dépannage CVC."),
+        ("Quels services propose l'entreprise ?", "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler en sous-traitance et sanitaire."),
+        ("Comment contacter Sopjani Tech Sàrl ?", f"Par téléphone au {PHONE_DISP}, par email ({EMAIL}) ou via WhatsApp. Horaires : {HOURS}."),
+    ]
     body = f"""
 <section class="page-hero hero" aria-labelledby="page-h1">
   <div class="container">
@@ -835,11 +979,18 @@ def build_about():
     <p>Téléphone : <a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a><br>Email : <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a><br>Adresse : <a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a><br>Horaires : {HOURS}</p>
   </div>
 </section>
+<div class="section-divider"></div>
+<section class="faq content-section alt" aria-labelledby="faq-title">
+  <div class="container">
+    <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
+    {faq_html(faq)}
+  </div>
+</section>
 {cta_band()}"""
     crumbs = [("Accueil", "/"), ("À propos", "/a-propos/")]
-    about_title = "À propos | Sopjani Tech Sàrl — CVC en Suisse romande"
+    about_title = PAGE_TITLES["a-propos"]
     about_desc = META_DESCRIPTIONS["a-propos"]
-    graph = base_graph(about_title, about_desc, SITE + "/a-propos/", crumbs, extra={"@type": "AboutPage", "name": "À propos", "url": SITE + "/a-propos/"})
+    graph = base_graph(about_title, about_desc, SITE + "/a-propos/", crumbs, faq, extra={"@type": "AboutPage", "name": "À propos", "url": SITE + "/a-propos/"})
     write_page(["a-propos", "index.html"], page_shell(about_title, about_desc, SITE + "/a-propos/", graph, body, crumbs))
 
 
@@ -848,8 +999,11 @@ def build_contact():
         ("Comment nous joindre ?", f"Par téléphone ({PHONE_DISP}), email ({EMAIL}) ou WhatsApp."),
         ("Quelles informations fournir pour un devis ?", "Type de bâtiment, localisation (canton/commune), nature du besoin (installation, maintenance, dépannage) et urgence éventuelle."),
         ("Horaires de contact", HOURS + ". Pour un dépannage, contactez-nous par téléphone ou WhatsApp."),
+        ("Qui appeler en cas de panne CVC ?", f"Appelez le {PHONE_DISP} ou contactez-nous via WhatsApp en décrivant la panne et votre adresse."),
+        ("Proposez-vous un devis gratuit ?", "Oui. Décrivez votre projet via le formulaire ou par téléphone : nous évaluons votre demande et vous répondons dans les meilleurs délais."),
     ]
     body = f"""
+{urgence_band()}
 <section class="contact page-hero" aria-labelledby="page-h1">
   <div class="container contact-page">
     <div class="contact-intro">
@@ -927,7 +1081,7 @@ def build_contact():
   </div>
 </section>"""
     crumbs = [("Accueil", "/"), ("Contact", "/contact/")]
-    contact_title = "Contact et devis | Sopjani Tech Sàrl — Suisse romande"
+    contact_title = PAGE_TITLES["contact"]
     contact_desc = META_DESCRIPTIONS["contact"]
     graph = base_graph(contact_title, contact_desc, SITE + "/contact/", faq=faq, extra={"@type": "ContactPage", "name": "Contact", "url": SITE + "/contact/"})
     write_page(["contact", "index.html"], page_shell(contact_title, contact_desc, SITE + "/contact/", graph, body))
@@ -945,7 +1099,7 @@ def build_services():
     clients = "<p>Résidentiel (immeubles, villas, PPE), commercial (bureaux, commerces, hôtels), industriel et public (ERP), selon faisabilité technique.</p>"
 
     service_page("chauffage", "Chauffage",
-        "Chauffage | Installation, entretien et dépannage | Sopjani Tech Sàrl",
+        PAGE_TITLES["chauffage"],
         META_DESCRIPTIONS["chauffage"],
         "Chauffage : installation, entretien et dépannage",
         "Nous prenons en charge vos besoins en chauffage, de l'étude à la maintenance, pour assurer le confort thermique et la fiabilité de vos installations.",
@@ -953,10 +1107,12 @@ def build_services():
         bullets(["Étude et dimensionnement", "Installation de chaudières et pompes à chaleur", "Entretien et maintenance", "Dépannage et remise en service", "Rénovation de réseaux existants"]),
         clients, process, ["geneve", "lausanne", "vaud", "valais", "fribourg"], ["ventilation", "climatisation", "depannage-sav"],
         [("Intervenez-vous en dépannage chauffage ?", "Oui. Contactez-nous pour évaluer la situation. La disponibilité dépend du secteur et de la nature de la panne."),
-         ("Proposez-vous des contrats d'entretien ?", "Oui. Contactez-nous pour discuter des options adaptées à votre installation.")])
+         ("Proposez-vous des contrats d'entretien ?", "Oui. Contactez-nous pour discuter des options adaptées à votre installation."),
+         ("Qui appeler pour un chauffagiste en Suisse romande ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP} ou via notre page contact."),
+         ("Combien coûte un devis chauffage ?", "Le devis est gratuit. Il dépend du type d'installation, de la surface et de l'état de l'existant.")])
 
     service_page("ventilation", "Ventilation",
-        "Ventilation | Traitement de l'air et dépannage | Sopjani Tech Sàrl",
+        PAGE_TITLES["ventilation"],
         META_DESCRIPTIONS["ventilation"],
         "Ventilation et traitement de l'air",
         "Mise en place et suivi de systèmes de ventilation pour le confort, la qualité de l'air et la maîtrise énergétique de votre bâtiment.",
@@ -964,10 +1120,12 @@ def build_services():
         bullets(["Conception et dimensionnement", "Installation de gaines et équipements", "Réglages et mise en service", "Maintenance et contrôles", "Réhabilitation de réseaux"]),
         clients, process, ["geneve", "lausanne", "nyon", "vaud"], ["chauffage", "climatisation", "depannage-sav"],
         [("Réalisez-vous des travaux de rénovation de ventilation ?", "Oui. Nous évaluons l'existant et proposons une solution adaptée au bâtiment et au budget."),
-         ("Comment obtenir un devis ventilation ?", "Contactez-nous avec le type de bâtiment, la surface et l'état des installations existantes.")])
+         ("Comment obtenir un devis ventilation ?", "Contactez-nous avec le type de bâtiment, la surface et l'état des installations existantes."),
+         ("Quelle entreprise de ventilation contacter en Suisse romande ?", f"{COMPANY_NAME} intervient pour l'installation, la maintenance et le dépannage de ventilation."),
+         ("Intervenez-vous en urgence pour une panne VMC ?", f"Contactez-nous au {PHONE_DISP} pour évaluer la situation et la disponibilité.")])
 
     service_page("climatisation", "Climatisation",
-        "Climatisation | Étude et installation | Sopjani Tech Sàrl",
+        PAGE_TITLES["climatisation"],
         META_DESCRIPTIONS["climatisation"],
         "Climatisation : étude et installation",
         "Nous réalisons l'étude et l'installation de systèmes de climatisation adaptés aux besoins des particuliers et des professionnels.",
@@ -975,10 +1133,12 @@ def build_services():
         bullets(["Dimensionnement des besoins", "Installation et raccordements", "Mise en service et réglages", "Maintenance périodique", "Dépannage"]),
         clients, process, ["geneve", "nyon", "lausanne", "valais"], ["ventilation", "chauffage", "depannage-sav"],
         [("Quels types de bâtiments équipez-vous ?", "Résidentiel et tertiaire selon faisabilité."),
-         ("Intervenez-vous en dépannage climatisation ?", "Oui, contactez-nous pour diagnostiquer votre installation.")])
+         ("Intervenez-vous en dépannage climatisation ?", "Oui, contactez-nous pour diagnostiquer votre installation."),
+         ("Installez-vous la climatisation près de chez moi ?", f"Nous intervenons en Suisse romande depuis {ADDRESS_LOCALITY}. Contactez-nous avec votre commune."),
+         ("Comment obtenir un devis climatisation ?", "Via notre page contact : précisez le type de bâtiment, la surface et vos besoins de confort.")])
 
     service_page("depannage-sav", "Dépannage SAV",
-        "Dépannage SAV CVC | Maintenance et urgence | Sopjani Tech Sàrl",
+        PAGE_TITLES["depannage-sav"],
         META_DESCRIPTIONS["depannage-sav"],
         "Dépannage et maintenance (SAV) de vos installations CVC",
         "Intervention sur vos installations en panne ou en fin de vie, avec une approche orientée remise en service et fiabilisation.",
@@ -986,10 +1146,13 @@ def build_services():
         bullets(["Diagnostic de panne", "Intervention corrective", "Maintenance préventive", "Contrats d'entretien", "Optimisation des réglages"]),
         clients, process, ["geneve", "lausanne", "fribourg", "vaud", "valais"], ["chauffage", "ventilation", "sanitaire"],
         [("Comment signaler une urgence ?", f"Appelez le {PHONE_DISP} ou contactez-nous via WhatsApp en décrivant la situation."),
-         ("Quel délai d'intervention ?", "La disponibilité dépend de la nature de la panne et du secteur. Nous évaluons chaque demande au cas par cas.")])
+         ("Quel délai d'intervention ?", "La disponibilité dépend de la nature de la panne et du secteur. Nous évaluons chaque demande au cas par cas."),
+         ("Qui appeler pour un dépannage chauffage ou climatisation ?", f"{COMPANY_NAME} au {PHONE_DISP}. Indiquez votre adresse et le type de panne."),
+         ("Intervenez-vous le week-end ?", f"Contactez-nous par téléphone ({PHONE_DISP}) : nous évaluons chaque demande selon l'urgence et la disponibilité.")],
+        show_urgence=True)
 
     service_page("sprinkler-protection-incendie", "Sprinkler / protection incendie",
-        "Sprinkler et protection incendie | Sopjani Tech Sàrl",
+        PAGE_TITLES["sprinkler-protection-incendie"],
         META_DESCRIPTIONS["sprinkler-protection-incendie"],
         "Sprinkler et protection incendie",
         "Intervention en sous-traitance sur des installations sprinkler, avec exécution soignée et coordination chantier.",
@@ -1001,7 +1164,7 @@ def build_services():
          ("Un sprinkler est-il obligatoire ?", "Selon les directives AEAI, certaines catégories de bâtiments peuvent être concernées. Nous pouvons analyser votre situation sur demande.")])
 
     service_page("sanitaire", "Sanitaire",
-        "Sanitaire | Travaux et dépannage | Sopjani Tech Sàrl",
+        PAGE_TITLES["sanitaire"],
         META_DESCRIPTIONS["sanitaire"],
         "Travaux sanitaires et dépannage",
         "Travaux sanitaires, adaptation de réseaux et interventions sur installations existantes en résidentiel et professionnel.",
@@ -1015,63 +1178,57 @@ def build_services():
 def build_zones():
     p = lambda t: f"<p>{t}</p>"
     zone_page("geneve", "Genève", "la région de Genève",
-        "Chauffage et climatisation à Genève | Sopjani Tech Sàrl",
+        PAGE_TITLES["geneve"],
         META_DESCRIPTIONS["geneve"],
         "Chauffage, ventilation, climatisation et dépannage dans la région de Genève",
         p("Le canton de Genève présente un parc bâti dense, des immeubles résidentiels, des commerces et des bâtiments tertiaires aux contraintes techniques variées. Nous pouvons prendre en charge des besoins en installation, maintenance et dépannage selon la nature du projet.") +
         p("Que vous soyez propriétaire, régie ou responsable technique, contactez-nous pour vérifier la disponibilité d'intervention dans votre secteur."),
-        [("Intervenez-vous bien à Genève ?", "Oui, Genève fait partie de nos zones d'intervention prioritaires en Suisse romande."),
-         ("Quels services sont disponibles à Genève ?", "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler et sanitaire, selon faisabilité.")],
+        zone_aeo_faq("Genève", "la région de Genève"),
         ["chauffage", "ventilation", "climatisation", "depannage-sav", "sanitaire"], ["vaud", "nyon", "lausanne"])
 
     zone_page("vaud", "Vaud", "le canton de Vaud",
-        "CVC dans le canton de Vaud | Sopjani Tech Sàrl",
+        PAGE_TITLES["vaud"],
         META_DESCRIPTIONS["vaud"],
-        "Chauffage, ventilation, climatisation et dépannage dans le canton de Vaud",
+        "Ventilation, chauffage et climatisation dans le canton de Vaud",
         p("Le canton de Vaud couvre un territoire étendu, de Lausanne à la région lémanique. Nous intervenons pour des projets d'installation, d'entretien et de dépannage sur différents types de bâtiments.") +
         p("Pour les communes hors axes principaux, contactez-nous afin de confirmer la faisabilité et la planification."),
-        [("Couvrez-vous tout le canton de Vaud ?", "Nous intervenons principalement sur les axes où nos équipes sont actives. Contactez-nous avec votre commune."),
-         ("Travaillez-vous avec des régies ?", "Oui. Contactez-nous pour préciser votre situation et la nature du projet.")],
+        zone_aeo_faq("Vaud", "le canton de Vaud"),
         ["chauffage", "ventilation", "climatisation", "depannage-sav"], ["lausanne", "nyon", "geneve", "fribourg"])
 
     zone_page("lausanne", "Lausanne", "Lausanne et environs",
-        "Chauffage et dépannage à Lausanne | Sopjani Tech Sàrl",
+        PAGE_TITLES["lausanne"],
         META_DESCRIPTIONS["lausanne"],
-        "Chauffage, ventilation, climatisation et dépannage à Lausanne",
+        "Chauffagiste et CVC à Lausanne et environs",
         p("L'agglomération lausannoise concentre immeubles résidentiels, bâtiments tertiaires et équipements techniques nécessitant un suivi régulier. Nous intervenons pour l'installation, la maintenance et le dépannage CVC.") +
         p("Indiquez le quartier ou la commune exacte lors de votre demande pour une réponse adaptée."),
-        [("Intervenez-vous en urgence à Lausanne ?", "Contactez-nous par téléphone pour évaluer la situation et la disponibilité."),
-         ("Quels types de bâtiments couvrez-vous ?", "Résidentiel, tertiaire et industriel selon faisabilité technique.")],
+        zone_aeo_faq("Lausanne", "Lausanne et environs"),
         ["chauffage", "ventilation", "climatisation", "depannage-sav", "sanitaire"], ["nyon", "vaud", "geneve"])
 
     zone_page("nyon", "Nyon", "la région de Nyon",
-        "Climatisation et chauffage à Nyon | Sopjani Tech Sàrl",
+        PAGE_TITLES["nyon"],
         META_DESCRIPTIONS["nyon"],
-        "Chauffage, ventilation et climatisation dans la région de Nyon",
+        "Chauffagiste et climatisation dans la région de Nyon",
         p("La région de Nyon, entre Genève et Lausanne, comprend des zones résidentielles et des activités commerciales. Nous pouvons intervenir pour des projets CVC et des dépannages selon disponibilité.") +
         p("Contactez-nous en précisant l'adresse et la nature des travaux."),
-        [("Couvrez-vous Nyon et environs ?", "Oui, Nyon fait partie de nos zones d'intervention en Suisse romande."),
-         ("Proposez-vous la climatisation à Nyon ?", "Oui, étude et installation de systèmes de climatisation selon le projet.")],
+        zone_aeo_faq("Nyon", "la région de Nyon"),
         ["climatisation", "chauffage", "ventilation", "sanitaire"], ["geneve", "lausanne", "vaud"])
 
     zone_page("valais", "Valais", "le canton du Valais",
-        "Chauffage et climatisation en Valais | Sopjani Tech Sàrl",
+        PAGE_TITLES["valais"],
         META_DESCRIPTIONS["valais"],
-        "Chauffage, ventilation et climatisation en Valais",
+        "Ventilation, chauffage et climatisation en Valais",
         p("Le Valais présente des spécificités climatiques et altitudinales qui influencent les besoins en chauffage et climatisation. Nous intervenons pour des installations et dépannages selon la localisation et la faisabilité.") +
         p("Contactez-nous avec votre commune pour vérifier la disponibilité d'intervention."),
-        [("Intervenez-vous pour des hôtels ou bâtiments touristiques ?", "Contactez-nous pour préciser le type de bâtiment et la localisation."),
-         ("Le dépannage est-il possible en Valais ?", "Contactez-nous pour évaluer la demande et la planification.")],
+        zone_aeo_faq("Valais", "le canton du Valais"),
         ["chauffage", "climatisation", "depannage-sav", "sprinkler-protection-incendie"], ["geneve", "vaud", "fribourg"])
 
     zone_page("fribourg", "Fribourg", "le canton de Fribourg",
-        "Dépannage CVC à Fribourg | Sopjani Tech Sàrl",
+        PAGE_TITLES["fribourg"],
         META_DESCRIPTIONS["fribourg"],
         "Chauffage, ventilation et dépannage dans le canton de Fribourg",
         p("Le canton de Fribourg, à cheval sur les régions linguistiques, compte un parc bâti varié. Nous pouvons prendre en charge des interventions en chauffage, ventilation et dépannage selon la nature du projet.") +
         p("Précisez la commune et l'urgence de votre demande lors du premier contact."),
-        [("Intervenez-vous à Fribourg-ville et en campagne ?", "Contactez-nous avec votre localisation pour confirmer la faisabilité."),
-         ("Quels services proposez-vous à Fribourg ?", "Chauffage, ventilation, climatisation, dépannage SAV et sanitaire, selon projet.")],
+        zone_aeo_faq("Fribourg", "le canton de Fribourg"),
         ["chauffage", "ventilation", "depannage-sav", "sanitaire"], ["vaud", "lausanne", "valais"])
 
 
@@ -1200,6 +1357,47 @@ def build_redirect(old_name, new_path):
     (ROOT / old_name).write_text(content, encoding="utf-8")
 
 
+def build_sitemap_page():
+    sections = [
+        ("Navigation", [("/", "Accueil"), ("/a-propos/", "À propos"), ("/contact/", "Contact")]),
+        ("Prestations", [(f"/{s}/", n) for s, n, _ in SERVICES] + [("/prestations/", "Toutes les prestations")]),
+        ("Zones d'intervention", [(f"/{z}/", n) for z, n, _ in ZONES] + [("/zones-intervention/", "Toutes les zones")]),
+        ("Informations légales", [("/mentions-legales/", "Mentions légales"), ("/politique-confidentialite/", "Politique de confidentialité")]),
+    ]
+    blocks = ""
+    all_links = []
+    for sec_title, links in sections:
+        items = "".join(f'<li><a href="{u}">{l}</a></li>' for u, l in links)
+        blocks += f'<div class="sitemap-section"><h2 class="section-title" style="font-size:clamp(20px,2.5vw,28px);margin-bottom:16px;">{sec_title}</h2><ul class="sitemap-list">{items}</ul></div>'
+        all_links.extend(links)
+    body = f"""
+<section class="page-hero hero" aria-labelledby="page-h1">
+  <div class="container">
+    <span class="label">Navigation</span>
+    <div class="rule"></div>
+    <h1 id="page-h1">Plan du site</h1>
+    <p class="hero-sub">Accès direct à toutes les pages de {COMPANY_NAME} : prestations, zones d'intervention et informations de contact.</p>
+  </div>
+</section>
+<div class="section-divider"></div>
+<section class="content-section">
+  <div class="container sitemap-grid">{blocks}</div>
+</section>"""
+    crumbs = [("Accueil", "/"), ("Plan du site", "/plan-du-site/")]
+    title = PAGE_TITLES["plan-du-site"]
+    desc = META_DESCRIPTIONS["plan-du-site"]
+    item_list = {
+        "@type": "ItemList",
+        "name": "Plan du site",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i + 1, "name": label, "url": SITE + path}
+            for i, (path, label) in enumerate(all_links)
+        ],
+    }
+    graph = base_graph(title, desc, SITE + "/plan-du-site/", crumbs, extra=item_list)
+    write_page(["plan-du-site", "index.html"], page_shell(title, desc, SITE + "/plan-du-site/", graph, body, crumbs))
+
+
 def build_sitemap():
     today = date.today().isoformat()
     entries = [
@@ -1208,6 +1406,7 @@ def build_sitemap():
         ("/prestations/", "monthly", "0.9"),
         ("/zones-intervention/", "monthly", "0.9"),
         ("/a-propos/", "monthly", "0.8"),
+        ("/plan-du-site/", "monthly", "0.5"),
         ("/mentions-legales/", "yearly", "0.3"),
         ("/politique-confidentialite/", "yearly", "0.3"),
     ]
@@ -1440,6 +1639,7 @@ def main():
     build_zones()
     build_about()
     build_contact()
+    build_sitemap_page()
     build_legal_pages()
     build_redirect("prestations.html", "/prestations/")
     build_redirect("contact.html", "/contact/")
