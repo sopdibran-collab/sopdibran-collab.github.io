@@ -57,6 +57,7 @@ META_DESCRIPTIONS = {
     "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
     "plan-du-site": "Plan du site Sopjani Tech Sàrl : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
+    "realisations": f"Réalisations de {COMPANY_NAME} en Suisse romande : installations sprinkler, ventilation et tuyauterie sanitaire. Photos de chantiers réels.",
 }
 
 PAGE_TITLES = {
@@ -78,6 +79,7 @@ PAGE_TITLES = {
     "nyon": "Chauffagiste et climatisation Nyon | Sopjani Tech Sàrl",
     "valais": "Entreprise ventilation Valais | Chauffage & CVC | Sopjani Tech Sàrl",
     "fribourg": "Dépannage CVC Fribourg | Sopjani Tech Sàrl",
+    "realisations": "Réalisations CVC, sprinkler et sanitaire | Sopjani Tech Sàrl",
 }
 
 SERVICES = [
@@ -247,6 +249,46 @@ def zone_aeo_faq(name, region):
         (f"Proposez-vous la climatisation et le chauffage à {name} ?", "Oui. Étude, installation, entretien et dépannage en chauffage, climatisation et ventilation selon votre projet."),
         (f"Comment obtenir un devis à {name} ?", "Via notre page contact ou par téléphone : décrivez le bâtiment, la localisation exacte et le type de travaux (installation, maintenance ou dépannage)."),
     ]
+
+
+# Photos de chantiers réels (fichier, largeur, hauteur, alt SEO, catégorie, légende)
+REALISATIONS = [
+    ("sprinkler-poste-controle.jpg", 960, 1280, "Poste de contrôle sprinkler avec tuyauterie rouge, vannes bleues et manomètres installé par Sopjani Tech Sàrl", "sprinkler", "Poste de contrôle sprinkler"),
+    ("sprinkler-technicien-brasure.jpg", 720, 1280, "Technicien de Sopjani Tech Sàrl brasant une tuyauterie sprinkler rouge sur chantier", "sprinkler", "Brasure de tuyauterie sprinkler"),
+    ("sprinkler-vanne-arret-secteur.jpg", 720, 1280, "Vanne d'arrêt secteur d'un réseau sprinkler avec manomètres de contrôle", "sprinkler", "Vanne d'arrêt secteur"),
+    ("sprinkler-collecteur-rouges.jpg", 1280, 720, "Collecteur sprinkler avec tuyaux verticaux rouges et vannes dans un local technique", "sprinkler", "Collecteur sprinkler en local technique"),
+    ("sprinkler-vanne-seche-victaulic.jpg", 720, 1280, "Vanne sèche Victaulic d'installation sprinkler, station Parking Nord", "sprinkler", "Vanne sèche Victaulic"),
+    ("sprinkler-vanne-alarme-seche.jpg", 720, 1280, "Vanne d'alarme sèche pour système sprinkler dans un parking", "sprinkler", "Vanne d'alarme sèche"),
+    ("sprinkler-vanne-alarme-humide.jpg", 720, 1280, "Vanne d'alarme humide et vanne d'arrêt générale d'un réseau sprinkler", "sprinkler", "Vanne d'alarme humide"),
+    ("ventilation-unite-hvac-gaine.jpg", 1280, 720, "Unité de ventilation HVAC raccordée à une gaine souple par Sopjani Tech Sàrl", "ventilation", "Unité de ventilation HVAC"),
+    ("ventilation-conduit-galvanise-chantier.jpg", 1280, 720, "Conduit de ventilation en acier galvanisé installé sur chantier par Sopjani Tech Sàrl", "ventilation", "Conduit de ventilation galvanisé"),
+    ("ventilation-sanitaire-local-technique.jpg", 720, 1280, "Local technique : gaine de ventilation et réseaux fluides installés par Sopjani Tech Sàrl", "ventilation", "Local technique : ventilation et fluides"),
+    ("sanitaire-collecteur-galvanise.jpg", 1280, 720, "Collecteur sanitaire en acier galvanisé avec raccords laiton et vannes installé par Sopjani Tech Sàrl", "sanitaire", "Collecteur sanitaire galvanisé"),
+    ("tuyauterie-fabrication-atelier.jpg", 720, 1280, "Fabrication d'un assemblage de tuyauterie en atelier par Sopjani Tech Sàrl", "sanitaire", "Fabrication de tuyauterie en atelier"),
+]
+
+REALISATIONS_BY_CAT = {}
+for _fn, _w, _h, _alt, _cat, _cap in REALISATIONS:
+    REALISATIONS_BY_CAT.setdefault(_cat, []).append((_fn, _w, _h, _alt, _cap))
+
+
+def gallery_html(images, cols=3):
+    cards = []
+    for fn, w, h, alt, cap in images:
+        cards.append(f"""<figure class="gallery-card">
+  <img src="/assets/realisations/{fn}" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async">
+  <figcaption>{cap}</figcaption>
+</figure>""")
+    return f'<div class="gallery gallery-cols-{cols}">{"".join(cards)}</div>'
+
+
+def realisations_section(cat, limit=None):
+    imgs = REALISATIONS_BY_CAT.get(cat, [])
+    if limit:
+        imgs = imgs[:limit]
+    if not imgs:
+        return ""
+    return gallery_html(imgs, cols=3)
 
 
 def extract_css():
@@ -508,6 +550,7 @@ def footer():
         <ul class="footer-links">
           <li><a href="/">Accueil</a></li>
           <li><a href="/a-propos/">À propos</a></li>
+          <li><a href="/realisations/">Réalisations</a></li>
           <li><a href="/contact/">Contact</a></li>
           <li><a href="/plan-du-site/">Plan du site</a></li>
           <li><a href="/mentions-legales/">Mentions légales</a></li>
@@ -656,12 +699,25 @@ def breadcrumb_schema(crumbs):
     return {"@type": "BreadcrumbList", "itemListElement": items}
 
 
-def service_page(slug, name, title, desc, h1, intro, problems, interventions, clients, process, zone_slugs, related_svc, faq, show_urgence=False):
+def service_page(slug, name, title, desc, h1, intro, problems, interventions, clients, process, zone_slugs, related_svc, faq, show_urgence=False, gallery_cat=None):
     url = f"/{slug}/"
     crumbs = [("Accueil", "/"), ("Prestations", "/prestations/"), (name, url)]
     zones_html = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES if z in zone_slugs)
     related = "".join(f'<a class="zone-pill" href="/{s}/">{n}</a>' for s, n, _ in SERVICES if s in related_svc)
     urgence_html = f'<div class="section-divider"></div>{urgence_band()}' if show_urgence else ""
+    gallery_block = ""
+    if gallery_cat and REALISATIONS_BY_CAT.get(gallery_cat):
+        gallery_block = f"""<div class="section-divider"></div>
+<section class="content-section" aria-labelledby="real-title">
+  <div class="container">
+    <span class="label">Chantiers</span>
+    <div class="rule"></div>
+    <h2 class="section-title" id="real-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:8px;">Réalisations — {name}</h2>
+    <p class="section-lead" style="margin-top:8px;">Aperçu d'interventions réalisées par {COMPANY_NAME}.</p>
+    {realisations_section(gallery_cat)}
+    <p style="margin-top:24px;"><a href="/realisations/" class="text-link">Voir toutes nos réalisations →</a></p>
+  </div>
+</section>"""
     body = f"""
 <section class="page-hero hero" aria-labelledby="page-h1">
   <div class="container">
@@ -697,6 +753,7 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
     {process}
   </div>
 </section>
+{gallery_block}
 <section class="content-section alt" aria-labelledby="zones-title">
   <div class="container">
     <h2 class="section-title" id="zones-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:12px;">Zones desservies</h2>
@@ -861,6 +918,17 @@ def build_home():
     <p class="section-lead" style="margin-top:16px;">Nous intervenons principalement en Suisse romande et pouvons nous déplacer dans d'autres cantons selon la nature des travaux.</p>
     <div class="zone-links">{zone_pills}</div>
     <p style="margin-top:20px;"><a href="/zones-intervention/">Toutes nos zones d'intervention →</a></p>
+  </div>
+</section>
+<div class="section-divider"></div>
+<section class="content-section" aria-labelledby="real-title">
+  <div class="container">
+    <span class="label">Chantiers</span>
+    <div class="rule"></div>
+    <h2 class="section-title" id="real-title">Réalisations récentes</h2>
+    <p class="section-lead" style="margin-top:16px;">Aperçu de nos interventions en sprinkler, ventilation et sanitaire en Suisse romande.</p>
+    {gallery_html([("sprinkler-collecteur-rouges.jpg", 1280, 720, "Collecteur sprinkler avec tuyaux verticaux rouges et vannes dans un local technique", "Collecteur sprinkler"), ("ventilation-conduit-galvanise-chantier.jpg", 1280, 720, "Conduit de ventilation en acier galvanisé installé sur chantier par Sopjani Tech Sàrl", "Conduit de ventilation galvanisé"), ("sanitaire-collecteur-galvanise.jpg", 1280, 720, "Collecteur sanitaire en acier galvanisé avec raccords laiton et vannes installé par Sopjani Tech Sàrl", "Collecteur sanitaire galvanisé")], cols=3)}
+    <p style="margin-top:24px;"><a href="/realisations/" class="text-link">Voir toutes nos réalisations →</a></p>
   </div>
 </section>
 <div class="section-divider"></div>
@@ -1124,7 +1192,8 @@ def build_services():
         [("Réalisez-vous des travaux de rénovation de ventilation ?", "Oui. Nous évaluons l'existant et proposons une solution adaptée au bâtiment et au budget."),
          ("Comment obtenir un devis ventilation ?", "Contactez-nous avec le type de bâtiment, la surface et l'état des installations existantes."),
          ("Quelle entreprise de ventilation contacter en Suisse romande ?", f"{COMPANY_NAME} intervient pour l'installation, la maintenance et le dépannage de ventilation."),
-         ("Intervenez-vous en urgence pour une panne VMC ?", f"Contactez-nous au {PHONE_DISP} pour évaluer la situation et la disponibilité.")])
+         ("Intervenez-vous en urgence pour une panne VMC ?", f"Contactez-nous au {PHONE_DISP} pour évaluer la situation et la disponibilité.")],
+        gallery_cat="ventilation")
 
     service_page("climatisation", "Climatisation",
         PAGE_TITLES["climatisation"],
@@ -1163,7 +1232,8 @@ def build_services():
         "<p>Bâtiments soumis à des exigences de protection incendie (ERP, hôtels, industriel, logistique), selon obligations applicables.</p>",
         process, ["geneve", "vaud", "valais"], ["ventilation", "depannage-sav"],
         [("Les travaux sprinkler sont-ils réalisés directement ?", "Les interventions sont assurées en sous-traitance spécialisée, selon la nature du projet."),
-         ("Un sprinkler est-il obligatoire ?", "Selon les directives AEAI, certaines catégories de bâtiments peuvent être concernées. Nous pouvons analyser votre situation sur demande.")])
+         ("Un sprinkler est-il obligatoire ?", "Selon les directives AEAI, certaines catégories de bâtiments peuvent être concernées. Nous pouvons analyser votre situation sur demande.")],
+        gallery_cat="sprinkler")
 
     service_page("sanitaire", "Sanitaire",
         PAGE_TITLES["sanitaire"],
@@ -1174,7 +1244,8 @@ def build_services():
         bullets(["Réseaux eau froide et eau chaude", "Pose de robinetterie et équipements", "Réparation et remise en état", "Recherche de fuites", "Maintenance des installations"]),
         clients, process, ["geneve", "lausanne", "nyon", "fribourg"], ["depannage-sav", "chauffage"],
         [("Intervenez-vous en dépannage sanitaire ?", "Oui, contactez-nous pour décrire le problème et organiser une intervention si faisable."),
-         ("Réalisez-vous des rénovations complètes de salle de bain ?", "Contactez-nous pour décrire votre projet et vérifier la faisabilité.")])
+         ("Réalisez-vous des rénovations complètes de salle de bain ?", "Contactez-nous pour décrire votre projet et vérifier la faisabilité.")],
+        gallery_cat="sanitaire")
 
 
 def build_zones():
@@ -1359,9 +1430,74 @@ def build_redirect(old_name, new_path):
     (ROOT / old_name).write_text(content, encoding="utf-8")
 
 
+def build_realisations():
+    cat_labels = [
+        ("sprinkler", "Sprinkler et protection incendie"),
+        ("ventilation", "Ventilation"),
+        ("sanitaire", "Sanitaire et tuyauterie"),
+    ]
+    sections = ""
+    image_objects = []
+    for cat, label in cat_labels:
+        imgs = REALISATIONS_BY_CAT.get(cat, [])
+        if not imgs:
+            continue
+        cards = []
+        for fn, w, h, alt, cap in imgs:
+            cards.append(f"""<figure class="gallery-card">
+  <img src="/assets/realisations/{fn}" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async">
+  <figcaption>{cap}</figcaption>
+</figure>""")
+            image_objects.append({
+                "@type": "ImageObject",
+                "contentUrl": f"{SITE}/assets/realisations/{fn}",
+                "url": f"{SITE}/assets/realisations/{fn}",
+                "name": cap,
+                "description": alt,
+                "width": w,
+                "height": h,
+                "creditText": COMPANY_NAME,
+                "creator": {"@type": "Organization", "name": COMPANY_NAME},
+                "copyrightHolder": {"@type": "Organization", "name": COMPANY_NAME},
+            })
+        sections += f"""<section class="content-section" aria-labelledby="real-{cat}">
+  <div class="container">
+    <span class="label">{label}</span>
+    <div class="rule"></div>
+    <h2 class="section-title" id="real-{cat}" style="font-size:clamp(26px,3vw,40px);margin-bottom:24px;">{label}</h2>
+    <div class="gallery gallery-cols-3">{"".join(cards)}</div>
+  </div>
+</section>
+<div class="section-divider"></div>
+"""
+    body = f"""
+<section class="page-hero hero" aria-labelledby="page-h1">
+  <div class="container">
+    <span class="label">Réalisations</span>
+    <div class="rule"></div>
+    <h1 id="page-h1">Nos réalisations en CVC, sprinkler et sanitaire</h1>
+    <p class="hero-sub">Aperçu de chantiers réalisés par {COMPANY_NAME} en Suisse romande : sprinkler et protection incendie, ventilation et tuyauterie sanitaire.</p>
+  </div>
+</section>
+<div class="section-divider"></div>
+{sections}
+{cta_band()}"""
+    crumbs = [("Accueil", "/"), ("Réalisations", "/realisations/")]
+    title = PAGE_TITLES.get("realisations", "Réalisations CVC, sprinkler et sanitaire | Sopjani Tech Sàrl")
+    desc = META_DESCRIPTIONS.get("realisations", f"Réalisations de {COMPANY_NAME} en Suisse romande : installations sprinkler, ventilation et tuyauterie sanitaire. Photos de chantiers réels.")
+    gallery_schema = {
+        "@type": "ImageGallery",
+        "name": "Réalisations Sopjani Tech Sàrl",
+        "url": SITE + "/realisations/",
+        "image": image_objects,
+    }
+    graph = base_graph(title, desc, SITE + "/realisations/", crumbs, extra=[gallery_schema])
+    write_page(["realisations", "index.html"], page_shell(title, desc, SITE + "/realisations/", graph, body, crumbs))
+
+
 def build_sitemap_page():
     sections = [
-        ("Navigation", [("/", "Accueil"), ("/a-propos/", "À propos"), ("/contact/", "Contact")]),
+        ("Navigation", [("/", "Accueil"), ("/a-propos/", "À propos"), ("/realisations/", "Réalisations"), ("/contact/", "Contact"), ("/plan-du-site/", "Plan du site")]),
         ("Prestations", [(f"/{s}/", n) for s, n, _ in SERVICES] + [("/prestations/", "Toutes les prestations")]),
         ("Zones d'intervention", [(f"/{z}/", n) for z, n, _ in ZONES] + [("/zones-intervention/", "Toutes les zones")]),
         ("Informations légales", [("/mentions-legales/", "Mentions légales"), ("/politique-confidentialite/", "Politique de confidentialité")]),
@@ -1408,6 +1544,7 @@ def build_sitemap():
         ("/prestations/", "monthly", "0.9"),
         ("/zones-intervention/", "monthly", "0.9"),
         ("/a-propos/", "monthly", "0.8"),
+        ("/realisations/", "monthly", "0.8"),
         ("/plan-du-site/", "monthly", "0.5"),
         ("/mentions-legales/", "yearly", "0.3"),
         ("/politique-confidentialite/", "yearly", "0.3"),
@@ -1641,6 +1778,7 @@ def main():
     build_zones()
     build_about()
     build_contact()
+    build_realisations()
     build_sitemap_page()
     build_legal_pages()
     build_redirect("prestations.html", "/prestations/")
