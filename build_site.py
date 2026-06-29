@@ -116,6 +116,8 @@ ORG_SCHEMA = {
     },
     "geo": {
         "@type": "GeoCoordinates",
+        "latitude": 46.6917,
+        "longitude": 6.9119,
         "addressCountry": "CH",
         "addressLocality": ADDRESS_LOCALITY,
         "postalCode": ADDRESS_POSTAL,
