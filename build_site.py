@@ -254,16 +254,16 @@ def zone_aeo_faq(name, region):
 # Photos de chantiers réels (fichier, largeur, hauteur, alt SEO, catégorie, légende)
 REALISATIONS = [
     ("sprinkler-poste-controle.jpg", 960, 1280, "Poste de contrôle sprinkler avec tuyauterie rouge, vannes bleues et manomètres installé par Sopjani Tech Sàrl", "sprinkler", "Poste de contrôle sprinkler"),
-    ("sprinkler-technicien-brasure.jpg", 720, 1280, "Technicien de Sopjani Tech Sàrl brasant une tuyauterie sprinkler rouge sur chantier", "sprinkler", "Brasure de tuyauterie sprinkler"),
-    ("sprinkler-vanne-arret-secteur.jpg", 720, 1280, "Vanne d'arrêt secteur d'un réseau sprinkler avec manomètres de contrôle", "sprinkler", "Vanne d'arrêt secteur"),
-    ("sprinkler-collecteur-rouges.jpg", 1280, 720, "Collecteur sprinkler avec tuyaux verticaux rouges et vannes dans un local technique", "sprinkler", "Collecteur sprinkler en local technique"),
-    ("sprinkler-vanne-seche-victaulic.jpg", 720, 1280, "Vanne sèche Victaulic d'installation sprinkler, station Parking Nord", "sprinkler", "Vanne sèche Victaulic"),
+    ("sprinkler-technicien-brasure.jpg", 720, 1280, "Technicien de Sopjani Tech Sàrl soude au TIG sous station de chauffage à distance sur chantier", "sprinkler", "Soude au TIG sous station chauffage à distance"),
+    ("sprinkler-vanne-arret-secteur.jpg", 720, 1280, "Poste d'alarme sous eau d'un réseau sprinkler avec manomètres de contrôle, par Sopjani Tech Sàrl", "sprinkler", "Poste d'alarme sous eau"),
+    ("sprinkler-collecteur-rouges.jpg", 1280, 720, "Centrale sprinkler sous eau avec tuyauterie rouge et vannes en local technique, par Sopjani Tech Sàrl", "sprinkler", "Centrale sprinkler sous eau"),
+    ("sprinkler-vanne-seche-victaulic.jpg", 720, 1280, "Poste d'alarme sous air pour installation sprinkler, station Parking Nord, par Sopjani Tech Sàrl", "sprinkler", "Poste d'alarme sous air"),
     ("sprinkler-vanne-alarme-seche.jpg", 720, 1280, "Vanne d'alarme sèche pour système sprinkler dans un parking", "sprinkler", "Vanne d'alarme sèche"),
-    ("sprinkler-vanne-alarme-humide.jpg", 720, 1280, "Vanne d'alarme humide et vanne d'arrêt générale d'un réseau sprinkler", "sprinkler", "Vanne d'alarme humide"),
+    ("sprinkler-vanne-alarme-humide.jpg", 720, 1280, "Poste d'alarme sous eau avec pompe de suppression et vanne d'arrêt générale d'un réseau sprinkler, par Sopjani Tech Sàrl", "sprinkler", "Poste d'alarme sous eau avec pompe de suppression"),
+    ("sanitaire-collecteur-galvanise.jpg", 1280, 720, "Test de débit sprinkler sur collecteur en acier galvanisé avec raccords laiton et vannes, par Sopjani Tech Sàrl", "sprinkler", "Test débit sprinkler"),
     ("ventilation-unite-hvac-gaine.jpg", 1280, 720, "Unité de ventilation HVAC raccordée à une gaine souple par Sopjani Tech Sàrl", "ventilation", "Unité de ventilation HVAC"),
     ("ventilation-conduit-galvanise-chantier.jpg", 1280, 720, "Conduit de ventilation en acier galvanisé installé sur chantier par Sopjani Tech Sàrl", "ventilation", "Conduit de ventilation galvanisé"),
-    ("ventilation-sanitaire-local-technique.jpg", 720, 1280, "Local technique : gaine de ventilation et réseaux fluides installés par Sopjani Tech Sàrl", "ventilation", "Local technique : ventilation et fluides"),
-    ("sanitaire-collecteur-galvanise.jpg", 1280, 720, "Collecteur sanitaire en acier galvanisé avec raccords laiton et vannes installé par Sopjani Tech Sàrl", "sanitaire", "Collecteur sanitaire galvanisé"),
+    ("ventilation-sanitaire-local-technique.jpg", 720, 1280, "Ventilation et pompe à chaleur installées en local technique par Sopjani Tech Sàrl", "ventilation", "Ventilation pompe à chaleur"),
     ("tuyauterie-fabrication-atelier.jpg", 720, 1280, "Fabrication d'un assemblage de tuyauterie en atelier par Sopjani Tech Sàrl", "sanitaire", "Fabrication de tuyauterie en atelier"),
 ]
 
@@ -927,7 +927,7 @@ def build_home():
     <div class="rule"></div>
     <h2 class="section-title" id="real-title">Réalisations récentes</h2>
     <p class="section-lead" style="margin-top:16px;">Aperçu de nos interventions en sprinkler, ventilation et sanitaire en Suisse romande.</p>
-    {gallery_html([("sprinkler-collecteur-rouges.jpg", 1280, 720, "Collecteur sprinkler avec tuyaux verticaux rouges et vannes dans un local technique", "Collecteur sprinkler"), ("ventilation-conduit-galvanise-chantier.jpg", 1280, 720, "Conduit de ventilation en acier galvanisé installé sur chantier par Sopjani Tech Sàrl", "Conduit de ventilation galvanisé"), ("sanitaire-collecteur-galvanise.jpg", 1280, 720, "Collecteur sanitaire en acier galvanisé avec raccords laiton et vannes installé par Sopjani Tech Sàrl", "Collecteur sanitaire galvanisé")], cols=3)}
+    {gallery_html([("sprinkler-collecteur-rouges.jpg", 1280, 720, "Centrale sprinkler sous eau avec tuyauterie rouge et vannes en local technique, par Sopjani Tech Sàrl", "Centrale sprinkler sous eau"), ("ventilation-conduit-galvanise-chantier.jpg", 1280, 720, "Conduit de ventilation en acier galvanisé installé sur chantier par Sopjani Tech Sàrl", "Conduit de ventilation galvanisé"), ("tuyauterie-fabrication-atelier.jpg", 720, 1280, "Fabrication d'un assemblage de tuyauterie en atelier par Sopjani Tech Sàrl", "Fabrication de tuyauterie en atelier")], cols=3)}
     <p style="margin-top:24px;"><a href="/realisations/" class="text-link">Voir toutes nos réalisations →</a></p>
   </div>
 </section>
