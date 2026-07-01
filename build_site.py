@@ -882,12 +882,12 @@ def build_home():
     )
     zone_pills = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES)
     faq = [
-        ("Quels services proposez-vous ?", "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler en sous-traitance et sanitaire. Consultez nos pages prestations pour le détail."),
+        ("Quels services proposez-vous ?", f"{COMPANY_NAME} couvre l'installation, l'entretien et le dépannage en chauffage, ventilation, climatisation et sanitaire, ainsi que le sprinkler en sous-traitance, pour des bâtiments en Suisse romande."),
         ("Dans quelles zones intervenez-vous ?", f"Principalement en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à {ADDRESS_LOCALITY}. D'autres cantons peuvent être couverts selon la nature du projet."),
-        ("Comment obtenir un devis ?", "Via notre page contact ou par téléphone : décrivez le type de bâtiment, la localisation et la nature du besoin."),
-        ("Intervenez-vous en dépannage ?", "Oui. Contactez-nous pour évaluer votre situation. La disponibilité dépend de la nature de la panne et du secteur."),
+        ("Comment obtenir un devis ?", "Via notre page contact ou par téléphone : décrivez le type de bâtiment, la localisation et la nature du besoin. Le devis est gratuit et sans engagement."),
+        ("Intervenez-vous en dépannage ?", f"Oui, nous intervenons en dépannage chauffage, ventilation et climatisation en Suisse romande. Nos horaires : {HOURS}. Appelez-nous directement pour une panne en cours, ou passez par le formulaire pour une demande non urgente."),
         ("Qui contacter pour un dépannage CVC en Suisse romande ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp. Décrivez votre panne et votre localisation."),
-        ("Combien de temps pour obtenir un devis ?", "Après votre demande via le formulaire contact ou par téléphone, nous vous répondons dans les meilleurs délais selon la complexité du projet."),
+        ("Combien de temps pour obtenir un devis ?", f"Pour une réponse immédiate, appelez-nous au {PHONE_DISP} ; pour une demande non urgente, le formulaire de contact permet une réponse par email. Nos horaires : {HOURS}."),
         ("Intervenez-vous près de chez moi ?", f"Nous sommes basés à {ADDRESS_FULL} et intervenons principalement en Suisse romande. Contactez-nous pour vérifier la disponibilité dans votre commune."),
     ]
     body = f"""
@@ -997,7 +997,7 @@ def build_home():
 def build_prestations():
     faq = [
         ("Quelles prestations CVC proposez-vous ?", "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler en sous-traitance et sanitaire."),
-        ("Comment choisir la bonne prestation ?", "Décrivez votre bâtiment et votre besoin via notre page contact : nous vous orienterons vers la prestation adaptée."),
+        ("Comment choisir la bonne prestation ?", "Chaque page prestation détaille les problématiques traitées et les interventions courantes. En cas de doute, décrivez votre bâtiment et votre besoin via notre page contact : nous vous orienterons vers la prestation adaptée."),
         ("Intervenez-vous en Suisse romande ?", f"Oui, principalement à Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à {ADDRESS_LOCALITY}."),
     ]
     cards = "".join(f'<a class="hub-card" href="/{s}/"><h3>{n}</h3><p>{d}</p><span class="link-arrow">Voir la prestation →</span></a>' for s, n, d in SERVICES)
@@ -1119,7 +1119,7 @@ def build_contact():
         ("Quelles informations fournir pour un devis ?", "Type de bâtiment, localisation (canton/commune), nature du besoin (installation, maintenance, dépannage) et urgence éventuelle."),
         ("Horaires de contact", HOURS + ". Pour un dépannage, contactez-nous par téléphone ou WhatsApp."),
         ("Qui appeler en cas de panne CVC ?", f"Appelez le {PHONE_DISP} ou contactez-nous via WhatsApp en décrivant la panne et votre adresse."),
-        ("Proposez-vous un devis gratuit ?", "Oui. Décrivez votre projet via le formulaire ou par téléphone : nous évaluons votre demande et vous répondons dans les meilleurs délais."),
+        ("Proposez-vous un devis gratuit ?", "Oui, le devis est gratuit et sans engagement. Décrivez votre projet via le formulaire ci-dessus ou par téléphone : nous confirmons la faisabilité et les prochaines étapes."),
     ]
     body = f"""
 {urgence_band()}
@@ -1231,8 +1231,8 @@ def build_services():
                  "Dépannage et remise en service",
                  "Accompagnement pour le remplacement d'une chaudière mazout ou gaz par une pompe à chaleur"]),
         clients, process, ["geneve", "lausanne", "vaud", "valais", "fribourg"], ["ventilation", "climatisation", "depannage-sav"],
-        [("Intervenez-vous en dépannage chauffage ?", "Oui. Contactez-nous pour évaluer la situation. La disponibilité dépend du secteur et de la nature de la panne."),
-         ("Proposez-vous des contrats d'entretien ?", "Oui. Contactez-nous pour discuter des options adaptées à votre installation."),
+        [("Intervenez-vous en dépannage chauffage ?", "Oui, nous intervenons sur chaudières, pompes à chaleur et radiateurs en Suisse romande : absence de chauffage, bruit anormal, fuite ou baisse de rendement. Appelez-nous directement pour une panne en cours."),
+         ("Proposez-vous des contrats d'entretien ?", "Oui, un entretien régulier de votre chaudière ou pompe à chaleur (contrôle, réglage, détartrage du boiler) permet de limiter les pannes. Contactez-nous pour discuter d'une fréquence adaptée à votre installation."),
          ("Qui appeler pour un chauffagiste en Suisse romande ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP} ou via notre page contact."),
          ("Combien coûte un devis chauffage ?", "Le devis est gratuit. Il dépend du type d'installation, de la surface et de l'état de l'existant."),
          ("Qui effectue le contrôle officiel de combustion de ma chaudière ?", "Le contrôle périodique OPair (tous les 2 à 4 ans selon le combustible) est réalisé par le maître ramoneur agréé de votre secteur. Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité de votre installation."),
@@ -1256,10 +1256,10 @@ def build_services():
                  "Ventilation de locaux techniques, parkings et cuisines professionnelles",
                  "Réhabilitation de réseaux existants"]),
         clients, process, ["geneve", "lausanne", "nyon", "vaud"], ["chauffage", "climatisation", "depannage-sav"],
-        [("Réalisez-vous des travaux de rénovation de ventilation ?", "Oui. Nous évaluons l'existant et proposons une solution adaptée au bâtiment et au budget."),
+        [("Réalisez-vous des travaux de rénovation de ventilation ?", "Oui, nous rénovons les VMC existantes : remplacement de moteurs, filtres et gaines, ou passage à une VMC double flux avec récupération de chaleur. Contactez-nous avec le type de bâtiment et l'état de l'installation actuelle."),
          ("Comment obtenir un devis ventilation ?", "Contactez-nous avec le type de bâtiment, la surface et l'état des installations existantes."),
          ("Quelle entreprise de ventilation (ventiliste) contacter en Suisse romande ?", f"{COMPANY_NAME} intervient pour l'installation, la maintenance et le dépannage de ventilation."),
-         ("Intervenez-vous en urgence pour une panne VMC ?", f"Contactez-nous au {PHONE_DISP} pour évaluer la situation et la disponibilité.")],
+         ("Intervenez-vous en urgence pour une panne VMC ?", f"Oui, appelez-nous directement au {PHONE_DISP} : nous évaluons la disponibilité selon le secteur et la nature de la panne.")],
         gallery_cat="ventilation",
         expertise_html="""<p>Nous intervenons sur des installations de VMC simple flux, double flux avec récupération de chaleur, ainsi que sur la ventilation de locaux techniques, parkings et cuisines professionnelles.</p>
 <h3>Bâtiments performants et Minergie</h3>
@@ -1281,7 +1281,7 @@ def build_services():
                  "Dépannage : perte de froid, fuite, unité qui ne démarre plus"]),
         clients, process, ["geneve", "nyon", "lausanne", "valais"], ["ventilation", "chauffage", "depannage-sav"],
         [("Quels types de bâtiments équipez-vous ?", "Résidentiel et tertiaire selon faisabilité."),
-         ("Intervenez-vous en dépannage climatisation ?", "Oui, contactez-nous pour diagnostiquer votre installation."),
+         ("Intervenez-vous en dépannage climatisation ?", "Oui, nous diagnostiquons et réparons les pannes courantes : perte de froid, fuite de fluide réfrigérant, unité extérieure givrée ou bruyante. Contactez-nous avec le modèle de l'appareil si possible."),
          ("Installez-vous la climatisation près de chez moi ?", f"Nous intervenons en Suisse romande depuis {ADDRESS_LOCALITY}. Contactez-nous avec votre commune."),
          ("Comment obtenir un devis climatisation ?", "Via notre page contact : précisez le type de bâtiment, la surface et vos besoins de confort.")],
         expertise_html="""<p>Nous intervenons sur climatiseurs split et multi-split, ainsi que sur les pompes à chaleur air-air réversibles (chauffage et rafraîchissement).</p>
@@ -1304,9 +1304,9 @@ def build_services():
                  "Optimisation des réglages pour réduire la consommation d'énergie"]),
         clients, process, ["geneve", "lausanne", "fribourg", "vaud", "valais"], ["chauffage", "ventilation", "sanitaire"],
         [("Comment signaler une urgence ?", f"Appelez le {PHONE_DISP} ou contactez-nous via WhatsApp en décrivant la situation."),
-         ("Quel délai d'intervention ?", "La disponibilité dépend de la nature de la panne et du secteur. Nous évaluons chaque demande au cas par cas."),
+         ("Quel délai d'intervention ?", "Le délai dépend de la nature de la panne (une absence totale de chauffage en hiver est traitée en priorité) et du secteur. Un appel direct permet une évaluation immédiate de la disponibilité, plus rapide qu'un formulaire."),
          ("Qui appeler pour un dépannage chauffage ou climatisation ?", f"{COMPANY_NAME} au {PHONE_DISP}. Indiquez votre adresse et le type de panne."),
-         ("Intervenez-vous le week-end ?", f"Contactez-nous par téléphone ({PHONE_DISP}) : nous évaluons chaque demande selon l'urgence et la disponibilité.")],
+         ("Intervenez-vous le week-end ?", f"Oui, nos horaires sont : {HOURS}, y compris le week-end. Appelez-nous pour évaluer la disponibilité selon la nature de la panne.")],
         show_urgence=True,
         expertise_html="""<p>Nos interventions de dépannage couvrent le chauffage (chaudières, pompes à chaleur), la ventilation (VMC), la climatisation et les réseaux sanitaires.</p>
 <h3>Diagnostic avant travaux</h3>
@@ -1346,8 +1346,8 @@ def build_services():
                  "Raccordements pour cuisine et salle de bains",
                  "Maintenance des installations existantes"]),
         clients, process, ["geneve", "lausanne", "nyon", "fribourg"], ["depannage-sav", "chauffage"],
-        [("Intervenez-vous en dépannage sanitaire ?", "Oui, contactez-nous pour décrire le problème et organiser une intervention si faisable."),
-         ("Réalisez-vous des rénovations complètes de salle de bain ?", "Contactez-nous pour décrire votre projet et vérifier la faisabilité.")],
+        [("Intervenez-vous en dépannage sanitaire ?", "Oui, nous intervenons sur les fuites, canalisations bouchées, chauffe-eau en panne et robinetterie défectueuse. Décrivez le problème lors de votre appel pour évaluer l'urgence."),
+         ("Réalisez-vous des rénovations complètes de salle de bain ?", "Oui pour la partie sanitaire d'une rénovation (réseaux eau chaude/froide, évacuations, robinetterie, WC, douche). Contactez-nous pour décrire votre projet et vérifier la faisabilité selon son ampleur.")],
         gallery_cat="sanitaire",
         expertise_html="""<p>Nous intervenons sur des réseaux eau froide et eau chaude en cuivre, PER ou multicouche, ainsi que sur les évacuations, la robinetterie et les chauffe-eau / boilers.</p>
 <h3>Recherche de fuite</h3>
