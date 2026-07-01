@@ -633,9 +633,9 @@ def cookie_banner():
 def faq_html(items):
     # FAQ visible uniquement — le balisage FAQPage est fourni en JSON-LD (évite le doublon GSC).
     blocks = []
-    for q, a in items:
+    for i, (q, a) in enumerate(items, start=1):
         blocks.append(f"""<div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span>{q}</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">{i:02d}</span><span>{q}</span><span class="faq-icon" aria-hidden="true"></span></button>
   <div class="faq-a"><span>{a}</span></div>
 </div>""")
     return f'<div class="faq-list">{"".join(blocks)}</div>'
