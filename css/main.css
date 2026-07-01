@@ -894,6 +894,23 @@
       background: var(--c-bg2);
     }
 
+    .faq-head {
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+
+    .faq-head .rule {
+      margin-bottom: 20px;
+    }
+
+    .faq .section-title {
+      font-size: clamp(28px, 3.2vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      text-wrap: balance;
+    }
+
     .faq-grid {
       display: grid;
       grid-template-columns: 340px 1fr;
@@ -927,9 +944,11 @@
       border-left: 3px solid transparent;
       text-align: left;
       padding: 20px 22px 20px 19px;
-      font-family: var(--font-body);
-      font-size: 15px;
+      font-family: var(--font-display);
+      font-size: 16px;
       font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.4;
       color: var(--c-text);
       cursor: pointer;
       display: flex;
@@ -962,7 +981,7 @@
       color: var(--c-accent);
     }
 
-    .faq-q > span:not(.faq-idx):not(.faq-icon) {
+    .faq-q > .faq-q-text {
       flex: 1;
     }
 
@@ -1022,16 +1041,25 @@
       opacity: 0;
       overflow: hidden;
       padding: 0 22px;
-      font-size: 14px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
       color: var(--c-muted);
-      line-height: 1.7;
+      line-height: 1.75;
+      letter-spacing: 0.01em;
       transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
+    }
+
+    .faq-a p {
+      margin: 0;
+      max-width: 65ch;
+      text-wrap: pretty;
     }
 
     .faq-a.open {
       max-height: 600px;
       opacity: 1;
-      padding: 0 22px 22px 60px;
+      padding: 4px 22px 24px 60px;
     }
 
     /* ── CONTACT ─────────────────────────────── */

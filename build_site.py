@@ -630,13 +630,21 @@ def cookie_banner():
 </div>"""
 
 
+def faq_section_head(title="Questions fréquentes", label="FAQ"):
+    return f"""<div class="faq-head">
+    <span class="label">{label}</span>
+    <div class="rule"></div>
+    <h2 class="section-title" id="faq-title">{title}</h2>
+  </div>"""
+
+
 def faq_html(items):
     # FAQ visible uniquement — le balisage FAQPage est fourni en JSON-LD (évite le doublon GSC).
     blocks = []
     for i, (q, a) in enumerate(items, start=1):
         blocks.append(f"""<div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">{i:02d}</span><span>{q}</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>{a}</span></div>
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">{i:02d}</span><span class="faq-q-text">{q}</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>{a}</p></div>
 </div>""")
     return f'<div class="faq-list">{"".join(blocks)}</div>'
 
@@ -808,7 +816,7 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
 </section>
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
-    <h2 class="section-title" id="faq-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:24px;">Questions fréquentes</h2>
+    {faq_section_head()}
     {faq_html(faq)}
   </div>
 </section>
@@ -866,7 +874,7 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
 </section>
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
-    <h2 class="section-title" id="faq-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:24px;">FAQ — {name}</h2>
+    {faq_section_head(f"FAQ — {name}")}
     {faq_html(faq)}
   </div>
 </section>
@@ -983,7 +991,7 @@ def build_home():
 <div class="section-divider"></div>
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
-    <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
+    {faq_section_head()}
     {faq_html(faq)}
   </div>
 </section>
@@ -1019,7 +1027,7 @@ def build_prestations():
 <div class="section-divider"></div>
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
-    <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
+    {faq_section_head()}
     {faq_html(faq)}
   </div>
 </section>
@@ -1062,7 +1070,7 @@ def build_zones_hub():
 <div class="section-divider"></div>
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
-    <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
+    {faq_section_head()}
     {faq_html(faq)}
   </div>
 </section>
@@ -1101,7 +1109,7 @@ def build_about():
 <div class="section-divider"></div>
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
-    <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
+    {faq_section_head()}
     {faq_html(faq)}
   </div>
 </section>
@@ -1195,7 +1203,7 @@ def build_contact():
 </section>
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
-    <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
+    {faq_section_head()}
     {faq_html(faq)}
   </div>
 </section>"""
