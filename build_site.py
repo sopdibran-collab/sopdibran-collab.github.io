@@ -30,7 +30,7 @@ COMPANY_UID = "CHE-177.567.012"
 PUBLICATION_MANAGER = "Shkodran Sopjani"
 HOST_NAME = "GitHub, Inc. (GitHub Pages)"
 HOST_ADDRESS = "88 Colin P. Kelly Jr. St, San Francisco, CA 94107, États-Unis"
-HOURS = "Lundi au vendredi, 8h00 – 16h30"
+HOURS = "Tous les jours, 7h00 – 17h00"
 MAP_URL = "https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+9,+1680+Romont"
 MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1481964.3806735645!2d5.895466104411914!3d46.67378415677807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9458f52305e1fe3%3A0x31fd51d876fffe44!2sSopjani-tech%20s%C3%A0rl!5e1!3m2!1sfr!2sch!4v1781214251877!5m2!1sfr!2sch"
 GOOGLE_BUSINESS_URL = "https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7"
@@ -138,9 +138,9 @@ ORG_SCHEMA = {
     }],
     "openingHoursSpecification": [{
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "08:00",
-        "closes": "16:30",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "07:00",
+        "closes": "17:00",
     }],
     "areaServed": [
         {"@type": "AdministrativeArea", "name": n} for _, n, _ in ZONES
@@ -168,11 +168,21 @@ WEBSITE_SCHEMA = {
     },
 }
 
-QUI_SOMMES_NOUS_HTML = """
-<p>Sopjani Tech Sàrl est une entreprise active dans les domaines du chauffage, de la ventilation, de la climatisation, du dépannage SAV et du sprinkler / protection incendie en Suisse romande.</p>
+QUI_SOMMES_NOUS_HTML = f"""
+<p>Sopjani Tech Sàrl est une entreprise active dans les domaines du chauffage, de la ventilation, de la climatisation, du dépannage SAV, du sanitaire et du sprinkler / protection incendie en Suisse romande. Notre siège se trouve à {ADDRESS_FULL}, dans le canton de Fribourg.</p>
 <p>Nous accompagnons nos clients avec une approche simple : comprendre le besoin, proposer une solution adaptée et intervenir avec sérieux selon la nature de la demande.</p>
 <p>Nous intervenons principalement à Genève, dans le canton de Vaud, à Lausanne, à Nyon, ainsi qu'en Valais et à Fribourg. Pour d'autres secteurs en Suisse romande, la possibilité d'intervention peut être étudiée selon le projet.</p>
 <p>Notre activité couvre différents besoins techniques, qu'il s'agisse d'installation, de maintenance ou de dépannage. Nous accordons une attention particulière à la clarté des échanges, à la réactivité et à l'adaptation aux contraintes du terrain.</p>
+<div class="cert-block" style="margin:28px 0;">
+  <div class="cert-title">Nos engagements</div>
+  <ul class="bullet-list">
+    <li>Devis gratuit et sans engagement</li>
+    <li>Un interlocuteur unique, du premier contact à la fin des travaux</li>
+    <li>Échanges clairs sur la nature et le coût des travaux avant intervention</li>
+    <li>Société à responsabilité limitée inscrite au registre du commerce suisse (UID {COMPANY_UID}, vérifiable sur <a href="https://www.zefix.ch" target="_blank" rel="noopener noreferrer">Zefix</a>)</li>
+  </ul>
+  <p style="margin-top:20px;"><a href="{GOOGLE_BUSINESS_URL}" class="text-link track-google" target="_blank" rel="noopener noreferrer">Voir notre fiche Google et nos avis →</a></p>
+</div>
 <p>Vous avez une demande en chauffage, ventilation, climatisation ou dépannage SAV ? <a href="/contact/">Contactez-nous</a> pour échanger sur votre besoin et vérifier la disponibilité d'intervention dans votre zone.</p>
 """
 
@@ -720,7 +730,7 @@ def breadcrumb_schema(crumbs):
     return {"@type": "BreadcrumbList", "itemListElement": items}
 
 
-def service_page(slug, name, title, desc, h1, intro, problems, interventions, clients, process, zone_slugs, related_svc, faq, show_urgence=False, gallery_cat=None):
+def service_page(slug, name, title, desc, h1, intro, problems, interventions, clients, process, zone_slugs, related_svc, faq, show_urgence=False, gallery_cat=None, expertise_html=""):
     url = f"/{slug}/"
     crumbs = [("Accueil", "/"), ("Prestations", "/prestations/"), (name, url)]
     zones_html = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES if z in zone_slugs)
@@ -766,7 +776,13 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
     {interventions}
   </div>
 </section>
-<section class="content-section" aria-labelledby="clients-title">
+{f'''<section class="content-section" aria-labelledby="expertise-title">
+  <div class="container prose-block">
+    <h2 class="section-title" id="expertise-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Équipements et cadre suisse</h2>
+    {expertise_html}
+  </div>
+</section>''' if expertise_html else ''}
+<section class="content-section {'alt' if expertise_html else ''}" aria-labelledby="clients-title">
   <div class="container prose-block">
     <h2 class="section-title" id="clients-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Pour quels bâtiments</h2>
     {clients}
@@ -926,6 +942,17 @@ def build_home():
         <p>Vous échangez directement avec l'équipe technique qui réalise les travaux.</p>
         <h3>Devis transparent</h3>
         <p>Offres claires et détaillées, adaptées à votre budget et à vos contraintes techniques.</p>
+      </div>
+      <div class="cert-block">
+        <div class="cert-title">Nos engagements</div>
+        <ul class="bullet-list">
+          <li>Devis gratuit et sans engagement</li>
+          <li>Un interlocuteur unique, du premier contact à la fin des travaux</li>
+          <li>Intervention en Suisse romande, à proximité de {ADDRESS_LOCALITY}</li>
+          <li>Échanges clairs sur la nature et le coût des travaux avant intervention</li>
+          <li>Société inscrite au registre du commerce suisse (UID {COMPANY_UID}, vérifiable sur Zefix)</li>
+        </ul>
+        <p style="margin-top:20px;"><a href="{GOOGLE_BUSINESS_URL}" class="text-link track-google" target="_blank" rel="noopener noreferrer">Voir notre fiche Google et nos avis →</a></p>
       </div>
     </div>
   </div>
@@ -1194,79 +1221,149 @@ def build_services():
         META_DESCRIPTIONS["chauffage"],
         "Chauffage : installation, entretien et dépannage",
         "Nous prenons en charge vos besoins en chauffage, de l'étude à la maintenance, pour assurer le confort thermique et la fiabilité de vos installations.",
-        "<p>Pannes de chauffage, baisse de rendement, remplacement d'équipement, rénovation de réseaux ou mise en service de nouvelles installations.</p>",
-        bullets(["Étude et dimensionnement", "Installation de chaudières et pompes à chaleur", "Entretien et maintenance", "Dépannage et remise en service", "Rénovation de réseaux existants"]),
+        "<p>Chaudière qui ne démarre plus ou qui s'arrête en cours de cycle, radiateurs froids ou circuit déséquilibré, boiler qui ne produit plus d'eau chaude, bruit anormal au démarrage, consommation de mazout ou de gaz en hausse, chaudière vétuste à remplacer par une pompe à chaleur.</p>",
+        bullets(["Étude et dimensionnement thermique (calcul de puissance, choix des émetteurs)",
+                 "Installation de pompes à chaleur air/eau ou sol/eau, chaudières à gaz, mazout ou bois",
+                 "Désembouage et équilibrage de circuits de chauffage",
+                 "Détartrage et entretien de boiler et chauffe-eau",
+                 "Remplacement de circulateurs, vannes thermostatiques et vase d'expansion",
+                 "Dépannage et remise en service",
+                 "Accompagnement pour le remplacement d'une chaudière mazout ou gaz par une pompe à chaleur"]),
         clients, process, ["geneve", "lausanne", "vaud", "valais", "fribourg"], ["ventilation", "climatisation", "depannage-sav"],
         [("Intervenez-vous en dépannage chauffage ?", "Oui. Contactez-nous pour évaluer la situation. La disponibilité dépend du secteur et de la nature de la panne."),
          ("Proposez-vous des contrats d'entretien ?", "Oui. Contactez-nous pour discuter des options adaptées à votre installation."),
          ("Qui appeler pour un chauffagiste en Suisse romande ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP} ou via notre page contact."),
-         ("Combien coûte un devis chauffage ?", "Le devis est gratuit. Il dépend du type d'installation, de la surface et de l'état de l'existant.")])
+         ("Combien coûte un devis chauffage ?", "Le devis est gratuit. Il dépend du type d'installation, de la surface et de l'état de l'existant."),
+         ("Qui effectue le contrôle officiel de combustion de ma chaudière ?", "Le contrôle périodique OPair (tous les 2 à 4 ans selon le combustible) est réalisé par le maître ramoneur agréé de votre secteur. Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité de votre installation."),
+         ("Le remplacement d'une chaudière par une pompe à chaleur est-il subventionné ?", "Oui, sous conditions, dans le cadre du Programme Bâtiments (leprogrammebatiments.ch), avec un barème propre à chaque canton. Contactez-nous pour évaluer votre projet et vérifier votre éligibilité.")],
+        expertise_html="""<p>Nous intervenons sur les principaux générateurs de chaleur utilisés en Suisse romande : chaudières à mazout, à gaz et à bois (bûches ou pellets), ainsi que pompes à chaleur air/eau et sol/eau.</p>
+<h3>Contrôle de combustion (OPair)</h3>
+<p>Le contrôle périodique officiel des installations à combustion reste du ressort du maître ramoneur agréé de votre secteur, selon l'ordonnance fédérale sur la protection de l'air (OPair). Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité suite à un contrôle.</p>
+<h3>Remplacement par une pompe à chaleur</h3>
+<p>Le remplacement d'une chaudière à mazout ou à gaz par une pompe à chaleur peut être subventionné dans le cadre du <strong>Programme Bâtiments</strong>, avec un barème propre à chaque canton (Genève, Vaud, Valais, Fribourg). Nous pouvons vous orienter dans cette démarche.</p>""")
 
     service_page("ventilation", "Ventilation",
         PAGE_TITLES["ventilation"],
         META_DESCRIPTIONS["ventilation"],
         "Ventilation et traitement de l'air",
         "Mise en place et suivi de systèmes de ventilation pour le confort, la qualité de l'air et la maîtrise énergétique de votre bâtiment.",
-        "<p>Qualité d'air insuffisante, dysfonctionnements VMC, besoin de renouvellement d'air ou rénovation de réseaux existants.</p>",
-        bullets(["Conception et dimensionnement", "Installation de gaines et équipements", "Réglages et mise en service", "Maintenance et contrôles", "Réhabilitation de réseaux"]),
+        "<p>VMC bruyante ou peu performante, condensation et traces d'humidité liées à un renouvellement d'air insuffisant, filtres encrassés, gaines mal isolées ou obstruées, mise en conformité de la ventilation d'un local technique, d'un parking ou d'une cuisine professionnelle.</p>",
+        bullets(["Installation de VMC simple flux ou double flux avec récupération de chaleur",
+                 "Nettoyage et désinfection de gaines et bouches d'extraction",
+                 "Remplacement de filtres, moteurs et caissons de ventilation",
+                 "Réglage et équilibrage des débits d'air",
+                 "Ventilation de locaux techniques, parkings et cuisines professionnelles",
+                 "Réhabilitation de réseaux existants"]),
         clients, process, ["geneve", "lausanne", "nyon", "vaud"], ["chauffage", "climatisation", "depannage-sav"],
         [("Réalisez-vous des travaux de rénovation de ventilation ?", "Oui. Nous évaluons l'existant et proposons une solution adaptée au bâtiment et au budget."),
          ("Comment obtenir un devis ventilation ?", "Contactez-nous avec le type de bâtiment, la surface et l'état des installations existantes."),
-         ("Quelle entreprise de ventilation contacter en Suisse romande ?", f"{COMPANY_NAME} intervient pour l'installation, la maintenance et le dépannage de ventilation."),
+         ("Quelle entreprise de ventilation (ventiliste) contacter en Suisse romande ?", f"{COMPANY_NAME} intervient pour l'installation, la maintenance et le dépannage de ventilation."),
          ("Intervenez-vous en urgence pour une panne VMC ?", f"Contactez-nous au {PHONE_DISP} pour évaluer la situation et la disponibilité.")],
-        gallery_cat="ventilation")
+        gallery_cat="ventilation",
+        expertise_html="""<p>Nous intervenons sur des installations de VMC simple flux, double flux avec récupération de chaleur, ainsi que sur la ventilation de locaux techniques, parkings et cuisines professionnelles.</p>
+<h3>Bâtiments performants et Minergie</h3>
+<p>Les constructions récentes ou labellisées Minergie reposent sur une bonne étanchéité à l'air et nécessitent une ventilation mécanique contrôlée correctement dimensionnée et entretenue, pour garantir la qualité de l'air intérieur et éviter les problèmes d'humidité.</p>
+<h3>Entretien régulier</h3>
+<p>Un nettoyage périodique des gaines, bouches et filtres permet de préserver le débit d'air prévu à l'installation et d'éviter la surconsommation électrique des moteurs encrassés.</p>""")
 
     service_page("climatisation", "Climatisation",
         PAGE_TITLES["climatisation"],
         META_DESCRIPTIONS["climatisation"],
         "Climatisation : étude et installation",
         "Nous réalisons l'étude et l'installation de systèmes de climatisation adaptés aux besoins des particuliers et des professionnels.",
-        "<p>Besoin de confort estival, remplacement d'installation, extension ou dépannage de système existant.</p>",
-        bullets(["Dimensionnement des besoins", "Installation et raccordements", "Mise en service et réglages", "Maintenance périodique", "Dépannage"]),
+        "<p>Climatiseur qui ne refroidit plus, unité extérieure bruyante, givrée ou en panne, fuite de gaz réfrigérant, mauvaise répartition du froid entre les pièces, besoin d'une pompe à chaleur air-air réversible pour le chauffage d'appoint.</p>",
+        bullets(["Dimensionnement selon le volume et l'exposition des pièces",
+                 "Installation de climatiseurs split et multi-split",
+                 "Pompes à chaleur air-air réversibles (chaud/froid)",
+                 "Contrôle et recharge du fluide réfrigérant",
+                 "Entretien : nettoyage des filtres et des unités, contrôle de performance",
+                 "Dépannage : perte de froid, fuite, unité qui ne démarre plus"]),
         clients, process, ["geneve", "nyon", "lausanne", "valais"], ["ventilation", "chauffage", "depannage-sav"],
         [("Quels types de bâtiments équipez-vous ?", "Résidentiel et tertiaire selon faisabilité."),
          ("Intervenez-vous en dépannage climatisation ?", "Oui, contactez-nous pour diagnostiquer votre installation."),
          ("Installez-vous la climatisation près de chez moi ?", f"Nous intervenons en Suisse romande depuis {ADDRESS_LOCALITY}. Contactez-nous avec votre commune."),
-         ("Comment obtenir un devis climatisation ?", "Via notre page contact : précisez le type de bâtiment, la surface et vos besoins de confort.")])
+         ("Comment obtenir un devis climatisation ?", "Via notre page contact : précisez le type de bâtiment, la surface et vos besoins de confort.")],
+        expertise_html="""<p>Nous intervenons sur climatiseurs split et multi-split, ainsi que sur les pompes à chaleur air-air réversibles (chauffage et rafraîchissement).</p>
+<h3>Fluides frigorigènes</h3>
+<p>La manipulation des fluides réfrigérants est strictement encadrée par la législation suisse sur la protection de l'environnement. Toute intervention sur le circuit frigorifique (recharge, détection de fuite) est réalisée avec le soin et les précautions requises par ce cadre.</p>
+<h3>Entretien recommandé</h3>
+<p>Un contrôle annuel (nettoyage des filtres et de l'unité extérieure, vérification du bon fonctionnement) permet de préserver le rendement énergétique de l'installation et sa durée de vie.</p>""")
 
     service_page("depannage-sav", "Dépannage SAV",
         PAGE_TITLES["depannage-sav"],
         META_DESCRIPTIONS["depannage-sav"],
         "Dépannage et maintenance (SAV) de vos installations CVC",
         "Intervention sur vos installations en panne ou en fin de vie, avec une approche orientée remise en service et fiabilisation.",
-        "<p>Panne de chauffage, ventilation ou climatisation, fuite, dysfonctionnement ou besoin de maintenance préventive.</p>",
-        bullets(["Diagnostic de panne", "Intervention corrective", "Maintenance préventive", "Contrats d'entretien", "Optimisation des réglages"]),
+        "<p>Panne de chaudière ou de pompe à chaleur, VMC à l'arrêt, climatiseur qui ne refroidit plus, fuite sur un réseau sanitaire, dysfonctionnement détecté lors d'un contrôle, besoin d'un contrat de maintenance préventive pour éviter les pannes.</p>",
+        bullets(["Diagnostic de panne sur site (chauffage, ventilation, climatisation, sanitaire)",
+                 "Devis avant travaux, sauf urgence nécessitant une action immédiate",
+                 "Remise en service de chaudières, pompes à chaleur, VMC et climatiseurs",
+                 "Intervention sur fuites et dysfonctionnements de réseaux sanitaires",
+                 "Contrats de maintenance préventive",
+                 "Optimisation des réglages pour réduire la consommation d'énergie"]),
         clients, process, ["geneve", "lausanne", "fribourg", "vaud", "valais"], ["chauffage", "ventilation", "sanitaire"],
         [("Comment signaler une urgence ?", f"Appelez le {PHONE_DISP} ou contactez-nous via WhatsApp en décrivant la situation."),
          ("Quel délai d'intervention ?", "La disponibilité dépend de la nature de la panne et du secteur. Nous évaluons chaque demande au cas par cas."),
          ("Qui appeler pour un dépannage chauffage ou climatisation ?", f"{COMPANY_NAME} au {PHONE_DISP}. Indiquez votre adresse et le type de panne."),
          ("Intervenez-vous le week-end ?", f"Contactez-nous par téléphone ({PHONE_DISP}) : nous évaluons chaque demande selon l'urgence et la disponibilité.")],
-        show_urgence=True)
+        show_urgence=True,
+        expertise_html="""<p>Nos interventions de dépannage couvrent le chauffage (chaudières, pompes à chaleur), la ventilation (VMC), la climatisation et les réseaux sanitaires.</p>
+<h3>Diagnostic avant travaux</h3>
+<p>Sauf urgence nécessitant une action immédiate, nous établissons un diagnostic et un devis avant toute intervention corrective, afin que vous validiez le coût et la nature des travaux avant leur réalisation.</p>""")
 
     service_page("sprinkler-protection-incendie", "Sprinkler / protection incendie",
         PAGE_TITLES["sprinkler-protection-incendie"],
         META_DESCRIPTIONS["sprinkler-protection-incendie"],
         "Sprinkler et protection incendie",
         "Intervention en sous-traitance sur des installations sprinkler, avec exécution soignée et coordination chantier.",
-        "<p>Montage de réseaux sprinkler, coordination avec autres corps de métier, conformité aux exigences du chantier.</p>",
-        bullets(["Pose de réseaux sprinkler", "Sous-traitance spécialisée", "Coordination chantier", "Respect des exigences applicables", "Supportage et finitions techniques"]),
+        "<p>Montage de réseaux sprinkler sous eau, sous air ou à préaction, coordination avec les autres corps de métier sur chantier, respect des plans et spécifications techniques du mandant, finitions et supportage conformes aux exigences du projet.</p>",
+        bullets(["Pose de collecteurs, vannes d'alarme et postes de contrôle",
+                 "Raccordements et supportage (dont raccords Victaulic)",
+                 "Sous-traitance spécialisée pour bureaux d'ingénieurs et entreprises générales",
+                 "Coordination chantier avec les autres corps de métier",
+                 "Essais de pression et de débit avant mise en service",
+                 "Finitions techniques et mise en conformité selon plans"]),
         "<p>Bâtiments soumis à des exigences de protection incendie (ERP, hôtels, industriel, logistique), selon obligations applicables.</p>",
         process, ["geneve", "vaud", "valais"], ["ventilation", "depannage-sav"],
         [("Les travaux sprinkler sont-ils réalisés directement ?", "Les interventions sont assurées en sous-traitance spécialisée, selon la nature du projet."),
-         ("Un sprinkler est-il obligatoire ?", "Selon les directives AEAI, certaines catégories de bâtiments peuvent être concernées. Nous pouvons analyser votre situation sur demande.")],
-        gallery_cat="sprinkler")
+         ("Un sprinkler est-il obligatoire ?", "Selon les directives AEAI, certaines catégories de bâtiments peuvent être concernées selon leur classe de risque. Nous pouvons analyser votre situation sur demande.")],
+        gallery_cat="sprinkler",
+        expertise_html="""<p>Nous intervenons en sous-traitance sur des réseaux sprinkler sous eau, sous air ou à préaction : postes de contrôle, vannes d'alarme, collecteurs, supportage et raccords (dont raccords Victaulic).</p>
+<h3>Normes AEAI</h3>
+<p>Les exigences de protection incendie applicables (classes de risque, catégories de bâtiments concernées) sont définies par les directives de l'Association des établissements cantonaux d'assurance incendie (AEAI). Nous exécutons les réseaux selon les plans et spécifications du mandant et du bureau d'ingénieurs en charge du projet.</p>""")
 
     service_page("sanitaire", "Sanitaire",
         PAGE_TITLES["sanitaire"],
         META_DESCRIPTIONS["sanitaire"],
         "Travaux sanitaires et dépannage",
         "Travaux sanitaires, adaptation de réseaux et interventions sur installations existantes en résidentiel et professionnel.",
-        "<p>Fuites, remplacement d'équipements, rénovation de réseaux eau chaude/froide et évacuations.</p>",
-        bullets(["Réseaux eau froide et eau chaude", "Pose de robinetterie et équipements", "Réparation et remise en état", "Recherche de fuites", "Maintenance des installations"]),
+        "<p>Fuite sous évier, dans une chape ou sur une colonne, WC qui fuit ou se bouche, chauffe-eau qui ne chauffe plus ou qui fuit, pression d'eau insuffisante, canalisation bouchée, projet de rénovation de salle de bains.</p>",
+        bullets(["Recherche de fuite non destructive",
+                 "Débouchage de canalisations et d'évacuations",
+                 "Remplacement de robinetterie, WC, chauffe-eau et boilers",
+                 "Réseaux eau froide et eau chaude en cuivre, PER ou multicouche",
+                 "Raccordements pour cuisine et salle de bains",
+                 "Maintenance des installations existantes"]),
         clients, process, ["geneve", "lausanne", "nyon", "fribourg"], ["depannage-sav", "chauffage"],
         [("Intervenez-vous en dépannage sanitaire ?", "Oui, contactez-nous pour décrire le problème et organiser une intervention si faisable."),
          ("Réalisez-vous des rénovations complètes de salle de bain ?", "Contactez-nous pour décrire votre projet et vérifier la faisabilité.")],
-        gallery_cat="sanitaire")
+        gallery_cat="sanitaire",
+        expertise_html="""<p>Nous intervenons sur des réseaux eau froide et eau chaude en cuivre, PER ou multicouche, ainsi que sur les évacuations, la robinetterie et les chauffe-eau / boilers.</p>
+<h3>Recherche de fuite</h3>
+<p>Avant d'ouvrir une chape ou un mur, une recherche de fuite non destructive (contrôle de pression, écoute) permet souvent de localiser précisément le point de fuite et de limiter les travaux de reprise.</p>""")
+
+
+def communes_block(names):
+    pills = "".join(f'<span class="zone-pill">{n}</span>' for n in names)
+    return f'<h3>Communes desservies</h3><p class="section-lead" style="margin-bottom:12px;">Liste non exhaustive — contactez-nous pour toute autre commune du secteur.</p><div class="zone-links">{pills}</div>'
+
+
+SUBSIDY_NOTE = ("<h3>Aides et subventions</h3>"
+    "<p>Le remplacement d'un chauffage à mazout, à gaz ou électrique par une pompe à chaleur peut être subventionné "
+    "dans le cadre du <strong>Programme Bâtiments</strong>, sur <a href=\"https://www.leprogrammebatiments.ch\" target=\"_blank\" rel=\"noopener noreferrer\">leprogrammebatiments.ch</a>. "
+    "{extra} Les barèmes et conditions varient chaque année : nous vous recommandons de déposer votre demande "
+    "auprès du service cantonal de l'énergie <strong>avant le début des travaux</strong>, et de vérifier les montants en vigueur sur le portail officiel. "
+    "Nous pouvons vous accompagner dans cette démarche.</p>")
 
 
 def build_zones():
@@ -1275,54 +1372,78 @@ def build_zones():
         PAGE_TITLES["geneve"],
         META_DESCRIPTIONS["geneve"],
         "Chauffage, ventilation, climatisation et dépannage dans la région de Genève",
-        p("Le canton de Genève présente un parc bâti dense, des immeubles résidentiels, des commerces et des bâtiments tertiaires aux contraintes techniques variées. Nous pouvons prendre en charge des besoins en installation, maintenance et dépannage selon la nature du projet.") +
-        p("Que vous soyez propriétaire, régie ou responsable technique, contactez-nous pour vérifier la disponibilité d'intervention dans votre secteur."),
-        zone_aeo_faq("Genève", "la région de Genève"),
+        p("Le canton de Genève présente un parc bâti dense — immeubles résidentiels, PPE, commerces et bâtiments tertiaires — avec des contraintes techniques variées. Certains quartiers sont raccordés à un réseau de chauffage à distance (dont GeniLac, alimenté par l'eau du lac) ; la loi cantonale sur l'énergie encourage par ailleurs le remplacement des chauffages fossiles par des pompes à chaleur lors de leur renouvellement.") +
+        p("Que vous soyez propriétaire, régie ou responsable technique, contactez-nous pour vérifier la disponibilité d'intervention dans votre secteur.") +
+        communes_block(["Genève", "Vernier", "Lancy", "Meyrin", "Carouge", "Onex", "Thônex", "Plan-les-Ouates", "Veyrier", "Grand-Saconnex", "Chêne-Bougeries", "Confignon"]) +
+        SUBSIDY_NOTE.format(extra="À Genève, les demandes passent par l'Office cantonal de l'énergie (OCEN) et peuvent se combiner avec le programme SIG-éco21 des Services industriels de Genève."),
+        zone_aeo_faq("Genève", "la région de Genève") + [
+            ("Existe-t-il des aides pour rénover le chauffage à Genève ?", "Oui, via le Programme Bâtiments et le programme SIG-éco21 (Services industriels de Genève), sous conditions d'éligibilité et selon le barème en vigueur. Contactez-nous pour évaluer votre projet."),
+        ],
         ["chauffage", "ventilation", "climatisation", "depannage-sav", "sanitaire"], ["vaud", "nyon", "lausanne"])
 
     zone_page("vaud", "Vaud", "le canton de Vaud",
         PAGE_TITLES["vaud"],
         META_DESCRIPTIONS["vaud"],
         "Ventilation, chauffage et climatisation dans le canton de Vaud",
-        p("Le canton de Vaud couvre un territoire étendu, de Lausanne à la région lémanique. Nous intervenons pour des projets d'installation, d'entretien et de dépannage sur différents types de bâtiments.") +
-        p("Pour les communes hors axes principaux, contactez-nous afin de confirmer la faisabilité et la planification."),
-        zone_aeo_faq("Vaud", "le canton de Vaud"),
+        p("Le canton de Vaud couvre un territoire étendu et varié : rives du Léman, agglomérations de Lausanne et Nyon, Riviera vaudoise, Chablais et Nord vaudois jusqu'au pied du Jura. Le bâti va de la villa individuelle à l'immeuble locatif ou à la PPE, avec des besoins très différents selon l'altitude et l'exposition.") +
+        p("Pour les communes hors axes principaux, contactez-nous afin de confirmer la faisabilité et la planification.") +
+        communes_block(["Morges", "Yverdon-les-Bains", "Vevey", "Montreux", "Renens", "Pully", "Rolle", "Aigle", "Payerne", "Echallens", "Cossonay", "Orbe"]) +
+        SUBSIDY_NOTE.format(extra="Dans le canton de Vaud, les demandes sont instruites par la Direction générale de l'environnement (DGE) / Direction de l'énergie."),
+        zone_aeo_faq("Vaud", "le canton de Vaud") + [
+            ("Le canton de Vaud subventionne-t-il les pompes à chaleur ?", "Oui, sous conditions, dans le cadre du Programme Bâtiments géré par la Direction de l'énergie du canton de Vaud. Les certificats de qualité requis (PAC système-module) et les barèmes évoluent chaque année : vérifiez les conditions en vigueur avant de commander votre matériel."),
+        ],
         ["chauffage", "ventilation", "climatisation", "depannage-sav"], ["lausanne", "nyon", "geneve", "fribourg"])
 
     zone_page("lausanne", "Lausanne", "Lausanne et environs",
         PAGE_TITLES["lausanne"],
         META_DESCRIPTIONS["lausanne"],
         "Chauffagiste et CVC à Lausanne et environs",
-        p("L'agglomération lausannoise concentre immeubles résidentiels, bâtiments tertiaires et équipements techniques nécessitant un suivi régulier. Nous intervenons pour l'installation, la maintenance et le dépannage CVC.") +
-        p("Indiquez le quartier ou la commune exacte lors de votre demande pour une réponse adaptée."),
-        zone_aeo_faq("Lausanne", "Lausanne et environs"),
+        p("L'agglomération lausannoise concentre immeubles résidentiels, bâtiments tertiaires et un parc ancien important (quartiers du centre-ville, Sous-Gare, Chailly) qui nécessite souvent une adaptation soignée des installations techniques lors d'une rénovation. Une partie de la ville est desservie par le réseau de chauffage à distance des Services industriels de Lausanne (SiL).") +
+        p("Indiquez le quartier ou la commune exacte lors de votre demande pour une réponse adaptée.") +
+        communes_block(["Renens", "Prilly", "Le Mont-sur-Lausanne", "Épalinges", "Pully", "Chavannes-près-Renens", "Ecublens", "Crissier"]) +
+        SUBSIDY_NOTE.format(extra="Les demandes pour l'agglomération lausannoise sont instruites par la Direction de l'énergie du canton de Vaud."),
+        zone_aeo_faq("Lausanne", "Lausanne et environs") + [
+            ("Mon immeuble est raccordé au chauffage à distance (CAD), intervenez-vous quand même ?", "Oui : nous intervenons sur les sous-stations, la distribution interne (radiateurs, vannes, régulation) et les réseaux sanitaires, même si la production de chaleur est assurée par un réseau CAD."),
+        ],
         ["chauffage", "ventilation", "climatisation", "depannage-sav", "sanitaire"], ["nyon", "vaud", "geneve"])
 
     zone_page("nyon", "Nyon", "la région de Nyon",
         PAGE_TITLES["nyon"],
         META_DESCRIPTIONS["nyon"],
         "Chauffagiste et climatisation dans la région de Nyon",
-        p("La région de Nyon, entre Genève et Lausanne, comprend des zones résidentielles et des activités commerciales. Nous pouvons intervenir pour des projets CVC et des dépannages selon disponibilité.") +
-        p("Contactez-nous en précisant l'adresse et la nature des travaux."),
-        zone_aeo_faq("Nyon", "la région de Nyon"),
+        p("La région de Nyon, entre Genève et Lausanne, combine constructions récentes (villas, PPE neuves autour du lac) et bâti plus ancien dans les villages environnants. C'est une zone de forte croissance résidentielle, avec des standards énergétiques élevés (Minergie) fréquents sur les nouvelles constructions.") +
+        p("Contactez-nous en précisant l'adresse et la nature des travaux.") +
+        communes_block(["Gland", "Rolle", "Prangins", "Founex", "Coppet", "Genolier", "Duillier", "Trélex"]) +
+        SUBSIDY_NOTE.format(extra="La région de Nyon dépend du barème et du guichet du canton de Vaud (Direction de l'énergie)."),
+        zone_aeo_faq("Nyon", "la région de Nyon") + [
+            ("Intervenez-vous sur des bâtiments Minergie récents ?", "Oui. Les constructions Minergie demandent une ventilation mécanique contrôlée bien réglée et un entretien régulier : nous pouvons intervenir sur ces installations comme sur du bâti plus ancien."),
+        ],
         ["climatisation", "chauffage", "ventilation", "sanitaire"], ["geneve", "lausanne", "vaud"])
 
     zone_page("valais", "Valais", "le canton du Valais",
         PAGE_TITLES["valais"],
         META_DESCRIPTIONS["valais"],
         "Ventilation, chauffage et climatisation en Valais",
-        p("Le Valais présente des spécificités climatiques et altitudinales qui influencent les besoins en chauffage et climatisation. Nous intervenons pour des installations et dépannages selon la localisation et la faisabilité.") +
-        p("Contactez-nous avec votre commune pour vérifier la disponibilité d'intervention."),
-        zone_aeo_faq("Valais", "le canton du Valais"),
+        p("Le Valais présente de fortes variations d'altitude — de la plaine du Rhône aux stations de montagne — qui influencent directement le dimensionnement des installations de chauffage. Les résidences secondaires et chalets, souvent inoccupés une partie de l'année, demandent une attention particulière (protection hors gel, remise en service saisonnière).") +
+        p("Contactez-nous avec votre commune pour vérifier la disponibilité d'intervention.") +
+        communes_block(["Sion", "Martigny", "Monthey", "Sierre", "Crans-Montana", "Verbier", "Saint-Maurice", "Conthey"]) +
+        SUBSIDY_NOTE.format(extra="En Valais, les demandes sont instruites par le Service de l'énergie et des forces hydrauliques (SEFH) de l'État du Valais."),
+        zone_aeo_faq("Valais", "le canton du Valais") + [
+            ("Intervenez-vous sur un chalet ou une résidence secondaire ?", "Oui, en tenant compte des contraintes propres à ces logements (occupation partielle, altitude, risque de gel). Précisez l'altitude et le mode d'occupation lors de votre demande."),
+        ],
         ["chauffage", "climatisation", "depannage-sav", "sprinkler-protection-incendie"], ["geneve", "vaud", "fribourg"])
 
     zone_page("fribourg", "Fribourg", "le canton de Fribourg",
         PAGE_TITLES["fribourg"],
         META_DESCRIPTIONS["fribourg"],
         "Chauffage, ventilation et dépannage dans le canton de Fribourg",
-        p("Le canton de Fribourg, à cheval sur les régions linguistiques, compte un parc bâti varié. Nous pouvons prendre en charge des interventions en chauffage, ventilation et dépannage selon la nature du projet.") +
-        p("Précisez la commune et l'urgence de votre demande lors du premier contact."),
-        zone_aeo_faq("Fribourg", "le canton de Fribourg"),
+        p(f"Notre siège est basé à {ADDRESS_LOCALITY}, dans le canton de Fribourg : nous connaissons bien ce territoire à cheval sur les régions linguistiques, qui compte un parc bâti varié entre la ville de Fribourg, les districts de la Glâne, de la Gruyère et de la Broye.") +
+        p("Précisez la commune et l'urgence de votre demande lors du premier contact.") +
+        communes_block(["Fribourg", "Bulle", "Romont", "Châtel-Saint-Denis", "Estavayer-le-Lac", "Domdidier", "Marly", "Villars-sur-Glâne"]) +
+        SUBSIDY_NOTE.format(extra="Dans le canton de Fribourg, les demandes sont instruites par le Service de l'énergie (SdE)."),
+        zone_aeo_faq("Fribourg", "le canton de Fribourg") + [
+            ("Sopjani Tech Sàrl est-elle basée dans le canton de Fribourg ?", f"Oui, notre siège se trouve à {ADDRESS_FULL}, dans le district de la Glâne."),
+        ],
         ["chauffage", "ventilation", "depannage-sav", "sanitaire"], ["vaud", "lausanne", "valais"])
 
 
