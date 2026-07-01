@@ -534,7 +534,7 @@ def header():
         <a href="/contact/">Contact</a>
       </nav>
       <div class="header-cta">
-        <a href="tel:{PHONE}" class="tel-btn track-phone" aria-label="Appeler Sopjani Tech">
+        <a href="tel:{PHONE}" class="tel-btn track-phone">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           {PHONE_DISP}
         </a>
@@ -1158,22 +1158,22 @@ def build_contact():
       <div class="contact-details-section">
         <h2 class="contact-block-title">Coordonnées</h2>
         <div class="contact-methods">
-          <a href="tel:{PHONE}" class="contact-method track-phone" aria-label="Appeler Sopjani Tech">
+          <a href="tel:{PHONE}" class="contact-method track-phone">
             <div><div class="cm-label">Téléphone</div><div class="cm-value">{PHONE_DISP}</div></div>
           </a>
-          <a href="mailto:{EMAIL}" class="contact-method track-email" aria-label="Envoyer un email">
+          <a href="mailto:{EMAIL}" class="contact-method track-email">
             <div><div class="cm-label">Email</div><div class="cm-value">{EMAIL}</div></div>
           </a>
-          <a href="{WA}" class="contact-method track-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contacter via WhatsApp">
+          <a href="{WA}" class="contact-method track-whatsapp" target="_blank" rel="noopener noreferrer">
             <div><div class="cm-label">WhatsApp</div><div class="cm-value">Envoyer un message</div></div>
           </a>
-          <a href="{MAP_URL}" class="contact-method" target="_blank" rel="noopener noreferrer" aria-label="Voir l'adresse sur la carte">
+          <a href="{MAP_URL}" class="contact-method" target="_blank" rel="noopener noreferrer">
             <div><div class="cm-label">Adresse</div><div class="cm-value">{ADDRESS_FULL}</div></div>
           </a>
           <div class="contact-method contact-method--static" aria-label="Horaires">
             <div><div class="cm-label">Horaires</div><div class="cm-value">{HOURS}</div></div>
           </div>
-          <a href="{GOOGLE_BUSINESS_URL}" class="contact-method contact-google-link track-google" target="_blank" rel="noopener noreferrer" aria-label="Voir nos avis sur Google">
+          <a href="{GOOGLE_BUSINESS_URL}" class="contact-method contact-google-link track-google" target="_blank" rel="noopener noreferrer">
             <div><div class="cm-label">Google</div><div class="cm-value">Voir nos avis sur Google</div></div>
           </a>
         </div>
