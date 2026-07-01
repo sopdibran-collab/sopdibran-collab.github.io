@@ -512,12 +512,13 @@ def header():
     return f"""<header>
   <div class="container">
     <div class="header-inner">
-      <a href="/" class="logo-wrap" aria-label="Sopjani Tech Sàrl – Accueil">
-        <img src="/assets/logo.png" alt="Logo Sopjani Tech Sàrl" width="48" height="48" loading="eager">
+      <a href="/" class="logo-wrap">
+        <img src="/assets/logo.png" alt="" width="48" height="48" loading="eager">
         <div>
           <div class="logo-text">SOPJANI TECH</div>
           <div class="logo-sub">Sàrl · Suisse</div>
         </div>
+        <span class="sr-only"> – Accueil</span>
       </a>
       <nav class="nav-main" aria-label="Navigation principale">
         <a href="/">Accueil</a>
