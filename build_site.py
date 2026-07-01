@@ -35,6 +35,9 @@ MAP_URL = "https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+
 MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1481964.3806735645!2d5.895466104411914!3d46.67378415677807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9458f52305e1fe3%3A0x31fd51d876fffe44!2sSopjani-tech%20s%C3%A0rl!5e1!3m2!1sfr!2sch!4v1781214251877!5m2!1sfr!2sch"
 GOOGLE_BUSINESS_URL = "https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7"
 COPYRIGHT_YEAR = 2026
+IMAGE_LICENSE_URL = f"{SITE}/mentions-legales/#propriete-intellectuelle"
+IMAGE_ACQUIRE_LICENSE_URL = f"{SITE}/contact/"
+IMAGE_COPYRIGHT_NOTICE = f"© {COPYRIGHT_YEAR} {COMPANY_NAME}"
 
 META_DESCRIPTIONS = {
     "home": "Sopjani Tech Sàrl : étude, installation et dépannage en chauffage, ventilation, climatisation et sprinkler en Suisse romande. Devis gratuit.",
@@ -270,6 +273,24 @@ REALISATIONS = [
 REALISATIONS_BY_CAT = {}
 for _fn, _w, _h, _alt, _cat, _cap in REALISATIONS:
     REALISATIONS_BY_CAT.setdefault(_cat, []).append((_fn, _w, _h, _alt, _cap))
+
+
+def image_object_ld(fn, w, h, alt, cap):
+    return {
+        "@type": "ImageObject",
+        "contentUrl": f"{SITE}/assets/realisations/{fn}",
+        "url": f"{SITE}/assets/realisations/{fn}",
+        "name": cap,
+        "description": alt,
+        "width": w,
+        "height": h,
+        "creditText": COMPANY_NAME,
+        "creator": {"@type": "Organization", "name": COMPANY_NAME},
+        "copyrightHolder": {"@type": "Organization", "name": COMPANY_NAME},
+        "copyrightNotice": IMAGE_COPYRIGHT_NOTICE,
+        "license": IMAGE_LICENSE_URL,
+        "acquireLicensePage": IMAGE_ACQUIRE_LICENSE_URL,
+    }
 
 
 def gallery_html(images, cols=3):
@@ -1334,8 +1355,9 @@ def build_legal_pages():
     {legal_identity_block()}
     <h3>Hébergement</h3>
     <p>Ce site est hébergé par {HOST_NAME}, {HOST_ADDRESS}.</p>
-    <h3>Propriété intellectuelle</h3>
+    <h3 id="propriete-intellectuelle">Propriété intellectuelle</h3>
     <p>L'ensemble des contenus présents sur ce site (textes, images, graphismes, logo, structure) est la propriété de {COMPANY_NAME} ou de ses partenaires, sauf mention contraire. Toute reproduction, représentation ou diffusion, totale ou partielle, sans autorisation écrite préalable est interdite.</p>
+    <p>Les photographies de réalisations publiées sur ce site sont protégées par le droit d'auteur ({IMAGE_COPYRIGHT_NOTICE}). Pour connaître les conditions d'utilisation, consultez la présente section. Pour demander une autorisation d'utilisation ou obtenir une licence, <a href="{IMAGE_ACQUIRE_LICENSE_URL}">contactez-nous</a>.</p>
     <h3>Limitation de responsabilité</h3>
     <p>{COMPANY_NAME} s'efforce d'assurer l'exactitude des informations publiées sur ce site. Toutefois, elle ne peut garantir l'absence d'erreurs ou d'omissions et décline toute responsabilité pour les dommages directs ou indirects résultant de l'accès ou de l'utilisation du site.</p>
     <p>Les informations techniques et commerciales ne constituent pas une offre contractuelle. Seul un devis ou un contrat signé fait foi.</p>
@@ -1448,18 +1470,7 @@ def build_realisations():
   <img src="/assets/realisations/{fn}" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async">
   <figcaption>{cap}</figcaption>
 </figure>""")
-            image_objects.append({
-                "@type": "ImageObject",
-                "contentUrl": f"{SITE}/assets/realisations/{fn}",
-                "url": f"{SITE}/assets/realisations/{fn}",
-                "name": cap,
-                "description": alt,
-                "width": w,
-                "height": h,
-                "creditText": COMPANY_NAME,
-                "creator": {"@type": "Organization", "name": COMPANY_NAME},
-                "copyrightHolder": {"@type": "Organization", "name": COMPANY_NAME},
-            })
+            image_objects.append(image_object_ld(fn, w, h, alt, cap))
         sections += f"""<section class="content-section" aria-labelledby="real-{cat}">
   <div class="container">
     <span class="label">{label}</span>
@@ -1481,6 +1492,14 @@ def build_realisations():
 </section>
 <div class="section-divider"></div>
 {sections}
+<section class="content-section" aria-labelledby="real-licence">
+  <div class="container prose-block">
+    <h2 class="section-title" id="real-licence" style="font-size:clamp(22px,2.5vw,32px);">Droits sur les images</h2>
+    <p>Les photographies de cette page sont la propriété de {COMPANY_NAME} ({IMAGE_COPYRIGHT_NOTICE}). Crédit photo : {COMPANY_NAME}.</p>
+    <p><a href="{IMAGE_LICENSE_URL}">Conditions d'utilisation des images</a> · <a href="{IMAGE_ACQUIRE_LICENSE_URL}">Demander une autorisation</a></p>
+  </div>
+</section>
+<div class="section-divider"></div>
 {cta_band()}"""
     crumbs = [("Accueil", "/"), ("Réalisations", "/realisations/")]
     title = PAGE_TITLES.get("realisations", "Réalisations CVC, sprinkler et sanitaire | Sopjani Tech Sàrl")
