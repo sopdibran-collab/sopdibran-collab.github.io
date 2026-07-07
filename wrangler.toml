@@ -1,0 +1,13 @@
+# Cloudflare Worker — redirections HTTP 301 pour sopjanitech.ch
+# Déployer : npx wrangler deploy (compte Cloudflare + zone DNS sopjanitech.ch)
+name = "sopjanitech-redirects"
+main = "redirect-worker.mjs"
+compatibility_date = "2024-01-01"
+
+[[routes]]
+pattern = "sopjanitech.ch/*"
+zone_name = "sopjanitech.ch"
+
+[[routes]]
+pattern = "www.sopjanitech.ch/*"
+zone_name = "sopjanitech.ch"

@@ -7,6 +7,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent
 SITE = "https://sopjanitech.ch"
+# Anciennes URLs .html → chemins canoniques (slash final). _redirects = 301 sur Cloudflare/Netlify.
+LEGACY_REDIRECTS = {
+    "prestations.html": "/prestations/",
+    "contact.html": "/contact/",
+    "mentions-legales.html": "/mentions-legales/",
+    "politique-confidentialite.html": "/politique-confidentialite/",
+}
 PHONE = "+41799326862"
 PHONE_DISP = "+41 79 932 68 62"
 EMAIL = "info@sopjanitech.ch"
@@ -1567,19 +1574,78 @@ def build_legal_pages():
     write_page(["politique-confidentialite", "index.html"], page_shell(privacy_title, privacy_desc, privacy_url, privacy_graph, privacy_body, privacy_crumbs))
 
 
-def build_redirect(old_name, new_path):
-    content = f"""<!DOCTYPE html>
-<html lang="fr">
+def canonical_url(path):
+    """URL absolue canonique avec slash final."""
+    if path == "/":
+        return SITE + "/"
+    return SITE + path if path.endswith("/") else SITE + path + "/"
+
+
+def build_legacy_redirect_stubs():
+    """Pages de secours pour GitHub Pages (pas de 301 HTTP natif)."""
+    for old_name, new_path in LEGACY_REDIRECTS.items():
+        target = canonical_url(new_path)
+        content = f"""<!DOCTYPE html>
+<html lang="fr-CH">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0;url={new_path}">
-  <link rel="canonical" href="{SITE}{new_path}">
-  <title>Redirection…</title>
-  <script>location.replace("{new_path}");</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="0;url={target}">
+  <link rel="canonical" href="{target}">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Redirection permanente…</title>
+  <script>location.replace("{target}");</script>
 </head>
-<body><p><a href="{new_path}">Continuer vers la nouvelle page</a></p></body>
+<body><p>Redirection vers <a href="{target}">{target}</a>.</p></body>
 </html>"""
-    (ROOT / old_name).write_text(content, encoding="utf-8")
+        (ROOT / old_name).write_text(content, encoding="utf-8")
+
+
+def build_redirects_file():
+    """Vraies redirections HTTP 301 (Cloudflare Pages, Netlify)."""
+    lines = [
+        "# Généré par build_site.py — redirections 301 côté serveur",
+        "",
+    ]
+    for old_name, new_path in LEGACY_REDIRECTS.items():
+        lines.append(f"/{old_name} {new_path} 301")
+    lines.append(f"https://www.sopjanitech.ch/* {SITE}/:splat 301")
+    (ROOT / "_redirects").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def build_nojekyll():
+    """Évite que Jekyll ignore des fichiers/dossiers (ex. _redirects)."""
+    (ROOT / ".nojekyll").write_text("", encoding="utf-8")
+
+
+def build_cloudflare_worker():
+    """Worker Cloudflare : vraies redirections HTTP 301 devant GitHub Pages."""
+    redirects = {f"/{old_name}": new_path for old_name, new_path in LEGACY_REDIRECTS.items()}
+    redirects_js = json.dumps(redirects, indent=2, ensure_ascii=False)
+    content = f"""/**
+ * Redirections HTTP 301 — généré par build_site.py
+ * Déploiement (une fois) : npx wrangler deploy
+ * Prérequis : domaine sopjanitech.ch géré par Cloudflare (DNS proxy activé).
+ */
+const REDIRECTS = {redirects_js};
+const APEX_HOST = "sopjanitech.ch";
+
+export default {{
+  async fetch(request) {{
+    const url = new URL(request.url);
+    if (url.hostname === `www.${{APEX_HOST}}`) {{
+      url.hostname = APEX_HOST;
+      return Response.redirect(url.toString(), 301);
+    }}
+    const dest = REDIRECTS[url.pathname];
+    if (dest) {{
+      return Response.redirect(`${{url.origin}}${{dest}}`, 301);
+    }}
+    return fetch(request);
+  }},
+}};
+"""
+    (ROOT / "redirect-worker.mjs").write_text(content, encoding="utf-8")
 
 
 def build_realisations():
@@ -1930,10 +1996,10 @@ def main():
     build_realisations()
     build_sitemap_page()
     build_legal_pages()
-    build_redirect("prestations.html", "/prestations/")
-    build_redirect("contact.html", "/contact/")
-    build_redirect("mentions-legales.html", "/mentions-legales/")
-    build_redirect("politique-confidentialite.html", "/politique-confidentialite/")
+    build_legacy_redirect_stubs()
+    build_redirects_file()
+    build_cloudflare_worker()
+    build_nojekyll()
     build_sitemap()
     build_robots()
     print("Site generated successfully.")
