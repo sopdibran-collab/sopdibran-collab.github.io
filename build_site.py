@@ -36,24 +36,28 @@ MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1481964.38067
 GOOGLE_BUSINESS_URL = "https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7"
 COPYRIGHT_YEAR = 2026
 
+CVCS_GROUP = "Chauffage, Ventilation, Climatisation, Sanitaire"
+CVCS_PROSE = "chauffage, ventilation, climatisation et sanitaire"
+CVCS_ALL_PROSE = "chauffage, ventilation, climatisation, sanitaire, dépannage SAV et sprinkler"
+
 META_DESCRIPTIONS = {
-    "home": "Sopjani Tech Sàrl : étude, installation et dépannage en chauffage, ventilation, climatisation et sprinkler en Suisse romande. Devis gratuit.",
-    "prestations": "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler et sanitaire en Suisse romande. Découvrez toutes les prestations CVC de Sopjani Tech Sàrl.",
+    "home": f"Sopjani Tech Sàrl : étude, installation et dépannage en {CVCS_PROSE} en Suisse romande. Devis gratuit.",
+    "prestations": f"{CVCS_GROUP}, dépannage SAV et sprinkler en Suisse romande. Découvrez toutes les prestations CVC de Sopjani Tech Sàrl.",
     "zones-intervention": f"{COMPANY_NAME} intervient près de vous en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais, Fribourg. Siège à {ADDRESS_LOCALITY}.",
-    "a-propos": f"{COMPANY_NAME}, entreprise CVC basée à {ADDRESS_FULL}. Chauffage, ventilation, climatisation, sprinkler et dépannage en Suisse romande.",
+    "a-propos": f"{COMPANY_NAME}, entreprise CVC basée à {ADDRESS_FULL}. {CVCS_GROUP}, sprinkler et dépannage en Suisse romande.",
     "contact": f"Devis gratuit et dépannage CVC urgent. {COMPANY_NAME} — {PHONE_DISP} · {EMAIL} · {ADDRESS_FULL}.",
-    "depannage-sav": f"Dépannage chauffage, climatisation et ventilation en Suisse romande. Urgence : appelez le {PHONE_DISP}.",
+    "depannage-sav": f"Dépannage en {CVCS_PROSE} en Suisse romande. Urgence : appelez le {PHONE_DISP}.",
     "chauffage": "Chauffagiste en Suisse romande : installation, entretien et dépannage. Pompes à chaleur et chaudières. Devis gratuit.",
     "ventilation": "Entreprise de ventilation en Suisse romande. VMC, traitement de l'air, dépannage et maintenance.",
     "climatisation": "Climatisation et installation près de vous en Suisse romande. Étude, pose et dépannage. Devis gratuit.",
     "sprinkler-protection-incendie": "Installation de réseaux sprinkler en sous-traitance en Suisse romande. Protection incendie pour ERP et bâtiments industriels.",
-    "sanitaire": "Travaux sanitaires et dépannage en Suisse romande. Réseaux eau chaude/froide, fuites et rénovations.",
-    "geneve": "Installation et dépannage CVC dans la région de Genève. Chauffage, ventilation, climatisation et sprinkler pour bâtiments résidentiels et professionnels.",
-    "vaud": "Entreprise de ventilation, chauffage et climatisation dans le canton de Vaud. Lausanne, Nyon et environs.",
-    "lausanne": "Installation et dépannage CVC à Lausanne et environs. Chauffage, ventilation, climatisation et maintenance en Suisse romande.",
-    "nyon": "Chauffagiste, climatisation et ventilation à Nyon et environs. Devis et dépannage CVC par Sopjani Tech Sàrl.",
-    "valais": "Entreprise de ventilation et chauffage en Valais. Installation et dépannage CVC selon votre commune.",
-    "fribourg": "Installation et dépannage CVC dans le canton de Fribourg. Chauffage, ventilation et maintenance pour bâtiments résidentiels et professionnels.",
+    "sanitaire": "Installations et dépannages sanitaires en Suisse romande. Réseaux eau chaude/froide, fuites, chauffe-eau et rénovations.",
+    "geneve": f"Installation et dépannage CVC dans la région de Genève. {CVCS_GROUP} et sprinkler pour bâtiments résidentiels et professionnels.",
+    "vaud": f"Entreprise CVC dans le canton de Vaud : {CVCS_PROSE}. Lausanne, Nyon et environs.",
+    "lausanne": f"Installation et dépannage CVC à Lausanne et environs. {CVCS_GROUP} et maintenance en Suisse romande.",
+    "nyon": f"CVC à Nyon et environs : {CVCS_PROSE}. Devis et dépannage par Sopjani Tech Sàrl.",
+    "valais": f"Entreprise CVC en Valais : {CVCS_PROSE}. Installation et dépannage selon votre commune.",
+    "fribourg": f"Installation et dépannage CVC dans le canton de Fribourg. {CVCS_GROUP} et maintenance pour bâtiments résidentiels et professionnels.",
     "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
     "plan-du-site": "Plan du site Sopjani Tech Sàrl : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
@@ -61,24 +65,24 @@ META_DESCRIPTIONS = {
 }
 
 PAGE_TITLES = {
-    "home": "Sopjani Tech Sàrl | Chauffage, ventilation, climatisation et dépannage en Suisse romande",
+    "home": f"Sopjani Tech Sàrl | {CVCS_GROUP} et dépannage en Suisse romande",
     "a-propos": "Sopjani Tech Sàrl | Entreprise CVC à Romont, Suisse romande",
     "contact": "Devis et dépannage CVC | Contact | Sopjani Tech Sàrl",
-    "prestations": "Prestations CVC | Chauffage, ventilation, climatisation | Sopjani Tech Sàrl",
+    "prestations": f"Prestations CVC | {CVCS_GROUP} | Sopjani Tech Sàrl",
     "zones-intervention": "Zones d'intervention CVC | Suisse romande | Sopjani Tech Sàrl",
     "plan-du-site": "Plan du site | Sopjani Tech Sàrl",
     "chauffage": "Chauffagiste Suisse romande | Installation et dépannage | Sopjani Tech Sàrl",
     "ventilation": "Entreprise ventilation Suisse romande | Sopjani Tech Sàrl",
     "climatisation": "Climatisation et installation | Sopjani Tech Sàrl",
-    "depannage-sav": "Dépannage chauffage et climatisation | Urgence CVC | Sopjani Tech Sàrl",
+    "depannage-sav": f"Dépannage {CVCS_PROSE} | Urgence CVC | Sopjani Tech Sàrl",
     "sanitaire": "Sanitaire | Travaux et dépannage | Sopjani Tech Sàrl",
     "sprinkler-protection-incendie": "Sprinkler et protection incendie | Sopjani Tech Sàrl",
-    "geneve": "Chauffage et climatisation Genève | Sopjani Tech Sàrl",
-    "vaud": "Ventilation et climatisation Vaud | Entreprise CVC | Sopjani Tech Sàrl",
-    "lausanne": "Chauffagiste et CVC Lausanne | Sopjani Tech Sàrl",
-    "nyon": "Chauffagiste et climatisation Nyon | Sopjani Tech Sàrl",
-    "valais": "Entreprise ventilation Valais | Chauffage & CVC | Sopjani Tech Sàrl",
-    "fribourg": "Dépannage CVC Fribourg | Sopjani Tech Sàrl",
+    "geneve": f"{CVCS_GROUP} Genève | Sopjani Tech Sàrl",
+    "vaud": f"CVC Vaud | {CVCS_GROUP} | Sopjani Tech Sàrl",
+    "lausanne": f"CVC Lausanne | {CVCS_GROUP} | Sopjani Tech Sàrl",
+    "nyon": f"CVC Nyon | {CVCS_GROUP} | Sopjani Tech Sàrl",
+    "valais": f"Entreprise CVC Valais | {CVCS_GROUP} | Sopjani Tech Sàrl",
+    "fribourg": f"CVC Fribourg | {CVCS_GROUP} | Sopjani Tech Sàrl",
     "realisations": "Réalisations CVC, sprinkler et sanitaire | Sopjani Tech Sàrl",
 }
 
@@ -86,9 +90,9 @@ SERVICES = [
     ("chauffage", "Chauffage", "Installation, entretien et dépannage de systèmes de chauffage."),
     ("ventilation", "Ventilation", "Ventilation et traitement de l'air pour bâtiments."),
     ("climatisation", "Climatisation", "Étude et installation de systèmes de climatisation."),
+    ("sanitaire", "Sanitaire", "Installations sanitaires, dépannage et rénovations en Suisse romande."),
     ("depannage-sav", "Dépannage SAV", "Maintenance et dépannage de vos installations CVC."),
     ("sprinkler-protection-incendie", "Sprinkler / protection incendie", "Réseaux sprinkler en sous-traitance spécialisée."),
-    ("sanitaire", "Sanitaire", "Travaux sanitaires et interventions sur réseaux existants."),
 ]
 
 ZONES = [
@@ -105,7 +109,7 @@ ORG_SCHEMA = {
     "@id": f"{SITE}/#organization",
     "name": "Sopjani Tech Sàrl",
     "url": SITE,
-    "description": "Chauffage, ventilation, climatisation, dépannage SAV et sprinkler en Suisse romande.",
+    "description": f"{CVCS_GROUP}, dépannage SAV et sprinkler en Suisse romande.",
     "telephone": PHONE,
     "email": EMAIL,
     "address": {
@@ -155,7 +159,7 @@ WEBSITE_SCHEMA = {
     "@id": f"{SITE}/#website",
     "url": SITE,
     "name": "Sopjani Tech Sàrl",
-    "description": "Chauffage, ventilation, climatisation et dépannage en Suisse romande.",
+    "description": f"{CVCS_GROUP} et dépannage en Suisse romande.",
     "publisher": {"@id": f"{SITE}/#organization"},
     "inLanguage": "fr-CH",
     "potentialAction": {
@@ -166,11 +170,11 @@ WEBSITE_SCHEMA = {
 }
 
 QUI_SOMMES_NOUS_HTML = """
-<p>Sopjani Tech Sàrl est une entreprise active dans les domaines du chauffage, de la ventilation, de la climatisation, du dépannage SAV et du sprinkler / protection incendie en Suisse romande.</p>
+<p>Sopjani Tech Sàrl est une entreprise active dans les domaines du chauffage, de la ventilation, de la climatisation, du sanitaire, du dépannage SAV et du sprinkler / protection incendie en Suisse romande.</p>
 <p>Nous accompagnons nos clients avec une approche simple : comprendre le besoin, proposer une solution adaptée et intervenir avec sérieux selon la nature de la demande.</p>
 <p>Nous intervenons principalement à Genève, dans le canton de Vaud, à Lausanne, à Nyon, ainsi qu'en Valais et à Fribourg. Pour d'autres secteurs en Suisse romande, la possibilité d'intervention peut être étudiée selon le projet.</p>
 <p>Notre activité couvre différents besoins techniques, qu'il s'agisse d'installation, de maintenance ou de dépannage. Nous accordons une attention particulière à la clarté des échanges, à la réactivité et à l'adaptation aux contraintes du terrain.</p>
-<p>Vous avez une demande en chauffage, ventilation, climatisation ou dépannage SAV ? <a href="/contact/">Contactez-nous</a> pour échanger sur votre besoin et vérifier la disponibilité d'intervention dans votre zone.</p>
+<p>Vous avez une demande en {CVCS_PROSE} ou en dépannage SAV ? <a href="/contact/">Contactez-nous</a> pour échanger sur votre besoin et vérifier la disponibilité d'intervention dans votre zone.</p>
 """
 
 HOME_ABOUT_TEASER = """
@@ -231,7 +235,7 @@ def urgence_band():
   <div class="container urgence-band__inner">
     <div>
       <p class="urgence-band__label">Dépannage urgent</p>
-      <p class="urgence-band__text">Panne de chauffage, climatisation ou ventilation ? Contactez-nous pour évaluer la situation et la disponibilité d'intervention.</p>
+      <p class="urgence-band__text">Panne de {CVCS_PROSE} ? Contactez-nous pour évaluer la situation et la disponibilité d'intervention.</p>
     </div>
     <div class="urgence-band__actions">
       <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
@@ -246,7 +250,7 @@ def zone_aeo_faq(name, region):
     return [
         (f"Qui appeler pour un dépannage CVC à {name} ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp. Indiquez votre commune, le type de bâtiment et la nature de la panne."),
         (f"Intervenez-vous pour la ventilation dans {region} ?", f"Oui, nous réalisons installation, maintenance et dépannage de ventilation dans {region}, selon faisabilité et planning."),
-        (f"Proposez-vous la climatisation et le chauffage à {name} ?", "Oui. Étude, installation, entretien et dépannage en chauffage, climatisation et ventilation selon votre projet."),
+        (f"Proposez-vous le chauffage, la ventilation et la climatisation à {name} ?", f"Oui. Étude, installation, entretien et dépannage en {CVCS_PROSE} selon votre projet."),
         (f"Comment obtenir un devis à {name} ?", "Via notre page contact ou par téléphone : décrivez le bâtiment, la localisation exacte et le type de travaux (installation, maintenance ou dépannage)."),
     ]
 
@@ -583,7 +587,7 @@ def footer():
           <a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google</a>
         </nav>
       </div>
-      <p class="footer-seo">Chauffage · Ventilation · Climatisation · Dépannage SAV · Sprinkler · Sanitaire · Suisse romande</p>
+      <p class="footer-seo">{CVCS_GROUP} · Dépannage SAV · Sprinkler · Suisse romande</p>
     </div>
   </div>
 </footer>"""
@@ -799,7 +803,7 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
     <span class="label">Zone d'intervention</span>
     <div class="rule"></div>
     <h1 id="page-h1">{h1}</h1>
-    <p class="hero-sub">Sopjani Tech Sàrl intervient dans {region} pour vos projets et dépannages en chauffage, ventilation, climatisation et installations techniques. Contactez-nous pour vérifier la disponibilité selon votre localisation.</p>
+    <p class="hero-sub">Sopjani Tech Sàrl intervient dans {region} pour vos projets et dépannages en {CVCS_PROSE}. Contactez-nous pour vérifier la disponibilité selon votre localisation.</p>
     <div class="hero-ctas" style="margin-top:24px;">
       <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
       <a href="/contact/" class="btn btn-secondary track-devis">Demander un devis</a>
@@ -844,7 +848,7 @@ def build_home():
     )
     zone_pills = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES)
     faq = [
-        ("Quels services proposez-vous ?", "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler en sous-traitance et sanitaire. Consultez nos pages prestations pour le détail."),
+        ("Quels services proposez-vous ?", f"{CVCS_GROUP}, ainsi que dépannage SAV et sprinkler en sous-traitance. Consultez nos pages prestations pour le détail."),
         ("Dans quelles zones intervenez-vous ?", f"Principalement en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à {ADDRESS_LOCALITY}. D'autres cantons peuvent être couverts selon la nature du projet."),
         ("Comment obtenir un devis ?", "Via notre page contact ou par téléphone : décrivez le type de bâtiment, la localisation et la nature du besoin."),
         ("Intervenez-vous en dépannage ?", "Oui. Contactez-nous pour évaluer votre situation. La disponibilité dépend de la nature de la panne et du secteur."),
@@ -858,8 +862,8 @@ def build_home():
     <div class="hero-grid">
       <div class="hero-content">
         <div class="hero-eyebrow"><span class="label">Étude · Installation · Maintenance · Dépannage</span></div>
-        <h1 id="hero-h1">Chauffage, ventilation, climatisation et dépannage en Suisse romande</h1>
-        <p class="hero-sub">Installation, maintenance et dépannage CVC pour bâtiments résidentiels, tertiaires et industriels en Suisse romande.</p>
+        <h1 id="hero-h1">{CVCS_GROUP} et dépannage en Suisse romande</h1>
+        <p class="hero-sub">Installation, maintenance et dépannage en {CVCS_PROSE} pour bâtiments résidentiels, tertiaires et industriels en Suisse romande.</p>
         <div class="hero-ctas">
           <a href="tel:{PHONE}" class="btn btn-primary track-phone">Appeler · {PHONE_DISP}</a>
           <a href="/contact/" class="btn btn-secondary track-devis">Demander un devis</a>
@@ -926,7 +930,7 @@ def build_home():
     <span class="label">Chantiers</span>
     <div class="rule"></div>
     <h2 class="section-title" id="real-title">Réalisations récentes</h2>
-    <p class="section-lead" style="margin-top:16px;">Aperçu de nos interventions en sprinkler, ventilation et sanitaire en Suisse romande.</p>
+    <p class="section-lead" style="margin-top:16px;">Aperçu de nos interventions en ventilation, sanitaire et sprinkler en Suisse romande.</p>
     {gallery_html([("sprinkler-collecteur-rouges.jpg", 1280, 720, "Centrale sprinkler sous eau avec tuyauterie rouge et vannes en local technique, par Sopjani Tech Sàrl", "Centrale sprinkler sous eau"), ("ventilation-conduit-galvanise-chantier.jpg", 1280, 720, "Conduit de ventilation en acier galvanisé installé sur chantier par Sopjani Tech Sàrl", "Conduit de ventilation galvanisé"), ("tuyauterie-fabrication-atelier.jpg", 720, 1280, "Fabrication d'un assemblage de tuyauterie en atelier par Sopjani Tech Sàrl", "Fabrication de tuyauterie en atelier")], cols=3)}
     <p style="margin-top:24px;"><a href="/realisations/" class="text-link">Voir toutes nos réalisations →</a></p>
   </div>
@@ -947,7 +951,7 @@ def build_home():
 
 def build_prestations():
     faq = [
-        ("Quelles prestations CVC proposez-vous ?", "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler en sous-traitance et sanitaire."),
+        ("Quelles prestations CVC proposez-vous ?", f"{CVCS_GROUP}, ainsi que dépannage SAV et sprinkler en sous-traitance."),
         ("Comment choisir la bonne prestation ?", "Décrivez votre bâtiment et votre besoin via notre page contact : nous vous orienterons vers la prestation adaptée."),
         ("Intervenez-vous en Suisse romande ?", f"Oui, principalement à Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à {ADDRESS_LOCALITY}."),
     ]
@@ -957,7 +961,7 @@ def build_prestations():
   <div class="container">
     <span class="label">Prestations</span>
     <div class="rule"></div>
-    <h1 id="page-h1">Nos prestations en chauffage, ventilation et climatisation</h1>
+    <h1 id="page-h1">Nos prestations en {CVCS_PROSE}</h1>
     <p class="hero-sub">Sopjani Tech Sàrl conçoit, installe, entretient et dépanne vos installations techniques en Suisse romande.</p>
   </div>
 </section>
@@ -1027,8 +1031,8 @@ def build_zones_hub():
 
 def build_about():
     faq = [
-        (f"Où est située {COMPANY_NAME} ?", f"Notre siège est à {ADDRESS_FULL}. Nous intervenons en Suisse romande pour le chauffage, la ventilation, la climatisation et le dépannage CVC."),
-        ("Quels services propose l'entreprise ?", "Chauffage, ventilation, climatisation, dépannage SAV, sprinkler en sous-traitance et sanitaire."),
+        (f"Où est située {COMPANY_NAME} ?", f"Notre siège est à {ADDRESS_FULL}. Nous intervenons en Suisse romande pour le {CVCS_PROSE} et le dépannage CVC."),
+        ("Quels services propose l'entreprise ?", f"{CVCS_GROUP}, ainsi que dépannage SAV et sprinkler en sous-traitance."),
         ("Comment contacter Sopjani Tech Sàrl ?", f"Par téléphone au {PHONE_DISP}, par email ({EMAIL}) ou via WhatsApp. Horaires : {HOURS}."),
     ]
     body = f"""
@@ -1037,7 +1041,7 @@ def build_about():
     <span class="label">Entreprise</span>
     <div class="rule"></div>
     <h1 id="page-h1">À propos de Sopjani Tech Sàrl</h1>
-    <p class="hero-sub">Entreprise technique spécialisée en chauffage, ventilation, climatisation, sanitaire, sprinkler et dépannage en Suisse romande.</p>
+    <p class="hero-sub">Entreprise technique spécialisée en {CVCS_ALL_PROSE} en Suisse romande.</p>
   </div>
 </section>
 <div class="section-divider"></div>
@@ -1175,7 +1179,7 @@ def build_services():
         "Nous prenons en charge vos besoins en chauffage, de l'étude à la maintenance, pour assurer le confort thermique et la fiabilité de vos installations.",
         "<p>Pannes de chauffage, baisse de rendement, remplacement d'équipement, rénovation de réseaux ou mise en service de nouvelles installations.</p>",
         bullets(["Étude et dimensionnement", "Installation de chaudières et pompes à chaleur", "Entretien et maintenance", "Dépannage et remise en service", "Rénovation de réseaux existants"]),
-        clients, process, ["geneve", "lausanne", "vaud", "valais", "fribourg"], ["ventilation", "climatisation", "depannage-sav"],
+        clients, process, ["geneve", "lausanne", "vaud", "valais", "fribourg"], ["ventilation", "climatisation", "sanitaire", "depannage-sav"],
         [("Intervenez-vous en dépannage chauffage ?", "Oui. Contactez-nous pour évaluer la situation. La disponibilité dépend du secteur et de la nature de la panne."),
          ("Proposez-vous des contrats d'entretien ?", "Oui. Contactez-nous pour discuter des options adaptées à votre installation."),
          ("Qui appeler pour un chauffagiste en Suisse romande ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP} ou via notre page contact."),
@@ -1188,7 +1192,7 @@ def build_services():
         "Mise en place et suivi de systèmes de ventilation pour le confort, la qualité de l'air et la maîtrise énergétique de votre bâtiment.",
         "<p>Qualité d'air insuffisante, dysfonctionnements VMC, besoin de renouvellement d'air ou rénovation de réseaux existants.</p>",
         bullets(["Conception et dimensionnement", "Installation de gaines et équipements", "Réglages et mise en service", "Maintenance et contrôles", "Réhabilitation de réseaux"]),
-        clients, process, ["geneve", "lausanne", "nyon", "vaud"], ["chauffage", "climatisation", "depannage-sav"],
+        clients, process, ["geneve", "lausanne", "nyon", "vaud"], ["chauffage", "climatisation", "sanitaire", "depannage-sav"],
         [("Réalisez-vous des travaux de rénovation de ventilation ?", "Oui. Nous évaluons l'existant et proposons une solution adaptée au bâtiment et au budget."),
          ("Comment obtenir un devis ventilation ?", "Contactez-nous avec le type de bâtiment, la surface et l'état des installations existantes."),
          ("Quelle entreprise de ventilation contacter en Suisse romande ?", f"{COMPANY_NAME} intervient pour l'installation, la maintenance et le dépannage de ventilation."),
@@ -1202,7 +1206,7 @@ def build_services():
         "Nous réalisons l'étude et l'installation de systèmes de climatisation adaptés aux besoins des particuliers et des professionnels.",
         "<p>Besoin de confort estival, remplacement d'installation, extension ou dépannage de système existant.</p>",
         bullets(["Dimensionnement des besoins", "Installation et raccordements", "Mise en service et réglages", "Maintenance périodique", "Dépannage"]),
-        clients, process, ["geneve", "nyon", "lausanne", "valais"], ["ventilation", "chauffage", "depannage-sav"],
+        clients, process, ["geneve", "nyon", "lausanne", "valais"], ["chauffage", "ventilation", "sanitaire", "depannage-sav"],
         [("Quels types de bâtiments équipez-vous ?", "Résidentiel et tertiaire selon faisabilité."),
          ("Intervenez-vous en dépannage climatisation ?", "Oui, contactez-nous pour diagnostiquer votre installation."),
          ("Installez-vous la climatisation près de chez moi ?", f"Nous intervenons en Suisse romande depuis {ADDRESS_LOCALITY}. Contactez-nous avec votre commune."),
@@ -1213,12 +1217,12 @@ def build_services():
         META_DESCRIPTIONS["depannage-sav"],
         "Dépannage et maintenance (SAV) de vos installations CVC",
         "Intervention sur vos installations en panne ou en fin de vie, avec une approche orientée remise en service et fiabilisation.",
-        "<p>Panne de chauffage, ventilation ou climatisation, fuite, dysfonctionnement ou besoin de maintenance préventive.</p>",
+        "<p>Panne de chauffage, ventilation, climatisation ou sanitaire, fuite, dysfonctionnement ou besoin de maintenance préventive.</p>",
         bullets(["Diagnostic de panne", "Intervention corrective", "Maintenance préventive", "Contrats d'entretien", "Optimisation des réglages"]),
-        clients, process, ["geneve", "lausanne", "fribourg", "vaud", "valais"], ["chauffage", "ventilation", "sanitaire"],
+        clients, process, ["geneve", "lausanne", "fribourg", "vaud", "valais"], ["chauffage", "ventilation", "climatisation", "sanitaire"],
         [("Comment signaler une urgence ?", f"Appelez le {PHONE_DISP} ou contactez-nous via WhatsApp en décrivant la situation."),
          ("Quel délai d'intervention ?", "La disponibilité dépend de la nature de la panne et du secteur. Nous évaluons chaque demande au cas par cas."),
-         ("Qui appeler pour un dépannage chauffage ou climatisation ?", f"{COMPANY_NAME} au {PHONE_DISP}. Indiquez votre adresse et le type de panne."),
+         ("Qui appeler pour un dépannage CVC ?", f"{COMPANY_NAME} au {PHONE_DISP}. Indiquez votre adresse et le type de panne."),
          ("Intervenez-vous le week-end ?", f"Contactez-nous par téléphone ({PHONE_DISP}) : nous évaluons chaque demande selon l'urgence et la disponibilité.")],
         show_urgence=True)
 
@@ -1230,7 +1234,7 @@ def build_services():
         "<p>Montage de réseaux sprinkler, coordination avec autres corps de métier, conformité aux exigences du chantier.</p>",
         bullets(["Pose de réseaux sprinkler", "Sous-traitance spécialisée", "Coordination chantier", "Respect des exigences applicables", "Supportage et finitions techniques"]),
         "<p>Bâtiments soumis à des exigences de protection incendie (ERP, hôtels, industriel, logistique), selon obligations applicables.</p>",
-        process, ["geneve", "vaud", "valais"], ["ventilation", "depannage-sav"],
+        process, ["geneve", "vaud", "valais"], ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
         [("Les travaux sprinkler sont-ils réalisés directement ?", "Les interventions sont assurées en sous-traitance spécialisée, selon la nature du projet."),
          ("Un sprinkler est-il obligatoire ?", "Selon les directives AEAI, certaines catégories de bâtiments peuvent être concernées. Nous pouvons analyser votre situation sur demande.")],
         gallery_cat="sprinkler")
@@ -1238,13 +1242,23 @@ def build_services():
     service_page("sanitaire", "Sanitaire",
         PAGE_TITLES["sanitaire"],
         META_DESCRIPTIONS["sanitaire"],
-        "Travaux sanitaires et dépannage",
-        "Travaux sanitaires, adaptation de réseaux et interventions sur installations existantes en résidentiel et professionnel.",
-        "<p>Fuites, remplacement d'équipements, rénovation de réseaux eau chaude/froide et évacuations.</p>",
-        bullets(["Réseaux eau froide et eau chaude", "Pose de robinetterie et équipements", "Réparation et remise en état", "Recherche de fuites", "Maintenance des installations"]),
-        clients, process, ["geneve", "lausanne", "nyon", "fribourg"], ["depannage-sav", "chauffage"],
-        [("Intervenez-vous en dépannage sanitaire ?", "Oui, contactez-nous pour décrire le problème et organiser une intervention si faisable."),
-         ("Réalisez-vous des rénovations complètes de salle de bain ?", "Contactez-nous pour décrire votre projet et vérifier la faisabilité.")],
+        "Sanitaire",
+        f"{COMPANY_NAME} intervient également pour vos installations et dépannages sanitaires en Suisse romande.",
+        "<p>Fuites, remplacement d'appareils sanitaires, rénovation de réseaux eau chaude/froide, évacuations ou mise en service de chauffe-eau.</p>",
+        bullets([
+            "Étude et dimensionnement des installations sanitaires",
+            "Installation des réseaux d'eau froide, d'eau chaude et d'évacuation",
+            "Pose et remplacement d'appareils sanitaires et de robinetterie",
+            "Installation et entretien chauffe-eau",
+            "Recherche de fuites et réparation de conduites",
+            "Débouchage des évacuations",
+            "SAV, dépannage et remise en service",
+            "Accompagnement pour les rénovations et transformations sanitaires",
+        ]),
+        clients, process, ["geneve", "lausanne", "nyon", "fribourg", "vaud"], ["chauffage", "ventilation", "climatisation", "depannage-sav"],
+        [("Intervenez-vous en dépannage sanitaire ?", f"Oui. Contactez-nous au {PHONE_DISP} pour décrire le problème et organiser une intervention si faisable."),
+         ("Réalisez-vous des rénovations complètes de salle de bain ?", "Oui. Contactez-nous pour décrire votre projet et vérifier la faisabilité."),
+         ("Comment obtenir un devis sanitaire ?", "Via notre page contact ou par téléphone : précisez le type de bâtiment, la localisation et la nature des travaux.")],
         gallery_cat="sanitaire")
 
 
@@ -1253,56 +1267,56 @@ def build_zones():
     zone_page("geneve", "Genève", "la région de Genève",
         PAGE_TITLES["geneve"],
         META_DESCRIPTIONS["geneve"],
-        "Chauffage, ventilation, climatisation et dépannage dans la région de Genève",
+        "Chauffage, Ventilation, Climatisation et Sanitaire dans la région de Genève",
         p("Le canton de Genève présente un parc bâti dense, des immeubles résidentiels, des commerces et des bâtiments tertiaires aux contraintes techniques variées. Nous pouvons prendre en charge des besoins en installation, maintenance et dépannage selon la nature du projet.") +
         p("Que vous soyez propriétaire, régie ou responsable technique, contactez-nous pour vérifier la disponibilité d'intervention dans votre secteur."),
         zone_aeo_faq("Genève", "la région de Genève"),
-        ["chauffage", "ventilation", "climatisation", "depannage-sav", "sanitaire"], ["vaud", "nyon", "lausanne"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "nyon", "lausanne"])
 
     zone_page("vaud", "Vaud", "le canton de Vaud",
         PAGE_TITLES["vaud"],
         META_DESCRIPTIONS["vaud"],
-        "Ventilation, chauffage et climatisation dans le canton de Vaud",
+        f"{CVCS_GROUP} dans le canton de Vaud",
         p("Le canton de Vaud couvre un territoire étendu, de Lausanne à la région lémanique. Nous intervenons pour des projets d'installation, d'entretien et de dépannage sur différents types de bâtiments.") +
         p("Pour les communes hors axes principaux, contactez-nous afin de confirmer la faisabilité et la planification."),
         zone_aeo_faq("Vaud", "le canton de Vaud"),
-        ["chauffage", "ventilation", "climatisation", "depannage-sav"], ["lausanne", "nyon", "geneve", "fribourg"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["lausanne", "nyon", "geneve", "fribourg"])
 
     zone_page("lausanne", "Lausanne", "Lausanne et environs",
         PAGE_TITLES["lausanne"],
         META_DESCRIPTIONS["lausanne"],
-        "Chauffagiste et CVC à Lausanne et environs",
+        f"{CVCS_GROUP} à Lausanne et environs",
         p("L'agglomération lausannoise concentre immeubles résidentiels, bâtiments tertiaires et équipements techniques nécessitant un suivi régulier. Nous intervenons pour l'installation, la maintenance et le dépannage CVC.") +
         p("Indiquez le quartier ou la commune exacte lors de votre demande pour une réponse adaptée."),
         zone_aeo_faq("Lausanne", "Lausanne et environs"),
-        ["chauffage", "ventilation", "climatisation", "depannage-sav", "sanitaire"], ["nyon", "vaud", "geneve"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["nyon", "vaud", "geneve"])
 
     zone_page("nyon", "Nyon", "la région de Nyon",
         PAGE_TITLES["nyon"],
         META_DESCRIPTIONS["nyon"],
-        "Chauffagiste et climatisation dans la région de Nyon",
+        f"{CVCS_GROUP} dans la région de Nyon",
         p("La région de Nyon, entre Genève et Lausanne, comprend des zones résidentielles et des activités commerciales. Nous pouvons intervenir pour des projets CVC et des dépannages selon disponibilité.") +
         p("Contactez-nous en précisant l'adresse et la nature des travaux."),
         zone_aeo_faq("Nyon", "la région de Nyon"),
-        ["climatisation", "chauffage", "ventilation", "sanitaire"], ["geneve", "lausanne", "vaud"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire"], ["geneve", "lausanne", "vaud"])
 
     zone_page("valais", "Valais", "le canton du Valais",
         PAGE_TITLES["valais"],
         META_DESCRIPTIONS["valais"],
-        "Ventilation, chauffage et climatisation en Valais",
-        p("Le Valais présente des spécificités climatiques et altitudinales qui influencent les besoins en chauffage et climatisation. Nous intervenons pour des installations et dépannages selon la localisation et la faisabilité.") +
+        f"{CVCS_GROUP} en Valais",
+        p(f"Le Valais présente des spécificités climatiques et altitudinales qui influencent les besoins en {CVCS_PROSE}. Nous intervenons pour des installations et dépannages selon la localisation et la faisabilité.") +
         p("Contactez-nous avec votre commune pour vérifier la disponibilité d'intervention."),
         zone_aeo_faq("Valais", "le canton du Valais"),
-        ["chauffage", "climatisation", "depannage-sav", "sprinkler-protection-incendie"], ["geneve", "vaud", "fribourg"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav", "sprinkler-protection-incendie"], ["geneve", "vaud", "fribourg"])
 
     zone_page("fribourg", "Fribourg", "le canton de Fribourg",
         PAGE_TITLES["fribourg"],
         META_DESCRIPTIONS["fribourg"],
-        "Chauffage, ventilation et dépannage dans le canton de Fribourg",
-        p("Le canton de Fribourg, à cheval sur les régions linguistiques, compte un parc bâti varié. Nous pouvons prendre en charge des interventions en chauffage, ventilation et dépannage selon la nature du projet.") +
+        f"{CVCS_GROUP} dans le canton de Fribourg",
+        p(f"Le canton de Fribourg, à cheval sur les régions linguistiques, compte un parc bâti varié. Nous pouvons prendre en charge des interventions en {CVCS_PROSE} selon la nature du projet.") +
         p("Précisez la commune et l'urgence de votre demande lors du premier contact."),
         zone_aeo_faq("Fribourg", "le canton de Fribourg"),
-        ["chauffage", "ventilation", "depannage-sav", "sanitaire"], ["vaud", "lausanne", "valais"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "lausanne", "valais"])
 
 
 def legal_identity_block():
@@ -1432,9 +1446,9 @@ def build_redirect(old_name, new_path):
 
 def build_realisations():
     cat_labels = [
-        ("sprinkler", "Sprinkler et protection incendie"),
         ("ventilation", "Ventilation"),
-        ("sanitaire", "Sanitaire et tuyauterie"),
+        ("sanitaire", "Sanitaire"),
+        ("sprinkler", "Sprinkler et protection incendie"),
     ]
     sections = ""
     image_objects = []
@@ -1475,8 +1489,8 @@ def build_realisations():
   <div class="container">
     <span class="label">Réalisations</span>
     <div class="rule"></div>
-    <h1 id="page-h1">Nos réalisations en CVC, sprinkler et sanitaire</h1>
-    <p class="hero-sub">Aperçu de chantiers réalisés par {COMPANY_NAME} en Suisse romande : sprinkler et protection incendie, ventilation et tuyauterie sanitaire.</p>
+    <h1 id="page-h1">Nos réalisations en {CVCS_PROSE} et sprinkler</h1>
+    <p class="hero-sub">Aperçu de chantiers réalisés par {COMPANY_NAME} en Suisse romande : ventilation, sanitaire et sprinkler / protection incendie.</p>
   </div>
 </section>
 <div class="section-divider"></div>
