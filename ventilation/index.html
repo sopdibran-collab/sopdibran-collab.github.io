@@ -10,7 +10,7 @@
   <meta name="geo.placename" content="Suisse romande">
   <meta name="geo.position" content="46.6917;6.9119">
   <meta name="ICBM" content="46.6917, 6.9119">
-  <meta name="theme-color" content="#1e2a33">
+  <meta name="theme-color" content="#1d2d35">
   <link rel="canonical" href="https://sopjanitech.ch/ventilation/">
   <link rel="icon" href="/assets/logo.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/logo.png">
@@ -83,10 +83,12 @@
             "Tuesday",
             "Wednesday",
             "Thursday",
-            "Friday"
+            "Friday",
+            "Saturday",
+            "Sunday"
           ],
-          "opens": "08:00",
-          "closes": "16:30"
+          "opens": "07:00",
+          "closes": "17:00"
         }
       ],
       "areaServed": [
@@ -189,7 +191,7 @@
           "name": "Réalisez-vous des travaux de rénovation de ventilation ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Oui. Nous évaluons l'existant et proposons une solution adaptée au bâtiment et au budget."
+            "text": "Oui, nous rénovons les VMC existantes : remplacement de moteurs, filtres et gaines, ou passage à une VMC double flux avec récupération de chaleur. Contactez-nous avec le type de bâtiment et l'état de l'installation actuelle."
           }
         },
         {
@@ -202,7 +204,7 @@
         },
         {
           "@type": "Question",
-          "name": "Quelle entreprise de ventilation contacter en Suisse romande ?",
+          "name": "Quelle entreprise de ventilation (ventiliste) contacter en Suisse romande ?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Sopjani Tech Sàrl intervient pour l'installation, la maintenance et le dépannage de ventilation."
@@ -213,7 +215,7 @@
           "name": "Intervenez-vous en urgence pour une panne VMC ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Contactez-nous au +41 79 932 68 62 pour évaluer la situation et la disponibilité."
+            "text": "Oui, appelez-nous directement au +41 79 932 68 62 : nous évaluons la disponibilité selon le secteur et la nature de la panne."
           }
         }
       ]
@@ -239,12 +241,13 @@
 <header>
   <div class="container">
     <div class="header-inner">
-      <a href="/" class="logo-wrap" aria-label="Sopjani Tech Sàrl – Accueil">
-        <img src="/assets/logo.png" alt="Logo Sopjani Tech Sàrl" width="48" height="48" loading="eager">
+      <a href="/" class="logo-wrap">
+        <img src="/assets/logo.png" alt="" width="48" height="48" loading="eager">
         <div>
           <div class="logo-text">SOPJANI TECH</div>
           <div class="logo-sub">Sàrl · Suisse</div>
         </div>
+        <span class="sr-only"> – Accueil</span>
       </a>
       <nav class="nav-main" aria-label="Navigation principale">
         <a href="/">Accueil</a>
@@ -260,7 +263,7 @@
         <a href="/contact/">Contact</a>
       </nav>
       <div class="header-cta">
-        <a href="tel:+41799326862" class="tel-btn track-phone" aria-label="Appeler Sopjani Tech">
+        <a href="tel:+41799326862" class="tel-btn track-phone">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           +41 79 932 68 62
         </a>
@@ -311,16 +314,26 @@
 <section class="content-section" aria-labelledby="problems-title">
   <div class="container prose-block">
     <h2 class="section-title" id="problems-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Problématiques traitées</h2>
-    <p>Qualité d'air insuffisante, dysfonctionnements VMC, besoin de renouvellement d'air ou rénovation de réseaux existants.</p>
+    <p>VMC bruyante ou peu performante, condensation et traces d'humidité liées à un renouvellement d'air insuffisant, filtres encrassés, gaines mal isolées ou obstruées, mise en conformité de la ventilation d'un local technique, d'un parking ou d'une cuisine professionnelle.</p>
   </div>
 </section>
 <section class="content-section alt" aria-labelledby="interventions-title">
   <div class="container prose-block">
     <h2 class="section-title" id="interventions-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Types d'interventions</h2>
-    <ul class="bullet-list"><li>Conception et dimensionnement</li><li>Installation de gaines et équipements</li><li>Réglages et mise en service</li><li>Maintenance et contrôles</li><li>Réhabilitation de réseaux</li></ul>
+    <ul class="bullet-list"><li>Installation de VMC simple flux ou double flux avec récupération de chaleur</li><li>Nettoyage et désinfection de gaines et bouches d'extraction</li><li>Remplacement de filtres, moteurs et caissons de ventilation</li><li>Réglage et équilibrage des débits d'air</li><li>Ventilation de locaux techniques, parkings et cuisines professionnelles</li><li>Réhabilitation de réseaux existants</li></ul>
   </div>
 </section>
-<section class="content-section" aria-labelledby="clients-title">
+<section class="content-section" aria-labelledby="expertise-title">
+  <div class="container prose-block">
+    <h2 class="section-title" id="expertise-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Équipements et cadre suisse</h2>
+    <p>Nous intervenons sur des installations de VMC simple flux, double flux avec récupération de chaleur, ainsi que sur la ventilation de locaux techniques, parkings et cuisines professionnelles.</p>
+<h3>Bâtiments performants et Minergie</h3>
+<p>Les constructions récentes ou labellisées Minergie reposent sur une bonne étanchéité à l'air et nécessitent une ventilation mécanique contrôlée correctement dimensionnée et entretenue, pour garantir la qualité de l'air intérieur et éviter les problèmes d'humidité.</p>
+<h3>Entretien régulier</h3>
+<p>Un nettoyage périodique des gaines, bouches et filtres permet de préserver le débit d'air prévu à l'installation et d'éviter la surconsommation électrique des moteurs encrassés.</p>
+  </div>
+</section>
+<section class="content-section alt" aria-labelledby="clients-title">
   <div class="container prose-block">
     <h2 class="section-title" id="clients-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Pour quels bâtiments</h2>
     <p>Résidentiel (immeubles, villas, PPE), commercial (bureaux, commerces, hôtels), industriel et public (ERP), selon faisabilité technique.</p>
@@ -364,19 +377,23 @@
 </section>
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
-    <h2 class="section-title" id="faq-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:24px;">Questions fréquentes</h2>
+    <div class="faq-head">
+    <span class="label">FAQ</span>
+    <div class="rule"></div>
+    <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
+  </div>
     <div class="faq-list"><div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span>Réalisez-vous des travaux de rénovation de ventilation ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>Oui. Nous évaluons l'existant et proposons une solution adaptée au bâtiment et au budget.</span></div>
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">01</span><span class="faq-q-text">Réalisez-vous des travaux de rénovation de ventilation ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Oui, nous rénovons les VMC existantes : remplacement de moteurs, filtres et gaines, ou passage à une VMC double flux avec récupération de chaleur. Contactez-nous avec le type de bâtiment et l'état de l'installation actuelle.</p></div>
 </div><div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span>Comment obtenir un devis ventilation ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>Contactez-nous avec le type de bâtiment, la surface et l'état des installations existantes.</span></div>
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">02</span><span class="faq-q-text">Comment obtenir un devis ventilation ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Contactez-nous avec le type de bâtiment, la surface et l'état des installations existantes.</p></div>
 </div><div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span>Quelle entreprise de ventilation contacter en Suisse romande ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>Sopjani Tech Sàrl intervient pour l'installation, la maintenance et le dépannage de ventilation.</span></div>
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">03</span><span class="faq-q-text">Quelle entreprise de ventilation (ventiliste) contacter en Suisse romande ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Sopjani Tech Sàrl intervient pour l'installation, la maintenance et le dépannage de ventilation.</p></div>
 </div><div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span>Intervenez-vous en urgence pour une panne VMC ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>Contactez-nous au +41 79 932 68 62 pour évaluer la situation et la disponibilité.</span></div>
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">04</span><span class="faq-q-text">Intervenez-vous en urgence pour une panne VMC ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Oui, appelez-nous directement au +41 79 932 68 62 : nous évaluons la disponibilité selon le secteur et la nature de la panne.</p></div>
 </div></div>
   </div>
 </section>
@@ -419,7 +436,7 @@
           <li><a href="mailto:info@sopjanitech.ch" class="track-email">info@sopjanitech.ch</a></li>
           <li><a href="https://wa.me/41799326862" class="track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
           <li class="footer-contact-address"><a href="https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+9,+1680+Romont" target="_blank" rel="noopener noreferrer">Rue Pierre de Savoie 9, 1680 Romont FR</a></li>
-          <li class="footer-contact-hours">Lundi au vendredi, 8h00 – 16h30</li>
+          <li class="footer-contact-hours">Tous les jours, 7h00 – 17h00</li>
           <li><a href="https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7" class="track-google" target="_blank" rel="noopener noreferrer">Voir nos avis sur Google</a></li>
         </ul>
       </div>

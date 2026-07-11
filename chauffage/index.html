@@ -10,7 +10,7 @@
   <meta name="geo.placename" content="Suisse romande">
   <meta name="geo.position" content="46.6917;6.9119">
   <meta name="ICBM" content="46.6917, 6.9119">
-  <meta name="theme-color" content="#1e2a33">
+  <meta name="theme-color" content="#1d2d35">
   <link rel="canonical" href="https://sopjanitech.ch/chauffage/">
   <link rel="icon" href="/assets/logo.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/logo.png">
@@ -83,10 +83,12 @@
             "Tuesday",
             "Wednesday",
             "Thursday",
-            "Friday"
+            "Friday",
+            "Saturday",
+            "Sunday"
           ],
-          "opens": "08:00",
-          "closes": "16:30"
+          "opens": "07:00",
+          "closes": "17:00"
         }
       ],
       "areaServed": [
@@ -189,7 +191,7 @@
           "name": "Intervenez-vous en dépannage chauffage ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Oui. Contactez-nous pour évaluer la situation. La disponibilité dépend du secteur et de la nature de la panne."
+            "text": "Oui, nous intervenons sur chaudières, pompes à chaleur et radiateurs en Suisse romande : absence de chauffage, bruit anormal, fuite ou baisse de rendement. Appelez-nous directement pour une panne en cours."
           }
         },
         {
@@ -197,7 +199,7 @@
           "name": "Proposez-vous des contrats d'entretien ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Oui. Contactez-nous pour discuter des options adaptées à votre installation."
+            "text": "Oui, un entretien régulier de votre chaudière ou pompe à chaleur (contrôle, réglage, détartrage du boiler) permet de limiter les pannes. Contactez-nous pour discuter d'une fréquence adaptée à votre installation."
           }
         },
         {
@@ -214,6 +216,22 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Le devis est gratuit. Il dépend du type d'installation, de la surface et de l'état de l'existant."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qui effectue le contrôle officiel de combustion de ma chaudière ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le contrôle périodique OPair (tous les 2 à 4 ans selon le combustible) est réalisé par le maître ramoneur agréé de votre secteur. Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité de votre installation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Le remplacement d'une chaudière par une pompe à chaleur est-il subventionné ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, sous conditions, dans le cadre du Programme Bâtiments (leprogrammebatiments.ch), avec un barème propre à chaque canton. Contactez-nous pour évaluer votre projet et vérifier votre éligibilité."
           }
         }
       ]
@@ -239,12 +257,13 @@
 <header>
   <div class="container">
     <div class="header-inner">
-      <a href="/" class="logo-wrap" aria-label="Sopjani Tech Sàrl – Accueil">
-        <img src="/assets/logo.png" alt="Logo Sopjani Tech Sàrl" width="48" height="48" loading="eager">
+      <a href="/" class="logo-wrap">
+        <img src="/assets/logo.png" alt="" width="48" height="48" loading="eager">
         <div>
           <div class="logo-text">SOPJANI TECH</div>
           <div class="logo-sub">Sàrl · Suisse</div>
         </div>
+        <span class="sr-only"> – Accueil</span>
       </a>
       <nav class="nav-main" aria-label="Navigation principale">
         <a href="/">Accueil</a>
@@ -260,7 +279,7 @@
         <a href="/contact/">Contact</a>
       </nav>
       <div class="header-cta">
-        <a href="tel:+41799326862" class="tel-btn track-phone" aria-label="Appeler Sopjani Tech">
+        <a href="tel:+41799326862" class="tel-btn track-phone">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           +41 79 932 68 62
         </a>
@@ -311,16 +330,26 @@
 <section class="content-section" aria-labelledby="problems-title">
   <div class="container prose-block">
     <h2 class="section-title" id="problems-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Problématiques traitées</h2>
-    <p>Pannes de chauffage, baisse de rendement, remplacement d'équipement, rénovation de réseaux ou mise en service de nouvelles installations.</p>
+    <p>Chaudière qui ne démarre plus ou qui s'arrête en cours de cycle, radiateurs froids ou circuit déséquilibré, boiler qui ne produit plus d'eau chaude, bruit anormal au démarrage, consommation de mazout ou de gaz en hausse, chaudière vétuste à remplacer par une pompe à chaleur.</p>
   </div>
 </section>
 <section class="content-section alt" aria-labelledby="interventions-title">
   <div class="container prose-block">
     <h2 class="section-title" id="interventions-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Types d'interventions</h2>
-    <ul class="bullet-list"><li>Étude et dimensionnement</li><li>Installation de chaudières et pompes à chaleur</li><li>Entretien et maintenance</li><li>Dépannage et remise en service</li><li>Rénovation de réseaux existants</li></ul>
+    <ul class="bullet-list"><li>Étude et dimensionnement thermique (calcul de puissance, choix des émetteurs)</li><li>Installation de pompes à chaleur air/eau ou sol/eau, chaudières à gaz, mazout ou bois</li><li>Désembouage et équilibrage de circuits de chauffage</li><li>Détartrage et entretien de boiler et chauffe-eau</li><li>Remplacement de circulateurs, vannes thermostatiques et vase d'expansion</li><li>Dépannage et remise en service</li><li>Accompagnement pour le remplacement d'une chaudière mazout ou gaz par une pompe à chaleur</li></ul>
   </div>
 </section>
-<section class="content-section" aria-labelledby="clients-title">
+<section class="content-section" aria-labelledby="expertise-title">
+  <div class="container prose-block">
+    <h2 class="section-title" id="expertise-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Équipements et cadre suisse</h2>
+    <p>Nous intervenons sur les principaux générateurs de chaleur utilisés en Suisse romande : chaudières à mazout, à gaz et à bois (bûches ou pellets), ainsi que pompes à chaleur air/eau et sol/eau.</p>
+<h3>Contrôle de combustion (OPair)</h3>
+<p>Le contrôle périodique officiel des installations à combustion reste du ressort du maître ramoneur agréé de votre secteur, selon l'ordonnance fédérale sur la protection de l'air (OPair). Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité suite à un contrôle.</p>
+<h3>Remplacement par une pompe à chaleur</h3>
+<p>Le remplacement d'une chaudière à mazout ou à gaz par une pompe à chaleur peut être subventionné dans le cadre du <strong>Programme Bâtiments</strong>, avec un barème propre à chaque canton (Genève, Vaud, Valais, Fribourg). Nous pouvons vous orienter dans cette démarche.</p>
+  </div>
+</section>
+<section class="content-section alt" aria-labelledby="clients-title">
   <div class="container prose-block">
     <h2 class="section-title" id="clients-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Pour quels bâtiments</h2>
     <p>Résidentiel (immeubles, villas, PPE), commercial (bureaux, commerces, hôtels), industriel et public (ERP), selon faisabilité technique.</p>
@@ -345,19 +374,29 @@
 </section>
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
-    <h2 class="section-title" id="faq-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:24px;">Questions fréquentes</h2>
+    <div class="faq-head">
+    <span class="label">FAQ</span>
+    <div class="rule"></div>
+    <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
+  </div>
     <div class="faq-list"><div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span>Intervenez-vous en dépannage chauffage ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>Oui. Contactez-nous pour évaluer la situation. La disponibilité dépend du secteur et de la nature de la panne.</span></div>
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">01</span><span class="faq-q-text">Intervenez-vous en dépannage chauffage ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Oui, nous intervenons sur chaudières, pompes à chaleur et radiateurs en Suisse romande : absence de chauffage, bruit anormal, fuite ou baisse de rendement. Appelez-nous directement pour une panne en cours.</p></div>
 </div><div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span>Proposez-vous des contrats d'entretien ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>Oui. Contactez-nous pour discuter des options adaptées à votre installation.</span></div>
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">02</span><span class="faq-q-text">Proposez-vous des contrats d'entretien ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Oui, un entretien régulier de votre chaudière ou pompe à chaleur (contrôle, réglage, détartrage du boiler) permet de limiter les pannes. Contactez-nous pour discuter d'une fréquence adaptée à votre installation.</p></div>
 </div><div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span>Qui appeler pour un chauffagiste en Suisse romande ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>Contactez Sopjani Tech Sàrl au +41 79 932 68 62 ou via notre page contact.</span></div>
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">03</span><span class="faq-q-text">Qui appeler pour un chauffagiste en Suisse romande ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Contactez Sopjani Tech Sàrl au +41 79 932 68 62 ou via notre page contact.</p></div>
 </div><div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span>Combien coûte un devis chauffage ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>Le devis est gratuit. Il dépend du type d'installation, de la surface et de l'état de l'existant.</span></div>
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">04</span><span class="faq-q-text">Combien coûte un devis chauffage ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Le devis est gratuit. Il dépend du type d'installation, de la surface et de l'état de l'existant.</p></div>
+</div><div class="faq-item">
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">05</span><span class="faq-q-text">Qui effectue le contrôle officiel de combustion de ma chaudière ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Le contrôle périodique OPair (tous les 2 à 4 ans selon le combustible) est réalisé par le maître ramoneur agréé de votre secteur. Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité de votre installation.</p></div>
+</div><div class="faq-item">
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">06</span><span class="faq-q-text">Le remplacement d'une chaudière par une pompe à chaleur est-il subventionné ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Oui, sous conditions, dans le cadre du Programme Bâtiments (leprogrammebatiments.ch), avec un barème propre à chaque canton. Contactez-nous pour évaluer votre projet et vérifier votre éligibilité.</p></div>
 </div></div>
   </div>
 </section>
@@ -400,7 +439,7 @@
           <li><a href="mailto:info@sopjanitech.ch" class="track-email">info@sopjanitech.ch</a></li>
           <li><a href="https://wa.me/41799326862" class="track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
           <li class="footer-contact-address"><a href="https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+9,+1680+Romont" target="_blank" rel="noopener noreferrer">Rue Pierre de Savoie 9, 1680 Romont FR</a></li>
-          <li class="footer-contact-hours">Lundi au vendredi, 8h00 – 16h30</li>
+          <li class="footer-contact-hours">Tous les jours, 7h00 – 17h00</li>
           <li><a href="https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7" class="track-google" target="_blank" rel="noopener noreferrer">Voir nos avis sur Google</a></li>
         </ul>
       </div>

@@ -10,7 +10,7 @@
   <meta name="geo.placename" content="Suisse romande">
   <meta name="geo.position" content="46.6917;6.9119">
   <meta name="ICBM" content="46.6917, 6.9119">
-  <meta name="theme-color" content="#1e2a33">
+  <meta name="theme-color" content="#1d2d35">
   <link rel="canonical" href="https://sopjanitech.ch/valais/">
   <link rel="icon" href="/assets/logo.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/logo.png">
@@ -83,10 +83,12 @@
             "Tuesday",
             "Wednesday",
             "Thursday",
-            "Friday"
+            "Friday",
+            "Saturday",
+            "Sunday"
           ],
-          "opens": "08:00",
-          "closes": "16:30"
+          "opens": "07:00",
+          "closes": "17:00"
         }
       ],
       "areaServed": [
@@ -215,6 +217,14 @@
             "@type": "Answer",
             "text": "Via notre page contact ou par téléphone : décrivez le bâtiment, la localisation exacte et le type de travaux (installation, maintenance ou dépannage)."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Intervenez-vous sur un chalet ou une résidence secondaire ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, en tenant compte des contraintes propres à ces logements (occupation partielle, altitude, risque de gel). Précisez l'altitude et le mode d'occupation lors de votre demande."
+          }
         }
       ]
     }
@@ -225,12 +235,13 @@
 <header>
   <div class="container">
     <div class="header-inner">
-      <a href="/" class="logo-wrap" aria-label="Sopjani Tech Sàrl – Accueil">
-        <img src="/assets/logo.png" alt="Logo Sopjani Tech Sàrl" width="48" height="48" loading="eager">
+      <a href="/" class="logo-wrap">
+        <img src="/assets/logo.png" alt="" width="48" height="48" loading="eager">
         <div>
           <div class="logo-text">SOPJANI TECH</div>
           <div class="logo-sub">Sàrl · Suisse</div>
         </div>
+        <span class="sr-only"> – Accueil</span>
       </a>
       <nav class="nav-main" aria-label="Navigation principale">
         <a href="/">Accueil</a>
@@ -246,7 +257,7 @@
         <a href="/contact/">Contact</a>
       </nav>
       <div class="header-cta">
-        <a href="tel:+41799326862" class="tel-btn track-phone" aria-label="Appeler Sopjani Tech">
+        <a href="tel:+41799326862" class="tel-btn track-phone">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           +41 79 932 68 62
         </a>
@@ -296,7 +307,7 @@
 <section class="content-section" aria-labelledby="local-title">
   <div class="container prose-block">
     <h2 class="section-title" id="local-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Interventions dans le canton du Valais</h2>
-    <p>Le Valais présente des spécificités climatiques et altitudinales qui influencent les besoins en chauffage, ventilation, climatisation et sanitaire. Nous intervenons pour des installations et dépannages selon la localisation et la faisabilité.</p><p>Contactez-nous avec votre commune pour vérifier la disponibilité d'intervention.</p>
+    <p>Le Valais présente de fortes variations d'altitude — de la plaine du Rhône aux stations de montagne — qui influencent directement le dimensionnement des installations de chauffage. Les résidences secondaires et chalets, souvent inoccupés une partie de l'année, demandent une attention particulière (protection hors gel, remise en service saisonnière).</p><p>Contactez-nous avec votre commune pour vérifier la disponibilité d'intervention.</p><h3>Communes desservies</h3><p class="section-lead" style="margin-bottom:12px;">Liste non exhaustive — contactez-nous pour toute autre commune du secteur.</p><div class="zone-links"><span class="zone-pill">Sion</span><span class="zone-pill">Martigny</span><span class="zone-pill">Monthey</span><span class="zone-pill">Sierre</span><span class="zone-pill">Crans-Montana</span><span class="zone-pill">Verbier</span><span class="zone-pill">Saint-Maurice</span><span class="zone-pill">Conthey</span></div><h3>Aides et subventions</h3><p>Le remplacement d'un chauffage à mazout, à gaz ou électrique par une pompe à chaleur peut être subventionné dans le cadre du <strong>Programme Bâtiments</strong>, sur <a href="https://www.leprogrammebatiments.ch" target="_blank" rel="noopener noreferrer">leprogrammebatiments.ch</a>. En Valais, les demandes sont instruites par le Service de l'énergie et des forces hydrauliques (SEFH) de l'État du Valais. Les barèmes et conditions varient chaque année : nous vous recommandons de déposer votre demande auprès du service cantonal de l'énergie <strong>avant le début des travaux</strong>, et de vérifier les montants en vigueur sur le portail officiel. Nous pouvons vous accompagner dans cette démarche.</p>
     <p class="geo-local-note">Siège à <strong>Rue Pierre de Savoie 9, 1680 Romont FR</strong> — équipe mobile en Suisse romande. <a href="/contact/">Contactez-nous</a> pour vérifier la disponibilité à Valais.</p>
   </div>
 </section>
@@ -314,19 +325,26 @@
 </section>
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
-    <h2 class="section-title" id="faq-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:24px;">FAQ — Valais</h2>
+    <div class="faq-head">
+    <span class="label">FAQ</span>
+    <div class="rule"></div>
+    <h2 class="section-title" id="faq-title">FAQ — Valais</h2>
+  </div>
     <div class="faq-list"><div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span>Qui appeler pour un dépannage CVC à Valais ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>Contactez Sopjani Tech Sàrl au +41 79 932 68 62, par email (info@sopjanitech.ch) ou WhatsApp. Indiquez votre commune, le type de bâtiment et la nature de la panne.</span></div>
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">01</span><span class="faq-q-text">Qui appeler pour un dépannage CVC à Valais ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Contactez Sopjani Tech Sàrl au +41 79 932 68 62, par email (info@sopjanitech.ch) ou WhatsApp. Indiquez votre commune, le type de bâtiment et la nature de la panne.</p></div>
 </div><div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span>Intervenez-vous pour la ventilation dans le canton du Valais ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>Oui, nous réalisons installation, maintenance et dépannage de ventilation dans le canton du Valais, selon faisabilité et planning.</span></div>
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">02</span><span class="faq-q-text">Intervenez-vous pour la ventilation dans le canton du Valais ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Oui, nous réalisons installation, maintenance et dépannage de ventilation dans le canton du Valais, selon faisabilité et planning.</p></div>
 </div><div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span>Proposez-vous le chauffage, la ventilation et la climatisation à Valais ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>Oui. Étude, installation, entretien et dépannage en chauffage, ventilation, climatisation et sanitaire selon votre projet.</span></div>
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">03</span><span class="faq-q-text">Proposez-vous le chauffage, la ventilation et la climatisation à Valais ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Oui. Étude, installation, entretien et dépannage en chauffage, ventilation, climatisation et sanitaire selon votre projet.</p></div>
 </div><div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span>Comment obtenir un devis à Valais ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><span>Via notre page contact ou par téléphone : décrivez le bâtiment, la localisation exacte et le type de travaux (installation, maintenance ou dépannage).</span></div>
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">04</span><span class="faq-q-text">Comment obtenir un devis à Valais ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Via notre page contact ou par téléphone : décrivez le bâtiment, la localisation exacte et le type de travaux (installation, maintenance ou dépannage).</p></div>
+</div><div class="faq-item">
+  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">05</span><span class="faq-q-text">Intervenez-vous sur un chalet ou une résidence secondaire ?</span><span class="faq-icon" aria-hidden="true"></span></button>
+  <div class="faq-a"><p>Oui, en tenant compte des contraintes propres à ces logements (occupation partielle, altitude, risque de gel). Précisez l'altitude et le mode d'occupation lors de votre demande.</p></div>
 </div></div>
   </div>
 </section>
@@ -369,7 +387,7 @@
           <li><a href="mailto:info@sopjanitech.ch" class="track-email">info@sopjanitech.ch</a></li>
           <li><a href="https://wa.me/41799326862" class="track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
           <li class="footer-contact-address"><a href="https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+9,+1680+Romont" target="_blank" rel="noopener noreferrer">Rue Pierre de Savoie 9, 1680 Romont FR</a></li>
-          <li class="footer-contact-hours">Lundi au vendredi, 8h00 – 16h30</li>
+          <li class="footer-contact-hours">Tous les jours, 7h00 – 17h00</li>
           <li><a href="https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7" class="track-google" target="_blank" rel="noopener noreferrer">Voir nos avis sur Google</a></li>
         </ul>
       </div>
