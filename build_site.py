@@ -105,6 +105,58 @@ SERVICES = [
     ("sprinkler-protection-incendie", "Sprinkler / protection incendie", "Réseaux sprinkler en sous-traitance spécialisée."),
 ]
 
+# Icônes SVG identiques sur desktop, mobile et pages prestations (stroke linéaire, ton industriel).
+SERVICE_SVGS = {
+    "chauffage": (
+        '<path d="M12 22c3.5-2.2 5.8-5.4 5.8-9.2a5.8 5.8 0 1 0-11.6 0c0 3.8 2.3 7 5.8 9.2z"/>'
+        '<path d="M12 22c-1.8-1.3-2.8-3.1-2.8-5a2.8 2.8 0 0 1 5.6 0c0 1.9-1 3.7-2.8 5z"/>'
+    ),
+    "ventilation": (
+        '<path d="M4 14h5"/><path d="M7 10c2.2 0 4-1.3 4.8-3.2"/>'
+        '<path d="M12 6h8"/><path d="M17 10c-1.3 2.6-3.5 4.2-6 4.8"/>'
+        '<path d="M9 18H4"/><path d="M7 14c1.8 1.2 3.8 1.8 6 1.8"/>'
+    ),
+    "climatisation": (
+        '<path d="M12 2v20"/><path d="M4.5 6.5l15 11"/><path d="M19.5 6.5l-15 11"/>'
+        '<path d="M2 12h20"/><path d="M6.5 4.5l11 15"/><path d="M17.5 4.5l-11 15"/>'
+    ),
+    "sanitaire": (
+        '<path d="M6 4v4"/><path d="M18 4v4"/><path d="M6 8h12"/>'
+        '<path d="M12 8v8"/><path d="M9 20h6"/><path d="M10 16h4"/>'
+    ),
+    "depannage-sav": (
+        '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L5 16l3 3 4.3-4.3a4 4 0 0 0 5.4-5.4l-2 2-3-3 2-2z"/>'
+        '<circle cx="12" cy="12" r="9"/>'
+    ),
+    "sprinkler-protection-incendie": (
+        '<path d="M12 3v3"/><path d="M8 6h8"/>'
+        '<path d="M10 9h4l-1 11H11L10 9z"/>'
+        '<path d="M7 14h10"/><path d="M8.5 17h7"/>'
+    ),
+}
+
+
+def service_icon(slug, variant="card"):
+    paths = SERVICE_SVGS.get(slug, "")
+    return (
+        f'<span class="svc-icon svc-icon--{slug} svc-icon--{variant}" aria-hidden="true">'
+        f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" '
+        f'stroke-linecap="round" stroke-linejoin="round">{paths}</svg></span>'
+    )
+
+
+def service_nav_link(slug, label, submenu=False):
+    role = ' role="menuitem"' if submenu else ""
+    return f'<a href="/{slug}/"{role}>{service_icon(slug, "nav")}<span>{label}</span></a>'
+
+
+def hub_card(slug, name, desc, cta="En savoir plus →"):
+    return (
+        f'<a class="hub-card" data-svc="{slug}" href="/{slug}/">'
+        f'{service_icon(slug, "card")}'
+        f"<h3>{name}</h3><p>{desc}</p><span class=\"link-arrow\">{cta}</span></a>"
+    )
+
 ZONES = [
     ("geneve", "Genève", "la région de Genève"),
     ("vaud", "Vaud", "le canton de Vaud"),
@@ -253,12 +305,15 @@ def geo_presence_block(compact=False):
 def urgence_band():
     return f"""<section class="urgence-band" aria-label="Dépannage urgent">
   <div class="container urgence-band__inner">
-    <div>
-      <p class="urgence-band__label">Dépannage urgent</p>
-      <p class="urgence-band__text">Panne de {CVCS_PROSE} ? Contactez-nous pour évaluer la situation et la disponibilité d'intervention.</p>
+    <div class="urgence-band__content">
+      {service_icon("depannage-sav", "urgence")}
+      <div>
+        <p class="urgence-band__label">Dépannage urgent</p>
+        <p class="urgence-band__text">Panne de {CVCS_PROSE} ? Contactez-nous pour évaluer la situation et la disponibilité d'intervention.</p>
+      </div>
     </div>
     <div class="urgence-band__actions">
-      <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
+      <a href="tel:{PHONE}" class="btn btn-urgence track-phone">Appeler · {PHONE_DISP}</a>
       <a href="{WA}" class="btn btn-secondary track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </div>
   </div>
@@ -501,13 +556,13 @@ def mobile_quick_bar():
 
 def header():
     svc_sub = '<a href="/prestations/" class="nav-submenu-all">Toutes les prestations</a>' + "".join(
-        f'<a href="/{s}/" role="menuitem">{n}</a>' for s, n, _ in SERVICES
+        service_nav_link(s, n, submenu=True) for s, n, _ in SERVICES
     )
     zone_sub = '<a href="/zones-intervention/" class="nav-submenu-all">Toutes les zones</a>' + "".join(
         f'<a href="/{z}/" role="menuitem">{n}</a>' for z, n, _ in ZONES
     )
     mobile_svc_panel = '<a href="/prestations/">Toutes les prestations</a>' + "".join(
-        f'<a href="/{s}/">{n}</a>' for s, n, _ in SERVICES
+        service_nav_link(s, n) for s, n, _ in SERVICES
     )
     mobile_zones_panel = '<a href="/zones-intervention/">Toutes les zones</a>' + "".join(
         f'<a href="/{z}/">{n}</a>' for z, n, _ in ZONES
@@ -769,15 +824,17 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
     <p style="margin-top:24px;"><a href="/realisations/" class="text-link">Voir toutes nos réalisations →</a></p>
   </div>
 </section>"""
+    tel_btn = "btn-urgence" if slug == "depannage-sav" else "btn-primary"
     body = f"""
 <section class="page-hero hero" aria-labelledby="page-h1">
   <div class="container">
     <span class="label">Prestation</span>
     <div class="rule"></div>
+    {service_icon(slug, "hero")}
     <h1 id="page-h1">{h1}</h1>
     <p class="hero-sub">{intro}</p>
     <div class="hero-ctas" style="margin-top:24px;">
-      <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
+      <a href="tel:{PHONE}" class="btn {tel_btn} track-phone">{PHONE_DISP}</a>
       <a href="/contact/" class="btn btn-secondary track-devis">Demander un devis</a>
     </div>
   </div>
@@ -895,10 +952,7 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
 
 
 def build_home():
-    svc_cards = "".join(
-        f'<a class="hub-card" href="/{s}/"><h3>{n}</h3><p>{d}</p><span class="link-arrow">En savoir plus →</span></a>'
-        for s, n, d in SERVICES
-    )
+    svc_cards = "".join(hub_card(s, n, d) for s, n, d in SERVICES)
     zone_pills = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES)
     faq = [
         ("Quels services proposez-vous ?", f"{COMPANY_NAME} couvre l'installation, l'entretien et le dépannage en {CVCS_PROSE}, ainsi que le sprinkler en sous-traitance, pour des bâtiments en Suisse romande."),
@@ -1019,7 +1073,7 @@ def build_prestations():
         ("Comment choisir la bonne prestation ?", "Chaque page prestation détaille les problématiques traitées et les interventions courantes. En cas de doute, décrivez votre bâtiment et votre besoin via notre page contact : nous vous orienterons vers la prestation adaptée."),
         ("Intervenez-vous en Suisse romande ?", f"Oui, principalement à Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à {ADDRESS_LOCALITY}."),
     ]
-    cards = "".join(f'<a class="hub-card" href="/{s}/"><h3>{n}</h3><p>{d}</p><span class="link-arrow">Voir la prestation →</span></a>' for s, n, d in SERVICES)
+    cards = "".join(hub_card(s, n, d, cta="Voir la prestation →") for s, n, d in SERVICES)
     body = f"""
 <section class="page-hero hero" aria-labelledby="page-h1">
   <div class="container">
@@ -1615,6 +1669,9 @@ def build_redirects_file():
     lines = [
         "# Généré par build_site.py — redirections 301 côté serveur",
         "",
+        "http://sopjanitech.ch/* https://sopjanitech.ch/:splat 301",
+        "http://www.sopjanitech.ch/* https://sopjanitech.ch/:splat 301",
+        "/index.html / 301",
     ]
     for old_name, new_path in LEGACY_REDIRECTS.items():
         lines.append(f"/{old_name} {new_path} 301")
@@ -1639,16 +1696,32 @@ def build_cloudflare_worker():
 const REDIRECTS = {redirects_js};
 const APEX_HOST = "sopjanitech.ch";
 
+function needsTrailingSlash(pathname) {{
+  if (pathname === "/" || pathname.endsWith("/")) return false;
+  const last = pathname.split("/").pop() || "";
+  return !last.includes(".");
+}}
+
 export default {{
   async fetch(request) {{
     const url = new URL(request.url);
+    if (url.protocol === "http:") {{
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }}
     if (url.hostname === `www.${{APEX_HOST}}`) {{
       url.hostname = APEX_HOST;
       return Response.redirect(url.toString(), 301);
     }}
+    if (url.pathname === "/index.html") {{
+      return Response.redirect(`${{url.origin}}/`, 301);
+    }}
     const dest = REDIRECTS[url.pathname];
     if (dest) {{
       return Response.redirect(`${{url.origin}}${{dest}}`, 301);
+    }}
+    if (needsTrailingSlash(url.pathname)) {{
+      return Response.redirect(`${{url.origin}}${{url.pathname}}/`, 301);
     }}
     return fetch(request);
   }},

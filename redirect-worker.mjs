@@ -11,16 +11,32 @@ const REDIRECTS = {
 };
 const APEX_HOST = "sopjanitech.ch";
 
+function needsTrailingSlash(pathname) {
+  if (pathname === "/" || pathname.endsWith("/")) return false;
+  const last = pathname.split("/").pop() || "";
+  return !last.includes(".");
+}
+
 export default {
   async fetch(request) {
     const url = new URL(request.url);
+    if (url.protocol === "http:") {
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }
     if (url.hostname === `www.${APEX_HOST}`) {
       url.hostname = APEX_HOST;
       return Response.redirect(url.toString(), 301);
     }
+    if (url.pathname === "/index.html") {
+      return Response.redirect(`${url.origin}/`, 301);
+    }
     const dest = REDIRECTS[url.pathname];
     if (dest) {
       return Response.redirect(`${url.origin}${dest}`, 301);
+    }
+    if (needsTrailingSlash(url.pathname)) {
+      return Response.redirect(`${url.origin}${url.pathname}/`, 301);
     }
     return fetch(request);
   },

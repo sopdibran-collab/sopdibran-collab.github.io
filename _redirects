@@ -1,5 +1,8 @@
 # Généré par build_site.py — redirections 301 côté serveur
 
+http://sopjanitech.ch/* https://sopjanitech.ch/:splat 301
+http://www.sopjanitech.ch/* https://sopjanitech.ch/:splat 301
+/index.html / 301
 /prestations.html /prestations/ 301
 /contact.html /contact/ 301
 /mentions-legales.html /mentions-legales/ 301
