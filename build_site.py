@@ -105,43 +105,51 @@ SERVICES = [
     ("sprinkler-protection-incendie", "Sprinkler / protection incendie", "Réseaux sprinkler en sous-traitance spécialisée."),
 ]
 
-# Icônes SVG identiques sur desktop, mobile et pages prestations (stroke linéaire, ton industriel).
+# Icônes SVG identiques sur desktop, mobile et pages prestations (Lucide, stroke linéaire).
 SERVICE_SVGS = {
     "chauffage": (
-        '<path d="M12 22c3.5-2.2 5.8-5.4 5.8-9.2a5.8 5.8 0 1 0-11.6 0c0 3.8 2.3 7 5.8 9.2z"/>'
-        '<path d="M12 22c-1.8-1.3-2.8-3.1-2.8-5a2.8 2.8 0 0 1 5.6 0c0 1.9-1 3.7-2.8 5z"/>'
+        '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>'
     ),
     "ventilation": (
-        '<path d="M4 14h5"/><path d="M7 10c2.2 0 4-1.3 4.8-3.2"/>'
-        '<path d="M12 6h8"/><path d="M17 10c-1.3 2.6-3.5 4.2-6 4.8"/>'
-        '<path d="M9 18H4"/><path d="M7 14c1.8 1.2 3.8 1.8 6 1.8"/>'
+        '<path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/>'
+        '<path d="M9.6 4.6A2 2 0 1 1 11 8H2"/>'
+        '<path d="M12.6 19.4A2 2 0 1 0 14 16H2"/>'
     ),
     "climatisation": (
-        '<path d="M12 2v20"/><path d="M4.5 6.5l15 11"/><path d="M19.5 6.5l-15 11"/>'
-        '<path d="M2 12h20"/><path d="M6.5 4.5l11 15"/><path d="M17.5 4.5l-11 15"/>'
+        '<path d="M12 2v20"/><path d="M2 12h20"/>'
+        '<path d="m4.93 4.93 14.14 14.14"/><path d="m19.07 4.93-14.14 14.14"/>'
     ),
     "sanitaire": (
-        '<path d="M6 4v4"/><path d="M18 4v4"/><path d="M6 8h12"/>'
-        '<path d="M12 8v8"/><path d="M9 20h6"/><path d="M10 16h4"/>'
+        '<path d="M7 3v2"/><path d="M17 3v2"/><path d="M7 5h10"/>'
+        '<path d="M12 5v7"/><path d="M9 20h6"/><path d="M10 12h4"/>'
     ),
     "depannage-sav": (
-        '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L5 16l3 3 4.3-4.3a4 4 0 0 0 5.4-5.4l-2 2-3-3 2-2z"/>'
-        '<circle cx="12" cy="12" r="9"/>'
+        '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>'
     ),
     "sprinkler-protection-incendie": (
         '<path d="M12 3v3"/><path d="M8 6h8"/>'
-        '<path d="M10 9h4l-1 11H11L10 9z"/>'
-        '<path d="M7 14h10"/><path d="M8.5 17h7"/>'
+        '<path d="M12 9v5"/><path d="M9 20h6"/>'
+        '<path d="M10 14h4"/><path d="M8 17h8"/>'
     ),
 }
 
 
 def service_icon(slug, variant="card"):
     paths = SERVICE_SVGS.get(slug, "")
+    svg = (
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" '
+        'stroke-linecap="round" stroke-linejoin="round">'
+        f"{paths}</svg>"
+    )
+    if variant in ("nav", "card", "hero", "urgence"):
+        badge_mod = {"card": "--card", "hero": "--hero", "urgence": "--urgence"}.get(variant, "")
+        badge_cls = f"svc-icon__badge{' svc-icon__badge' + badge_mod if badge_mod else ''}"
+        inner = f'<span class="{badge_cls}">{svg}</span>'
+    else:
+        inner = svg
     return (
         f'<span class="svc-icon svc-icon--{slug} svc-icon--{variant}" aria-hidden="true">'
-        f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" '
-        f'stroke-linecap="round" stroke-linejoin="round">{paths}</svg></span>'
+        f"{inner}</span>"
     )
 
 
