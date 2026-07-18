@@ -25,9 +25,16 @@ GA4_MEASUREMENT_ID = "G-KXN3RQB89P"
 GOOGLE_SITE_VERIFICATION = "ESyhz2gRqYIspy2MPXHOD9v4uMjd_KAdkQjRYWHWinw"
 # Formulaire contact (ex. https://formspree.io/f/xxxxxxxx) — laisser vide = message local sans envoi
 FORM_ENDPOINT = ""
-OG_IMAGE = f"{SITE}/assets/logo.png"
-FAVICON = f"{SITE}/assets/logo.png"
-THEME_COLOR = "#1d2d35"
+# Logos (interim) — sources: Documents/SopjaniTechSàrl/Logo → assets/brand/
+# Remplacer par les SVG vectorisés complets dès qu'ils sont prêts.
+LOGO_HEADER = "/assets/brand/logo-primary-64.png"
+LOGO_FOOTER = "/assets/brand/logo-primary-64.png"
+LOGO_FULL = "/assets/logo-full.png"
+FAVICON_PATH = "/assets/favicon.png"
+APPLE_TOUCH_ICON = "/assets/apple-touch-icon.png"
+OG_IMAGE = f"{SITE}/assets/og-logo.png"
+FAVICON = f"{SITE}{FAVICON_PATH}"
+THEME_COLOR = "#0B2545"
 ADDRESS_STREET = "Rue Pierre de Savoie 9"
 ADDRESS_POSTAL = "1680"
 ADDRESS_LOCALITY = "Romont FR"
@@ -345,7 +352,6 @@ REALISATIONS = [
     ("sprinkler-vanne-arret-secteur.jpg", 720, 1280, "Poste d'alarme sous eau d'un réseau sprinkler avec manomètres de contrôle, par Sopjani Tech Sàrl", "sprinkler", "Poste d'alarme sous eau"),
     ("sprinkler-collecteur-rouges.jpg", 1280, 720, "Centrale sprinkler sous eau avec tuyauterie rouge et vannes en local technique, par Sopjani Tech Sàrl", "sprinkler", "Centrale sprinkler sous eau"),
     ("sprinkler-vanne-seche-victaulic.jpg", 720, 1280, "Poste d'alarme sous air pour installation sprinkler, station Parking Nord, par Sopjani Tech Sàrl", "sprinkler", "Poste d'alarme sous air"),
-    ("sprinkler-vanne-alarme-seche.jpg", 720, 1280, "Vanne d'alarme sèche pour système sprinkler dans un parking", "sprinkler", "Vanne d'alarme sèche"),
     ("sprinkler-vanne-alarme-humide.jpg", 720, 1280, "Poste d'alarme sous eau avec pompe de suppression et vanne d'arrêt générale d'un réseau sprinkler, par Sopjani Tech Sàrl", "sprinkler", "Poste d'alarme sous eau avec pompe de suppression"),
     ("sanitaire-collecteur-galvanise.jpg", 1280, 720, "Test de débit sprinkler sur collecteur en acier galvanisé avec raccords laiton et vannes, par Sopjani Tech Sàrl", "sprinkler", "Test débit sprinkler"),
     ("ventilation-unite-hvac-gaine.jpg", 1280, 720, "Unité de ventilation HVAC raccordée à une gaine souple par Sopjani Tech Sàrl", "ventilation", "Unité de ventilation HVAC"),
@@ -653,11 +659,23 @@ def header():
       <button type="button" class="mobile-nav-toggle" aria-expanded="false">Zones d'intervention</button>
       <div class="mobile-nav-panel">{mobile_zones_panel}</div>
     </div>"""
-    return f"""<header>
+    return f"""<div class="topbar" role="complementary" aria-label="Coordonnées">
+  <div class="container topbar-inner">
+    <p class="topbar-left">Société basée à {ADDRESS_LOCALITY} — Interventions en Suisse romande</p>
+    <p class="topbar-right">
+      <a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a>
+      <span aria-hidden="true">·</span>
+      <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a>
+      <span aria-hidden="true">·</span>
+      <span>Heures&nbsp;: 7h00 – 17h00</span>
+    </p>
+  </div>
+</div>
+<header>
   <div class="container">
     <div class="header-inner">
       <a href="/" class="logo-wrap">
-        <img src="/assets/logo.png" alt="" width="48" height="48" loading="eager">
+        <img src="{LOGO_HEADER}" alt="Sopjani Tech Sàrl" width="48" height="48" loading="eager" decoding="async">
         <div>
           <div class="logo-text">SOPJANI TECH</div>
           <div class="logo-sub">Sàrl · Suisse</div>
@@ -670,8 +688,9 @@ def header():
           <button type="button" class="nav-trigger" aria-expanded="false" aria-haspopup="true">Prestations</button>
           <div class="nav-submenu" role="menu">{svc_sub}</div>
         </div>
+        <a href="/realisations/">Réalisations</a>
         <div class="nav-item">
-          <button type="button" class="nav-trigger" aria-expanded="false" aria-haspopup="true">Zones d'intervention</button>
+          <button type="button" class="nav-trigger" aria-expanded="false" aria-haspopup="true">Zones</button>
           <div class="nav-submenu" role="menu">{zone_sub}</div>
         </div>
         <a href="/a-propos/">À propos</a>
@@ -682,7 +701,7 @@ def header():
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           {PHONE_DISP}
         </a>
-        <a href="/contact/" class="btn btn-primary track-devis">Demander un devis</a>
+        <a href="/contact/" class="btn btn-brand track-devis">Demander un devis →</a>
       </div>
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
@@ -697,9 +716,9 @@ def header():
     <a href="/a-propos/" class="mobile-nav-link">À propos</a>
     <a href="/contact/" class="mobile-nav-link">Contact</a>
     <div class="mobile-nav-cta">
-      <a href="tel:{PHONE}" class="btn btn-primary track-phone">Appeler · {PHONE_DISP}</a>
+      <a href="/contact/#contact-form" class="btn btn-brand track-devis">Demander un devis</a>
+      <a href="tel:{PHONE}" class="btn btn-secondary track-phone">Appeler · {PHONE_DISP}</a>
       <a href="{WA}" class="btn btn-secondary track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      <a href="/contact/#contact-form" class="btn btn-secondary track-devis">Demander un devis</a>
     </div>
   </div>
 </nav>"""
@@ -712,6 +731,15 @@ def footer():
     )
     return f"""<footer>
   <div class="container">
+    <div class="footer-brand">
+      <a href="/" class="footer-logo-wrap">
+        <img src="{LOGO_FOOTER}" alt="Sopjani Tech Sàrl" width="48" height="48" loading="lazy" decoding="async">
+        <div>
+          <div class="footer-logo-text">SOPJANI TECH</div>
+          <div class="footer-logo-sub">Sàrl · Suisse romande</div>
+        </div>
+      </a>
+    </div>
     <div class="footer-grid">
       <div>
         <div class="footer-col-title">Services</div>
@@ -793,13 +821,97 @@ def faq_html(items):
     return f'<div class="faq-list">{"".join(blocks)}</div>'
 
 
+
+def norms_bar():
+    """Bandeau normes — toutes les pages marketing."""
+    return """<section class="norms-bar site-norms" aria-label="Cadre normatif">
+  <div class="container norms-bar-inner">
+    <div class="norms-logos">
+      <span>SIA</span>
+      <span>suva</span>
+      <span>AEAI</span>
+    </div>
+    <ul class="norms-tags">
+      <li>Certifié / Conformité</li>
+      <li>Professionnels qualifiés</li>
+      <li>Assurance RC</li>
+    </ul>
+  </div>
+</section>"""
+
+
+def trust_strip():
+    """Preuves de confiance compactes — pages internes."""
+    zone_list = "".join(f'<li><a href="/{z}/">{n}</a></li>' for z, n, _ in ZONES)
+    return f"""<section class="trust-bar site-trust" aria-label="Preuves de confiance">
+  <div class="container trust-bar-grid">
+    <div class="trust-item"><strong>100+</strong><span>Interventions réalisées</span></div>
+    <div class="trust-item"><strong>80+</strong><span>Clients satisfaits</span></div>
+    <div class="trust-item"><strong>10+</strong><span>Années d'expérience</span></div>
+    <div class="trust-item trust-item--zones">
+      <strong>Zones d'intervention</strong>
+      <ul>{zone_list}</ul>
+    </div>
+  </div>
+</section>"""
+
+
+def hero_image_for(key):
+    """Chemin hero généré (provisoire jusqu'au shooting)."""
+    path = f"/assets/heroes/{key}.jpg"
+    return path
+
+
+def page_hero(label, h1, sub, *, icon_html="", primary_href="/contact/", primary_label="Demander un devis", primary_class="btn-brand track-devis", secondary_href=None, secondary_label=None, secondary_class="btn-secondary-on-dark track-phone", show_ctas=True, image=None, image_alt=""):
+    """Hero unifié — photo plein cadre + fondu navy si `image` fourni."""
+    if secondary_href is None:
+        secondary_href = f"tel:{PHONE}"
+    if secondary_label is None:
+        secondary_label = PHONE_DISP
+    # Sur fond photo, CTA secondaire = outline clair (sauf urgence)
+    if image and secondary_class == "btn-secondary track-phone":
+        secondary_class = "btn-secondary-on-dark track-phone"
+    if image and primary_class == "btn-brand track-devis":
+        primary_class = "btn-brand btn-brand--on-dark track-devis"
+    icon_block = f"\n      {icon_html}" if icon_html else ""
+    ctas = ""
+    if show_ctas:
+        ctas = f"""
+      <div class="hero-ctas">
+        <a href="{primary_href}" class="btn {primary_class}">{primary_label}</a>
+        <a href="{secondary_href}" class="btn {secondary_class}">{secondary_label}</a>
+      </div>"""
+    if image:
+        alt = image_alt or h1
+        return f"""<section class="page-hero hero hero--photo" aria-labelledby="page-h1">
+  <div class="hero-media" aria-hidden="true">
+    <img src="{image}" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <p class="hero-eyebrow">{label}</p>{icon_block}
+      <h1 id="page-h1">{h1}</h1>
+      <p class="hero-sub">{sub}</p>{ctas}
+    </div>
+  </div>
+</section>"""
+    return f"""<section class="page-hero hero" aria-labelledby="page-h1">
+  <div class="container">
+    <p class="hero-eyebrow">{label}</p>{icon_block}
+    <h1 id="page-h1">{h1}</h1>
+    <p class="hero-sub">{sub}</p>{ctas}
+  </div>
+</section>"""
+
+
 def cta_band(title="Besoin d'un devis ou d'un dépannage ?", text="Contactez-nous pour décrire votre besoin. Nous vous répondrons dans les meilleurs délais."):
     return f"""<section class="cta-band" aria-label="Appel à l'action">
   <div class="container">
     <h2>{title}</h2>
     <p>{text}</p>
-    <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
-    <a href="/contact/" class="btn btn-secondary-on-dark track-devis">Demander un devis</a>
+    <a href="/contact/" class="btn btn-brand track-devis">Demander un devis</a>
+    <a href="tel:{PHONE}" class="btn btn-secondary-on-dark track-phone">{PHONE_DISP}</a>
   </div>
 </section>"""
 
@@ -833,8 +945,8 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
   <meta name="ICBM" content="46.6917, 6.9119">
   <meta name="theme-color" content="{THEME_COLOR}">
   <link rel="canonical" href="{canonical}">
-  <link rel="icon" href="/assets/logo.png" type="image/png">
-  <link rel="apple-touch-icon" href="/assets/logo.png">
+  <link rel="icon" href="{FAVICON_PATH}" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="{APPLE_TOUCH_ICON}" sizes="192x192">
 {gsc_verification_meta()}  <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_CH">
   <meta property="og:title" content="{safe_title}">
@@ -888,59 +1000,56 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
     crumbs = [("Accueil", "/"), ("Prestations", "/prestations/"), (name, url)]
     zones_html = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES if z in zone_slugs)
     related = "".join(f'<a class="zone-pill" href="/{s}/">{n}</a>' for s, n, _ in SERVICES if s in related_svc)
-    urgence_html = f'<div class="section-divider"></div>{urgence_band()}' if show_urgence else ""
+    urgence_html = urgence_band() if show_urgence else ""
     carousel_imgs = carousel_images_for_service(slug, gallery_cat=gallery_cat, limit=8)
     gallery_block = ""
     if carousel_imgs:
-        gallery_block = f"""<div class="section-divider"></div>
+        gallery_block = f"""
 <section class="content-section magnetic-section" aria-labelledby="real-title">
   <div class="container">
     <span class="label">Chantiers</span>
     <div class="rule"></div>
-    <h2 class="section-title" id="real-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:8px;">Réalisations — {name}</h2>
-    <p class="section-lead" style="margin-top:8px;">Survolez ou touchez une photo pour l'agrandir. Aperçu d'interventions réalisées par {COMPANY_NAME}.</p>
+    <h2 class="section-title" id="real-title">Réalisations — {name}</h2>
+    <p class="section-lead">Survolez ou touchez une photo pour l'agrandir. Aperçu d'interventions réalisées par {COMPANY_NAME}.</p>
     {magnetic_carousel_html(carousel_imgs, name)}
     <p style="margin-top:24px;"><a href="/realisations/" class="text-link">Voir toutes nos réalisations →</a></p>
   </div>
 </section>"""
-    tel_btn = "btn-urgence" if slug == "depannage-sav" else "btn-primary"
+    if slug == "depannage-sav":
+        hero = page_hero(
+            "Prestation", h1, intro,
+            icon_html=service_icon(slug, "hero"),
+            primary_href=f"tel:{PHONE}", primary_label=PHONE_DISP, primary_class="btn-urgence track-phone",
+            secondary_href="/contact/", secondary_label="Demander un devis", secondary_class="btn-brand btn-brand--on-dark track-devis",
+            image=hero_image_for(slug),
+            image_alt=h1,
+        )
+    else:
+        hero = page_hero("Prestation", h1, intro, icon_html=service_icon(slug, "hero"), image=hero_image_for(slug), image_alt=h1)
     body = f"""
-<section class="page-hero hero" aria-labelledby="page-h1">
-  <div class="container">
-    <span class="label">Prestation</span>
-    <div class="rule"></div>
-    {service_icon(slug, "hero")}
-    <h1 id="page-h1">{h1}</h1>
-    <p class="hero-sub">{intro}</p>
-    <div class="hero-ctas" style="margin-top:24px;">
-      <a href="tel:{PHONE}" class="btn {tel_btn} track-phone">{PHONE_DISP}</a>
-      <a href="/contact/" class="btn btn-secondary track-devis">Demander un devis</a>
-    </div>
-  </div>
-</section>
+{hero}
 {urgence_html}
-<div class="section-divider"></div>
 <section class="content-section" aria-labelledby="problems-title">
   <div class="container prose-block">
-    <h2 class="section-title" id="problems-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Problématiques traitées</h2>
+    <h2 class="section-title" id="problems-title">Problématiques traitées</h2>
     {problems}
   </div>
 </section>
 <section class="content-section alt" aria-labelledby="interventions-title">
   <div class="container prose-block">
-    <h2 class="section-title" id="interventions-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Types d'interventions</h2>
+    <h2 class="section-title" id="interventions-title">Types d'interventions</h2>
     {interventions}
   </div>
 </section>
 {f'''<section class="content-section" aria-labelledby="expertise-title">
   <div class="container prose-block">
-    <h2 class="section-title" id="expertise-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Équipements et cadre suisse</h2>
+    <h2 class="section-title" id="expertise-title">Équipements et cadre suisse</h2>
     {expertise_html}
   </div>
 </section>''' if expertise_html else ''}
 <section class="content-section {'alt' if expertise_html else ''}" aria-labelledby="clients-title">
   <div class="container prose-block">
-    <h2 class="section-title" id="clients-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Pour quels bâtiments</h2>
+    <h2 class="section-title" id="clients-title">Pour quels bâtiments</h2>
     {clients}
     <h3 style="margin-top:28px;">Déroulement d'une intervention</h3>
     {process}
@@ -949,7 +1058,7 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
 {gallery_block}
 <section class="content-section alt" aria-labelledby="zones-title">
   <div class="container">
-    <h2 class="section-title" id="zones-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:12px;">Zones desservies</h2>
+    <h2 class="section-title" id="zones-title">Zones desservies</h2>
     <p class="section-lead">Sopjani Tech Sàrl intervient en Suisse romande. Contactez-nous pour vérifier la disponibilité dans votre secteur.</p>
     <div class="zone-links">{zones_html}</div>
     <p style="margin-top:20px;"><a href="/zones-intervention/">Voir toutes les zones d'intervention →</a></p>
@@ -957,7 +1066,7 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
 </section>
 <section class="content-section" aria-labelledby="related-title">
   <div class="container">
-    <h2 class="section-title" id="related-title" style="font-size:clamp(22px,2.5vw,32px);margin-bottom:12px;">Prestations connexes</h2>
+    <h2 class="section-title" id="related-title">Prestations connexes</h2>
     <div class="zone-links">{related}</div>
   </div>
 </section>
@@ -967,6 +1076,8 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
     {faq_html(faq)}
   </div>
 </section>
+{trust_strip()}
+{norms_bar()}
 {cta_band()}"""
     service_schema = {
         "@type": "Service",
@@ -986,36 +1097,31 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
     crumbs = [("Accueil", "/"), ("Zones d'intervention", "/zones-intervention/"), (name, url)]
     svc = "".join(f'<a class="zone-pill" href="/{s}/">{n}</a>' for s, n, _ in SERVICES if s in svc_slugs)
     rz = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES if z in related_zones)
+    hero = page_hero(
+        "Zone d'intervention",
+        h1,
+        f"Sopjani Tech Sàrl intervient dans {region} pour vos projets et dépannages en {CVCS_PROSE}. Contactez-nous pour vérifier la disponibilité selon votre localisation.",
+        image=hero_image_for("zones"),
+        image_alt=h1,
+    )
     body = f"""
-<section class="page-hero hero" aria-labelledby="page-h1">
-  <div class="container">
-    <span class="label">Zone d'intervention</span>
-    <div class="rule"></div>
-    <h1 id="page-h1">{h1}</h1>
-    <p class="hero-sub">Sopjani Tech Sàrl intervient dans {region} pour vos projets et dépannages en {CVCS_PROSE}. Contactez-nous pour vérifier la disponibilité selon votre localisation.</p>
-    <div class="hero-ctas" style="margin-top:24px;">
-      <a href="tel:{PHONE}" class="btn btn-primary track-phone">{PHONE_DISP}</a>
-      <a href="/contact/" class="btn btn-secondary track-devis">Demander un devis</a>
-    </div>
-  </div>
-</section>
-<div class="section-divider"></div>
+{hero}
 <section class="content-section" aria-labelledby="local-title">
   <div class="container prose-block">
-    <h2 class="section-title" id="local-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:20px;">Interventions dans {region}</h2>
+    <h2 class="section-title" id="local-title">Interventions dans {region}</h2>
     {local_text}
     <p class="geo-local-note">Siège à <strong>{ADDRESS_FULL}</strong> — équipe mobile en Suisse romande. <a href="/contact/">Contactez-nous</a> pour vérifier la disponibilité à {name}.</p>
   </div>
 </section>
 <section class="content-section alt" aria-labelledby="svc-title">
   <div class="container">
-    <h2 class="section-title" id="svc-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:12px;">Services disponibles</h2>
+    <h2 class="section-title" id="svc-title">Services disponibles</h2>
     <div class="zone-links">{svc}</div>
   </div>
 </section>
 <section class="content-section" aria-labelledby="near-title">
   <div class="container">
-    <h2 class="section-title" id="near-title" style="font-size:clamp(22px,2.5vw,32px);margin-bottom:12px;">Autres zones proches</h2>
+    <h2 class="section-title" id="near-title">Autres zones proches</h2>
     <div class="zone-links">{rz}</div>
   </div>
 </section>
@@ -1025,114 +1131,127 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
     {faq_html(faq)}
   </div>
 </section>
+{trust_strip()}
+{norms_bar()}
 {cta_band(f"Un projet à {name} ?", "Décrivez votre besoin par téléphone, email ou WhatsApp.")}"""
     graph = base_graph(title, desc, SITE + url, crumbs, faq)
     write_page([slug, "index.html"], page_shell(title, desc, SITE + url, graph, body, crumbs))
 
 
+def svc_strip_card(slug, name, tag):
+    return (
+        f'<a class="svc-strip-card" data-svc="{slug}" href="/{slug}/">'
+        f'{service_icon(slug, "card")}'
+        f'<span class="svc-strip-card__title">{name}</span>'
+        f'<span class="svc-strip-card__tag">{tag}</span>'
+        f'<span class="svc-strip-card__arrow" aria-hidden="true">→</span></a>'
+    )
+
+
 def build_home():
-    svc_cards = "".join(hub_card(s, n, d) for s, n, d in SERVICES)
-    zone_pills = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES)
+    strip = [
+        ("chauffage", "Chauffage", "Installation & entretien"),
+        ("ventilation", "Ventilation", "Traitement de l'air"),
+        ("climatisation", "Climatisation", "Étude & installation"),
+        ("sanitaire", "Sanitaire", "Rénovation & dépannage"),
+        ("sprinkler-protection-incendie", "Sprinkler", "Protection incendie"),
+        ("depannage-sav", "Dépannage SAV", "Intervention rapide"),
+    ]
+    svc_strip = "".join(svc_strip_card(s, n, t) for s, n, t in strip)
+    real_tiles = [
+        ("sprinkler-collecteur-rouges.jpg", "Réseau Sprinkler", "Protection incendie"),
+        ("tuyauterie-fabrication-atelier.jpg", "Centrale de chauffage", "Installation complète"),
+        ("ventilation-conduit-galvanise-chantier.jpg", "Ventilation", "Conduits chantier tertiaire"),
+        ("sanitaire-local-technique-collecteurs.jpg", "Sanitaire", "Rénovation"),
+        ("ventilation-unite-hvac-gaine.jpg", "Climatisation", "Installation"),
+    ]
+    real_html = "".join(
+        f'<a class="real-tile" href="/realisations/">'
+        f'<img src="/assets/realisations/{fn}" alt="{title} — {sub} · Sopjani Tech Sàrl" width="480" height="640" loading="lazy" decoding="async">'
+        f'<span class="real-tile__cap"><strong>{title}</strong><em>{sub}</em></span></a>'
+        for fn, title, sub in real_tiles
+    )
     faq = [
-        ("Quels services proposez-vous ?", f"{COMPANY_NAME} couvre l'installation, l'entretien et le dépannage en {CVCS_PROSE}, ainsi que le sprinkler en sous-traitance, pour des bâtiments en Suisse romande."),
-        ("Dans quelles zones intervenez-vous ?", f"Principalement en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à {ADDRESS_LOCALITY}. D'autres cantons peuvent être couverts selon la nature du projet."),
+        ("Quels services proposez-vous ?", f"{CVCS_GROUP}, ainsi que dépannage SAV et sprinkler / protection incendie en Suisse romande."),
+        ("Dans quelles zones intervenez-vous ?", f"Principalement Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à {ADDRESS_LOCALITY}."),
         ("Comment obtenir un devis ?", "Via notre page contact ou par téléphone : décrivez le type de bâtiment, la localisation et la nature du besoin. Le devis est gratuit et sans engagement."),
-        ("Intervenez-vous en dépannage ?", f"Oui, nous intervenons en dépannage en {CVCS_PROSE} en Suisse romande. Nos horaires : {HOURS}. Appelez-nous directement pour une panne en cours, ou passez par le formulaire pour une demande non urgente."),
-        ("Qui contacter pour un dépannage CVC en Suisse romande ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp. Décrivez votre panne et votre localisation."),
-        ("Combien de temps pour obtenir un devis ?", f"Pour une réponse immédiate, appelez-nous au {PHONE_DISP} ; pour une demande non urgente, le formulaire de contact permet une réponse par email. Nos horaires : {HOURS}."),
-        ("Intervenez-vous près de chez moi ?", f"Nous sommes basés à {ADDRESS_FULL} et intervenons principalement en Suisse romande. Contactez-nous pour vérifier la disponibilité dans votre commune."),
+        ("Intervenez-vous en dépannage ?", f"Oui, nous intervenons en dépannage en {CVCS_PROSE} en Suisse romande. Nos horaires : {HOURS}. Appelez-nous directement pour une panne en cours."),
+        ("Qui contacter pour un dépannage CVC en Suisse romande ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp."),
+        ("Combien de temps pour obtenir un devis ?", f"Pour une réponse immédiate, appelez-nous au {PHONE_DISP} ; pour une demande non urgente, utilisez le formulaire. Horaires : {HOURS}."),
+        ("Intervenez-vous près de chez moi ?", f"Nous sommes basés à {ADDRESS_FULL} et intervenons en Suisse romande. Contactez-nous pour vérifier la disponibilité dans votre commune."),
     ]
     body = f"""
-<section class="hero" aria-labelledby="hero-h1">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-content">
-        <div class="hero-eyebrow"><span class="label">Étude · Installation · Maintenance · Dépannage</span></div>
-        <h1 id="hero-h1">{CVCS_GROUP} et dépannage en Suisse romande</h1>
-        <p class="hero-sub">Installation, maintenance et dépannage en {CVCS_PROSE} pour bâtiments résidentiels, tertiaires et industriels en Suisse romande.</p>
-        <div class="hero-ctas">
-          <a href="tel:{PHONE}" class="btn btn-primary track-phone">Appeler · {PHONE_DISP}</a>
-          <a href="/contact/" class="btn btn-secondary track-devis">Demander un devis</a>
-        </div>
+<section class="hero hero--photo" aria-labelledby="hero-h1">
+  <div class="hero-media" aria-hidden="true">
+    <img src="/assets/heroes/home.jpg" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Étude · Installation · Maintenance · Dépannage</p>
+      <h1 id="hero-h1">Solutions CVC fiables pour vos bâtiments.</h1>
+      <p class="hero-sub">{CVCS_GROUP} et protection incendie en Suisse romande.</p>
+      <div class="hero-ctas">
+        <a href="/contact/" class="btn btn-brand btn-brand--on-dark track-devis">Demander un devis</a>
+        <a href="tel:{PHONE}" class="btn btn-urgence track-phone">Dépannage urgent</a>
       </div>
-      {hero_side_panel()}
+      <ul class="hero-trust">
+        <li>Devis gratuit</li>
+        <li>Intervention rapide</li>
+        <li>Normes suisses</li>
+      </ul>
     </div>
   </div>
 </section>
-<div class="section-divider"></div>
-{geo_presence_block()}
-<section class="services content-section" aria-labelledby="svc-title">
+
+<section class="svc-strip" aria-label="Prestations">
   <div class="container">
-    <span class="label">Nos prestations</span>
-    <div class="rule"></div>
-    <h2 class="section-title" id="svc-title">Services techniques du bâtiment</h2>
-    <p class="section-lead" style="margin-top:16px;">Installation, maintenance et dépannage pour bâtiments résidentiels, commerciaux et industriels.</p>
-    <div class="hub-grid">{svc_cards}</div>
-    <p style="margin-top:24px;"><a href="/prestations/">Voir toutes les prestations →</a></p>
+    <div class="svc-strip-grid">{svc_strip}</div>
   </div>
 </section>
-<div class="section-divider"></div>
-<section class="content-section alt" aria-labelledby="about-title">
-  <div class="container prose-block">
-    <span class="label">Entreprise</span>
-    <div class="rule"></div>
-    <h2 class="section-title" id="about-title">L'entreprise</h2>
-    {HOME_ABOUT_TEASER}
+
+{trust_strip()}
+
+<section class="home-realisations" aria-labelledby="real-title">
+  <div class="container">
+    <div class="home-realisations__head">
+      <h2 class="section-title" id="real-title">Nos réalisations</h2>
+      <a href="/realisations/" class="text-link">Voir toutes les réalisations →</a>
+    </div>
+    <div class="real-tiles">{real_html}</div>
   </div>
 </section>
-<div class="section-divider"></div>
-<section class="expertise content-section" aria-labelledby="why-title">
-  <div class="container">
-    <span class="label">Pourquoi nous choisir</span>
-    <div class="rule"></div>
-    <h2 class="section-title" id="why-title">Une exécution technique rigoureuse</h2>
-    <div class="expertise-grid" style="margin-top:32px;">
-      <div class="prose-block">
-        <p>En Suisse, les exigences d'installation technique sont élevées. Sopjani Tech Sàrl y répond avec méthode, transparence et engagement.</p>
-        <h3>Rigueur d'exécution</h3>
-        <p>Nos travaux sont réalisés dans le respect des normes en vigueur (SIA, SUVA, AEAI selon le type d'installation). Documentation et traçabilité des interventions.</p>
-        <h3>Interlocuteur direct</h3>
-        <p>Vous échangez directement avec l'équipe technique qui réalise les travaux.</p>
-        <h3>Devis transparent</h3>
-        <p>Offres claires et détaillées, adaptées à votre budget et à vos contraintes techniques.</p>
-      </div>
-      <div class="cert-block">
-        <div class="cert-title">Nos engagements</div>
-        <ul class="bullet-list">
-          <li>Devis gratuit et sans engagement</li>
-          <li>Un interlocuteur unique, du premier contact à la fin des travaux</li>
-          <li>Intervention en Suisse romande, à proximité de {ADDRESS_LOCALITY}</li>
-          <li>Échanges clairs sur la nature et le coût des travaux avant intervention</li>
-          <li>Société inscrite au registre du commerce suisse (UID {COMPANY_UID}, vérifiable sur Zefix)</li>
-        </ul>
-        <p style="margin-top:20px;"><a href="{GOOGLE_BUSINESS_URL}" class="text-link track-google" target="_blank" rel="noopener noreferrer">Voir notre fiche Google et nos avis →</a></p>
-      </div>
+
+<section class="about-split" aria-labelledby="about-title">
+  <div class="container about-split-grid">
+    <div class="about-copy">
+      <span class="label label--brand">À propos de Sopjani Tech</span>
+      <h2 class="section-title" id="about-title">Rigueur, transparence et proximité.</h2>
+      <p>Nous concevons, installons et assurons la mise en service avec un interlocuteur unique et un suivi clair à chaque étape.</p>
+      <ul class="check-list">
+        <li>Devis clairs et détaillés</li>
+        <li>Respect des normes suisses (SIA, SUVA, AEAI…)</li>
+        <li>Interlocuteur direct et réactif</li>
+        <li>Qualité d'exécution et traçabilité</li>
+      </ul>
+      <p class="about-copy-links">
+        <a href="/a-propos/" class="text-link">Présentation de l'entreprise →</a>
+        <a href="/contact/" class="text-link track-devis">Demander un devis →</a>
+      </p>
+    </div>
+    <div class="about-photo-duo" aria-label="Équipe Sopjani Tech">
+      <figure class="about-photo">
+        <img src="/assets/equipe/equipe-soudure-logo-dos.jpg" alt="Technicien Sopjani Tech Sàrl en intervention — logo visible sur la tenue" width="900" height="900" loading="lazy" decoding="async">
+      </figure>
+      <figure class="about-photo">
+        <img src="/assets/equipe/equipe-formation-logo-dos.jpg" alt="Collaborateur Sopjani Tech Sàrl en formation — tenue aux couleurs de l'entreprise" width="775" height="1024" loading="lazy" decoding="async">
+      </figure>
     </div>
   </div>
 </section>
-<div class="section-divider"></div>
-<section class="zones content-section alt" aria-labelledby="zones-title">
-  <div class="container">
-    <span class="label">Zones d'intervention</span>
-    <div class="rule"></div>
-    <h2 class="section-title" id="zones-title">Suisse romande et alentours</h2>
-    <p class="section-lead" style="margin-top:16px;">Nous intervenons principalement en Suisse romande et pouvons nous déplacer dans d'autres cantons selon la nature des travaux.</p>
-    <div class="zone-links">{zone_pills}</div>
-    <p style="margin-top:20px;"><a href="/zones-intervention/">Toutes nos zones d'intervention →</a></p>
-  </div>
-</section>
-<div class="section-divider"></div>
-<section class="content-section" aria-labelledby="real-title">
-  <div class="container">
-    <span class="label">Chantiers</span>
-    <div class="rule"></div>
-    <h2 class="section-title" id="real-title">Réalisations récentes</h2>
-    <p class="section-lead" style="margin-top:16px;">Aperçu de nos interventions en chauffage, ventilation, sanitaire et sprinkler en Suisse romande.</p>
-    {gallery_html([("sprinkler-collecteur-rouges.jpg", 1280, 720, "Centrale sprinkler sous eau avec tuyauterie rouge et vannes en local technique, par Sopjani Tech Sàrl", "Centrale sprinkler sous eau"), ("ventilation-conduit-galvanise-chantier.jpg", 1280, 720, "Conduit de ventilation en acier galvanisé installé sur chantier par Sopjani Tech Sàrl", "Conduit de ventilation galvanisé"), ("tuyauterie-fabrication-atelier.jpg", 720, 1280, "Fabrication en atelier d'un assemblage de tuyauterie de chauffage par Sopjani Tech Sàrl", "Fabrication de tuyauterie chauffage en atelier")], cols=3)}
-    <p style="margin-top:24px;"><a href="/realisations/" class="text-link">Voir toutes nos réalisations →</a></p>
-  </div>
-</section>
-<div class="section-divider"></div>
+
+{norms_bar()}
+
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
     {faq_section_head()}
@@ -1146,6 +1265,7 @@ def build_home():
     write_page(["index.html"], page_shell(home_title, home_desc, SITE + "/", graph, body))
 
 
+
 def build_prestations():
     faq = [
         ("Quelles prestations CVC proposez-vous ?", f"{CVCS_GROUP}, ainsi que dépannage SAV et sprinkler en sous-traitance."),
@@ -1153,28 +1273,27 @@ def build_prestations():
         ("Intervenez-vous en Suisse romande ?", f"Oui, principalement à Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à {ADDRESS_LOCALITY}."),
     ]
     cards = "".join(hub_card(s, n, d, cta="Voir la prestation →") for s, n, d in SERVICES)
+    hero = page_hero(
+        "Prestations",
+        f"Nos prestations en {CVCS_PROSE}",
+        "Sopjani Tech Sàrl conçoit, installe, entretient et dépanne vos installations techniques en Suisse romande.",
+        image=hero_image_for("prestations"),
+    )
     body = f"""
-<section class="page-hero hero" aria-labelledby="page-h1">
-  <div class="container">
-    <span class="label">Prestations</span>
-    <div class="rule"></div>
-    <h1 id="page-h1">Nos prestations en {CVCS_PROSE}</h1>
-    <p class="hero-sub">Sopjani Tech Sàrl conçoit, installe, entretient et dépanne vos installations techniques en Suisse romande.</p>
-  </div>
-</section>
-<div class="section-divider"></div>
+{hero}
 <section class="content-section">
   <div class="container">
     <div class="hub-grid">{cards}</div>
   </div>
 </section>
-<div class="section-divider"></div>
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
     {faq_section_head()}
     {faq_html(faq)}
   </div>
 </section>
+{trust_strip()}
+{norms_bar()}
 {cta_band()}"""
     crumbs = [("Accueil", "/"), ("Prestations", "/prestations/")]
     presta_title = PAGE_TITLES["prestations"]
@@ -1190,18 +1309,15 @@ def build_zones_hub():
         ("Avez-vous une agence dans chaque canton ?", "Non. Nos interventions sont assurées par une équipe mobile depuis notre siège à Romont FR."),
     ]
     cards = "".join(f'<a class="hub-card" href="/{z}/"><h3>{n}</h3><p>Interventions CVC dans {r}</p><span class="link-arrow">Voir la zone →</span></a>' for z, n, r in ZONES)
+    hero = page_hero(
+        "Géographie",
+        "Nos zones d'intervention en Suisse romande",
+        "Sopjani Tech Sàrl intervient dans les cantons et agglomérations ci-dessous. Contactez-nous pour vérifier la disponibilité dans votre secteur.",
+        image=hero_image_for("zones-intervention"),
+    )
     body = f"""
-<section class="page-hero hero" aria-labelledby="page-h1">
-  <div class="container">
-    <span class="label">Géographie</span>
-    <div class="rule"></div>
-    <h1 id="page-h1">Nos zones d'intervention en Suisse romande</h1>
-    <p class="hero-sub">Sopjani Tech Sàrl intervient dans les cantons et agglomérations ci-dessous. Contactez-nous pour vérifier la disponibilité dans votre secteur.</p>
-  </div>
-</section>
-<div class="section-divider"></div>
+{hero}
 {geo_presence_block(compact=True)}
-<div class="section-divider"></div>
 <section class="content-section">
   <div class="container">
     <div class="hub-grid">{cards}</div>
@@ -1211,13 +1327,14 @@ def build_zones_hub():
     </div>
   </div>
 </section>
-<div class="section-divider"></div>
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
     {faq_section_head()}
     {faq_html(faq)}
   </div>
 </section>
+{trust_strip()}
+{norms_bar()}
 {cta_band("Votre commune n'est pas listée ?", "Contactez-nous pour vérifier la faisabilité d'une intervention.")}"""
     crumbs = [("Accueil", "/"), ("Zones d'intervention", "/zones-intervention/")]
     zones_title = PAGE_TITLES["zones-intervention"]
@@ -1232,31 +1349,96 @@ def build_about():
         ("Quels services propose l'entreprise ?", f"{CVCS_GROUP}, ainsi que dépannage SAV et sprinkler en sous-traitance."),
         ("Comment contacter Sopjani Tech Sàrl ?", f"Par téléphone au {PHONE_DISP}, par email ({EMAIL}) ou via WhatsApp. Horaires : {HOURS}."),
     ]
+    hero = page_hero(
+        "Entreprise",
+        "À propos de Sopjani Tech Sàrl",
+        f"Entreprise technique spécialisée en {CVCS_ALL_PROSE} en Suisse romande.",
+        image=hero_image_for("a-propos"),
+    )
+    zone_pills = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES)
     body = f"""
-<section class="page-hero hero" aria-labelledby="page-h1">
+{hero}
+<section class="about-intro content-section" aria-labelledby="about-who">
   <div class="container">
-    <span class="label">Entreprise</span>
+    <div class="about-intro-grid">
+      <div class="about-intro-copy">
+        <span class="label">Entreprise</span>
+        <div class="rule"></div>
+        <h2 class="section-title" id="about-who">Qui sommes-nous</h2>
+        <p class="about-lead">Sopjani Tech Sàrl accompagne les bâtiments résidentiels, tertiaires et techniques en Suisse romande — du premier échange à la mise en service.</p>
+        <p>Basés à <strong>{ADDRESS_FULL}</strong>, nous couvrons le {CVCS_PROSE}, le dépannage SAV et le sprinkler / protection incendie. Approche simple : comprendre le besoin, proposer une solution adaptée, intervenir avec sérieux.</p>
+        <p>Nous privilégions la clarté des échanges, la réactivité et l'adaptation aux contraintes du terrain — installation, maintenance ou dépannage.</p>
+        <div class="about-zones">
+          <p class="about-zones-label">Zones prioritaires</p>
+          <div class="zone-links">{zone_pills}</div>
+        </div>
+      </div>
+      <aside class="about-contact-rail" aria-label="Coordonnées">
+        <p class="about-contact-rail__title">Coordonnées</p>
+        <a href="tel:{PHONE}" class="about-contact-row track-phone">
+          <span class="about-contact-row__k">Téléphone</span>
+          <span class="about-contact-row__v">{PHONE_DISP}</span>
+        </a>
+        <a href="mailto:{EMAIL}" class="about-contact-row track-email">
+          <span class="about-contact-row__k">Email</span>
+          <span class="about-contact-row__v">{EMAIL}</span>
+        </a>
+        <a href="{MAP_URL}" class="about-contact-row" target="_blank" rel="noopener noreferrer">
+          <span class="about-contact-row__k">Adresse</span>
+          <span class="about-contact-row__v">{ADDRESS_FULL}</span>
+        </a>
+        <div class="about-contact-row about-contact-row--static">
+          <span class="about-contact-row__k">Horaires</span>
+          <span class="about-contact-row__v">{HOURS}</span>
+        </div>
+        <a href="/contact/" class="btn btn-brand btn-block track-devis" style="margin-top:8px;">Demander un devis</a>
+      </aside>
+    </div>
+  </div>
+</section>
+<section class="about-engagements content-section alt" aria-labelledby="engagements-title">
+  <div class="container about-engagements-inner">
+    <div>
+      <span class="label">Engagements</span>
+      <div class="rule"></div>
+      <h2 class="section-title" id="engagements-title">Ce que vous pouvez attendre</h2>
+      <p class="section-lead">Des échanges nets, un interlocuteur unique et une entreprise enregistrée en Suisse.</p>
+    </div>
+    <ul class="check-list about-check">
+      <li>Devis gratuit et sans engagement</li>
+      <li>Un interlocuteur unique, du premier contact à la fin des travaux</li>
+      <li>Échanges clairs sur la nature et le coût avant intervention</li>
+      <li>Sàrl inscrite au registre du commerce (UID {COMPANY_UID} · <a href="https://www.zefix.ch" target="_blank" rel="noopener noreferrer">Zefix</a>)</li>
+    </ul>
+    <p class="about-google"><a href="{GOOGLE_BUSINESS_URL}" class="text-link track-google" target="_blank" rel="noopener noreferrer">Voir notre fiche Google et nos avis →</a></p>
+  </div>
+</section>
+<section class="content-section" aria-labelledby="equipe-title">
+  <div class="container">
+    <span class="label">Équipe</span>
     <div class="rule"></div>
-    <h1 id="page-h1">À propos de Sopjani Tech Sàrl</h1>
-    <p class="hero-sub">Entreprise technique spécialisée en {CVCS_ALL_PROSE} en Suisse romande.</p>
+    <h2 class="section-title" id="equipe-title">Sur le terrain et en formation</h2>
+    <p class="section-lead">Des professionnels Sopjani Tech Sàrl, identifiable à notre tenue — intervention technique et formation continue.</p>
+    <div class="equipe-grid">
+      <figure class="gallery-card">
+        <img src="/assets/equipe/equipe-soudure-logo-dos.jpg" alt="Technicien Sopjani Tech Sàrl en soudure — logo sur la tenue" width="900" height="900" loading="lazy" decoding="async">
+        <figcaption>Intervention terrain — tenue Sopjani Tech Sàrl</figcaption>
+      </figure>
+      <figure class="gallery-card">
+        <img src="/assets/equipe/equipe-formation-logo-dos.jpg" alt="Collaborateur Sopjani Tech Sàrl en formation sécurité" width="775" height="1024" loading="lazy" decoding="async">
+        <figcaption>Formation continue — normes et sécurité</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
-<div class="section-divider"></div>
-<section class="content-section">
-  <div class="container prose-block">
-    <h2 class="section-title" style="font-size:clamp(26px,3vw,40px);">Qui sommes-nous</h2>
-    {QUI_SOMMES_NOUS_HTML}
-    <h3>Coordonnées</h3>
-    <p>Téléphone : <a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a><br>Email : <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a><br>Adresse : <a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a><br>Horaires : {HOURS}</p>
-  </div>
-</section>
-<div class="section-divider"></div>
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
     {faq_section_head()}
     {faq_html(faq)}
   </div>
 </section>
+{trust_strip()}
+{norms_bar()}
 {cta_band()}"""
     crumbs = [("Accueil", "/"), ("À propos", "/a-propos/")]
     about_title = PAGE_TITLES["a-propos"]
@@ -1275,18 +1457,18 @@ def build_contact():
     ]
     body = f"""
 {urgence_band()}
-<section class="contact page-hero" aria-labelledby="page-h1">
+{page_hero(
+        "Contact",
+        "Contactez Sopjani Tech Sàrl",
+        "Devis, maintenance ou dépannage : décrivez votre besoin et nous vous orienterons vers la solution adaptée.",
+        image=hero_image_for("contact"),
+    )}
+<section class="contact content-section" aria-labelledby="contact-form-title">
   <div class="container contact-page">
-    <div class="contact-intro">
-      <span class="label">Contact</span>
-      <div class="rule"></div>
-      <h1 id="page-h1">Contactez Sopjani Tech Sàrl</h1>
-      <p class="section-lead contact-lead">Devis, maintenance ou dépannage : décrivez votre besoin et nous vous orienterons vers la solution adaptée.</p>
-    </div>
     {mobile_quick_bar()}
     <div class="contact-inner">
       <div class="contact-form-section" id="contact-form">
-        <h2 class="contact-block-title">Formulaire de demande</h2>
+        <h2 class="contact-block-title" id="contact-form-title">Formulaire de demande</h2>
         <p class="contact-block-lead">Remplissez ce formulaire — nous vous répondons rapidement.</p>
         <form class="contact-form track-form" action="{FORM_ENDPOINT or '#'}" method="post" data-form-endpoint="{FORM_ENDPOINT}">
           <div class="form-field"><label for="name">Nom</label><input id="name" name="name" type="text" required autocomplete="name" placeholder="Votre nom"></div>
@@ -1303,7 +1485,7 @@ def build_contact():
             </select>
           </div>
           <div class="form-field"><label for="message">Message</label><textarea id="message" name="message" required placeholder="Décrivez votre besoin…"></textarea></div>
-          <button type="submit" class="btn btn-primary btn-block track-form-submit">Envoyer la demande</button>
+          <button type="submit" class="btn btn-brand btn-block track-form-submit">Envoyer la demande</button>
           <p class="form-feedback" role="status" aria-live="polite" hidden></p>
         </form>
       </div>
@@ -1350,7 +1532,10 @@ def build_contact():
     {faq_section_head()}
     {faq_html(faq)}
   </div>
-</section>"""
+</section>
+{trust_strip()}
+{norms_bar()}
+{cta_band()}"""
     crumbs = [("Accueil", "/"), ("Contact", "/contact/")]
     contact_title = PAGE_TITLES["contact"]
     contact_desc = META_DESCRIPTIONS["contact"]
@@ -1622,24 +1807,16 @@ def legal_identity_block():
 
 def build_legal_pages():
     mentions_body = f"""
-<section class="page-hero hero" aria-labelledby="page-h1">
-  <div class="container">
-    <span class="label">Informations légales</span>
-    <div class="rule"></div>
-    <h1 id="page-h1">Mentions légales</h1>
-    <p class="hero-sub">Informations relatives à l'éditeur du site {SITE.replace('https://', '')} et aux conditions d'utilisation.</p>
-  </div>
-</section>
-<div class="section-divider"></div>
+{page_hero("Informations légales", "Mentions légales", f"Informations relatives à l'éditeur du site {SITE.replace('https://', '')} et aux conditions d'utilisation.", show_ctas=False)}
 <section class="content-section">
   <div class="container prose-block">
-    <h2 class="section-title" style="font-size:clamp(26px,3vw,40px);">Éditeur du site</h2>
+    <h2 class="section-title">Éditeur du site</h2>
     {legal_identity_block()}
     <h3>Hébergement</h3>
     <p>Ce site est hébergé par {HOST_NAME}, {HOST_ADDRESS}.</p>
     <h3 id="propriete-intellectuelle">Propriété intellectuelle</h3>
     <p>L'ensemble des contenus présents sur ce site (textes, images, graphismes, logo, structure) est la propriété de {COMPANY_NAME} ou de ses partenaires, sauf mention contraire. Toute reproduction, représentation ou diffusion, totale ou partielle, sans autorisation écrite préalable est interdite.</p>
-    <p>Les photographies de réalisations publiées sur ce site sont protégées par le droit d'auteur ({IMAGE_COPYRIGHT_NOTICE}). Pour connaître les conditions d'utilisation, consultez la présente section. Pour demander une autorisation d'utilisation ou obtenir une licence, <a href="{IMAGE_ACQUIRE_LICENSE_URL}">contactez-nous</a>.</p>
+    <p>Les photographies de réalisations publiées sur ce site sont protégées par le droit d'auteur ({IMAGE_COPYRIGHT_NOTICE}). Crédit photo : {COMPANY_NAME}. Pour demander une autorisation d'utilisation ou obtenir une licence, <a href="{IMAGE_ACQUIRE_LICENSE_URL}">contactez-nous</a>.</p>
     <h3>Limitation de responsabilité</h3>
     <p>{COMPANY_NAME} s'efforce d'assurer l'exactitude des informations publiées sur ce site. Toutefois, elle ne peut garantir l'absence d'erreurs ou d'omissions et décline toute responsabilité pour les dommages directs ou indirects résultant de l'accès ou de l'utilisation du site.</p>
     <p>Les informations techniques et commerciales ne constituent pas une offre contractuelle. Seul un devis ou un contrat signé fait foi.</p>
@@ -1666,18 +1843,10 @@ def build_legal_pages():
         "Ce site ne dispose actuellement d'aucun outil de mesure d'audience tiers activé."
     )
     privacy_body = f"""
-<section class="page-hero hero" aria-labelledby="page-h1">
-  <div class="container">
-    <span class="label">Protection des données</span>
-    <div class="rule"></div>
-    <h1 id="page-h1">Politique de confidentialité</h1>
-    <p class="hero-sub">Comment {COMPANY_NAME} traite les données personnelles collectées via ce site, conformément à la loi suisse sur la protection des données (nLPD).</p>
-  </div>
-</section>
-<div class="section-divider"></div>
+{page_hero("Protection des données", "Politique de confidentialité", f"Comment {COMPANY_NAME} traite les données personnelles collectées via ce site, conformément à la loi suisse sur la protection des données (nLPD).", show_ctas=False)}
 <section class="content-section">
   <div class="container prose-block">
-    <h2 class="section-title" style="font-size:clamp(26px,3vw,40px);">Responsable du traitement</h2>
+    <h2 class="section-title">Responsable du traitement</h2>
     {legal_identity_block()}
     <h3>Données collectées</h3>
     <p>Nous pouvons traiter les catégories de données suivantes :</p>
@@ -1836,31 +2005,22 @@ def build_realisations():
   <div class="container">
     <span class="label">{label}</span>
     <div class="rule"></div>
-    <h2 class="section-title" id="real-{cat}" style="font-size:clamp(26px,3vw,40px);margin-bottom:24px;">{label}</h2>
+    <h2 class="section-title" id="real-{cat}">{label}</h2>
     <div class="gallery gallery-cols-3">{"".join(cards)}</div>
   </div>
 </section>
-<div class="section-divider"></div>
 """
     body = f"""
-<section class="page-hero hero" aria-labelledby="page-h1">
-  <div class="container">
-    <span class="label">Réalisations</span>
-    <div class="rule"></div>
-    <h1 id="page-h1">Nos réalisations en {CVCS_PROSE} et sprinkler</h1>
-    <p class="hero-sub">Aperçu de chantiers réalisés par {COMPANY_NAME} en Suisse romande : chauffage, ventilation, sanitaire et sprinkler / protection incendie.</p>
-  </div>
-</section>
-<div class="section-divider"></div>
+{page_hero(
+        "Réalisations",
+        f"Nos réalisations en {CVCS_PROSE} et sprinkler",
+        f"Aperçu de chantiers réalisés par {COMPANY_NAME} en Suisse romande : chauffage, ventilation, sanitaire et sprinkler / protection incendie.",
+        image=hero_image_for("realisations"),
+    )}
 {sections}
-<section class="content-section" aria-labelledby="real-licence">
-  <div class="container prose-block">
-    <h2 class="section-title" id="real-licence" style="font-size:clamp(22px,2.5vw,32px);">Droits sur les images</h2>
-    <p>Les photographies de cette page sont la propriété de {COMPANY_NAME} ({IMAGE_COPYRIGHT_NOTICE}). Crédit photo : {COMPANY_NAME}.</p>
-    <p><a href="{IMAGE_LICENSE_URL}">Conditions d'utilisation des images</a> · <a href="{IMAGE_ACQUIRE_LICENSE_URL}">Demander une autorisation</a></p>
-  </div>
-</section>
-<div class="section-divider"></div>
+<p class="gallery-legal-note container"><a href="{IMAGE_LICENSE_URL}">Droits et utilisation des images</a> · {IMAGE_COPYRIGHT_NOTICE}</p>
+{trust_strip()}
+{norms_bar()}
 {cta_band()}"""
     crumbs = [("Accueil", "/"), ("Réalisations", "/realisations/")]
     title = PAGE_TITLES.get("realisations", "Réalisations CVC, sprinkler et sanitaire | Sopjani Tech Sàrl")
@@ -1886,18 +2046,10 @@ def build_sitemap_page():
     all_links = []
     for sec_title, links in sections:
         items = "".join(f'<li><a href="{u}">{l}</a></li>' for u, l in links)
-        blocks += f'<div class="sitemap-section"><h2 class="section-title" style="font-size:clamp(20px,2.5vw,28px);margin-bottom:16px;">{sec_title}</h2><ul class="sitemap-list">{items}</ul></div>'
+        blocks += f'<div class="sitemap-section"><h2 class="section-title">{sec_title}</h2><ul class="sitemap-list">{items}</ul></div>'
         all_links.extend(links)
     body = f"""
-<section class="page-hero hero" aria-labelledby="page-h1">
-  <div class="container">
-    <span class="label">Navigation</span>
-    <div class="rule"></div>
-    <h1 id="page-h1">Plan du site</h1>
-    <p class="hero-sub">Accès direct à toutes les pages de {COMPANY_NAME} : prestations, zones d'intervention et informations de contact.</p>
-  </div>
-</section>
-<div class="section-divider"></div>
+{page_hero("Navigation", "Plan du site", f"Accès direct à toutes les pages de {COMPANY_NAME} : prestations, zones d'intervention et informations de contact.", show_ctas=False)}
 <section class="content-section">
   <div class="container sitemap-grid">{blocks}</div>
 </section>"""
