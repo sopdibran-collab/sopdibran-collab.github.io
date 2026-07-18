@@ -409,6 +409,63 @@ def realisations_section(cat, limit=None):
     return gallery_html(imgs, cols=3)
 
 
+# Categories d'images pour le carousel magnétique par prestation.
+SERVICE_CAROUSEL_CATS = {
+    "chauffage": ["chauffage"],
+    "ventilation": ["ventilation"],
+    "climatisation": ["ventilation", "chauffage"],
+    "sanitaire": ["sanitaire"],
+    "depannage-sav": ["chauffage", "ventilation", "sanitaire"],
+    "sprinkler-protection-incendie": ["sprinkler"],
+}
+
+
+def carousel_images_for_service(slug, gallery_cat=None, limit=8):
+    """Images chantier pour le carousel (catégorie dédiée, sinon fallback)."""
+    preferred = list(SERVICE_CAROUSEL_CATS.get(slug, []))
+    if gallery_cat:
+        cats = [gallery_cat] + [c for c in preferred if c != gallery_cat]
+    else:
+        cats = preferred
+    seen = set()
+    out = []
+    for cat in cats:
+        for item in REALISATIONS_BY_CAT.get(cat, []):
+            fn = item[0]
+            if fn in seen:
+                continue
+            seen.add(fn)
+            out.append(item)
+            if len(out) >= limit:
+                return out
+    return out
+
+
+def magnetic_carousel_html(images, service_name):
+    """Carousel magnétique type dock macOS — HTML sémantique, JS dans main.js."""
+    if not images:
+        return ""
+    bars = []
+    for i, (fn, w, h, alt, cap) in enumerate(images):
+        safe_alt = alt.replace('"', "&quot;")
+        safe_cap = cap.replace('"', "&quot;")
+        bars.append(
+            f'<button type="button" class="magnetic-bar" data-index="{i}" '
+            f'data-src="/assets/realisations/{fn}" '
+            f'aria-label="{safe_cap}" aria-expanded="false" '
+            f'style="background-image:url(\'/assets/realisations/{fn}\')">'
+            f'<img src="/assets/realisations/{fn}" alt="{safe_alt}" width="{w}" height="{h}" '
+            f'loading="lazy" decoding="async" class="magnetic-bar__img"></button>'
+        )
+    return (
+        f'<div class="magnetic-carousel" role="group" '
+        f'aria-label="Galerie réalisations — {service_name}">'
+        f'<div class="magnetic-carousel__track">{"".join(bars)}</div>'
+        f'<div class="magnetic-carousel__backdrop" hidden aria-hidden="true"></div>'
+        f"</div>"
+    )
+
+
 def extract_css():
     css_path = ROOT / "css" / "main.css"
     if css_path.exists() and ":root" in css_path.read_text(encoding="utf-8"):
@@ -832,16 +889,17 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
     zones_html = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES if z in zone_slugs)
     related = "".join(f'<a class="zone-pill" href="/{s}/">{n}</a>' for s, n, _ in SERVICES if s in related_svc)
     urgence_html = f'<div class="section-divider"></div>{urgence_band()}' if show_urgence else ""
+    carousel_imgs = carousel_images_for_service(slug, gallery_cat=gallery_cat, limit=8)
     gallery_block = ""
-    if gallery_cat and REALISATIONS_BY_CAT.get(gallery_cat):
+    if carousel_imgs:
         gallery_block = f"""<div class="section-divider"></div>
-<section class="content-section" aria-labelledby="real-title">
+<section class="content-section magnetic-section" aria-labelledby="real-title">
   <div class="container">
     <span class="label">Chantiers</span>
     <div class="rule"></div>
     <h2 class="section-title" id="real-title" style="font-size:clamp(26px,3vw,40px);margin-bottom:8px;">Réalisations — {name}</h2>
-    <p class="section-lead" style="margin-top:8px;">Aperçu d'interventions réalisées par {COMPANY_NAME}.</p>
-    {realisations_section(gallery_cat)}
+    <p class="section-lead" style="margin-top:8px;">Survolez ou touchez une photo pour l'agrandir. Aperçu d'interventions réalisées par {COMPANY_NAME}.</p>
+    {magnetic_carousel_html(carousel_imgs, name)}
     <p style="margin-top:24px;"><a href="/realisations/" class="text-link">Voir toutes nos réalisations →</a></p>
   </div>
 </section>"""
@@ -1379,6 +1437,7 @@ def build_services():
          ("Intervenez-vous en dépannage climatisation ?", "Oui, nous diagnostiquons et réparons les pannes courantes : perte de froid, fuite de fluide réfrigérant, unité extérieure givrée ou bruyante. Contactez-nous avec le modèle de l'appareil si possible."),
          ("Installez-vous la climatisation près de chez moi ?", f"Nous intervenons en Suisse romande depuis {ADDRESS_LOCALITY}. Contactez-nous avec votre commune."),
          ("Comment obtenir un devis climatisation ?", "Via notre page contact : précisez le type de bâtiment, la surface et vos besoins de confort.")],
+        gallery_cat="ventilation",
         expertise_html="""<p>Nous intervenons sur climatiseurs split et multi-split, ainsi que sur les pompes à chaleur air-air réversibles (chauffage et rafraîchissement).</p>
 <h3>Fluides frigorigènes</h3>
 <p>La manipulation des fluides réfrigérants est strictement encadrée par la législation suisse sur la protection de l'environnement. Toute intervention sur le circuit frigorifique (recharge, détection de fuite) est réalisée avec le soin et les précautions requises par ce cadre.</p>
@@ -1403,6 +1462,7 @@ def build_services():
          ("Qui appeler pour un dépannage chauffage ou climatisation ?", f"{COMPANY_NAME} au {PHONE_DISP}. Indiquez votre adresse et le type de panne."),
          ("Intervenez-vous le week-end ?", f"Oui, nos horaires sont : {HOURS}, y compris le week-end. Appelez-nous pour évaluer la disponibilité selon la nature de la panne.")],
         show_urgence=True,
+        gallery_cat=None,
         expertise_html="""<p>Nos interventions de dépannage couvrent le chauffage (chaudières, pompes à chaleur), la ventilation (VMC), la climatisation et les réseaux sanitaires.</p>
 <h3>Diagnostic avant travaux</h3>
 <p>Sauf urgence nécessitant une action immédiate, nous établissons un diagnostic et un devis avant toute intervention corrective, afin que vous validiez le coût et la nature des travaux avant leur réalisation.</p>""")
@@ -2083,6 +2143,156 @@ document.querySelectorAll('.track-google').forEach(el => {
     trackEvent('click_google', { event_category: 'contact', event_label: 'google_business' });
   });
 });
+
+/* Magnetic carousel — dock-style magnify (vanilla, no React) */
+(function initMagneticCarousels() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+
+  document.querySelectorAll('.magnetic-carousel').forEach(root => {
+    const track = root.querySelector('.magnetic-carousel__track');
+    const backdrop = root.querySelector('.magnetic-carousel__backdrop');
+    const bars = Array.from(root.querySelectorAll('.magnetic-bar'));
+    if (!track || bars.length === 0) return;
+
+    const collapsedW = 72;
+    const hoverW = 168;
+    const collapsedH = 280;
+    const hoverH = 340;
+    const gap = 12;
+    const influence = 180;
+    const blurPx = 3;
+    const openDur = 300;
+
+    function getOpenSize() {
+      return Math.min(520, Math.floor(window.innerWidth * 0.9));
+    }
+
+    let openIndex = null;
+    let closing = false;
+    let factors = bars.map(() => 0);
+    let target = bars.map(() => 0);
+    let cur = bars.map(() => 0);
+    let loopId = 0;
+    let closeTimer = 0;
+
+    function applySizes() {
+      const openSize = getOpenSize();
+      bars.forEach((bar, i) => {
+        let w = collapsedW;
+        let h = collapsedH;
+        if (openIndex !== null) {
+          if (i === openIndex) {
+            w = openSize;
+            h = openSize;
+          }
+        } else if (!reduceMotion && !isCoarse) {
+          const f = factors[i] || 0;
+          w = collapsedW + (hoverW - collapsedW) * f;
+          h = collapsedH + (hoverH - collapsedH) * f;
+        }
+        const blurred = openIndex !== null && i !== openIndex;
+        bar.style.width = w + 'px';
+        bar.style.height = h + 'px';
+        bar.style.filter = blurred ? 'blur(' + blurPx + 'px)' : 'none';
+        bar.style.opacity = blurred ? '0.55' : '1';
+        bar.style.zIndex = i === openIndex ? '3' : '2';
+        bar.classList.toggle('is-open', i === openIndex);
+        bar.setAttribute('aria-expanded', i === openIndex ? 'true' : 'false');
+        const useTransition = openIndex !== null || closing;
+        bar.style.transition = useTransition
+          ? 'width ' + openDur + 'ms ease-in-out, height ' + openDur + 'ms ease-in-out, filter ' + openDur + 'ms ease-in-out, opacity ' + openDur + 'ms ease-in-out'
+          : 'none';
+      });
+      if (backdrop) {
+        backdrop.hidden = openIndex === null;
+        backdrop.setAttribute('aria-hidden', openIndex === null ? 'true' : 'false');
+      }
+      root.classList.toggle('is-expanded', openIndex !== null);
+    }
+
+    function startLoop() {
+      if (loopId || reduceMotion || isCoarse || openIndex !== null) return;
+      const step = () => {
+        let moving = false;
+        for (let i = 0; i < cur.length; i++) {
+          const d = (target[i] || 0) - cur[i];
+          if (Math.abs(d) > 0.001) {
+            cur[i] += d * 0.2;
+            moving = true;
+          } else {
+            cur[i] = target[i] || 0;
+          }
+        }
+        factors = cur.slice();
+        applySizes();
+        loopId = moving ? requestAnimationFrame(step) : 0;
+      };
+      loopId = requestAnimationFrame(step);
+    }
+
+    function setTargetFromCursor(clientX) {
+      const rect = track.getBoundingClientRect();
+      const cx = clientX - rect.left;
+      const n = bars.length;
+      const totalBase = n * collapsedW + (n - 1) * gap;
+      const startX = (rect.width - totalBase) / 2;
+      target = bars.map((_, i) => {
+        const center = startX + i * (collapsedW + gap) + collapsedW / 2;
+        const dist = Math.abs(cx - center);
+        const f = Math.max(0, 1 - dist / influence);
+        return f * f * (3 - 2 * f);
+      });
+      startLoop();
+    }
+
+    function close() {
+      target = bars.map(() => 0);
+      cur = bars.map(() => 0);
+      factors = bars.map(() => 0);
+      closing = true;
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(() => { closing = false; applySizes(); }, openDur);
+      openIndex = null;
+      applySizes();
+    }
+
+    function openAt(i) {
+      if (openIndex === i) {
+        close();
+        return;
+      }
+      openIndex = i;
+      target = bars.map(() => 0);
+      cur = bars.map(() => 0);
+      factors = bars.map(() => 0);
+      applySizes();
+    }
+
+    track.addEventListener('mousemove', e => {
+      if (reduceMotion || isCoarse || openIndex !== null) return;
+      setTargetFromCursor(e.clientX);
+    });
+    track.addEventListener('mouseleave', () => {
+      if (openIndex !== null) return;
+      target = bars.map(() => 0);
+      startLoop();
+    });
+
+    bars.forEach((bar, i) => {
+      bar.addEventListener('click', e => {
+        e.stopPropagation();
+        openAt(i);
+      });
+    });
+    if (backdrop) backdrop.addEventListener('click', close);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && openIndex !== null) close();
+    });
+
+    applySizes();
+  });
+})();
 """
     js = js_head + ga4_js + js_cookie + js_tail
     (ROOT / "js" / "main.js").write_text(js, encoding="utf-8")

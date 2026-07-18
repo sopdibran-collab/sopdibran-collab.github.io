@@ -185,3 +185,153 @@ document.querySelectorAll('.track-google').forEach(el => {
     trackEvent('click_google', { event_category: 'contact', event_label: 'google_business' });
   });
 });
+
+/* Magnetic carousel — dock-style magnify (vanilla, no React) */
+(function initMagneticCarousels() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+
+  document.querySelectorAll('.magnetic-carousel').forEach(root => {
+    const track = root.querySelector('.magnetic-carousel__track');
+    const backdrop = root.querySelector('.magnetic-carousel__backdrop');
+    const bars = Array.from(root.querySelectorAll('.magnetic-bar'));
+    if (!track || bars.length === 0) return;
+
+    const collapsedW = 72;
+    const hoverW = 168;
+    const collapsedH = 280;
+    const hoverH = 340;
+    const gap = 12;
+    const influence = 180;
+    const blurPx = 3;
+    const openDur = 300;
+
+    function getOpenSize() {
+      return Math.min(520, Math.floor(window.innerWidth * 0.9));
+    }
+
+    let openIndex = null;
+    let closing = false;
+    let factors = bars.map(() => 0);
+    let target = bars.map(() => 0);
+    let cur = bars.map(() => 0);
+    let loopId = 0;
+    let closeTimer = 0;
+
+    function applySizes() {
+      const openSize = getOpenSize();
+      bars.forEach((bar, i) => {
+        let w = collapsedW;
+        let h = collapsedH;
+        if (openIndex !== null) {
+          if (i === openIndex) {
+            w = openSize;
+            h = openSize;
+          }
+        } else if (!reduceMotion && !isCoarse) {
+          const f = factors[i] || 0;
+          w = collapsedW + (hoverW - collapsedW) * f;
+          h = collapsedH + (hoverH - collapsedH) * f;
+        }
+        const blurred = openIndex !== null && i !== openIndex;
+        bar.style.width = w + 'px';
+        bar.style.height = h + 'px';
+        bar.style.filter = blurred ? 'blur(' + blurPx + 'px)' : 'none';
+        bar.style.opacity = blurred ? '0.55' : '1';
+        bar.style.zIndex = i === openIndex ? '3' : '2';
+        bar.classList.toggle('is-open', i === openIndex);
+        bar.setAttribute('aria-expanded', i === openIndex ? 'true' : 'false');
+        const useTransition = openIndex !== null || closing;
+        bar.style.transition = useTransition
+          ? 'width ' + openDur + 'ms ease-in-out, height ' + openDur + 'ms ease-in-out, filter ' + openDur + 'ms ease-in-out, opacity ' + openDur + 'ms ease-in-out'
+          : 'none';
+      });
+      if (backdrop) {
+        backdrop.hidden = openIndex === null;
+        backdrop.setAttribute('aria-hidden', openIndex === null ? 'true' : 'false');
+      }
+      root.classList.toggle('is-expanded', openIndex !== null);
+    }
+
+    function startLoop() {
+      if (loopId || reduceMotion || isCoarse || openIndex !== null) return;
+      const step = () => {
+        let moving = false;
+        for (let i = 0; i < cur.length; i++) {
+          const d = (target[i] || 0) - cur[i];
+          if (Math.abs(d) > 0.001) {
+            cur[i] += d * 0.2;
+            moving = true;
+          } else {
+            cur[i] = target[i] || 0;
+          }
+        }
+        factors = cur.slice();
+        applySizes();
+        loopId = moving ? requestAnimationFrame(step) : 0;
+      };
+      loopId = requestAnimationFrame(step);
+    }
+
+    function setTargetFromCursor(clientX) {
+      const rect = track.getBoundingClientRect();
+      const cx = clientX - rect.left;
+      const n = bars.length;
+      const totalBase = n * collapsedW + (n - 1) * gap;
+      const startX = (rect.width - totalBase) / 2;
+      target = bars.map((_, i) => {
+        const center = startX + i * (collapsedW + gap) + collapsedW / 2;
+        const dist = Math.abs(cx - center);
+        const f = Math.max(0, 1 - dist / influence);
+        return f * f * (3 - 2 * f);
+      });
+      startLoop();
+    }
+
+    function close() {
+      target = bars.map(() => 0);
+      cur = bars.map(() => 0);
+      factors = bars.map(() => 0);
+      closing = true;
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(() => { closing = false; applySizes(); }, openDur);
+      openIndex = null;
+      applySizes();
+    }
+
+    function openAt(i) {
+      if (openIndex === i) {
+        close();
+        return;
+      }
+      openIndex = i;
+      target = bars.map(() => 0);
+      cur = bars.map(() => 0);
+      factors = bars.map(() => 0);
+      applySizes();
+    }
+
+    track.addEventListener('mousemove', e => {
+      if (reduceMotion || isCoarse || openIndex !== null) return;
+      setTargetFromCursor(e.clientX);
+    });
+    track.addEventListener('mouseleave', () => {
+      if (openIndex !== null) return;
+      target = bars.map(() => 0);
+      startLoop();
+    });
+
+    bars.forEach((bar, i) => {
+      bar.addEventListener('click', e => {
+        e.stopPropagation();
+        openAt(i);
+      });
+    });
+    if (backdrop) backdrop.addEventListener('click', close);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && openIndex !== null) close();
+    });
+
+    applySizes();
+  });
+})();
