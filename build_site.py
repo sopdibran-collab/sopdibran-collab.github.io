@@ -64,18 +64,18 @@ META_DESCRIPTIONS = {
     "a-propos": f"{COMPANY_NAME}, entreprise CVC basée à {ADDRESS_FULL}. {CVCS_GROUP}, sprinkler et dépannage en Suisse romande.",
     "contact": f"Devis gratuit et dépannage CVC urgent. {COMPANY_NAME} — {PHONE_DISP} · {EMAIL} · {ADDRESS_FULL}.",
     "depannage-sav": f"Dépannage en {CVCS_PROSE} en Suisse romande. Urgence : appelez le {PHONE_DISP}.",
-    "chauffage": "Chauffagiste en Suisse romande : installation, entretien et dépannage. Pompes à chaleur et chaudières. Devis gratuit.",
+    "chauffage": "Chauffagiste en Suisse romande (Nyon, Lausanne, Genève, Fribourg, Valais) : installation, entretien et dépannage. Pompes à chaleur et chaudières. Devis gratuit.",
     "ventilation": "Entreprise de ventilation en Suisse romande. VMC, traitement de l'air, dépannage et maintenance.",
-    "climatisation": "Climatisation et installation près de vous en Suisse romande. Étude, pose et dépannage. Devis gratuit.",
+    "climatisation": "Climatisation à Nyon, Lausanne et Genève : étude, pose et dépannage. Split, multi-split et PAC air-air. Devis gratuit — Sopjani Tech Sàrl.",
     "sprinkler-protection-incendie": "Installation de réseaux sprinkler en sous-traitance en Suisse romande. Protection incendie pour ERP et bâtiments industriels.",
     "sanitaire": "Installations et dépannages sanitaires en Suisse romande. Réseaux eau chaude/froide, fuites, chauffe-eau et rénovations.",
-    "geneve": f"Installation et dépannage CVC dans la région de Genève. {CVCS_GROUP} et sprinkler pour bâtiments résidentiels et professionnels.",
-    "vaud": f"Entreprise CVC dans le canton de Vaud : {CVCS_PROSE}. Lausanne, Nyon et environs.",
-    "lausanne": f"Installation et dépannage CVC à Lausanne et environs. {CVCS_GROUP} et maintenance en Suisse romande.",
-    "nyon": f"CVC à Nyon et environs : {CVCS_PROSE}. Devis et dépannage par Sopjani Tech Sàrl.",
-    "valais": f"Entreprise CVC en Valais : {CVCS_PROSE}. Installation et dépannage selon votre commune.",
-    "fribourg": f"Installation et dépannage CVC dans le canton de Fribourg. {CVCS_GROUP} et maintenance pour bâtiments résidentiels et professionnels.",
-    "neuchatel": f"Installation et dépannage CVC dans le canton de Neuchâtel. {CVCS_GROUP} pour Neuchâtel, La Chaux-de-Fonds et environs.",
+    "geneve": "Chauffagiste à Genève : installation, entretien et dépannage chauffage, climatisation et CVC. Devis gratuit — Sopjani Tech Sàrl.",
+    "vaud": "Chauffagiste dans le canton de Vaud (Nyon, Lausanne, Morges) : chauffage, climatisation et dépannage CVC. Devis gratuit.",
+    "lausanne": "Chauffagiste à Lausanne : installation, entretien et dépannage chauffage. Pompes à chaleur, chaudières et CVC. Devis gratuit.",
+    "nyon": "Climatisation et chauffagiste à Nyon : installation, entretien et dépannage CVC. Devis gratuit — Sopjani Tech Sàrl.",
+    "valais": "Chauffagiste en Valais (Sion, Martigny, Monthey) : chauffage, climatisation et dépannage CVC. Devis gratuit.",
+    "fribourg": "Chauffagiste Fribourg et Romont : installation, entretien et dépannage chauffage et CVC. Siège à Romont — devis gratuit.",
+    "neuchatel": "Chauffagiste à Neuchâtel et La Chaux-de-Fonds : chauffage, climatisation et dépannage CVC. Devis gratuit.",
     "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
     "plan-du-site": "Plan du site Sopjani Tech Sàrl : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
@@ -89,19 +89,19 @@ PAGE_TITLES = {
     "prestations": f"Prestations CVC | {CVCS_GROUP} | Sopjani Tech Sàrl",
     "zones-intervention": "Zones d'intervention CVC | Suisse romande | Sopjani Tech Sàrl",
     "plan-du-site": "Plan du site | Sopjani Tech Sàrl",
-    "chauffage": "Chauffagiste Suisse romande | Installation et dépannage | Sopjani Tech Sàrl",
+    "chauffage": "Chauffagiste Suisse romande | Nyon, Lausanne, Genève | Sopjani Tech Sàrl",
     "ventilation": "Entreprise ventilation Suisse romande | Sopjani Tech Sàrl",
-    "climatisation": "Climatisation et installation | Sopjani Tech Sàrl",
+    "climatisation": "Climatisation Nyon, Lausanne & Genève | Installation | Sopjani Tech Sàrl",
     "depannage-sav": f"Dépannage {CVCS_PROSE} | Urgence CVC | Sopjani Tech Sàrl",
     "sanitaire": "Sanitaire | Travaux et dépannage | Sopjani Tech Sàrl",
     "sprinkler-protection-incendie": "Sprinkler et protection incendie | Sopjani Tech Sàrl",
-    "geneve": f"{CVCS_GROUP} Genève | Sopjani Tech Sàrl",
-    "vaud": f"CVC Vaud | {CVCS_GROUP} | Sopjani Tech Sàrl",
-    "lausanne": f"CVC Lausanne | {CVCS_GROUP} | Sopjani Tech Sàrl",
-    "nyon": f"CVC Nyon | {CVCS_GROUP} | Sopjani Tech Sàrl",
-    "valais": f"Entreprise CVC Valais | {CVCS_GROUP} | Sopjani Tech Sàrl",
-    "fribourg": f"CVC Fribourg | {CVCS_GROUP} | Sopjani Tech Sàrl",
-    "neuchatel": f"CVC Neuchâtel | {CVCS_GROUP} | Sopjani Tech Sàrl",
+    "geneve": "Chauffagiste Genève | Climatisation & CVC | Sopjani Tech Sàrl",
+    "vaud": "Chauffagiste Vaud | Nyon, Lausanne | Sopjani Tech Sàrl",
+    "lausanne": "Chauffagiste Lausanne | Chauffage & dépannage | Sopjani Tech Sàrl",
+    "nyon": "Climatisation & chauffagiste Nyon | Sopjani Tech Sàrl",
+    "valais": "Chauffagiste Valais | CVC & climatisation | Sopjani Tech Sàrl",
+    "fribourg": "Chauffagiste Fribourg | CVC Romont | Sopjani Tech Sàrl",
+    "neuchatel": "Chauffagiste Neuchâtel | CVC & climatisation | Sopjani Tech Sàrl",
     "realisations": "Réalisations CVC : chauffage, sanitaire, ventilation et sprinkler | Sopjani Tech Sàrl",
 }
 
@@ -381,11 +381,30 @@ def urgence_band():
 def zone_aeo_faq(name, region):
     """FAQ orientée requêtes locales et moteurs de réponse."""
     return [
+        (f"Qui appeler pour un chauffagiste à {name} ?", f"{COMPANY_NAME} intervient comme chauffagiste dans {region} : installation, entretien et dépannage de chaudières et pompes à chaleur. Appelez le {PHONE_DISP} ou passez par la page contact."),
         (f"Qui appeler pour un dépannage CVC à {name} ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp. Indiquez votre commune, le type de bâtiment et la nature de la panne."),
         (f"Intervenez-vous pour la ventilation dans {region} ?", f"Oui, nous réalisons installation, maintenance et dépannage de ventilation dans {region}, selon faisabilité et planning."),
         (f"Proposez-vous le chauffage, la ventilation et la climatisation à {name} ?", f"Oui. Étude, installation, entretien et dépannage en {CVCS_PROSE} selon votre projet."),
         (f"Comment obtenir un devis à {name} ?", "Via notre page contact ou par téléphone : décrivez le bâtiment, la localisation exacte et le type de travaux (installation, maintenance ou dépannage)."),
     ]
+
+
+def chauffagiste_local_block():
+    """Maillage interne pour requêtes « chauffagiste + ville » (GSC)."""
+    links = (
+        ("Nyon", "/nyon/"),
+        ("Lausanne", "/lausanne/"),
+        ("Genève", "/geneve/"),
+        ("Fribourg", "/fribourg/"),
+        ("Valais", "/valais/"),
+        ("Vaud", "/vaud/"),
+        ("Neuchâtel", "/neuchatel/"),
+    )
+    pills = "".join(f'<a class="zone-pill" href="{href}">Chauffagiste {label}</a>' for label, href in links)
+    return f"""<h3>Chauffagiste près de chez vous</h3>
+<p>Vous cherchez un chauffagiste à Nyon, Lausanne, Genève ou ailleurs en Suisse romande ? Nous intervenons pour l'installation, l'entretien et le dépannage — pompes à chaleur, chaudières et réseaux de chauffage.</p>
+<div class="zone-links">{pills}</div>
+<p style="margin-top:16px;"><a href="/climatisation/" class="text-link">Voir aussi la climatisation (Nyon, Lausanne, Genève) →</a></p>"""
 
 
 # Photos de chantiers réels (fichier, largeur, hauteur, alt SEO, catégorie, légende)
@@ -1142,7 +1161,7 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
     hero = page_hero(
         "Zone d'intervention",
         h1,
-        f"Sopjani Tech Sàrl intervient dans {region} pour vos projets et dépannages en {CVCS_PROSE}. Contactez-nous pour vérifier la disponibilité selon votre localisation.",
+        f"Chauffagiste et CVC dans {region} : chauffage, ventilation, climatisation et sanitaire. Contactez Sopjani Tech Sàrl pour vérifier la disponibilité selon votre localisation.",
         image=hero_image_for("zones"),
         image_alt=h1,
     )
@@ -1599,8 +1618,8 @@ def build_services():
     service_page("chauffage", "Chauffage",
         PAGE_TITLES["chauffage"],
         META_DESCRIPTIONS["chauffage"],
-        "Chauffage : installation, entretien et dépannage",
-        "Nous prenons en charge vos besoins en chauffage, de l'étude à la maintenance, pour assurer le confort thermique et la fiabilité de vos installations.",
+        "Chauffagiste en Suisse romande : installation, entretien et dépannage",
+        "Vous cherchez un chauffagiste à Nyon, Lausanne, Genève, Fribourg ou en Valais ? Nous prenons en charge vos besoins en chauffage — de l'étude à la maintenance — pour assurer le confort thermique et la fiabilité de vos installations.",
         "<p>Chaudière qui ne démarre plus ou qui s'arrête en cours de cycle, radiateurs froids ou circuit déséquilibré, boiler qui ne produit plus d'eau chaude, bruit anormal au démarrage, consommation de mazout ou de gaz en hausse, chaudière vétuste à remplacer par une pompe à chaleur.</p>",
         bullets(["Étude et dimensionnement thermique (calcul de puissance, choix des émetteurs)",
                  "Installation de pompes à chaleur air/eau ou sol/eau, chaudières à gaz, mazout ou bois",
@@ -1609,19 +1628,21 @@ def build_services():
                  "Remplacement de circulateurs, vannes thermostatiques et vase d'expansion",
                  "Dépannage et remise en service",
                  "Accompagnement pour le remplacement d'une chaudière mazout ou gaz par une pompe à chaleur"]),
-        clients, process, ["geneve", "lausanne", "vaud", "valais", "fribourg"], ["ventilation", "climatisation", "sanitaire", "depannage-sav"],
-        [("Intervenez-vous en dépannage chauffage ?", "Oui, nous intervenons sur chaudières, pompes à chaleur et radiateurs en Suisse romande : absence de chauffage, bruit anormal, fuite ou baisse de rendement. Appelez-nous directement pour une panne en cours."),
+        clients, process, ["geneve", "lausanne", "nyon", "vaud", "valais", "fribourg", "neuchatel"], ["ventilation", "climatisation", "sanitaire", "depannage-sav"],
+        [("Qui appeler pour un chauffagiste à Nyon ou Lausanne ?", f"{COMPANY_NAME} intervient comme chauffagiste à Nyon, Lausanne et dans toute la Suisse romande. Appelez le {PHONE_DISP} ou consultez nos pages zones Nyon et Lausanne."),
+         ("Intervenez-vous en dépannage chauffage ?", "Oui, nous intervenons sur chaudières, pompes à chaleur et radiateurs en Suisse romande : absence de chauffage, bruit anormal, fuite ou baisse de rendement. Appelez-nous directement pour une panne en cours."),
          ("Proposez-vous des contrats d'entretien ?", "Oui, un entretien régulier de votre chaudière ou pompe à chaleur (contrôle, réglage, détartrage du boiler) permet de limiter les pannes. Contactez-nous pour discuter d'une fréquence adaptée à votre installation."),
-         ("Qui appeler pour un chauffagiste en Suisse romande ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP} ou via notre page contact."),
+         ("Qui appeler pour un chauffagiste en Suisse romande ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP} ou via notre page contact. Nous couvrons notamment Genève, Vaud (Nyon, Lausanne), Valais, Fribourg et Neuchâtel."),
          ("Combien coûte un devis chauffage ?", "Le devis est gratuit. Il dépend du type d'installation, de la surface et de l'état de l'existant."),
          ("Qui effectue le contrôle officiel de combustion de ma chaudière ?", "Le contrôle périodique OPair (tous les 2 à 4 ans selon le combustible) est réalisé par le maître ramoneur agréé de votre secteur. Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité de votre installation."),
          ("Le remplacement d'une chaudière par une pompe à chaleur est-il subventionné ?", "Oui, sous conditions, dans le cadre du Programme Bâtiments (leprogrammebatiments.ch), avec un barème propre à chaque canton. Contactez-nous pour évaluer votre projet et vérifier votre éligibilité.")],
         gallery_cat="chauffage",
         expertise_html="""<p>Nous intervenons sur les principaux générateurs de chaleur utilisés en Suisse romande : chaudières à mazout, à gaz et à bois (bûches ou pellets), ainsi que pompes à chaleur air/eau et sol/eau.</p>
+""" + chauffagiste_local_block() + """
 <h3>Contrôle de combustion (OPair)</h3>
 <p>Le contrôle périodique officiel des installations à combustion reste du ressort du maître ramoneur agréé de votre secteur, selon l'ordonnance fédérale sur la protection de l'air (OPair). Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité suite à un contrôle.</p>
 <h3>Remplacement par une pompe à chaleur</h3>
-<p>Le remplacement d'une chaudière à mazout ou à gaz par une pompe à chaleur peut être subventionné dans le cadre du <strong>Programme Bâtiments</strong>, avec un barème propre à chaque canton (Genève, Vaud, Valais, Fribourg). Nous pouvons vous orienter dans cette démarche.</p>""")
+<p>Le remplacement d'une chaudière à mazout ou à gaz par une pompe à chaleur peut être subventionné dans le cadre du <strong>Programme Bâtiments</strong>, avec un barème propre à chaque canton (Genève, Vaud, Valais, Fribourg, Neuchâtel). Nous pouvons vous orienter dans cette démarche.</p>""")
 
     service_page("ventilation", "Ventilation",
         PAGE_TITLES["ventilation"],
@@ -1650,8 +1671,8 @@ def build_services():
     service_page("climatisation", "Climatisation",
         PAGE_TITLES["climatisation"],
         META_DESCRIPTIONS["climatisation"],
-        "Climatisation : étude et installation",
-        "Nous réalisons l'étude et l'installation de systèmes de climatisation adaptés aux besoins des particuliers et des professionnels.",
+        "Climatisation à Nyon, Lausanne et Genève : étude et installation",
+        "Besoin d'une climatisation à Nyon ou ailleurs en Suisse romande ? Nous réalisons l'étude et l'installation de systèmes adaptés aux particuliers et aux professionnels — split, multi-split et pompes à chaleur air-air.",
         "<p>Climatiseur qui ne refroidit plus, unité extérieure bruyante, givrée ou en panne, fuite de gaz réfrigérant, mauvaise répartition du froid entre les pièces, besoin d'une pompe à chaleur air-air réversible pour le chauffage d'appoint.</p>",
         bullets(["Dimensionnement selon le volume et l'exposition des pièces",
                  "Installation de climatiseurs split et multi-split",
@@ -1659,13 +1680,14 @@ def build_services():
                  "Contrôle et recharge du fluide réfrigérant",
                  "Entretien : nettoyage des filtres et des unités, contrôle de performance",
                  "Dépannage : perte de froid, fuite, unité qui ne démarre plus"]),
-        clients, process, ["geneve", "nyon", "lausanne", "valais"], ["chauffage", "ventilation", "sanitaire", "depannage-sav"],
-        [("Quels types de bâtiments équipez-vous ?", "Résidentiel et tertiaire selon faisabilité."),
+        clients, process, ["geneve", "nyon", "lausanne", "valais", "vaud", "fribourg"], ["chauffage", "ventilation", "sanitaire", "depannage-sav"],
+        [("Installez-vous la climatisation à Nyon ?", "Oui. Nous étudions et installons la climatisation (split, multi-split, PAC air-air) à Nyon et dans les communes voisines (Gland, Rolle, Coppet, Prangins…). Consultez aussi notre page zone Nyon."),
+         ("Quels types de bâtiments équipez-vous ?", "Résidentiel et tertiaire selon faisabilité — villas, appartements, bureaux et commerces."),
          ("Intervenez-vous en dépannage climatisation ?", "Oui, nous diagnostiquons et réparons les pannes courantes : perte de froid, fuite de fluide réfrigérant, unité extérieure givrée ou bruyante. Contactez-nous avec le modèle de l'appareil si possible."),
-         ("Installez-vous la climatisation près de chez moi ?", f"Nous intervenons en Suisse romande depuis {ADDRESS_LOCALITY}. Contactez-nous avec votre commune."),
+         ("Installez-vous la climatisation près de chez moi ?", f"Nous intervenons en Suisse romande depuis {ADDRESS_LOCALITY}, notamment à Nyon, Lausanne, Genève et en Valais. Contactez-nous avec votre commune."),
          ("Comment obtenir un devis climatisation ?", "Via notre page contact : précisez le type de bâtiment, la surface et vos besoins de confort.")],
         gallery_cat="ventilation",
-        expertise_html="""<p>Nous intervenons sur climatiseurs split et multi-split, ainsi que sur les pompes à chaleur air-air réversibles (chauffage et rafraîchissement).</p>
+        expertise_html="""<p>Nous intervenons sur climatiseurs split et multi-split, ainsi que sur les pompes à chaleur air-air réversibles (chauffage et rafraîchissement) — en particulier à <a href="/nyon/">Nyon</a>, <a href="/lausanne/">Lausanne</a> et <a href="/geneve/">Genève</a>.</p>
 <h3>Fluides frigorigènes</h3>
 <p>La manipulation des fluides réfrigérants est strictement encadrée par la législation suisse sur la protection de l'environnement. Toute intervention sur le circuit frigorifique (recharge, détection de fuite) est réalisée avec le soin et les précautions requises par ce cadre.</p>
 <h3>Entretien recommandé</h3>
@@ -1759,8 +1781,8 @@ def build_zones():
     zone_page("geneve", "Genève", "la région de Genève",
         PAGE_TITLES["geneve"],
         META_DESCRIPTIONS["geneve"],
-        f"{CVCS_GROUP} dans la région de Genève",
-        p("Le canton de Genève présente un parc bâti dense — immeubles résidentiels, PPE, commerces et bâtiments tertiaires — avec des contraintes techniques variées. Certains quartiers sont raccordés à un réseau de chauffage à distance (dont GeniLac, alimenté par l'eau du lac) ; la loi cantonale sur l'énergie encourage par ailleurs le remplacement des chauffages fossiles par des pompes à chaleur lors de leur renouvellement.") +
+        "Chauffagiste et CVC dans la région de Genève",
+        p("Vous cherchez un chauffagiste à Genève ? Le canton présente un parc bâti dense — immeubles résidentiels, PPE, commerces et bâtiments tertiaires — avec des contraintes techniques variées. Certains quartiers sont raccordés à un réseau de chauffage à distance (dont GeniLac, alimenté par l'eau du lac) ; la loi cantonale sur l'énergie encourage par ailleurs le remplacement des chauffages fossiles par des pompes à chaleur lors de leur renouvellement.") +
         p("Que vous soyez propriétaire, régie ou responsable technique, contactez-nous pour vérifier la disponibilité d'intervention dans votre secteur.") +
         communes_block(["Genève", "Vernier", "Lancy", "Meyrin", "Carouge", "Onex", "Thônex", "Plan-les-Ouates", "Veyrier", "Grand-Saconnex", "Chêne-Bougeries", "Confignon"]) +
         SUBSIDY_NOTE.format(extra="À Genève, les demandes passent par l'Office cantonal de l'énergie (OCEN) et peuvent se combiner avec le programme SIG-éco21 des Services industriels de Genève."),
@@ -1772,8 +1794,8 @@ def build_zones():
     zone_page("vaud", "Vaud", "le canton de Vaud",
         PAGE_TITLES["vaud"],
         META_DESCRIPTIONS["vaud"],
-        f"{CVCS_GROUP} dans le canton de Vaud",
-        p("Le canton de Vaud couvre un territoire étendu et varié : rives du Léman, agglomérations de Lausanne et Nyon, Riviera vaudoise, Chablais et Nord vaudois jusqu'au pied du Jura. Le bâti va de la villa individuelle à l'immeuble locatif ou à la PPE, avec des besoins très différents selon l'altitude et l'exposition.") +
+        "Chauffagiste dans le canton de Vaud",
+        p("Chauffagiste dans le canton de Vaud : nous couvrons un territoire étendu — rives du Léman, agglomérations de Lausanne et Nyon, Riviera vaudoise, Chablais et Nord vaudois jusqu'au pied du Jura. Le bâti va de la villa individuelle à l'immeuble locatif ou à la PPE, avec des besoins très différents selon l'altitude et l'exposition.") +
         p("Pour les communes hors axes principaux, contactez-nous afin de confirmer la faisabilité et la planification.") +
         communes_block(["Morges", "Yverdon-les-Bains", "Vevey", "Montreux", "Renens", "Pully", "Rolle", "Aigle", "Payerne", "Echallens", "Cossonay", "Orbe"]) +
         SUBSIDY_NOTE.format(extra="Dans le canton de Vaud, les demandes sont instruites par la Direction générale de l'environnement (DGE) / Direction de l'énergie."),
@@ -1785,12 +1807,14 @@ def build_zones():
     zone_page("lausanne", "Lausanne", "Lausanne et environs",
         PAGE_TITLES["lausanne"],
         META_DESCRIPTIONS["lausanne"],
-        f"{CVCS_GROUP} à Lausanne et environs",
-        p("L'agglomération lausannoise concentre immeubles résidentiels, bâtiments tertiaires et un parc ancien important (quartiers du centre-ville, Sous-Gare, Chailly) qui nécessite souvent une adaptation soignée des installations techniques lors d'une rénovation. Une partie de la ville est desservie par le réseau de chauffage à distance des Services industriels de Lausanne (SiL).") +
-        p("Indiquez le quartier ou la commune exacte lors de votre demande pour une réponse adaptée.") +
+        "Chauffagiste à Lausanne : chauffage, CVC et dépannage",
+        p("Vous cherchez un chauffagiste à Lausanne ? L'agglomération concentre immeubles résidentiels, bâtiments tertiaires et un parc ancien important (quartiers du centre-ville, Sous-Gare, Chailly) qui nécessite souvent une adaptation soignée des installations techniques lors d'une rénovation. Une partie de la ville est desservie par le réseau de chauffage à distance des Services industriels de Lausanne (SiL).") +
+        p("Nous intervenons aussi en dépannage chauffage à Lausanne et communes voisines. Indiquez le quartier ou la commune exacte lors de votre demande.") +
+        p('Pour la climatisation ou une pompe à chaleur, consultez aussi nos pages <a href="/climatisation/">climatisation</a> et <a href="/chauffage/">chauffage</a>.') +
         communes_block(["Renens", "Prilly", "Le Mont-sur-Lausanne", "Épalinges", "Pully", "Chavannes-près-Renens", "Ecublens", "Crissier"]) +
         SUBSIDY_NOTE.format(extra="Les demandes pour l'agglomération lausannoise sont instruites par la Direction de l'énergie du canton de Vaud."),
         zone_aeo_faq("Lausanne", "Lausanne et environs") + [
+            ("Proposez-vous le dépannage chauffage à Lausanne ?", f"Oui. Appelez {COMPANY_NAME} au {PHONE_DISP} en indiquant votre adresse lausannoise et le type de panne (chaudière, PAC, radiateurs)."),
             ("Mon immeuble est raccordé au chauffage à distance (CAD), intervenez-vous quand même ?", "Oui : nous intervenons sur les sous-stations, la distribution interne (radiateurs, vannes, régulation) et les réseaux sanitaires, même si la production de chaleur est assurée par un réseau CAD."),
         ],
         ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["nyon", "vaud", "geneve"])
@@ -1798,22 +1822,24 @@ def build_zones():
     zone_page("nyon", "Nyon", "la région de Nyon",
         PAGE_TITLES["nyon"],
         META_DESCRIPTIONS["nyon"],
-        f"{CVCS_GROUP} dans la région de Nyon",
-        p("La région de Nyon, entre Genève et Lausanne, combine constructions récentes (villas, PPE neuves autour du lac) et bâti plus ancien dans les villages environnants. C'est une zone de forte croissance résidentielle, avec des standards énergétiques élevés (Minergie) fréquents sur les nouvelles constructions.") +
-        p("Contactez-nous en précisant l'adresse et la nature des travaux.") +
+        "Climatisation et chauffagiste à Nyon",
+        p("Climatisation à Nyon et chauffagiste local : la région entre Genève et Lausanne combine constructions récentes (villas, PPE neuves autour du lac) et bâti plus ancien dans les villages environnants. C'est une zone de forte croissance résidentielle, avec des standards énergétiques élevés (Minergie) fréquents sur les nouvelles constructions.") +
+        p("Nous installons et entretenons la climatisation (split, multi-split, PAC air-air) ainsi que le chauffage (pompes à chaleur, chaudières) à Nyon, Gland, Rolle, Coppet et environs.") +
+        p('Besoin d\'un devis climatisation ou chauffage ? Consultez nos pages <a href="/climatisation/">climatisation</a> et <a href="/chauffage/">chauffagiste</a>, ou contactez-nous en précisant l\'adresse.') +
         communes_block(["Gland", "Rolle", "Prangins", "Founex", "Coppet", "Genolier", "Duillier", "Trélex"]) +
         SUBSIDY_NOTE.format(extra="La région de Nyon dépend du barème et du guichet du canton de Vaud (Direction de l'énergie)."),
         zone_aeo_faq("Nyon", "la région de Nyon") + [
+            ("Installez-vous la climatisation à Nyon ?", f"Oui. {COMPANY_NAME} étudie et installe la climatisation à Nyon et communes voisines (Gland, Rolle, Coppet…). Devis via la page contact."),
             ("Intervenez-vous sur des bâtiments Minergie récents ?", "Oui. Les constructions Minergie demandent une ventilation mécanique contrôlée bien réglée et un entretien régulier : nous pouvons intervenir sur ces installations comme sur du bâti plus ancien."),
         ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire"], ["geneve", "lausanne", "vaud"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["geneve", "lausanne", "vaud"])
 
     zone_page("valais", "Valais", "le canton du Valais",
         PAGE_TITLES["valais"],
         META_DESCRIPTIONS["valais"],
-        f"{CVCS_GROUP} en Valais",
-        p("Le Valais présente de fortes variations d'altitude — de la plaine du Rhône aux stations de montagne — qui influencent directement le dimensionnement des installations de chauffage. Les résidences secondaires et chalets, souvent inoccupés une partie de l'année, demandent une attention particulière (protection hors gel, remise en service saisonnière).") +
-        p("Contactez-nous avec votre commune pour vérifier la disponibilité d'intervention.") +
+        "Chauffagiste en Valais : chauffage, CVC et climatisation",
+        p("Chauffagiste en Valais : le canton présente de fortes variations d'altitude — de la plaine du Rhône aux stations de montagne — qui influencent directement le dimensionnement des installations de chauffage. Les résidences secondaires et chalets, souvent inoccupés une partie de l'année, demandent une attention particulière (protection hors gel, remise en service saisonnière).") +
+        p("Contactez-nous avec votre commune (Sion, Martigny, Monthey, Sierre…) pour vérifier la disponibilité d'intervention.") +
         communes_block(["Sion", "Martigny", "Monthey", "Sierre", "Crans-Montana", "Verbier", "Saint-Maurice", "Conthey"]) +
         SUBSIDY_NOTE.format(extra="En Valais, les demandes sont instruites par le Service de l'énergie et des forces hydrauliques (SEFH) de l'État du Valais."),
         zone_aeo_faq("Valais", "le canton du Valais") + [
@@ -1824,8 +1850,8 @@ def build_zones():
     zone_page("fribourg", "Fribourg", "le canton de Fribourg",
         PAGE_TITLES["fribourg"],
         META_DESCRIPTIONS["fribourg"],
-        f"{CVCS_GROUP} dans le canton de Fribourg",
-        p(f"Notre siège est basé à {ADDRESS_LOCALITY}, dans le canton de Fribourg : nous connaissons bien ce territoire à cheval sur les régions linguistiques, qui compte un parc bâti varié entre la ville de Fribourg, les districts de la Glâne, de la Gruyère et de la Broye.") +
+        "Chauffagiste Fribourg et Romont",
+        p(f"Chauffagiste à Fribourg et Romont : notre siège est basé à {ADDRESS_LOCALITY}, dans le canton de Fribourg. Nous connaissons bien ce territoire à cheval sur les régions linguistiques, qui compte un parc bâti varié entre la ville de Fribourg, les districts de la Glâne, de la Gruyère et de la Broye.") +
         p("Précisez la commune et l'urgence de votre demande lors du premier contact.") +
         communes_block(["Fribourg", "Bulle", "Romont", "Châtel-Saint-Denis", "Estavayer-le-Lac", "Domdidier", "Marly", "Villars-sur-Glâne"]) +
         SUBSIDY_NOTE.format(extra="Dans le canton de Fribourg, les demandes sont instruites par le Service de l'énergie (SdE)."),
@@ -1837,8 +1863,8 @@ def build_zones():
     zone_page("neuchatel", "Neuchâtel", "le canton de Neuchâtel",
         PAGE_TITLES["neuchatel"],
         META_DESCRIPTIONS["neuchatel"],
-        f"{CVCS_GROUP} dans le canton de Neuchâtel",
-        p("Le canton de Neuchâtel s'étend du littoral du lac de Neuchâtel aux hauteurs du Jura (La Chaux-de-Fonds, Le Locle). Le parc bâti mêle immeubles en ville, villas sur les coteaux et bâtiments industriels ou horlogers qui demandent souvent des installations CVC adaptées.") +
+        "Chauffagiste à Neuchâtel et La Chaux-de-Fonds",
+        p("Chauffagiste dans le canton de Neuchâtel : le territoire s'étend du littoral du lac de Neuchâtel aux hauteurs du Jura (La Chaux-de-Fonds, Le Locle). Le parc bâti mêle immeubles en ville, villas sur les coteaux et bâtiments industriels ou horlogers qui demandent souvent des installations CVC adaptées.") +
         p("Contactez-nous en précisant votre commune pour vérifier la disponibilité d'intervention.") +
         communes_block(["Neuchâtel", "La Chaux-de-Fonds", "Le Locle", "Peseux", "Boudry", "Cortaillod", "Saint-Blaise", "Val-de-Ruz"]) +
         SUBSIDY_NOTE.format(extra="Dans le canton de Neuchâtel, les demandes sont instruites par le Service de l'énergie et de l'environnement (SENE)."),
@@ -2011,12 +2037,17 @@ function needsTrailingSlash(pathname) {{
 export default {{
   async fetch(request) {{
     const url = new URL(request.url);
+    let changed = false;
+    // Un seul hop : http+www → https://apex (évite http://www → https://www → apex)
     if (url.protocol === "http:") {{
       url.protocol = "https:";
-      return Response.redirect(url.toString(), 301);
+      changed = true;
     }}
     if (url.hostname === `www.${{APEX_HOST}}`) {{
       url.hostname = APEX_HOST;
+      changed = true;
+    }}
+    if (changed) {{
       return Response.redirect(url.toString(), 301);
     }}
     if (url.pathname === "/index.html") {{

@@ -20,12 +20,17 @@ function needsTrailingSlash(pathname) {
 export default {
   async fetch(request) {
     const url = new URL(request.url);
+    let changed = false;
+    // Un seul hop : http+www → https://apex (évite http://www → https://www → apex)
     if (url.protocol === "http:") {
       url.protocol = "https:";
-      return Response.redirect(url.toString(), 301);
+      changed = true;
     }
     if (url.hostname === `www.${APEX_HOST}`) {
       url.hostname = APEX_HOST;
+      changed = true;
+    }
+    if (changed) {
       return Response.redirect(url.toString(), 301);
     }
     if (url.pathname === "/index.html") {
