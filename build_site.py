@@ -71,7 +71,7 @@ META_DESCRIPTIONS = {
     "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
     "plan-du-site": "Plan du site Sopjani Tech Sàrl : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
-    "realisations": f"Réalisations de {COMPANY_NAME} en Suisse romande : installations sprinkler, ventilation et tuyauterie sanitaire. Photos de chantiers réels.",
+    "realisations": f"Réalisations de {COMPANY_NAME} en Suisse romande : chauffage, ventilation, sanitaire et sprinkler. Photos de chantiers réels.",
 }
 
 PAGE_TITLES = {
@@ -93,7 +93,7 @@ PAGE_TITLES = {
     "nyon": f"CVC Nyon | {CVCS_GROUP} | Sopjani Tech Sàrl",
     "valais": f"Entreprise CVC Valais | {CVCS_GROUP} | Sopjani Tech Sàrl",
     "fribourg": f"CVC Fribourg | {CVCS_GROUP} | Sopjani Tech Sàrl",
-    "realisations": "Réalisations CVC, sprinkler et sanitaire | Sopjani Tech Sàrl",
+    "realisations": "Réalisations CVC : chauffage, sanitaire, ventilation et sprinkler | Sopjani Tech Sàrl",
 }
 
 SERVICES = [
@@ -351,7 +351,20 @@ REALISATIONS = [
     ("ventilation-unite-hvac-gaine.jpg", 1280, 720, "Unité de ventilation HVAC raccordée à une gaine souple par Sopjani Tech Sàrl", "ventilation", "Unité de ventilation HVAC"),
     ("ventilation-conduit-galvanise-chantier.jpg", 1280, 720, "Conduit de ventilation en acier galvanisé installé sur chantier par Sopjani Tech Sàrl", "ventilation", "Conduit de ventilation galvanisé"),
     ("ventilation-sanitaire-local-technique.jpg", 720, 1280, "Ventilation et pompe à chaleur installées en local technique par Sopjani Tech Sàrl", "ventilation", "Ventilation pompe à chaleur"),
-    ("tuyauterie-fabrication-atelier.jpg", 720, 1280, "Fabrication d'un assemblage de tuyauterie en atelier par Sopjani Tech Sàrl", "sanitaire", "Fabrication de tuyauterie en atelier"),
+    ("tuyauterie-fabrication-atelier.jpg", 720, 1280, "Fabrication en atelier d'un assemblage de tuyauterie de chauffage par Sopjani Tech Sàrl", "chauffage", "Fabrication de tuyauterie chauffage en atelier"),
+    ("chauffage-tuyauterie-plafond-collecteurs.jpg", 1600, 1200, "Tuyauterie de chauffage au plafond avec collecteurs en laiton installés par Sopjani Tech Sàrl", "chauffage", "Tuyauterie plafond et collecteurs chauffage"),
+    ("chauffage-reseau-plafond-tableau.jpg", 1600, 1200, "Réseau technique au plafond et tableau de distribution sur chantier de chauffage Sopjani Tech Sàrl", "chauffage", "Réseau plafond et tableau technique"),
+    ("chauffage-collecteurs-laiton-isoles.jpg", 1600, 1200, "Collecteurs de chauffage en laiton avec tuyaux isolés raccordés au plafond par Sopjani Tech Sàrl", "chauffage", "Collecteurs laiton et tuyaux isolés"),
+    ("chauffage-local-technique-collecteurs.jpg", 1200, 1600, "Local technique avec collecteurs de chauffage et réseaux métalliques par Sopjani Tech Sàrl", "chauffage", "Local technique collecteurs chauffage"),
+    ("chauffage-reseaux-sol-chantier.jpg", 1600, 1200, "Pose de réseaux de chauffage au sol sur chantier par Sopjani Tech Sàrl", "chauffage", "Réseaux de chauffage au sol"),
+    ("chauffage-tuyauterie-sol-raccords.jpg", 1600, 1200, "Tuyauterie de chauffage au sol avec raccords et supportage sur chantier Sopjani Tech Sàrl", "chauffage", "Tuyauterie chauffage au sol"),
+    ("sanitaire-bati-support-geberit.jpg", 1600, 1200, "Bâti-support sanitaire Geberit avec réseaux eau et évacuation installé par Sopjani Tech Sàrl", "sanitaire", "Bâti-support sanitaire Geberit"),
+    ("sanitaire-collecteur-bati-metallique.jpg", 1200, 1600, "Collecteur sanitaire sur bâti métallique avec tuyaux isolés par Sopjani Tech Sàrl", "sanitaire", "Collecteur sur bâti métallique"),
+    ("sanitaire-bati-technique-boitier.jpg", 1200, 1600, "Bâti technique sanitaire avec boîtier de distribution et raccords laiton par Sopjani Tech Sàrl", "sanitaire", "Bâti technique sanitaire"),
+    ("sanitaire-percements-gaines.jpg", 1600, 1200, "Percements béton et gaines pour réseaux sanitaires installés par Sopjani Tech Sàrl", "sanitaire", "Percements et gaines sanitaires"),
+    ("sanitaire-bati-wc-geberit-sigma.jpg", 1600, 1200, "Bâti-support WC Geberit Sigma avec colonne d'évacuation installé par Sopjani Tech Sàrl", "sanitaire", "Bâti-support WC Geberit"),
+    ("sanitaire-local-technique-tuyauterie.jpg", 1600, 1200, "Local technique sanitaire avec tuyauterie, manomètre et réseaux suspendus par Sopjani Tech Sàrl", "sanitaire", "Local technique sanitaire"),
+    ("sanitaire-collecteur-vannes-filtre.jpg", 1200, 1600, "Collecteur sanitaire avec vannes, filtre et compteur d'eau installé par Sopjani Tech Sàrl", "sanitaire", "Collecteur, vannes et filtre"),
 ]
 
 REALISATIONS_BY_CAT = {}
@@ -1056,8 +1069,8 @@ def build_home():
     <span class="label">Chantiers</span>
     <div class="rule"></div>
     <h2 class="section-title" id="real-title">Réalisations récentes</h2>
-    <p class="section-lead" style="margin-top:16px;">Aperçu de nos interventions en ventilation, sanitaire et sprinkler en Suisse romande.</p>
-    {gallery_html([("sprinkler-collecteur-rouges.jpg", 1280, 720, "Centrale sprinkler sous eau avec tuyauterie rouge et vannes en local technique, par Sopjani Tech Sàrl", "Centrale sprinkler sous eau"), ("ventilation-conduit-galvanise-chantier.jpg", 1280, 720, "Conduit de ventilation en acier galvanisé installé sur chantier par Sopjani Tech Sàrl", "Conduit de ventilation galvanisé"), ("tuyauterie-fabrication-atelier.jpg", 720, 1280, "Fabrication d'un assemblage de tuyauterie en atelier par Sopjani Tech Sàrl", "Fabrication de tuyauterie en atelier")], cols=3)}
+    <p class="section-lead" style="margin-top:16px;">Aperçu de nos interventions en chauffage, ventilation, sanitaire et sprinkler en Suisse romande.</p>
+    {gallery_html([("sprinkler-collecteur-rouges.jpg", 1280, 720, "Centrale sprinkler sous eau avec tuyauterie rouge et vannes en local technique, par Sopjani Tech Sàrl", "Centrale sprinkler sous eau"), ("ventilation-conduit-galvanise-chantier.jpg", 1280, 720, "Conduit de ventilation en acier galvanisé installé sur chantier par Sopjani Tech Sàrl", "Conduit de ventilation galvanisé"), ("tuyauterie-fabrication-atelier.jpg", 720, 1280, "Fabrication en atelier d'un assemblage de tuyauterie de chauffage par Sopjani Tech Sàrl", "Fabrication de tuyauterie chauffage en atelier")], cols=3)}
     <p style="margin-top:24px;"><a href="/realisations/" class="text-link">Voir toutes nos réalisations →</a></p>
   </div>
 </section>
@@ -1318,6 +1331,7 @@ def build_services():
          ("Combien coûte un devis chauffage ?", "Le devis est gratuit. Il dépend du type d'installation, de la surface et de l'état de l'existant."),
          ("Qui effectue le contrôle officiel de combustion de ma chaudière ?", "Le contrôle périodique OPair (tous les 2 à 4 ans selon le combustible) est réalisé par le maître ramoneur agréé de votre secteur. Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité de votre installation."),
          ("Le remplacement d'une chaudière par une pompe à chaleur est-il subventionné ?", "Oui, sous conditions, dans le cadre du Programme Bâtiments (leprogrammebatiments.ch), avec un barème propre à chaque canton. Contactez-nous pour évaluer votre projet et vérifier votre éligibilité.")],
+        gallery_cat="chauffage",
         expertise_html="""<p>Nous intervenons sur les principaux générateurs de chaleur utilisés en Suisse romande : chaudières à mazout, à gaz et à bois (bûches ou pellets), ainsi que pompes à chaleur air/eau et sol/eau.</p>
 <h3>Contrôle de combustion (OPair)</h3>
 <p>Le contrôle périodique officiel des installations à combustion reste du ressort du maître ramoneur agréé de votre secteur, selon l'ordonnance fédérale sur la protection de l'air (OPair). Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité suite à un contrôle.</p>
@@ -1740,6 +1754,7 @@ export default {{
 
 def build_realisations():
     cat_labels = [
+        ("chauffage", "Chauffage"),
         ("ventilation", "Ventilation"),
         ("sanitaire", "Sanitaire"),
         ("sprinkler", "Sprinkler et protection incendie"),
@@ -1773,7 +1788,7 @@ def build_realisations():
     <span class="label">Réalisations</span>
     <div class="rule"></div>
     <h1 id="page-h1">Nos réalisations en {CVCS_PROSE} et sprinkler</h1>
-    <p class="hero-sub">Aperçu de chantiers réalisés par {COMPANY_NAME} en Suisse romande : ventilation, sanitaire et sprinkler / protection incendie.</p>
+    <p class="hero-sub">Aperçu de chantiers réalisés par {COMPANY_NAME} en Suisse romande : chauffage, ventilation, sanitaire et sprinkler / protection incendie.</p>
   </div>
 </section>
 <div class="section-divider"></div>
