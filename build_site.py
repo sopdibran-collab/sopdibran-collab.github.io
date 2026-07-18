@@ -60,7 +60,7 @@ CVCS_ALL_PROSE = "chauffage, ventilation, climatisation, sanitaire, dépannage S
 META_DESCRIPTIONS = {
     "home": f"Sopjani Tech Sàrl : étude, installation et dépannage en {CVCS_PROSE} en Suisse romande. Devis gratuit.",
     "prestations": f"{CVCS_GROUP}, dépannage SAV et sprinkler en Suisse romande. Découvrez toutes les prestations CVC de Sopjani Tech Sàrl.",
-    "zones-intervention": f"{COMPANY_NAME} intervient près de vous en Suisse romande : Genève, Vaud, Lausanne, Nyon, Valais, Fribourg. Siège à {ADDRESS_LOCALITY}.",
+    "zones-intervention": f"{COMPANY_NAME} intervient près de vous en Suisse romande : Genève, Vaud, Valais, Fribourg, Neuchâtel et agglomérations. Siège à {ADDRESS_LOCALITY}.",
     "a-propos": f"{COMPANY_NAME}, entreprise CVC basée à {ADDRESS_FULL}. {CVCS_GROUP}, sprinkler et dépannage en Suisse romande.",
     "contact": f"Devis gratuit et dépannage CVC urgent. {COMPANY_NAME} — {PHONE_DISP} · {EMAIL} · {ADDRESS_FULL}.",
     "depannage-sav": f"Dépannage en {CVCS_PROSE} en Suisse romande. Urgence : appelez le {PHONE_DISP}.",
@@ -75,6 +75,7 @@ META_DESCRIPTIONS = {
     "nyon": f"CVC à Nyon et environs : {CVCS_PROSE}. Devis et dépannage par Sopjani Tech Sàrl.",
     "valais": f"Entreprise CVC en Valais : {CVCS_PROSE}. Installation et dépannage selon votre commune.",
     "fribourg": f"Installation et dépannage CVC dans le canton de Fribourg. {CVCS_GROUP} et maintenance pour bâtiments résidentiels et professionnels.",
+    "neuchatel": f"Installation et dépannage CVC dans le canton de Neuchâtel. {CVCS_GROUP} pour Neuchâtel, La Chaux-de-Fonds et environs.",
     "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
     "plan-du-site": "Plan du site Sopjani Tech Sàrl : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
@@ -100,6 +101,7 @@ PAGE_TITLES = {
     "nyon": f"CVC Nyon | {CVCS_GROUP} | Sopjani Tech Sàrl",
     "valais": f"Entreprise CVC Valais | {CVCS_GROUP} | Sopjani Tech Sàrl",
     "fribourg": f"CVC Fribourg | {CVCS_GROUP} | Sopjani Tech Sàrl",
+    "neuchatel": f"CVC Neuchâtel | {CVCS_GROUP} | Sopjani Tech Sàrl",
     "realisations": "Réalisations CVC : chauffage, sanitaire, ventilation et sprinkler | Sopjani Tech Sàrl",
 }
 
@@ -179,7 +181,48 @@ ZONES = [
     ("nyon", "Nyon", "la région de Nyon"),
     ("valais", "Valais", "le canton du Valais"),
     ("fribourg", "Fribourg", "le canton de Fribourg"),
+    ("neuchatel", "Neuchâtel", "le canton de Neuchâtel"),
 ]
+
+# Couverture affichée sur les pages prestations (cantons + villes représentatives).
+CANTON_ZONE_SLUGS = ("geneve", "vaud", "valais", "fribourg", "neuchatel")
+CITY_COVERAGE_LINKS = (
+    ("Genève", "/geneve/"),
+    ("Lausanne", "/lausanne/"),
+    ("Nyon", "/nyon/"),
+    ("Morges", "/vaud/"),
+    ("Vevey", "/vaud/"),
+    ("Yverdon-les-Bains", "/vaud/"),
+    ("Sion", "/valais/"),
+    ("Martigny", "/valais/"),
+    ("Monthey", "/valais/"),
+    ("Sierre", "/valais/"),
+    ("Fribourg", "/fribourg/"),
+    ("Bulle", "/fribourg/"),
+    ("Romont", "/fribourg/"),
+    ("Neuchâtel", "/neuchatel/"),
+    ("La Chaux-de-Fonds", "/neuchatel/"),
+)
+
+ALL_ZONE_SLUGS = tuple(z for z, _, _ in ZONES)
+
+
+def service_zones_block():
+    """Cantons + villes pour la section « Zones desservies » des prestations."""
+    cantons = "".join(
+        f'<a class="zone-pill" href="/{z}/">{n}</a>'
+        for z, n, _ in ZONES if z in CANTON_ZONE_SLUGS
+    )
+    cities = "".join(
+        f'<a class="zone-pill zone-pill--city" href="{href}">{label}</a>'
+        for label, href in CITY_COVERAGE_LINKS
+    )
+    return f"""<div class="zone-coverage">
+  <p class="zone-coverage__label">Cantons</p>
+  <div class="zone-links">{cantons}</div>
+  <p class="zone-coverage__label">Villes &amp; agglomérations</p>
+  <div class="zone-links">{cities}</div>
+</div>"""
 
 ORG_SCHEMA = {
     "@type": ["HVACBusiness", "LocalBusiness"],
@@ -998,7 +1041,6 @@ def breadcrumb_schema(crumbs):
 def service_page(slug, name, title, desc, h1, intro, problems, interventions, clients, process, zone_slugs, related_svc, faq, show_urgence=False, gallery_cat=None, expertise_html=""):
     url = f"/{slug}/"
     crumbs = [("Accueil", "/"), ("Prestations", "/prestations/"), (name, url)]
-    zones_html = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES if z in zone_slugs)
     related = "".join(f'<a class="zone-pill" href="/{s}/">{n}</a>' for s, n, _ in SERVICES if s in related_svc)
     urgence_html = urgence_band() if show_urgence else ""
     carousel_imgs = carousel_images_for_service(slug, gallery_cat=gallery_cat, limit=8)
@@ -1059,9 +1101,9 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
 <section class="content-section alt" aria-labelledby="zones-title">
   <div class="container">
     <h2 class="section-title" id="zones-title">Zones desservies</h2>
-    <p class="section-lead">Sopjani Tech Sàrl intervient en Suisse romande. Contactez-nous pour vérifier la disponibilité dans votre secteur.</p>
-    <div class="zone-links">{zones_html}</div>
-    <p style="margin-top:20px;"><a href="/zones-intervention/">Voir toutes les zones d'intervention →</a></p>
+    <p class="section-lead">Sopjani Tech Sàrl intervient en Suisse romande — cantons de Genève, Vaud, Valais, Fribourg et Neuchâtel, ainsi que les principales villes de ces cantons. Contactez-nous pour vérifier la disponibilité dans votre secteur.</p>
+    {service_zones_block()}
+    <p style="margin-top:20px;"><a href="/zones-intervention/" class="text-link">Voir toutes les zones d'intervention →</a></p>
   </div>
 </section>
 <section class="content-section" aria-labelledby="related-title">
@@ -1790,7 +1832,20 @@ def build_zones():
         zone_aeo_faq("Fribourg", "le canton de Fribourg") + [
             ("Sopjani Tech Sàrl est-elle basée dans le canton de Fribourg ?", f"Oui, notre siège se trouve à {ADDRESS_FULL}, dans le district de la Glâne."),
         ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "lausanne", "valais"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "lausanne", "valais", "neuchatel"])
+
+    zone_page("neuchatel", "Neuchâtel", "le canton de Neuchâtel",
+        PAGE_TITLES["neuchatel"],
+        META_DESCRIPTIONS["neuchatel"],
+        f"{CVCS_GROUP} dans le canton de Neuchâtel",
+        p("Le canton de Neuchâtel s'étend du littoral du lac de Neuchâtel aux hauteurs du Jura (La Chaux-de-Fonds, Le Locle). Le parc bâti mêle immeubles en ville, villas sur les coteaux et bâtiments industriels ou horlogers qui demandent souvent des installations CVC adaptées.") +
+        p("Contactez-nous en précisant votre commune pour vérifier la disponibilité d'intervention.") +
+        communes_block(["Neuchâtel", "La Chaux-de-Fonds", "Le Locle", "Peseux", "Boudry", "Cortaillod", "Saint-Blaise", "Val-de-Ruz"]) +
+        SUBSIDY_NOTE.format(extra="Dans le canton de Neuchâtel, les demandes sont instruites par le Service de l'énergie et de l'environnement (SENE)."),
+        zone_aeo_faq("Neuchâtel", "le canton de Neuchâtel") + [
+            ("Intervenez-vous à La Chaux-de-Fonds et dans le Haut ?", "Oui, sous réserve de planification. Précisez l'adresse et l'urgence lors du premier contact."),
+        ],
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "fribourg", "geneve"])
 
 
 def legal_identity_block():
@@ -2307,17 +2362,20 @@ document.querySelectorAll('.track-google').forEach(el => {
     const bars = Array.from(root.querySelectorAll('.magnetic-bar'));
     if (!track || bars.length === 0) return;
 
-    const collapsedW = 72;
-    const hoverW = 168;
-    const collapsedH = 280;
-    const hoverH = 340;
-    const gap = 12;
-    const influence = 180;
+    const gap = 14;
+    const influence = 220;
     const blurPx = 3;
     const openDur = 300;
 
+    function getCollapsedSize() {
+      const narrow = window.matchMedia('(max-width: 768px)').matches;
+      return narrow
+        ? { w: 120, h: 180, hoverW: 160, hoverH: 220 }
+        : { w: 148, h: 220, hoverW: 240, hoverH: 280 };
+    }
+
     function getOpenSize() {
-      return Math.min(520, Math.floor(window.innerWidth * 0.9));
+      return Math.min(560, Math.floor(window.innerWidth * 0.88));
     }
 
     let openIndex = null;
@@ -2329,6 +2387,11 @@ document.querySelectorAll('.track-google').forEach(el => {
     let closeTimer = 0;
 
     function applySizes() {
+      const sizes = getCollapsedSize();
+      const collapsedW = sizes.w;
+      const collapsedH = sizes.h;
+      const hoverW = sizes.hoverW;
+      const hoverH = sizes.hoverH;
       const openSize = getOpenSize();
       bars.forEach((bar, i) => {
         let w = collapsedW;
@@ -2384,6 +2447,8 @@ document.querySelectorAll('.track-google').forEach(el => {
     }
 
     function setTargetFromCursor(clientX) {
+      const sizes = getCollapsedSize();
+      const collapsedW = sizes.w;
       const rect = track.getBoundingClientRect();
       const cx = clientX - rect.left;
       const n = bars.length;

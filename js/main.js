@@ -197,17 +197,20 @@ document.querySelectorAll('.track-google').forEach(el => {
     const bars = Array.from(root.querySelectorAll('.magnetic-bar'));
     if (!track || bars.length === 0) return;
 
-    const collapsedW = 72;
-    const hoverW = 168;
-    const collapsedH = 280;
-    const hoverH = 340;
-    const gap = 12;
-    const influence = 180;
+    const gap = 14;
+    const influence = 220;
     const blurPx = 3;
     const openDur = 300;
 
+    function getCollapsedSize() {
+      const narrow = window.matchMedia('(max-width: 768px)').matches;
+      return narrow
+        ? { w: 120, h: 180, hoverW: 160, hoverH: 220 }
+        : { w: 148, h: 220, hoverW: 240, hoverH: 280 };
+    }
+
     function getOpenSize() {
-      return Math.min(520, Math.floor(window.innerWidth * 0.9));
+      return Math.min(560, Math.floor(window.innerWidth * 0.88));
     }
 
     let openIndex = null;
@@ -219,6 +222,11 @@ document.querySelectorAll('.track-google').forEach(el => {
     let closeTimer = 0;
 
     function applySizes() {
+      const sizes = getCollapsedSize();
+      const collapsedW = sizes.w;
+      const collapsedH = sizes.h;
+      const hoverW = sizes.hoverW;
+      const hoverH = sizes.hoverH;
       const openSize = getOpenSize();
       bars.forEach((bar, i) => {
         let w = collapsedW;
@@ -274,6 +282,8 @@ document.querySelectorAll('.track-google').forEach(el => {
     }
 
     function setTargetFromCursor(clientX) {
+      const sizes = getCollapsedSize();
+      const collapsedW = sizes.w;
       const rect = track.getBoundingClientRect();
       const cx = clientX - rect.left;
       const n = bars.length;

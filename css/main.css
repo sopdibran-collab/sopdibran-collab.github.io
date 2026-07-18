@@ -2129,9 +2129,21 @@ header .nav-submenu a:hover .svc-icon__badge,
   text-underline-offset: 2px;
 }
 .gallery-legal-note a:hover { color: var(--c-navy); }
-.zone-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-.zone-pill { display: inline-flex; padding: 10px 18px; background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius); font-size: 14px; font-weight: 600; transition: border-color .2s; }
+.zone-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.zone-pill { display: inline-flex; padding: 10px 18px; background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius); font-size: 14px; font-weight: 600; transition: border-color .2s, color .2s; }
 .zone-pill:hover { border-color: var(--c-logo); color: var(--c-navy); }
+.zone-pill--city { font-weight: 500; background: var(--c-bg); }
+.zone-coverage { margin-top: 8px; }
+.zone-coverage__label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-navy);
+  margin: 20px 0 0;
+}
+.zone-coverage__label:first-child { margin-top: 4px; }
 .contact-form { display: grid; gap: 16px; max-width: 520px; margin-top: 24px; }
 .contact-form label { display: block; font-size: 13px; font-weight: 600; color: var(--c-text); margin-bottom: 6px; }
 .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--c-border); border-radius: var(--radius); font-family: var(--font-body); font-size: 15px; background: var(--c-surface); }
@@ -2513,7 +2525,7 @@ header .header-cta .btn-primary:focus-visible {
 .magnetic-carousel {
   position: relative;
   width: 100%;
-  min-height: 320px;
+  min-height: 280px;
   margin-top: 8px;
 }
 
@@ -2521,14 +2533,14 @@ header .header-cta .btn-primary:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
   width: 100%;
-  min-height: 360px;
+  min-height: 300px;
   position: relative;
   z-index: 2;
   overflow-x: auto;
   overflow-y: visible;
-  padding: 24px 0;
+  padding: 20px 0;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
 }
@@ -2543,11 +2555,11 @@ header .header-cta .btn-primary:focus-visible {
 
 .magnetic-bar {
   flex: none;
-  width: 72px;
-  height: 280px;
+  width: 148px;
+  height: 220px;
   padding: 0;
   border: 1px solid var(--c-border);
-  border-radius: var(--radius);
+  border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
   background-color: var(--c-bg3);
@@ -2556,17 +2568,17 @@ header .header-cta .btn-primary:focus-visible {
   background-repeat: no-repeat;
   position: relative;
   will-change: width, height;
-  box-shadow: 0 1px 2px rgba(29, 45, 53, 0.06);
+  box-shadow: 0 1px 2px rgba(11, 37, 69, 0.08);
 }
 
 .magnetic-bar:focus-visible {
-  outline: 2px solid var(--c-accent);
+  outline: 2px solid var(--c-logo);
   outline-offset: 3px;
 }
 
 .magnetic-bar.is-open {
-  border-color: var(--c-accent);
-  box-shadow: 0 8px 28px rgba(29, 45, 53, 0.18);
+  border-color: var(--c-logo);
+  box-shadow: 0 8px 28px rgba(11, 37, 69, 0.2);
 }
 
 .magnetic-bar__img {
@@ -2586,11 +2598,12 @@ header .header-cta .btn-primary:focus-visible {
     justify-content: flex-start;
     padding-left: 4px;
     padding-right: 4px;
-    min-height: 300px;
+    min-height: 260px;
+    gap: 12px;
   }
   .magnetic-bar {
-    width: 64px;
-    height: 240px;
+    width: 120px;
+    height: 180px;
   }
 }
 
