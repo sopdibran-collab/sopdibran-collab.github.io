@@ -2077,34 +2077,61 @@ export default {{
 
 
 def build_realisations():
-    cat_labels = [
-        ("chauffage", "Chauffage"),
-        ("ventilation", "Ventilation"),
+    def collect_images(cat):
+        imgs = REALISATIONS_BY_CAT.get(cat, [])
+        return imgs
+
+    def cat_block(cat, label):
+        imgs = collect_images(cat)
+        if not imgs:
+            return ""
+        carousel = magnetic_carousel_html(imgs, label)
+        return f"""<div class="realisations-cat" id="real-{cat}-block">
+  <span class="label">{label}</span>
+  <div class="rule"></div>
+  <h2 class="section-title" id="real-{cat}">{label}</h2>
+  <p class="section-lead">Survolez ou touchez une photo pour l'agrandir.</p>
+  {carousel}
+</div>"""
+
+    image_objects = []
+    for cat in ("chauffage", "ventilation", "sanitaire", "sprinkler"):
+        for fn, w, h, alt, cap in collect_images(cat):
+            image_objects.append(image_object_ld(fn, w, h, alt, cap))
+
+    chauffage_block = cat_block("chauffage", "Chauffage")
+    ventilation_block = cat_block("ventilation", "Ventilation")
+    duo = ""
+    if chauffage_block or ventilation_block:
+        duo = f"""<section class="content-section magnetic-section realisations-duo-section" aria-label="Chauffage et ventilation">
+  <div class="container realisations-duo">
+    {chauffage_block}
+    {ventilation_block}
+  </div>
+</section>
+"""
+
+    rest = ""
+    for i, (cat, label) in enumerate((
         ("sanitaire", "Sanitaire"),
         ("sprinkler", "Sprinkler et protection incendie"),
-    ]
-    sections = ""
-    image_objects = []
-    for cat, label in cat_labels:
-        imgs = REALISATIONS_BY_CAT.get(cat, [])
+    )):
+        imgs = collect_images(cat)
         if not imgs:
             continue
-        cards = []
-        for fn, w, h, alt, cap in imgs:
-            cards.append(f"""<figure class="gallery-card">
-  <img src="/assets/realisations/{fn}" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async">
-  <figcaption>{cap}</figcaption>
-</figure>""")
-            image_objects.append(image_object_ld(fn, w, h, alt, cap))
-        sections += f"""<section class="content-section" aria-labelledby="real-{cat}">
+        alt_cls = " alt" if i % 2 == 0 else ""
+        carousel = magnetic_carousel_html(imgs, label)
+        rest += f"""<section class="content-section magnetic-section{alt_cls}" aria-labelledby="real-{cat}">
   <div class="container">
     <span class="label">{label}</span>
     <div class="rule"></div>
     <h2 class="section-title" id="real-{cat}">{label}</h2>
-    <div class="gallery gallery-cols-3">{"".join(cards)}</div>
+    <p class="section-lead">Survolez ou touchez une photo pour l'agrandir. Chantiers {label.lower()} réalisés par {COMPANY_NAME}.</p>
+    {carousel}
   </div>
 </section>
 """
+
     body = f"""
 {page_hero(
         "Réalisations",
@@ -2112,7 +2139,8 @@ def build_realisations():
         f"Aperçu de chantiers réalisés par {COMPANY_NAME} en Suisse romande : chauffage, ventilation, sanitaire et sprinkler / protection incendie.",
         image=hero_image_for("realisations"),
     )}
-{sections}
+{duo}
+{rest}
 <p class="gallery-legal-note container"><a href="{IMAGE_LICENSE_URL}">Droits et utilisation des images</a> · {IMAGE_COPYRIGHT_NOTICE}</p>
 {trust_strip()}
 {norms_bar()}
