@@ -223,11 +223,13 @@
   <div class="container topbar-inner">
     <p class="topbar-left">Société basée à Romont FR — Interventions en Suisse romande</p>
     <p class="topbar-right">
-      <a href="tel:+41799326862" class="track-phone">+41 79 932 68 62</a>
-      <span aria-hidden="true">·</span>
-      <a href="mailto:info@sopjanitech.ch" class="track-email">info@sopjanitech.ch</a>
-      <span aria-hidden="true">·</span>
-      <span>Heures&nbsp;: 7h00 – 17h00</span>
+      <a href="tel:+41799326862" class="track-phone topbar-phone">+41 79 932 68 62</a>
+      <span class="topbar-extra">
+        <span aria-hidden="true">·</span>
+        <a href="mailto:info@sopjanitech.ch" class="track-email">info@sopjanitech.ch</a>
+        <span aria-hidden="true">·</span>
+        <span>Heures&nbsp;: 7h00 – 17h00</span>
+      </span>
     </p>
   </div>
 </div>
@@ -263,18 +265,25 @@
         </a>
         <a href="/contact/" class="btn btn-brand track-devis">Demander un devis →</a>
       </div>
-      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-controls="mobileNav" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 <div class="mobile-nav-overlay" id="mobileNavOverlay" hidden></div>
 <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" aria-hidden="true">
   <div class="mobile-nav-inner">
+    <div class="mobile-nav-toolbar">
+      <p class="mobile-nav-title">Menu</p>
+      <button type="button" class="mobile-nav-close" id="mobileNavClose" aria-label="Fermer le menu">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+    </div>
     <a href="/" class="mobile-nav-link">Accueil</a>
     <div class="mobile-nav-group">
       <button type="button" class="mobile-nav-toggle" aria-expanded="false">Prestations</button>
       <div class="mobile-nav-panel"><a href="/prestations/">Toutes les prestations</a><a href="/chauffage/"><span class="svc-icon svc-icon--chauffage svc-icon--nav" aria-hidden="true"><span class="svc-icon__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span></span><span>Chauffage</span></a><a href="/ventilation/"><span class="svc-icon svc-icon--ventilation svc-icon--nav" aria-hidden="true"><span class="svc-icon__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg></span></span><span>Ventilation</span></a><a href="/climatisation/"><span class="svc-icon svc-icon--climatisation svc-icon--nav" aria-hidden="true"><span class="svc-icon__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M2 12h20"/><path d="m4.93 4.93 14.14 14.14"/><path d="m19.07 4.93-14.14 14.14"/></svg></span></span><span>Climatisation</span></a><a href="/sanitaire/"><span class="svc-icon svc-icon--sanitaire svc-icon--nav" aria-hidden="true"><span class="svc-icon__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v2"/><path d="M17 3v2"/><path d="M7 5h10"/><path d="M12 5v7"/><path d="M9 20h6"/><path d="M10 12h4"/></svg></span></span><span>Sanitaire</span></a><a href="/depannage-sav/"><span class="svc-icon svc-icon--depannage-sav svc-icon--nav" aria-hidden="true"><span class="svc-icon__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span></span><span>Dépannage SAV</span></a><a href="/sprinkler-protection-incendie/"><span class="svc-icon svc-icon--sprinkler-protection-incendie svc-icon--nav" aria-hidden="true"><span class="svc-icon__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3"/><path d="M8 6h8"/><path d="M12 9v5"/><path d="M9 20h6"/><path d="M10 14h4"/><path d="M8 17h8"/></svg></span></span><span>Sprinkler / protection incendie</span></a></div>
     </div>
+    <a href="/realisations/" class="mobile-nav-link">Réalisations</a>
     <div class="mobile-nav-group">
       <button type="button" class="mobile-nav-toggle" aria-expanded="false">Zones d'intervention</button>
       <div class="mobile-nav-panel"><a href="/zones-intervention/">Toutes les zones</a><a href="/geneve/">Genève</a><a href="/vaud/">Vaud</a><a href="/lausanne/">Lausanne</a><a href="/nyon/">Nyon</a><a href="/valais/">Valais</a><a href="/fribourg/">Fribourg</a><a href="/neuchatel/">Neuchâtel</a></div>
@@ -446,27 +455,27 @@
       </a>
     </div>
     <div class="footer-grid">
-      <div>
+      <div class="footer-col footer-col--services">
         <div class="footer-col-title">Services</div>
         <ul class="footer-links"><li><a href="/chauffage/">Chauffage</a></li><li><a href="/ventilation/">Ventilation</a></li><li><a href="/climatisation/">Climatisation</a></li><li><a href="/sanitaire/">Sanitaire</a></li><li><a href="/depannage-sav/">Dépannage SAV</a></li><li><a href="/sprinkler-protection-incendie/">Sprinkler / protection incendie</a></li></ul>
       </div>
-      <div>
+      <div class="footer-col footer-col--zones">
         <div class="footer-col-title">Zones</div>
         <ul class="footer-links"><li><a href="/zones-intervention/">Toutes les zones</a></li><li><a href="/geneve/">Genève</a></li><li><a href="/vaud/">Vaud</a></li><li><a href="/lausanne/">Lausanne</a></li><li><a href="/nyon/">Nyon</a></li><li><a href="/valais/">Valais</a></li><li><a href="/fribourg/">Fribourg</a></li><li><a href="/neuchatel/">Neuchâtel</a></li></ul>
       </div>
-      <div>
+      <div class="footer-col footer-col--entreprise">
         <div class="footer-col-title">Entreprise</div>
         <ul class="footer-links">
           <li><a href="/">Accueil</a></li>
           <li><a href="/a-propos/">À propos</a></li>
           <li><a href="/realisations/">Réalisations</a></li>
           <li><a href="/contact/">Contact</a></li>
-          <li><a href="/plan-du-site/">Plan du site</a></li>
-          <li><a href="/mentions-legales/">Mentions légales</a></li>
-          <li><a href="/politique-confidentialite/">Politique de confidentialité</a></li>
+          <li class="footer-dup-legal"><a href="/plan-du-site/">Plan du site</a></li>
+          <li class="footer-dup-legal"><a href="/mentions-legales/">Mentions légales</a></li>
+          <li class="footer-dup-legal"><a href="/politique-confidentialite/">Politique de confidentialité</a></li>
         </ul>
       </div>
-      <div>
+      <div class="footer-col footer-col--contact">
         <div class="footer-col-title">Contact</div>
         <ul class="footer-contact-list">
           <li><a href="tel:+41799326862" class="track-phone">+41 79 932 68 62</a></li>

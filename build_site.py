@@ -725,11 +725,13 @@ def header():
   <div class="container topbar-inner">
     <p class="topbar-left">Société basée à {ADDRESS_LOCALITY} — Interventions en Suisse romande</p>
     <p class="topbar-right">
-      <a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a>
-      <span aria-hidden="true">·</span>
-      <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a>
-      <span aria-hidden="true">·</span>
-      <span>Heures&nbsp;: 7h00 – 17h00</span>
+      <a href="tel:{PHONE}" class="track-phone topbar-phone">{PHONE_DISP}</a>
+      <span class="topbar-extra">
+        <span aria-hidden="true">·</span>
+        <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a>
+        <span aria-hidden="true">·</span>
+        <span>Heures&nbsp;: 7h00 – 17h00</span>
+      </span>
     </p>
   </div>
 </div>
@@ -765,15 +767,22 @@ def header():
         </a>
         <a href="/contact/" class="btn btn-brand track-devis">Demander un devis →</a>
       </div>
-      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-controls="mobileNav" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 <div class="mobile-nav-overlay" id="mobileNavOverlay" hidden></div>
 <nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" aria-hidden="true">
   <div class="mobile-nav-inner">
+    <div class="mobile-nav-toolbar">
+      <p class="mobile-nav-title">Menu</p>
+      <button type="button" class="mobile-nav-close" id="mobileNavClose" aria-label="Fermer le menu">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+    </div>
     <a href="/" class="mobile-nav-link">Accueil</a>
     {mobile_svc}
+    <a href="/realisations/" class="mobile-nav-link">Réalisations</a>
     {mobile_zones}
     <a href="/a-propos/" class="mobile-nav-link">À propos</a>
     <a href="/contact/" class="mobile-nav-link">Contact</a>
@@ -803,27 +812,27 @@ def footer():
       </a>
     </div>
     <div class="footer-grid">
-      <div>
+      <div class="footer-col footer-col--services">
         <div class="footer-col-title">Services</div>
         <ul class="footer-links">{svc}</ul>
       </div>
-      <div>
+      <div class="footer-col footer-col--zones">
         <div class="footer-col-title">Zones</div>
         <ul class="footer-links">{zones}</ul>
       </div>
-      <div>
+      <div class="footer-col footer-col--entreprise">
         <div class="footer-col-title">Entreprise</div>
         <ul class="footer-links">
           <li><a href="/">Accueil</a></li>
           <li><a href="/a-propos/">À propos</a></li>
           <li><a href="/realisations/">Réalisations</a></li>
           <li><a href="/contact/">Contact</a></li>
-          <li><a href="/plan-du-site/">Plan du site</a></li>
-          <li><a href="/mentions-legales/">Mentions légales</a></li>
-          <li><a href="/politique-confidentialite/">Politique de confidentialité</a></li>
+          <li class="footer-dup-legal"><a href="/plan-du-site/">Plan du site</a></li>
+          <li class="footer-dup-legal"><a href="/mentions-legales/">Mentions légales</a></li>
+          <li class="footer-dup-legal"><a href="/politique-confidentialite/">Politique de confidentialité</a></li>
         </ul>
       </div>
-      <div>
+      <div class="footer-col footer-col--contact">
         <div class="footer-col-title">Contact</div>
         <ul class="footer-contact-list">
           <li><a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a></li>
@@ -2249,12 +2258,14 @@ if (hasCookieConsent()) loadGA4();
 const burger = document.getElementById('burger');
 const mobileNav = document.getElementById('mobileNav');
 const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+const mobileNavClose = document.getElementById('mobileNavClose');
 
 function setMobileNav(open) {
   if (!mobileNav || !burger) return;
   mobileNav.classList.toggle('open', open);
   burger.classList.toggle('open', open);
   burger.setAttribute('aria-expanded', open);
+  burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
   mobileNav.setAttribute('aria-hidden', !open);
   document.body.classList.toggle('nav-open', open);
   if (mobileNavOverlay) {
@@ -2270,6 +2281,9 @@ if (burger && mobileNav) {
   burger.addEventListener('click', () => {
     setMobileNav(!mobileNav.classList.contains('open'));
   });
+  if (mobileNavClose) {
+    mobileNavClose.addEventListener('click', closeMobileNav);
+  }
   mobileNav.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', closeMobileNav);
   });
@@ -2307,8 +2321,14 @@ document.querySelectorAll('.mobile-nav-toggle').forEach(btn => {
   btn.addEventListener('click', () => {
     const group = btn.closest('.mobile-nav-group');
     if (!group) return;
-    const isOpen = group.classList.toggle('is-open');
-    btn.setAttribute('aria-expanded', isOpen);
+    const willOpen = !group.classList.contains('is-open');
+    document.querySelectorAll('.mobile-nav-group.is-open').forEach(openGroup => {
+      if (openGroup === group) return;
+      openGroup.classList.remove('is-open');
+      openGroup.querySelector('.mobile-nav-toggle')?.setAttribute('aria-expanded', 'false');
+    });
+    group.classList.toggle('is-open', willOpen);
+    btn.setAttribute('aria-expanded', willOpen);
   });
 });
 document.querySelectorAll('.faq-q').forEach(btn => {
