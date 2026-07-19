@@ -25,14 +25,20 @@ GA4_MEASUREMENT_ID = "G-KXN3RQB89P"
 GOOGLE_SITE_VERIFICATION = "ESyhz2gRqYIspy2MPXHOD9v4uMjd_KAdkQjRYWHWinw"
 # Formulaire contact (ex. https://formspree.io/f/xxxxxxxx) — laisser vide = message local sans envoi
 FORM_ENDPOINT = ""
-# Logos (interim) — sources: Documents/SopjaniTechSàrl/Logo → assets/brand/
-# Remplacer par les SVG vectorisés complets dès qu'ils sont prêts.
-LOGO_HEADER = "/assets/brand/logo-primary-64.png"
-LOGO_FOOTER = "/assets/brand/logo-primary-64.png"
+# Logos — variantes officielles Alpë → assets/brand/
+# PRINCIPALE · RESPONSIVE · SUBMARK · FAVICON · grayscale · mono noir/blanc · couleur inversée
+LOGO_HEADER = "/assets/brand/logo-responsive.svg"
+LOGO_FOOTER = "/assets/brand/logo-responsive.svg"
+LOGO_SUBMARK = "/assets/brand/logo-submark.svg"
 LOGO_FULL = "/assets/logo-full.png"
 FAVICON_PATH = "/assets/favicon.png"
+FAVICON_SVG = "/assets/favicon.svg"
 APPLE_TOUCH_ICON = "/assets/apple-touch-icon.png"
-OG_IMAGE = f"{SITE}/assets/og-logo.png"
+OG_IMAGE = f"{SITE}/assets/og-default.jpg"
+OG_IMAGE_WIDTH = 1200
+OG_IMAGE_HEIGHT = 630
+OG_IMAGE_TYPE = "image/jpeg"
+LOGO_SCHEMA = f"{SITE}/assets/og-logo.png"  # carré PRINCIPALE pour schema.org
 FAVICON = f"{SITE}{FAVICON_PATH}"
 THEME_COLOR = "#0B2545"
 ADDRESS_STREET = "Rue Pierre de Savoie 9"
@@ -309,7 +315,7 @@ ORG_SCHEMA = {
     "priceRange": "$$",
     "currenciesAccepted": "CHF",
     "inLanguage": "fr-CH",
-    "logo": OG_IMAGE,
+    "logo": LOGO_SCHEMA,
     "image": OG_IMAGE,
     "sameAs": [GOOGLE_BUSINESS_URL],
 }
@@ -779,11 +785,7 @@ def header():
   <div class="container">
     <div class="header-inner">
       <a href="/" class="logo-wrap">
-        <img src="{LOGO_HEADER}" alt="Sopjani Tech Sàrl" width="48" height="48" loading="eager" decoding="async">
-        <div>
-          <div class="logo-text">SOPJANI TECH</div>
-          <div class="logo-sub">Sàrl · Suisse</div>
-        </div>
+        <img class="logo-img logo-img--responsive" src="{LOGO_HEADER}" alt="Sopjani Tech Sàrl" width="160" height="78" loading="eager" decoding="async">
         <span class="sr-only"> – Accueil</span>
       </a>
       <nav class="nav-main" aria-label="Navigation principale">
@@ -844,11 +846,7 @@ def footer():
   <div class="container">
     <div class="footer-brand">
       <a href="/" class="footer-logo-wrap">
-        <img src="{LOGO_FOOTER}" alt="Sopjani Tech Sàrl" width="48" height="48" loading="lazy" decoding="async">
-        <div>
-          <div class="footer-logo-text">SOPJANI TECH</div>
-          <div class="footer-logo-sub">Sàrl · Suisse romande</div>
-        </div>
+        <img class="logo-img logo-img--responsive" src="{LOGO_FOOTER}" alt="Sopjani Tech Sàrl" width="160" height="78" loading="lazy" decoding="async">
       </a>
     </div>
     <div class="footer-grid">
@@ -1050,7 +1048,7 @@ def trust_strip():
 
 
 def hero_image_for(key):
-    """Chemin hero généré (provisoire jusqu'au shooting)."""
+    """Chemin hero 16:9 (2000×1125). Sources stock + équipe réelle (a-propos/contact)."""
     path = f"/assets/heroes/{key}.jpg"
     return path
 
@@ -1078,7 +1076,7 @@ def page_hero(label, h1, sub, *, icon_html="", primary_href="/contact/", primary
         alt = image_alt or h1
         return f"""<section class="page-hero hero hero--photo" aria-labelledby="page-h1">
   <div class="hero-media" aria-hidden="true">
-    <img src="{image}" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">
+    <img src="{image}" alt="" width="2000" height="1125" fetchpriority="high" decoding="async">
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="container hero-inner">
@@ -1138,8 +1136,9 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
   <meta name="ICBM" content="46.6917, 6.9119">
   <meta name="theme-color" content="{THEME_COLOR}">
   <link rel="canonical" href="{canonical}">
+  <link rel="icon" href="{FAVICON_SVG}" type="image/svg+xml">
   <link rel="icon" href="{FAVICON_PATH}" type="image/png" sizes="32x32">
-  <link rel="apple-touch-icon" href="{APPLE_TOUCH_ICON}" sizes="192x192">
+  <link rel="apple-touch-icon" href="{APPLE_TOUCH_ICON}" sizes="180x180">
 {gsc_verification_meta()}  <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_CH">
   <meta property="og:title" content="{safe_title}">
@@ -1147,11 +1146,16 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
   <meta property="og:url" content="{canonical}">
   <meta property="og:site_name" content="Sopjani Tech Sàrl">
   <meta property="og:image" content="{OG_IMAGE}">
-  <meta property="og:image:alt" content="Logo Sopjani Tech Sàrl">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image:secure_url" content="{OG_IMAGE}">
+  <meta property="og:image:type" content="{OG_IMAGE_TYPE}">
+  <meta property="og:image:width" content="{OG_IMAGE_WIDTH}">
+  <meta property="og:image:height" content="{OG_IMAGE_HEIGHT}">
+  <meta property="og:image:alt" content="Sopjani Tech Sàrl — Chauffage, ventilation, climatisation et sanitaire en Suisse romande">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{safe_title}">
   <meta name="twitter:description" content="{safe_desc}">
   <meta name="twitter:image" content="{OG_IMAGE}">
+  <meta name="twitter:image:alt" content="Sopjani Tech Sàrl — CVCS Suisse romande">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
@@ -1373,7 +1377,7 @@ def build_home():
     body = f"""
 <section class="hero hero--photo" aria-labelledby="hero-h1">
   <div class="hero-media" aria-hidden="true">
-    <img src="/assets/heroes/home.jpg" alt="" width="1536" height="1024" fetchpriority="high" decoding="async">
+    <img src="/assets/heroes/home.jpg" alt="" width="2000" height="1125" fetchpriority="high" decoding="async">
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="container hero-inner">
@@ -1471,6 +1475,7 @@ def build_prestations():
     )
     body = f"""
 {hero}
+{svc_reassure_band()}
 <section class="content-section">
   <div class="container">
     <div class="hub-grid">{cards}</div>
@@ -1482,7 +1487,6 @@ def build_prestations():
     {faq_html(faq)}
   </div>
 </section>
-{trust_strip()}
 {norms_bar()}
 {cta_band()}"""
     crumbs = [("Accueil", "/"), ("Prestations", "/prestations/")]
@@ -2706,47 +2710,40 @@ def build_realisations():
   <span class="label">{label}</span>
   <div class="rule"></div>
   <h2 class="section-title" id="real-{cat}">{label}</h2>
-  <p class="section-lead">Survolez ou touchez une photo pour l'agrandir.</p>
+  <p class="section-lead">Survolez ou touchez une photo pour l'agrandir. Faites défiler pour voir la suite.</p>
   {carousel}
 </div>"""
+
+    def duo_section(left, right, aria_label, alt=False):
+        left_block = cat_block(*left) if left else ""
+        right_block = cat_block(*right) if right else ""
+        if not left_block and not right_block:
+            return ""
+        alt_cls = " alt" if alt else ""
+        return f"""<section class="content-section magnetic-section realisations-duo-section{alt_cls}" aria-label="{aria_label}">
+  <div class="container realisations-duo">
+    {left_block}
+    {right_block}
+  </div>
+</section>
+"""
 
     image_objects = []
     for cat in ("chauffage", "ventilation", "sanitaire", "sprinkler"):
         for fn, w, h, alt, cap in collect_images(cat):
             image_objects.append(image_object_ld(fn, w, h, alt, cap))
 
-    chauffage_block = cat_block("chauffage", "Chauffage")
-    ventilation_block = cat_block("ventilation", "Ventilation")
-    duo = ""
-    if chauffage_block or ventilation_block:
-        duo = f"""<section class="content-section magnetic-section realisations-duo-section" aria-label="Chauffage et ventilation">
-  <div class="container realisations-duo">
-    {chauffage_block}
-    {ventilation_block}
-  </div>
-</section>
-"""
-
-    rest = ""
-    for i, (cat, label) in enumerate((
+    duo_hvac = duo_section(
+        ("chauffage", "Chauffage"),
+        ("ventilation", "Ventilation"),
+        "Chauffage et ventilation",
+    )
+    duo_san_spr = duo_section(
         ("sanitaire", "Sanitaire"),
-        ("sprinkler", "Sprinkler et protection incendie"),
-    )):
-        imgs = collect_images(cat)
-        if not imgs:
-            continue
-        alt_cls = " alt" if i % 2 == 0 else ""
-        carousel = magnetic_carousel_html(imgs, label)
-        rest += f"""<section class="content-section magnetic-section{alt_cls}" aria-labelledby="real-{cat}">
-  <div class="container">
-    <span class="label">{label}</span>
-    <div class="rule"></div>
-    <h2 class="section-title" id="real-{cat}">{label}</h2>
-    <p class="section-lead">Survolez ou touchez une photo pour l'agrandir. Chantiers {label.lower()} réalisés par {COMPANY_NAME}.</p>
-    {carousel}
-  </div>
-</section>
-"""
+        ("sprinkler", "Sprinkler"),
+        "Sanitaire et sprinkler",
+        alt=True,
+    )
 
     body = f"""
 {page_hero(
@@ -2755,8 +2752,8 @@ def build_realisations():
         f"Aperçu de chantiers réalisés par {COMPANY_NAME} en Suisse romande : chauffage, ventilation, sanitaire et sprinkler / protection incendie.",
         image=hero_image_for("realisations"),
     )}
-{duo}
-{rest}
+{duo_hvac}
+{duo_san_spr}
 <p class="gallery-legal-note container"><a href="{IMAGE_LICENSE_URL}">Droits et utilisation des images</a> · {IMAGE_COPYRIGHT_NOTICE}</p>
 {trust_strip()}
 {norms_bar()}

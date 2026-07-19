@@ -281,6 +281,14 @@
       flex-shrink: 0;
     }
 
+    .logo-img--responsive {
+      width: auto;
+      height: 40px;
+      max-width: 180px;
+      object-fit: contain;
+      display: block;
+    }
+
     .logo-hex {
       width: 44px;
       height: 44px;
@@ -1318,9 +1326,11 @@
       color: inherit;
     }
 
-    .footer-logo-wrap img {
-      width: 48px;
-      height: 48px;
+    .footer-logo-wrap img,
+    .footer-logo-wrap .logo-img--responsive {
+      width: auto;
+      height: 44px;
+      max-width: 180px;
       object-fit: contain;
       flex-shrink: 0;
     }
@@ -2384,7 +2394,12 @@ header .nav-submenu a:hover .svc-icon__badge,
 .form-feedback { margin-top: 4px; padding: 12px 14px; border-radius: var(--radius); background: var(--c-bg3); border: 1px solid var(--c-border); font-size: 14px; color: var(--c-text); line-height: 1.5; }
 .form-feedback[hidden] { display: none; }
 header .header-inner { height: 56px; gap: 16px; }
-header .logo-wrap img { width: 48px !important; height: auto; }
+header .logo-wrap img,
+header .logo-img--responsive {
+  width: auto !important;
+  height: 40px !important;
+  max-width: 180px;
+}
 header .logo-text { font-size: 15px; }
 header .logo-sub { font-size: 9px; }
 header .header-cta { gap: 8px; }
@@ -2733,7 +2748,7 @@ header .header-cta .btn-primary:focus-visible {
     font-size: clamp(26px, 7vw, 32px);
     line-height: 1.12;
   }
-  .logo-wrap img { width: 44px !important; height: 44px !important; }
+  .logo-wrap img { width: auto !important; height: 32px !important; max-width: 140px; }
   .header-cta .btn-primary,
   .header-cta .btn-brand { display: none; }
 }
@@ -2757,12 +2772,15 @@ header .header-cta .btn-primary:focus-visible {
   margin-bottom: 32px;
 }
 
-/* Réalisations — chauffage + ventilation côte à côte (desktop) */
+/* Réalisations — paires côte à côte (desktop), ~3 photos visibles + roulette */
 .realisations-duo {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px 48px;
   align-items: start;
+}
+.realisations-duo .realisations-cat {
+  min-width: 0; /* permet overflow horizontal du carousel */
 }
 .realisations-duo .realisations-cat .section-title {
   font-size: clamp(22px, 2.4vw, 28px);
@@ -2778,15 +2796,22 @@ header .header-cta .btn-primary:focus-visible {
   justify-content: flex-start;
   min-height: 260px;
   gap: 12px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
 }
 .realisations-duo .magnetic-bar {
-  width: 120px;
+  /* ~3 barres visibles dans une colonne duo */
+  width: clamp(96px, 28%, 120px);
   height: 180px;
+  scroll-snap-align: start;
 }
 @media (max-width: 900px) {
   .realisations-duo {
     grid-template-columns: 1fr;
     gap: 48px;
+  }
+  .realisations-duo .magnetic-bar {
+    width: 120px;
   }
 }
 
@@ -3972,8 +3997,9 @@ header .header-cta .btn-primary {
   }
 
   .footer-logo-wrap img {
-    width: 40px;
-    height: 40px;
+    width: auto;
+    height: 36px;
+    max-width: 150px;
   }
 
   .footer-grid {

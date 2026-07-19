@@ -44,4 +44,16 @@
 
 ## Logo
 
-Cyan exact logo : `#60C0EC` — fichiers dans `/assets/brand/`.
+Cyan logo : ≈ `#62BEE8` / charte `#60C0EC`.
+
+Sources officielles Alpë → `/assets/brand/` (SVG + PNG + JPG) :
+
+| Variante | Fichiers | Usage site |
+|----------|----------|------------|
+| RESPONSIVE | `logo-responsive.svg` (+ PNG) | Header + footer (lockup horizontal) |
+| PRINCIPALE | `logo-principale.*` | OG / `logo-full.png` |
+| SUBMARK | `logo-submark.*` | Apple touch, tailles 32–512 |
+| FAVICON | `logo-favicon-32.*` → `/assets/favicon.png` + `.svg` | Onglet navigateur |
+| Mono noir / blanc / grayscale / couleur inversée | `logo-mono-*`, `logo-grayscale-*`, `logo-couleur-inversee.*` | Print, fonds spéciaux (archivés) |
+
+Ne plus utiliser les anciens `logo-primary-*` (interim).
