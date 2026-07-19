@@ -519,7 +519,7 @@ def realisations_section(cat, limit=None):
 
 # Categories d'images pour le carousel magnétique par prestation.
 SERVICE_CAROUSEL_CATS = {
-    "chauffage": ["chauffage"],
+    "chauffage": ["chauffage", "ventilation"],
     "ventilation": ["ventilation"],
     "climatisation": ["ventilation", "chauffage"],
     "sanitaire": ["sanitaire"],
@@ -1733,206 +1733,659 @@ def build_contact():
     write_page(["contact", "index.html"], page_shell(contact_title, contact_desc, SITE + "/contact/", graph, body))
 
 
+def _card_icon(kind):
+    """Petite icône technique SVG (stroke) pour cartes prestations."""
+    paths = {
+        "boiler": '<path d="M8 2v3M16 2v3M6 8h12v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8z"/><path d="M10 12h4M10 16h4"/>',
+        "radiator": '<path d="M5 8h14v10H5z"/><path d="M8 8v10M12 8v10M16 8v10M5 11h14"/>',
+        "water": '<path d="M12 3c0 0-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11z"/>',
+        "noise": '<path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a4 4 0 0 1 0 7"/><path d="M18 6a7 7 0 0 1 0 12"/>',
+        "gauge": '<circle cx="12" cy="12" r="8"/><path d="M12 12 16 8M12 8v1"/>',
+        "pac": '<path d="M4 10h16v8H4z"/><path d="M8 10V7a4 4 0 0 1 8 0v3M8 18v2M16 18v2"/>',
+        "study": '<path d="M4 19V5a1 1 0 0 1 1-1h10l5 5v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M14 4v5h5"/>',
+        "install": '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/>',
+        "maintain": '<path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="3"/>',
+        "balance": '<path d="M12 3v18M5 8h14M8 8l-3 8h6M16 8l-3 8h6"/>',
+        "repair": '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/>',
+        "fan": '<path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0-4 0"/><path d="M12 4c2 2 2 5 0 6M12 20c-2-2-2-5 0-6M4 12c2-2 5-2 6 0M20 12c-2 2-5 2-6 0"/>',
+        "duct": '<path d="M3 8h18v4H3zM3 14h10v4H3zM15 14h6v4h-6z"/>',
+        "filter": '<path d="M4 5h16l-5 7v6l-6 2v-8L4 5z"/>',
+        "humidity": '<path d="M12 3c0 0-5 6-5 10a5 5 0 0 0 10 0c0-4-5-10-5-10z"/><path d="M9 14h6"/>',
+        "snow": '<path d="M12 2v20M4.9 6.5l14.2 11M4.9 17.5l14.2-11"/>',
+        "leak": '<path d="M7 3v8a5 5 0 0 0 10 0V3"/><path d="M12 16v5M9 19h6"/>',
+        "flush": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',
+        "pipe": '<path d="M4 10h16v4H4zM8 6v4M16 14v4"/>',
+        "fire": '<path d="M12 22c4-2 6-5 6-9 0-4-3-6-3-6s1 3-1 5c0 0-1-4-5-7 0 0-1 5-3 7-2 2-2 5 0 7 1 1 3 2 6 3z"/>',
+        "valve": '<path d="M12 3v6M8 9h8l2 12H6L8 9z"/><circle cx="12" cy="6" r="2"/>',
+        "coord": '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
+        "alert": '<path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>',
+    }
+    d = paths.get(kind, paths["boiler"])
+    return f'<span class="svc-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">{d}</svg></span>'
+
+
+def svc_reassure_band():
+    """Bandeau stats immédiat sous le hero — réassurance compacte."""
+    return """<section class="svc-reassure" aria-label="Preuves de confiance">
+  <div class="container svc-reassure__grid">
+    <div class="svc-reassure__item"><strong>100+</strong><span>Interventions réalisées</span></div>
+    <div class="svc-reassure__item"><strong>80+</strong><span>Clients satisfaits</span></div>
+    <div class="svc-reassure__item"><strong>10+</strong><span>Années d'expérience</span></div>
+  </div>
+</section>"""
+
+
+RELATED_SERVICE_BLURBS = {
+    "chauffage": "Installation, entretien et dépannage",
+    "ventilation": "VMC et qualité de l'air",
+    "climatisation": "Confort été et PAC air-air",
+    "sanitaire": "Réseaux eau et dépannage",
+    "depannage-sav": "Remise en service rapide",
+    "sprinkler-protection-incendie": "Réseaux sprinkler",
+}
+
+DEFAULT_PROCESS_STEPS = [
+    "Prise de contact et description du besoin",
+    "Visite ou diagnostic sur place si nécessaire",
+    "Proposition technique et devis détaillé",
+    "Réalisation des travaux et mise en service",
+    "Suivi et maintenance si souhaitée",
+]
+
+DEFAULT_BUILDINGS_NOTE = (
+    "Pour villas, immeubles, PPE, commerces, bureaux, hôtels, sites industriels "
+    "et bâtiments publics, selon faisabilité technique."
+)
+
+
+def _premium_cards(items, service_class=False):
+    cls = "svc-card svc-card--service" if service_class else "svc-card"
+    return "".join(
+        f'<article class="{cls}"><h3 class="svc-card__title">{_card_icon(ic)}{t}</h3>'
+        f'<p class="svc-card__text">{tx}</p></article>'
+        for ic, t, tx in items
+    )
+
+
+def _premium_timeline(steps):
+    return "".join(
+        f'<li class="svc-timeline__item"><span class="svc-timeline__num" aria-hidden="true">{i:02d}</span>'
+        f'<span class="svc-timeline__text">{s}</span></li>'
+        for i, s in enumerate(steps, 1)
+    )
+
+
+def _premium_gallery_block(slug, gallery_cat):
+    gallery_imgs = carousel_images_for_service(slug, gallery_cat=gallery_cat, limit=6)
+    if not gallery_imgs:
+        return (
+            '<p class="section-lead">Galerie en cours de mise à jour — '
+            '<a href="/realisations/" class="text-link">voir toutes nos réalisations →</a></p>'
+        ), gallery_imgs
+    featured, rest = gallery_imgs[0], gallery_imgs[1:5]
+    fn, w, h, alt, cap = featured
+    featured_html = f"""<figure class="svc-gallery__featured">
+  <img src="/assets/realisations/{fn}" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async">
+  <figcaption>{cap}</figcaption>
+</figure>"""
+    rest_html = "".join(
+        f'<figure class="svc-gallery__item"><img src="/assets/realisations/{fn}" alt="{alt}" '
+        f'width="{w}" height="{h}" loading="lazy" decoding="async"><figcaption>{cap}</figcaption></figure>'
+        for fn, w, h, alt, cap in rest
+    )
+    block = f"""<div class="svc-gallery">{featured_html}<div class="svc-gallery__grid">{rest_html}</div></div>
+<p class="svc-section__link"><a href="/realisations/" class="text-link">Voir toutes nos réalisations →</a></p>"""
+    return block, gallery_imgs
+
+
+def _premium_equip_visual(gallery_imgs):
+    if gallery_imgs:
+        fn, w, h, alt, cap = gallery_imgs[min(1, len(gallery_imgs) - 1)]
+        return f"""<figure class="svc-equip__visual">
+  <img src="/assets/realisations/{fn}" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async">
+</figure>"""
+    return """<aside class="svc-equip__panel" aria-label="Cadre suisse">
+  <p class="svc-equip__panel-label">Cadre suisse</p>
+  <ul class="svc-equip__panel-list"><li>SIA</li><li>suva</li><li>AEAI</li></ul>
+  <p class="svc-equip__panel-note">Professionnels qualifiés · Assurance RC</p>
+</aside>"""
+
+
+def write_premium_service_page(cfg):
+    """Page prestation — composition premium post-hero (même structure pour tous les services)."""
+    slug = cfg["slug"]
+    name = cfg["name"]
+    title = PAGE_TITLES[slug]
+    desc = META_DESCRIPTIONS[slug]
+    url = f"/{slug}/"
+    crumbs = [("Accueil", "/"), ("Prestations", "/prestations/"), (name, url)]
+    zone_slugs = cfg["zone_slugs"]
+    related_svc = cfg["related_svc"]
+    faq = cfg["faq"]
+    process_steps = cfg.get("process_steps", DEFAULT_PROCESS_STEPS)
+    buildings_note = cfg.get("buildings_note", DEFAULT_BUILDINGS_NOTE)
+    gallery_cat = cfg.get("gallery_cat")
+    show_urgence = cfg.get("show_urgence", False)
+    reg_items = cfg.get("regulatory", [])
+    show_gallery = cfg.get("show_gallery", True)
+
+    hero = page_hero(
+        "Prestation",
+        cfg["h1"],
+        cfg["intro"],
+        icon_html=service_icon(slug, "hero"),
+        image=hero_image_for(slug),
+        image_alt=cfg["h1"],
+    )
+
+    problem_cards = _premium_cards(cfg["problems"])
+    service_cards = _premium_cards(cfg["services"], service_class=True)
+    timeline = _premium_timeline(process_steps)
+
+    if show_gallery:
+        gallery_block, gallery_imgs = _premium_gallery_block(slug, gallery_cat)
+        gallery_section = f"""
+<section class="content-section svc-premium svc-premium--alt magnetic-section" id="realisations" aria-labelledby="real-title">
+  <div class="container">
+    <div class="svc-premium__head">
+      <h2 class="section-title" id="real-title">{cfg["gallery_title"]}</h2>
+      <p class="section-lead">{cfg["gallery_lead"]}</p>
+    </div>
+    {gallery_block}
+  </div>
+</section>"""
+    else:
+        gallery_imgs = carousel_images_for_service(slug, gallery_cat=gallery_cat, limit=2)
+        gallery_section = ""
+
+    equip_list = "".join(f"<li>{x}</li>" for x in cfg["equip"])
+    equip_visual = _premium_equip_visual(gallery_imgs)
+
+    if reg_items:
+        accordion_inner = "".join(
+            f"""<details class="details-item" name="{slug}-reg">
+  <summary class="details-summary"><span class="faq-q-text">{t}</span><span class="faq-icon" aria-hidden="true"></span></summary>
+  <div class="details-panel"><p>{tx}</p></div>
+</details>"""
+            for t, tx in reg_items
+        )
+        accordion = f'<div class="details-accordion"><div class="details-accordion__list">{accordion_inner}</div></div>'
+        reg_section = f"""
+<section class="content-section svc-premium svc-premium--alt" id="reglementaire" aria-labelledby="reg-title">
+  <div class="container svc-premium__narrow">
+    <div class="svc-premium__head">
+      <h2 class="section-title" id="reg-title">{cfg["reg_title"]}</h2>
+      <p class="section-lead">{cfg["reg_lead"]}</p>
+    </div>
+    {accordion}
+  </div>
+</section>"""
+    else:
+        reg_section = ""
+
+    zone_chips = "".join(
+        f'<a class="zone-pill" href="/{z}/">{n}</a>'
+        for z, n, _ in ZONES if z in zone_slugs
+    )
+
+    related_cards = "".join(
+        f'<a class="svc-related-card" href="/{s}/"><h3>{n}</h3><p>{RELATED_SERVICE_BLURBS.get(s, "")}</p></a>'
+        for s, n, _ in SERVICES if s in related_svc
+    )
+
+    urgence = urgence_band() if show_urgence else ""
+    # Alternance : problems plain → services alt → process plain → [gallery alt] → expertise → [reg alt] → zones → related → faq
+    expertise_alt = "" if show_gallery else " svc-premium--alt"
+    if show_gallery:
+        zones_alt, related_alt, faq_alt = ("", " svc-premium--alt", "")
+    else:
+        zones_alt = "" if reg_section else " svc-premium--alt"
+        related_alt = " svc-premium--alt" if reg_section else ""
+        faq_alt = "" if related_alt else " svc-premium--alt"
+
+    body = f"""
+{hero}
+{urgence}
+{svc_reassure_band()}
+
+<section class="content-section svc-premium" id="problems" aria-labelledby="problems-title" data-svc="{slug}">
+  <div class="container">
+    <div class="svc-premium__head">
+      <h2 class="section-title" id="problems-title">{cfg["problems_title"]}</h2>
+      <p class="section-lead">{cfg["problems_lead"]}</p>
+    </div>
+    <div class="svc-card-grid">{problem_cards}</div>
+  </div>
+</section>
+
+<section class="content-section svc-premium svc-premium--alt" id="services" aria-labelledby="services-title" data-svc="{slug}">
+  <div class="container">
+    <div class="svc-premium__head">
+      <h2 class="section-title" id="services-title">{cfg["services_title"]}</h2>
+      <p class="section-lead">{cfg["services_lead"]}</p>
+    </div>
+    <div class="svc-card-grid">{service_cards}</div>
+    <p class="svc-premium__note">{buildings_note}</p>
+    <p class="svc-premium__cta"><a href="/contact/" class="btn btn-secondary track-devis">Demander un devis</a></p>
+  </div>
+</section>
+
+<section class="content-section svc-premium" id="process" aria-labelledby="process-title">
+  <div class="container">
+    <div class="svc-premium__head svc-premium__head--center">
+      <h2 class="section-title" id="process-title">{cfg.get("process_title", "Une intervention claire, de A à Z")}</h2>
+    </div>
+    <ol class="svc-timeline">{timeline}</ol>
+  </div>
+</section>
+
+{gallery_section}
+
+<section class="content-section svc-premium{expertise_alt}" id="expertise" aria-labelledby="expertise-title">
+  <div class="container svc-equip">
+    <div class="svc-equip__copy">
+      <h2 class="section-title" id="expertise-title">{cfg["expertise_title"]}</h2>
+      <p class="section-lead">{cfg["expertise_lead"]}</p>
+      <ul class="svc-equip__list">{equip_list}</ul>
+    </div>
+    {equip_visual}
+  </div>
+</section>
+
+{reg_section}
+
+<section class="content-section svc-premium{zones_alt}" id="zones" aria-labelledby="zones-title">
+  <div class="container">
+    <div class="svc-premium__head">
+      <h2 class="section-title" id="zones-title">{cfg["zones_title"]}</h2>
+      <p class="section-lead">{cfg["zones_lead"]}</p>
+    </div>
+    <div class="zone-links">{zone_chips}</div>
+    <p class="svc-section__link"><a href="/zones-intervention/" class="text-link">Voir toutes les zones d'intervention →</a></p>
+  </div>
+</section>
+
+<section class="content-section svc-premium{related_alt}" id="related" aria-labelledby="related-title">
+  <div class="container">
+    <div class="svc-premium__head">
+      <h2 class="section-title" id="related-title">Nos autres services</h2>
+    </div>
+    <div class="svc-related-grid">{related_cards}</div>
+  </div>
+</section>
+
+<section class="faq content-section svc-premium{faq_alt}" id="faq" aria-labelledby="faq-title">
+  <div class="container svc-premium__narrow">
+    <div class="svc-premium__head">
+      <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
+    </div>
+    {faq_html(faq, group_name=f"faq-{slug}")}
+  </div>
+</section>
+
+{norms_bar()}
+{cta_band(cfg.get("cta_title", "Besoin d'un devis ou d'un dépannage ?"), cfg.get("cta_text", "Décrivez-nous votre besoin. Nous vous répondrons dans les meilleurs délais."))}
+"""
+
+    service_schema = {
+        "@type": "Service",
+        "name": name,
+        "serviceType": name,
+        "provider": {"@id": f"{SITE}/#organization"},
+        "areaServed": service_area_served_schema(zone_slugs),
+        "description": desc,
+        "url": SITE + url,
+    }
+    graph = base_graph(title, desc, SITE + url, crumbs, faq, service_schema)
+    write_page([slug, "index.html"], page_shell(title, desc, SITE + url, graph, body, crumbs))
+
+
+def _premium_service_configs():
+    """Contenus premium pour toutes les pages prestations."""
+    return [
+        {
+            "slug": "chauffage",
+            "name": "Chauffage",
+            "h1": "Chauffagiste en Suisse romande : installation, entretien et dépannage",
+            "intro": "Installation, entretien et dépannage de chauffage — de l'étude à la maintenance — pour le confort thermique et la fiabilité de vos installations.",
+            "problems_title": "Un problème de chauffage ?",
+            "problems_lead": "Nous intervenons pour diagnostiquer, réparer, entretenir ou remplacer votre installation de chauffage en Suisse romande.",
+            "problems": [
+                ("boiler", "Chaudière qui ne démarre plus", "Panne au démarrage ou arrêt en cours de cycle."),
+                ("radiator", "Radiateurs froids ou déséquilibrés", "Circuit mal équilibré ou émetteurs froids."),
+                ("water", "Boiler sans eau chaude", "Production d'ECS insuffisante ou à l'arrêt."),
+                ("noise", "Bruit anormal au démarrage", "Bruit de brûleur, circulateur ou chaudière."),
+                ("gauge", "Consommation en hausse", "Mazout ou gaz — rendement à vérifier."),
+                ("pac", "Chaudière vétuste à remplacer", "Passage possible vers une pompe à chaleur."),
+            ],
+            "services_title": "Installation, entretien et dépannage",
+            "services_lead": "Une prise en charge complète, de l'étude technique à la mise en service.",
+            "services": [
+                ("study", "Étude et dimensionnement thermique", "Calcul de puissance et choix des émetteurs."),
+                ("pac", "Installation de pompe à chaleur", "Air/eau ou sol/eau, selon le bâtiment."),
+                ("install", "Installation ou remplacement de chaudière", "Gaz, mazout ou bois / pellets."),
+                ("water", "Entretien et détartrage de boiler", "Entretien pour préserver le rendement."),
+                ("balance", "Désembouage et équilibrage", "Circuits nettoyés et débits réglés."),
+                ("repair", "Dépannage et remise en service", "Diagnostic et réparation sur site."),
+            ],
+            "gallery_cat": "chauffage",
+            "gallery_title": "Nos réalisations en chauffage",
+            "gallery_lead": f"Découvrez quelques interventions réalisées par {COMPANY_NAME} en Suisse romande.",
+            "expertise_title": "Des solutions adaptées à votre installation",
+            "expertise_lead": "Nous intervenons sur les principaux générateurs de chaleur utilisés en Suisse romande.",
+            "equip": [
+                "Pompes à chaleur air/eau",
+                "Pompes à chaleur sol/eau",
+                "Chaudières à mazout",
+                "Chaudières à gaz",
+                "Chaudières à bois et pellets",
+            ],
+            "reg_title": "Subventions et exigences techniques",
+            "reg_lead": "Nous pouvons vous orienter selon votre projet et votre canton.",
+            "regulatory": [
+                ("Subventions pour le remplacement par une pompe à chaleur",
+                 "Le remplacement d'une chaudière à mazout ou à gaz par une pompe à chaleur peut être subventionné dans le cadre du Programme Bâtiments, avec un barème propre à chaque canton (Genève, Vaud, Valais, Fribourg, Neuchâtel). Les conditions évoluent chaque année : vérifiez les montants en vigueur avant le début des travaux."),
+                ("Contrôle de combustion et exigences OPair",
+                 "Le contrôle périodique officiel des installations à combustion reste du ressort du maître ramoneur agréé de votre secteur, selon l'ordonnance fédérale sur la protection de l'air (OPair), tous les 2 à 4 ans selon le combustible. Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité suite à un contrôle."),
+            ],
+            "zones_title": "Chauffagiste en Suisse romande",
+            "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient dans plusieurs cantons et villes de Suisse romande.",
+            "zone_slugs": ["geneve", "lausanne", "nyon", "vaud", "valais", "fribourg", "neuchatel"],
+            "related_svc": ["ventilation", "climatisation", "sanitaire", "depannage-sav"],
+            "faq": [
+                ("Qui appeler pour un chauffagiste à Nyon ou Lausanne ?", f"{COMPANY_NAME} intervient comme chauffagiste à Nyon, Lausanne et dans toute la Suisse romande. Appelez le {PHONE_DISP} ou consultez nos pages zones Nyon et Lausanne."),
+                ("Intervenez-vous en dépannage chauffage ?", "Oui, nous intervenons sur chaudières, pompes à chaleur et radiateurs : absence de chauffage, bruit anormal, fuite ou baisse de rendement. Appelez-nous directement pour une panne en cours."),
+                ("Proposez-vous des contrats d'entretien ?", "Oui, un entretien régulier de votre chaudière ou pompe à chaleur (contrôle, réglage, détartrage du boiler) permet de limiter les pannes. Contactez-nous pour une fréquence adaptée."),
+                ("Combien coûte un devis chauffage ?", "Le devis est gratuit. Il dépend du type d'installation, de la surface et de l'état de l'existant."),
+                ("Qui effectue le contrôle officiel de combustion ?", "Le contrôle périodique OPair (tous les 2 à 4 ans selon le combustible) est réalisé par le maître ramoneur agréé de votre secteur. Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité."),
+                ("Une pompe à chaleur peut-elle être subventionnée ?", "Oui, sous conditions, dans le cadre du Programme Bâtiments (leprogrammebatiments.ch), avec un barème propre à chaque canton. Contactez-nous pour évaluer votre projet."),
+                ("Dans quelles zones intervenez-vous ?", f"Depuis {ADDRESS_LOCALITY}, nous intervenons notamment à Genève, Vaud (Nyon, Lausanne), Valais, Fribourg et Neuchâtel. Vérifiez la disponibilité via notre page zones."),
+            ],
+        },
+        {
+            "slug": "ventilation",
+            "name": "Ventilation",
+            "h1": "Ventilation et traitement de l'air",
+            "intro": "Mise en place et suivi de systèmes de ventilation pour le confort, la qualité de l'air et la maîtrise énergétique de votre bâtiment.",
+            "problems_title": "Un problème de ventilation ?",
+            "problems_lead": "Nous diagnostiquons et intervenons sur les VMC et réseaux d'air en Suisse romande.",
+            "problems": [
+                ("noise", "VMC bruyante ou peu performante", "Débit insuffisant ou nuisance sonore."),
+                ("humidity", "Condensation et humidité", "Renouvellement d'air insuffisant."),
+                ("filter", "Filtres encrassés", "Perte de débit et surconsommation."),
+                ("duct", "Gaines mal isolées ou obstruées", "Réseau à contrôler ou réhabiliter."),
+                ("fan", "Moteur ou caisson en panne", "Arrêt partiel ou total de la VMC."),
+                ("balance", "Mise en conformité locale", "Local technique, parking ou cuisine pro."),
+            ],
+            "services_title": "Installation, entretien et réhabilitation",
+            "services_lead": "De l'installation neuve au nettoyage des réseaux existants.",
+            "services": [
+                ("install", "Installation VMC simple ou double flux", "Avec récupération de chaleur si adapté."),
+                ("duct", "Nettoyage et désinfection de gaines", "Bouches et réseaux d'extraction."),
+                ("filter", "Remplacement filtres, moteurs, caissons", "Pièces et entretien courant."),
+                ("balance", "Réglage et équilibrage des débits", "Confort et efficacité énergétique."),
+                ("fan", "Ventilation locaux techniques", "Parkings et cuisines professionnelles."),
+                ("repair", "Réhabilitation de réseaux existants", "Remise à niveau d'installations anciennes."),
+            ],
+            "gallery_cat": "ventilation",
+            "gallery_title": "Nos réalisations en ventilation",
+            "gallery_lead": f"Quelques interventions VMC et traitement de l'air réalisées par {COMPANY_NAME}.",
+            "expertise_title": "Des systèmes adaptés à votre bâtiment",
+            "expertise_lead": "Nous intervenons sur les principales architectures de ventilation en Suisse romande.",
+            "equip": [
+                "VMC simple flux",
+                "VMC double flux avec récupération de chaleur",
+                "Ventilation de locaux techniques",
+                "Ventilation de parkings",
+                "Cuisines professionnelles",
+            ],
+            "reg_title": "Exigences techniques et entretien",
+            "reg_lead": "Qualité de l'air, étanchéité et maintenance des réseaux.",
+            "regulatory": [
+                ("Bâtiments Minergie et étanchéité à l'air",
+                 "Les constructions récentes ou labellisées Minergie reposent sur une bonne étanchéité à l'air et nécessitent une ventilation mécanique contrôlée correctement dimensionnée et entretenue, pour garantir la qualité de l'air intérieur et éviter les problèmes d'humidité."),
+                ("Entretien et nettoyage des réseaux",
+                 "Un nettoyage périodique des gaines, bouches et filtres permet de préserver le débit d'air prévu à l'installation et d'éviter la surconsommation électrique des moteurs encrassés."),
+            ],
+            "zones_title": "Ventiliste en Suisse romande",
+            "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Genève, Lausanne, Nyon et dans le canton de Vaud.",
+            "zone_slugs": ["geneve", "lausanne", "nyon", "vaud"],
+            "related_svc": ["chauffage", "climatisation", "sanitaire", "depannage-sav"],
+            "faq": [
+                ("Réalisez-vous des travaux de rénovation de ventilation ?", "Oui, nous rénovons les VMC existantes : remplacement de moteurs, filtres et gaines, ou passage à une VMC double flux avec récupération de chaleur. Contactez-nous avec le type de bâtiment et l'état de l'installation actuelle."),
+                ("Comment obtenir un devis ventilation ?", "Contactez-nous avec le type de bâtiment, la surface et l'état des installations existantes."),
+                ("Quelle entreprise de ventilation (ventiliste) contacter en Suisse romande ?", f"{COMPANY_NAME} intervient pour l'installation, la maintenance et le dépannage de ventilation."),
+                ("Intervenez-vous en urgence pour une panne VMC ?", f"Oui, appelez-nous directement au {PHONE_DISP} : nous évaluons la disponibilité selon le secteur et la nature de la panne."),
+            ],
+        },
+        {
+            "slug": "climatisation",
+            "name": "Climatisation",
+            "h1": "Climatisation à Nyon, Lausanne et Genève : étude et installation",
+            "intro": "Besoin d'une climatisation à Nyon ou ailleurs en Suisse romande ? Nous réalisons l'étude et l'installation de systèmes adaptés aux particuliers et aux professionnels — split, multi-split et pompes à chaleur air-air.",
+            "problems_title": "Un problème de climatisation ?",
+            "problems_lead": "Diagnostic, entretien et installation de climatisations en Suisse romande.",
+            "problems": [
+                ("snow", "Climatiseur qui ne refroidit plus", "Perte de froid ou arrêt de production."),
+                ("noise", "Unité extérieure bruyante ou givrée", "Fonctionnement anormal du groupe."),
+                ("leak", "Fuite de gaz réfrigérant", "Circuit frigorifique à contrôler."),
+                ("balance", "Mauvaise répartition du froid", "Pièces trop chaudes ou trop froides."),
+                ("pac", "Besoin d'une PAC air-air", "Appoint chaud/froid réversible."),
+                ("filter", "Filtres et entretien à faire", "Rendement et qualité d'air à préserver."),
+            ],
+            "services_title": "Étude, installation et entretien",
+            "services_lead": "Du dimensionnement au dépannage, pour le confort d'été et d'hiver.",
+            "services": [
+                ("study", "Dimensionnement selon les pièces", "Volume, exposition et besoins de confort."),
+                ("install", "Installation split et multi-split", "Pose soignée et mise en service."),
+                ("pac", "PAC air-air réversibles", "Chauffage et rafraîchissement."),
+                ("gauge", "Contrôle et recharge de fluide", "Circuit frigorifique conforme."),
+                ("maintain", "Entretien filtres et unités", "Contrôle de performance annuel."),
+                ("repair", "Dépannage climatisation", "Perte de froid, fuite, unité à l'arrêt."),
+            ],
+            "gallery_cat": "ventilation",
+            "gallery_title": "Nos réalisations en climatisation",
+            "gallery_lead": f"Interventions CVC et confort thermique réalisées par {COMPANY_NAME}.",
+            "expertise_title": "Des solutions adaptées à votre usage",
+            "expertise_lead": "Nous intervenons sur climatisations split, multi-split et PAC air-air — notamment à Nyon, Lausanne et Genève.",
+            "equip": [
+                "Climatiseurs split",
+                "Systèmes multi-split",
+                "Pompes à chaleur air-air réversibles",
+                "Unités murales et consoles",
+                "Groupes extérieurs",
+            ],
+            "reg_title": "Cadre technique et entretien",
+            "reg_lead": "Fluides frigorigènes et bonnes pratiques d'entretien.",
+            "regulatory": [
+                ("Fluides frigorigènes — cadre suisse",
+                 "La manipulation des fluides réfrigérants est strictement encadrée par la législation suisse sur la protection de l'environnement. Toute intervention sur le circuit frigorifique (recharge, détection de fuite) est réalisée avec le soin et les précautions requises par ce cadre."),
+                ("Entretien recommandé",
+                 "Un contrôle annuel (nettoyage des filtres et de l'unité extérieure, vérification du bon fonctionnement) permet de préserver le rendement énergétique de l'installation et sa durée de vie."),
+            ],
+            "zones_title": "Climatisation en Suisse romande",
+            "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Nyon, Lausanne, Genève, en Valais et à Fribourg.",
+            "zone_slugs": ["geneve", "nyon", "lausanne", "valais", "vaud", "fribourg"],
+            "related_svc": ["chauffage", "ventilation", "sanitaire", "depannage-sav"],
+            "faq": [
+                ("Installez-vous la climatisation à Nyon ?", "Oui. Nous étudions et installons la climatisation (split, multi-split, PAC air-air) à Nyon et dans les communes voisines (Gland, Rolle, Coppet, Prangins…). Consultez aussi notre page zone Nyon."),
+                ("Quels types de bâtiments équipez-vous ?", "Résidentiel et tertiaire selon faisabilité — villas, appartements, bureaux et commerces."),
+                ("Intervenez-vous en dépannage climatisation ?", "Oui, nous diagnostiquons et réparons les pannes courantes : perte de froid, fuite de fluide réfrigérant, unité extérieure givrée ou bruyante. Contactez-nous avec le modèle de l'appareil si possible."),
+                ("Installez-vous la climatisation près de chez moi ?", f"Nous intervenons en Suisse romande depuis {ADDRESS_LOCALITY}, notamment à Nyon, Lausanne, Genève et en Valais. Contactez-nous avec votre commune."),
+                ("Comment obtenir un devis climatisation ?", "Via notre page contact : précisez le type de bâtiment, la surface et vos besoins de confort."),
+            ],
+        },
+        {
+            "slug": "sanitaire",
+            "name": "Sanitaire",
+            "h1": "Sanitaire",
+            "intro": f"{COMPANY_NAME} intervient également pour vos installations et dépannages sanitaires en Suisse romande.",
+            "problems_title": "Un problème sanitaire ?",
+            "problems_lead": "Fuites, évacuations, chauffe-eau et rénovations — nous intervenons rapidement.",
+            "problems": [
+                ("leak", "Fuite sous évier ou en chape", "Recherche et réparation de conduites."),
+                ("flush", "WC qui fuit ou se bouche", "Remise en service des appareils."),
+                ("water", "Chauffe-eau en panne ou qui fuit", "Remplacement ou entretien."),
+                ("gauge", "Pression d'eau insuffisante", "Diagnostic du réseau."),
+                ("pipe", "Canalisation bouchée", "Débouchage des évacuations."),
+                ("study", "Rénovation de salle de bains", "Réseaux et appareils sanitaires."),
+            ],
+            "services_title": "Installation, dépannage et rénovation",
+            "services_lead": "De l'étude des réseaux à la remise en service.",
+            "services": [
+                ("study", "Étude et dimensionnement", "Installations sanitaires adaptées."),
+                ("pipe", "Réseaux EF / EC / évacuation", "Pose et remplacement de conduites."),
+                ("install", "Appareils et robinetterie", "Pose et remplacement soignés."),
+                ("water", "Chauffe-eau et boilers", "Installation et entretien."),
+                ("leak", "Recherche de fuites", "Localisation et réparation."),
+                ("repair", "SAV et dépannage", "Remise en service rapide."),
+            ],
+            "gallery_cat": "sanitaire",
+            "gallery_title": "Nos réalisations sanitaires",
+            "gallery_lead": f"Interventions sanitaires réalisées par {COMPANY_NAME} en Suisse romande.",
+            "expertise_title": "Des réseaux adaptés à votre bâtiment",
+            "expertise_lead": "Nous intervenons sur les réseaux eau froide et eau chaude, évacuations, robinetterie et chauffe-eau.",
+            "equip": [
+                "Réseaux cuivre, PER et multicouche",
+                "Évacuations et colonnes",
+                "Robinetterie et appareils sanitaires",
+                "Chauffe-eau et boilers",
+                "Recherche de fuites",
+            ],
+            "reg_title": "Méthodes et bonnes pratiques",
+            "reg_lead": "Limiter les dégâts et cibler l'intervention.",
+            "regulatory": [
+                ("Recherche de fuite non destructive",
+                 "Avant d'ouvrir une chape ou un mur, une recherche de fuite non destructive (contrôle de pression, écoute) permet souvent de localiser précisément le point de fuite et de limiter les travaux de reprise."),
+            ],
+            "zones_title": "Sanitaire en Suisse romande",
+            "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Genève, Lausanne, Nyon, Fribourg et dans le canton de Vaud.",
+            "zone_slugs": ["geneve", "lausanne", "nyon", "fribourg", "vaud"],
+            "related_svc": ["chauffage", "ventilation", "climatisation", "depannage-sav"],
+            "faq": [
+                ("Intervenez-vous en dépannage sanitaire ?", "Oui, nous intervenons sur les fuites, canalisations bouchées, chauffe-eau en panne et robinetterie défectueuse. Décrivez le problème lors de votre appel pour évaluer l'urgence."),
+                ("Réalisez-vous des rénovations complètes de salle de bain ?", "Oui pour la partie sanitaire d'une rénovation (réseaux eau chaude/froide, évacuations, robinetterie, WC, douche). Contactez-nous pour décrire votre projet et vérifier la faisabilité selon son ampleur."),
+                ("Comment obtenir un devis sanitaire ?", "Via notre page contact ou par téléphone : précisez le type de bâtiment, la localisation et la nature des travaux."),
+            ],
+        },
+        {
+            "slug": "depannage-sav",
+            "name": "Dépannage SAV",
+            "h1": "Dépannage et maintenance (SAV) de vos installations CVC",
+            "intro": "Intervention sur vos installations en panne ou en fin de vie, avec une approche orientée remise en service et fiabilisation.",
+            "problems_title": "Une panne sur votre installation ?",
+            "problems_lead": "Chauffage, ventilation, climatisation ou sanitaire — nous diagnostiquons et remettons en service.",
+            "problems": [
+                ("boiler", "Panne de chaudière ou de PAC", "Absence de chaleur ou arrêt inattendu."),
+                ("fan", "VMC à l'arrêt", "Plus de renouvellement d'air."),
+                ("snow", "Climatiseur hors service", "Plus de froid ou unité bloquée."),
+                ("leak", "Fuite sur réseau sanitaire", "Dégât des eaux ou pression anormale."),
+                ("alert", "Anomalie après un contrôle", "Remise en conformité nécessaire."),
+                ("maintain", "Besoin d'un contrat d'entretien", "Maintenance préventive planifiée."),
+            ],
+            "services_title": "Diagnostic, remise en service et maintenance",
+            "services_lead": "Une intervention claire, du constat à la fiabilisation.",
+            "services": [
+                ("study", "Diagnostic de panne sur site", "Chauffage, VMC, clim, sanitaire."),
+                ("gauge", "Devis avant travaux", "Sauf urgence nécessitant une action immédiate."),
+                ("repair", "Remise en service", "Chaudières, PAC, VMC et climatisateurs."),
+                ("leak", "Intervention fuites sanitaires", "Réseaux et dysfonctionnements."),
+                ("maintain", "Contrats de maintenance", "Prévention et suivi régulier."),
+                ("balance", "Optimisation des réglages", "Réduction de la consommation d'énergie."),
+            ],
+            "show_urgence": True,
+            "show_gallery": True,
+            "gallery_cat": None,
+            "gallery_title": "Nos interventions sur site",
+            "gallery_lead": f"Exemples d'interventions CVC réalisées par {COMPANY_NAME}.",
+            "expertise_title": "Un SAV multi-techniques",
+            "expertise_lead": "Nos dépannages couvrent le chauffage, la ventilation, la climatisation et les réseaux sanitaires.",
+            "equip": [
+                "Chaudières et pompes à chaleur",
+                "VMC et caissons de ventilation",
+                "Climatisateurs et PAC air-air",
+                "Réseaux sanitaires",
+                "Contrats de maintenance préventive",
+            ],
+            "reg_title": "Diagnostic avant travaux",
+            "reg_lead": "Transparence sur le coût et la nature de l'intervention.",
+            "regulatory": [
+                ("Devis avant intervention corrective",
+                 "Sauf urgence nécessitant une action immédiate, nous établissons un diagnostic et un devis avant toute intervention corrective, afin que vous validiez le coût et la nature des travaux avant leur réalisation."),
+            ],
+            "zones_title": "Dépannage en Suisse romande",
+            "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Genève, Lausanne, Fribourg, en Vaud et en Valais.",
+            "zone_slugs": ["geneve", "lausanne", "fribourg", "vaud", "valais"],
+            "related_svc": ["chauffage", "ventilation", "climatisation", "sanitaire"],
+            "cta_title": "Besoin d'un dépannage ?",
+            "cta_text": f"Appelez le {PHONE_DISP} ou décrivez-nous la panne. Nous évaluons la disponibilité selon l'urgence.",
+            "faq": [
+                ("Comment signaler une urgence ?", f"Appelez le {PHONE_DISP} ou contactez-nous via WhatsApp en décrivant la situation."),
+                ("Quel délai d'intervention ?", "Le délai dépend de la nature de la panne (une absence totale de chauffage en hiver est traitée en priorité) et du secteur. Un appel direct permet une évaluation immédiate de la disponibilité, plus rapide qu'un formulaire."),
+                ("Qui appeler pour un dépannage chauffage ou climatisation ?", f"{COMPANY_NAME} au {PHONE_DISP}. Indiquez votre adresse et le type de panne."),
+                ("Intervenez-vous le week-end ?", f"Oui, nos horaires sont : {HOURS}, y compris le week-end. Appelez-nous pour évaluer la disponibilité selon la nature de la panne."),
+            ],
+        },
+        {
+            "slug": "sprinkler-protection-incendie",
+            "name": "Sprinkler / protection incendie",
+            "h1": "Sprinkler et protection incendie",
+            "intro": "Intervention en sous-traitance sur des installations sprinkler, avec exécution soignée et coordination chantier.",
+            "problems_title": "Un besoin sprinkler sur chantier ?",
+            "problems_lead": "Nous exécutons les réseaux selon plans et spécifications du mandant.",
+            "problems": [
+                ("fire", "Montage de réseaux sprinkler", "Sous eau, sous air ou à préaction."),
+                ("coord", "Coordination multi-corps de métier", "Planning et interfaces chantier."),
+                ("study", "Respect des plans du mandant", "Spécifications techniques à suivre."),
+                ("valve", "Finitions et supportage", "Conformité aux exigences du projet."),
+                ("gauge", "Essais avant mise en service", "Pression et débit à valider."),
+                ("install", "Sous-traitance spécialisée", "Pour bureaux d'ingénieurs et EG."),
+            ],
+            "services_title": "Exécution et coordination chantier",
+            "services_lead": "Pose, raccordements, essais et finitions techniques.",
+            "services": [
+                ("valve", "Collecteurs et postes de contrôle", "Vannes d'alarme et équipements."),
+                ("pipe", "Raccordements et supportage", "Dont raccords Victaulic."),
+                ("coord", "Sous-traitance pour ingénieurs / EG", "Exécution selon mandats."),
+                ("study", "Coordination chantier", "Interfaces avec les autres corps."),
+                ("gauge", "Essais de pression et de débit", "Avant mise en service."),
+                ("install", "Finitions et mise en conformité", "Selon plans du projet."),
+            ],
+            "buildings_note": "Bâtiments soumis à des exigences de protection incendie (ERP, hôtels, industriel, logistique), selon obligations applicables.",
+            "gallery_cat": "sprinkler",
+            "gallery_title": "Nos réalisations sprinkler",
+            "gallery_lead": f"Exemples d'exécutions sprinkler réalisées par {COMPANY_NAME}.",
+            "expertise_title": "Réseaux sprinkler sous-traités",
+            "expertise_lead": "Nous intervenons sur des réseaux sous eau, sous air ou à préaction.",
+            "equip": [
+                "Réseaux sous eau",
+                "Réseaux sous air",
+                "Systèmes à préaction",
+                "Postes de contrôle et vannes d'alarme",
+                "Supportage et raccords Victaulic",
+            ],
+            "reg_title": "Cadre AEAI et exécution",
+            "reg_lead": "Exécution selon plans du mandant et directives applicables.",
+            "regulatory": [
+                ("Normes AEAI et classes de risque",
+                 "Les exigences de protection incendie applicables (classes de risque, catégories de bâtiments concernées) sont définies par les directives de l'Association des établissements cantonaux d'assurance incendie (AEAI). Nous exécutons les réseaux selon les plans et spécifications du mandant et du bureau d'ingénieurs en charge du projet."),
+            ],
+            "zones_title": "Intervention sprinkler en Suisse romande",
+            "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Genève, en Vaud et en Valais.",
+            "zone_slugs": ["geneve", "vaud", "valais"],
+            "related_svc": ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
+            "faq": [
+                ("Les travaux sprinkler sont-ils réalisés directement ?", "Les interventions sont assurées en sous-traitance spécialisée, selon la nature du projet."),
+                ("Un sprinkler est-il obligatoire ?", "Selon les directives AEAI, certaines catégories de bâtiments peuvent être concernées selon leur classe de risque. Nous pouvons analyser votre situation sur demande."),
+            ],
+        },
+    ]
+
+
 def build_services():
-    bullets = lambda items: "<ul class=\"bullet-list\">" + "".join(f"<li>{i}</li>" for i in items) + "</ul>"
-    process = "<ol class=\"bullet-list\">" + "".join(f"<li>{s}</li>" for s in [
-        "Prise de contact et description du besoin",
-        "Visite ou diagnostic sur place si nécessaire",
-        "Proposition technique et devis détaillé",
-        "Réalisation des travaux et mise en service",
-        "Suivi et maintenance si souhaitée",
-    ]) + "</ol>"
-    clients = "<p>Résidentiel (immeubles, villas, PPE), commercial (bureaux, commerces, hôtels), industriel et public (ERP), selon faisabilité technique.</p>"
+    for cfg in _premium_service_configs():
+        write_premium_service_page(cfg)
 
-    service_page("chauffage", "Chauffage",
-        PAGE_TITLES["chauffage"],
-        META_DESCRIPTIONS["chauffage"],
-        "Chauffagiste en Suisse romande : installation, entretien et dépannage",
-        "Vous cherchez un chauffagiste à Nyon, Lausanne, Genève, Fribourg ou en Valais ? Nous prenons en charge vos besoins en chauffage — de l'étude à la maintenance — pour assurer le confort thermique et la fiabilité de vos installations.",
-        [
-            "Chaudière qui ne démarre plus ou qui s'arrête en cours de cycle",
-            "Radiateurs froids ou circuit déséquilibré",
-            "Boiler qui ne produit plus d'eau chaude",
-            "Bruit anormal au démarrage",
-            "Consommation de mazout ou de gaz en hausse",
-            "Chaudière vétuste à remplacer par une pompe à chaleur",
-        ],
-        ["Étude et dimensionnement thermique (calcul de puissance, choix des émetteurs)",
-         "Installation de pompes à chaleur air/eau ou sol/eau, chaudières à gaz, mazout ou bois",
-         "Désembouage et équilibrage de circuits de chauffage",
-         "Détartrage et entretien de boiler et chauffe-eau",
-         "Remplacement de circulateurs, vannes thermostatiques et vase d'expansion",
-         "Dépannage et remise en service",
-         "Accompagnement pour le remplacement d'une chaudière mazout ou gaz par une pompe à chaleur"],
-        clients, process, ["geneve", "lausanne", "nyon", "vaud", "valais", "fribourg", "neuchatel"], ["ventilation", "climatisation", "sanitaire", "depannage-sav"],
-        [("Qui appeler pour un chauffagiste à Nyon ou Lausanne ?", f"{COMPANY_NAME} intervient comme chauffagiste à Nyon, Lausanne et dans toute la Suisse romande. Appelez le {PHONE_DISP} ou consultez nos pages zones Nyon et Lausanne."),
-         ("Intervenez-vous en dépannage chauffage ?", "Oui, nous intervenons sur chaudières, pompes à chaleur et radiateurs en Suisse romande : absence de chauffage, bruit anormal, fuite ou baisse de rendement. Appelez-nous directement pour une panne en cours."),
-         ("Proposez-vous des contrats d'entretien ?", "Oui, un entretien régulier de votre chaudière ou pompe à chaleur (contrôle, réglage, détartrage du boiler) permet de limiter les pannes. Contactez-nous pour discuter d'une fréquence adaptée à votre installation."),
-         ("Qui appeler pour un chauffagiste en Suisse romande ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP} ou via notre page contact. Nous couvrons notamment Genève, Vaud (Nyon, Lausanne), Valais, Fribourg et Neuchâtel."),
-         ("Combien coûte un devis chauffage ?", "Le devis est gratuit. Il dépend du type d'installation, de la surface et de l'état de l'existant."),
-         ("Qui effectue le contrôle officiel de combustion de ma chaudière ?", "Le contrôle périodique OPair (tous les 2 à 4 ans selon le combustible) est réalisé par le maître ramoneur agréé de votre secteur. Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité de votre installation."),
-         ("Le remplacement d'une chaudière par une pompe à chaleur est-il subventionné ?", "Oui, sous conditions, dans le cadre du Programme Bâtiments (leprogrammebatiments.ch), avec un barème propre à chaque canton. Contactez-nous pour évaluer votre projet et vérifier votre éligibilité.")],
-        gallery_cat="chauffage",
-        expertise_html="""<p>Nous intervenons sur les principaux générateurs de chaleur utilisés en Suisse romande : chaudières à mazout, à gaz et à bois (bûches ou pellets), ainsi que pompes à chaleur air/eau et sol/eau.</p>
-""" + chauffagiste_local_block() + """
-<p>Le remplacement d'une chaudière fossile par une pompe à chaleur peut être subventionné (Programme Bâtiments). Nous pouvons vous orienter dans la démarche.</p>
-""" + details_accordion([
-            ("Contrôle de combustion (OPair)", "Le contrôle périodique officiel des installations à combustion reste du ressort du maître ramoneur agréé de votre secteur, selon l'ordonnance fédérale sur la protection de l'air (OPair), tous les 2 à 4 ans selon le combustible. Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité suite à un contrôle."),
-            ("Subventions pompe à chaleur", "Le remplacement d'une chaudière à mazout ou à gaz par une pompe à chaleur peut être subventionné dans le cadre du Programme Bâtiments, avec un barème propre à chaque canton (Genève, Vaud, Valais, Fribourg, Neuchâtel). Les conditions évoluent chaque année : vérifiez les montants en vigueur avant le début des travaux."),
-        ]))
-
-    service_page("ventilation", "Ventilation",
-        PAGE_TITLES["ventilation"],
-        META_DESCRIPTIONS["ventilation"],
-        "Ventilation et traitement de l'air",
-        "Mise en place et suivi de systèmes de ventilation pour le confort, la qualité de l'air et la maîtrise énergétique de votre bâtiment.",
-        [
-            "VMC bruyante ou peu performante",
-            "Condensation et traces d'humidité (renouvellement d'air insuffisant)",
-            "Filtres encrassés",
-            "Gaines mal isolées ou obstruées",
-            "Mise en conformité d'un local technique, parking ou cuisine professionnelle",
-        ],
-        ["Installation de VMC simple flux ou double flux avec récupération de chaleur",
-         "Nettoyage et désinfection de gaines et bouches d'extraction",
-         "Remplacement de filtres, moteurs et caissons de ventilation",
-         "Réglage et équilibrage des débits d'air",
-         "Ventilation de locaux techniques, parkings et cuisines professionnelles",
-         "Réhabilitation de réseaux existants"],
-        clients, process, ["geneve", "lausanne", "nyon", "vaud"], ["chauffage", "climatisation", "sanitaire", "depannage-sav"],
-        [("Réalisez-vous des travaux de rénovation de ventilation ?", "Oui, nous rénovons les VMC existantes : remplacement de moteurs, filtres et gaines, ou passage à une VMC double flux avec récupération de chaleur. Contactez-nous avec le type de bâtiment et l'état de l'installation actuelle."),
-         ("Comment obtenir un devis ventilation ?", "Contactez-nous avec le type de bâtiment, la surface et l'état des installations existantes."),
-         ("Quelle entreprise de ventilation (ventiliste) contacter en Suisse romande ?", f"{COMPANY_NAME} intervient pour l'installation, la maintenance et le dépannage de ventilation."),
-         ("Intervenez-vous en urgence pour une panne VMC ?", f"Oui, appelez-nous directement au {PHONE_DISP} : nous évaluons la disponibilité selon le secteur et la nature de la panne.")],
-        gallery_cat="ventilation",
-        expertise_html="""<p>Nous intervenons sur des installations de VMC simple flux, double flux avec récupération de chaleur, ainsi que sur la ventilation de locaux techniques, parkings et cuisines professionnelles.</p>
-<p>Un entretien régulier (filtres, gaines, bouches) préserve le débit d'air et limite la surconsommation des moteurs.</p>
-""" + details_accordion([
-            ("Bâtiments Minergie et étanchéité à l'air", "Les constructions récentes ou labellisées Minergie reposent sur une bonne étanchéité à l'air et nécessitent une ventilation mécanique contrôlée correctement dimensionnée et entretenue, pour garantir la qualité de l'air intérieur et éviter les problèmes d'humidité."),
-            ("Entretien et nettoyage des réseaux", "Un nettoyage périodique des gaines, bouches et filtres permet de préserver le débit d'air prévu à l'installation et d'éviter la surconsommation électrique des moteurs encrassés."),
-        ]))
-
-    service_page("climatisation", "Climatisation",
-        PAGE_TITLES["climatisation"],
-        META_DESCRIPTIONS["climatisation"],
-        "Climatisation à Nyon, Lausanne et Genève : étude et installation",
-        "Besoin d'une climatisation à Nyon ou ailleurs en Suisse romande ? Nous réalisons l'étude et l'installation de systèmes adaptés aux particuliers et aux professionnels — split, multi-split et pompes à chaleur air-air.",
-        [
-            "Climatiseur qui ne refroidit plus",
-            "Unité extérieure bruyante, givrée ou en panne",
-            "Fuite de gaz réfrigérant",
-            "Mauvaise répartition du froid entre les pièces",
-            "Besoin d'une pompe à chaleur air-air réversible (appoint)",
-        ],
-        ["Dimensionnement selon le volume et l'exposition des pièces",
-         "Installation de climatiseurs split et multi-split",
-         "Pompes à chaleur air-air réversibles (chaud/froid)",
-         "Contrôle et recharge du fluide réfrigérant",
-         "Entretien : nettoyage des filtres et des unités, contrôle de performance",
-         "Dépannage : perte de froid, fuite, unité qui ne démarre plus"],
-        clients, process, ["geneve", "nyon", "lausanne", "valais", "vaud", "fribourg"], ["chauffage", "ventilation", "sanitaire", "depannage-sav"],
-        [("Installez-vous la climatisation à Nyon ?", "Oui. Nous étudions et installons la climatisation (split, multi-split, PAC air-air) à Nyon et dans les communes voisines (Gland, Rolle, Coppet, Prangins…). Consultez aussi notre page zone Nyon."),
-         ("Quels types de bâtiments équipez-vous ?", "Résidentiel et tertiaire selon faisabilité — villas, appartements, bureaux et commerces."),
-         ("Intervenez-vous en dépannage climatisation ?", "Oui, nous diagnostiquons et réparons les pannes courantes : perte de froid, fuite de fluide réfrigérant, unité extérieure givrée ou bruyante. Contactez-nous avec le modèle de l'appareil si possible."),
-         ("Installez-vous la climatisation près de chez moi ?", f"Nous intervenons en Suisse romande depuis {ADDRESS_LOCALITY}, notamment à Nyon, Lausanne, Genève et en Valais. Contactez-nous avec votre commune."),
-         ("Comment obtenir un devis climatisation ?", "Via notre page contact : précisez le type de bâtiment, la surface et vos besoins de confort.")],
-        gallery_cat="ventilation",
-        expertise_html="""<p>Nous intervenons sur climatiseurs split et multi-split, ainsi que sur les pompes à chaleur air-air réversibles (chauffage et rafraîchissement) — en particulier à <a href="/nyon/">Nyon</a>, <a href="/lausanne/">Lausanne</a> et <a href="/geneve/">Genève</a>.</p>
-<p>Un contrôle annuel (filtres, unité extérieure, performance) est recommandé pour préserver le rendement.</p>
-""" + details_accordion([
-            ("Fluides frigorigènes — cadre suisse", "La manipulation des fluides réfrigérants est strictement encadrée par la législation suisse sur la protection de l'environnement. Toute intervention sur le circuit frigorifique (recharge, détection de fuite) est réalisée avec le soin et les précautions requises par ce cadre."),
-            ("Entretien recommandé", "Un contrôle annuel (nettoyage des filtres et de l'unité extérieure, vérification du bon fonctionnement) permet de préserver le rendement énergétique de l'installation et sa durée de vie."),
-        ]))
-
-    service_page("depannage-sav", "Dépannage SAV",
-        PAGE_TITLES["depannage-sav"],
-        META_DESCRIPTIONS["depannage-sav"],
-        "Dépannage et maintenance (SAV) de vos installations CVC",
-        "Intervention sur vos installations en panne ou en fin de vie, avec une approche orientée remise en service et fiabilisation.",
-        [
-            "Panne de chaudière ou de pompe à chaleur",
-            "VMC à l'arrêt",
-            "Climatiseur qui ne refroidit plus",
-            "Fuite sur un réseau sanitaire",
-            "Dysfonctionnement détecté lors d'un contrôle",
-            "Besoin d'un contrat de maintenance préventive",
-        ],
-        ["Diagnostic de panne sur site (chauffage, ventilation, climatisation, sanitaire)",
-         "Devis avant travaux, sauf urgence nécessitant une action immédiate",
-         "Remise en service de chaudières, pompes à chaleur, VMC et climatiseurs",
-         "Intervention sur fuites et dysfonctionnements de réseaux sanitaires",
-         "Contrats de maintenance préventive",
-         "Optimisation des réglages pour réduire la consommation d'énergie"],
-        clients, process, ["geneve", "lausanne", "fribourg", "vaud", "valais"], ["chauffage", "ventilation", "climatisation", "sanitaire"],
-        [("Comment signaler une urgence ?", f"Appelez le {PHONE_DISP} ou contactez-nous via WhatsApp en décrivant la situation."),
-         ("Quel délai d'intervention ?", "Le délai dépend de la nature de la panne (une absence totale de chauffage en hiver est traitée en priorité) et du secteur. Un appel direct permet une évaluation immédiate de la disponibilité, plus rapide qu'un formulaire."),
-         ("Qui appeler pour un dépannage chauffage ou climatisation ?", f"{COMPANY_NAME} au {PHONE_DISP}. Indiquez votre adresse et le type de panne."),
-         ("Intervenez-vous le week-end ?", f"Oui, nos horaires sont : {HOURS}, y compris le week-end. Appelez-nous pour évaluer la disponibilité selon la nature de la panne.")],
-        show_urgence=True,
-        gallery_cat=None,
-        expertise_html="""<p>Nos interventions de dépannage couvrent le chauffage (chaudières, pompes à chaleur), la ventilation (VMC), la climatisation et les réseaux sanitaires.</p>
-<h3>Diagnostic avant travaux</h3>
-<p>Sauf urgence nécessitant une action immédiate, nous établissons un diagnostic et un devis avant toute intervention corrective, afin que vous validiez le coût et la nature des travaux avant leur réalisation.</p>""")
-
-    service_page("sprinkler-protection-incendie", "Sprinkler / protection incendie",
-        PAGE_TITLES["sprinkler-protection-incendie"],
-        META_DESCRIPTIONS["sprinkler-protection-incendie"],
-        "Sprinkler et protection incendie",
-        "Intervention en sous-traitance sur des installations sprinkler, avec exécution soignée et coordination chantier.",
-        [
-            "Montage de réseaux sprinkler sous eau, sous air ou à préaction",
-            "Coordination avec les autres corps de métier sur chantier",
-            "Respect des plans et spécifications techniques du mandant",
-            "Finitions et supportage conformes aux exigences du projet",
-        ],
-        ["Pose de collecteurs, vannes d'alarme et postes de contrôle",
-         "Raccordements et supportage (dont raccords Victaulic)",
-         "Sous-traitance spécialisée pour bureaux d'ingénieurs et entreprises générales",
-         "Coordination chantier avec les autres corps de métier",
-         "Essais de pression et de débit avant mise en service",
-         "Finitions techniques et mise en conformité selon plans"],
-        "<p>Bâtiments soumis à des exigences de protection incendie (ERP, hôtels, industriel, logistique), selon obligations applicables.</p>",
-        process, ["geneve", "vaud", "valais"], ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
-        [("Les travaux sprinkler sont-ils réalisés directement ?", "Les interventions sont assurées en sous-traitance spécialisée, selon la nature du projet."),
-         ("Un sprinkler est-il obligatoire ?", "Selon les directives AEAI, certaines catégories de bâtiments peuvent être concernées selon leur classe de risque. Nous pouvons analyser votre situation sur demande.")],
-        gallery_cat="sprinkler",
-        expertise_html="""<p>Nous intervenons en sous-traitance sur des réseaux sprinkler sous eau, sous air ou à préaction : postes de contrôle, vannes d'alarme, collecteurs, supportage et raccords (dont raccords Victaulic).</p>
-""" + details_accordion([
-            ("Normes AEAI et classes de risque", "Les exigences de protection incendie applicables (classes de risque, catégories de bâtiments concernées) sont définies par les directives de l'Association des établissements cantonaux d'assurance incendie (AEAI). Nous exécutons les réseaux selon les plans et spécifications du mandant et du bureau d'ingénieurs en charge du projet."),
-        ]))
-
-    service_page("sanitaire", "Sanitaire",
-        PAGE_TITLES["sanitaire"],
-        META_DESCRIPTIONS["sanitaire"],
-        "Sanitaire",
-        f"{COMPANY_NAME} intervient également pour vos installations et dépannages sanitaires en Suisse romande.",
-        [
-            "Fuite sous évier, dans une chape ou sur une colonne",
-            "WC qui fuit ou se bouche",
-            "Chauffe-eau qui ne chauffe plus ou qui fuit",
-            "Pression d'eau insuffisante",
-            "Canalisation bouchée",
-            "Projet de rénovation de salle de bains",
-        ],
-        [
-            "Étude et dimensionnement des installations sanitaires",
-            "Installation des réseaux d'eau froide, d'eau chaude et d'évacuation",
-            "Pose et remplacement d'appareils sanitaires et de robinetterie",
-            "Installation et entretien chauffe-eau",
-            "Recherche de fuites et réparation de conduites",
-            "Débouchage des évacuations",
-            "SAV, dépannage et remise en service",
-            "Accompagnement pour les rénovations et transformations sanitaires",
-        ],
-        clients, process, ["geneve", "lausanne", "nyon", "fribourg", "vaud"], ["chauffage", "ventilation", "climatisation", "depannage-sav"],
-        [("Intervenez-vous en dépannage sanitaire ?", "Oui, nous intervenons sur les fuites, canalisations bouchées, chauffe-eau en panne et robinetterie défectueuse. Décrivez le problème lors de votre appel pour évaluer l'urgence."),
-         ("Réalisez-vous des rénovations complètes de salle de bain ?", "Oui pour la partie sanitaire d'une rénovation (réseaux eau chaude/froide, évacuations, robinetterie, WC, douche). Contactez-nous pour décrire votre projet et vérifier la faisabilité selon son ampleur."),
-         ("Comment obtenir un devis sanitaire ?", "Via notre page contact ou par téléphone : précisez le type de bâtiment, la localisation et la nature des travaux.")],
-        gallery_cat="sanitaire",
-        expertise_html="""<p>Nous intervenons sur des réseaux eau froide et eau chaude en cuivre, PER ou multicouche, ainsi que sur les évacuations, la robinetterie et les chauffe-eau / boilers.</p>
-""" + details_accordion([
-            ("Recherche de fuite non destructive", "Avant d'ouvrir une chape ou un mur, une recherche de fuite non destructive (contrôle de pression, écoute) permet souvent de localiser précisément le point de fuite et de limiter les travaux de reprise."),
-        ]))
 
 
 def communes_block(names):
