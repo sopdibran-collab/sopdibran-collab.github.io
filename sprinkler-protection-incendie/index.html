@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/main.css?v=1784460729">
+  <link rel="stylesheet" href="/css/main.css?v=1784476772">
   <script>window.dataLayer = window.dataLayer || []; function gtag(){ dataLayer.push(arguments); }</script>
   <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -215,10 +215,97 @@
       "provider": {
         "@id": "https://sopjanitech.ch/#organization"
       },
-      "areaServed": {
-        "@type": "AdministrativeArea",
-        "name": "Suisse romande"
-      },
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Suisse romande"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Genève",
+          "url": "https://sopjanitech.ch/geneve/"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Vaud",
+          "url": "https://sopjanitech.ch/vaud/"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Valais",
+          "url": "https://sopjanitech.ch/valais/"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Fribourg",
+          "url": "https://sopjanitech.ch/fribourg/"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Neuchâtel",
+          "url": "https://sopjanitech.ch/neuchatel/"
+        },
+        {
+          "@type": "City",
+          "name": "Lausanne",
+          "url": "https://sopjanitech.ch/lausanne/"
+        },
+        {
+          "@type": "City",
+          "name": "Nyon",
+          "url": "https://sopjanitech.ch/nyon/"
+        },
+        {
+          "@type": "City",
+          "name": "Morges",
+          "url": "https://sopjanitech.ch/vaud/"
+        },
+        {
+          "@type": "City",
+          "name": "Vevey",
+          "url": "https://sopjanitech.ch/vaud/"
+        },
+        {
+          "@type": "City",
+          "name": "Yverdon-les-Bains",
+          "url": "https://sopjanitech.ch/vaud/"
+        },
+        {
+          "@type": "City",
+          "name": "Sion",
+          "url": "https://sopjanitech.ch/valais/"
+        },
+        {
+          "@type": "City",
+          "name": "Martigny",
+          "url": "https://sopjanitech.ch/valais/"
+        },
+        {
+          "@type": "City",
+          "name": "Monthey",
+          "url": "https://sopjanitech.ch/valais/"
+        },
+        {
+          "@type": "City",
+          "name": "Sierre",
+          "url": "https://sopjanitech.ch/valais/"
+        },
+        {
+          "@type": "City",
+          "name": "Bulle",
+          "url": "https://sopjanitech.ch/fribourg/"
+        },
+        {
+          "@type": "City",
+          "name": "Romont",
+          "url": "https://sopjanitech.ch/fribourg/"
+        },
+        {
+          "@type": "City",
+          "name": "La Chaux-de-Fonds",
+          "url": "https://sopjanitech.ch/neuchatel/"
+        }
+      ],
       "description": "Installation de réseaux sprinkler en sous-traitance en Suisse romande. Protection incendie pour ERP et bâtiments industriels.",
       "url": "https://sopjanitech.ch/sprinkler-protection-incendie/"
     }
@@ -240,7 +327,7 @@
     </p>
   </div>
 </div>
-<header>
+<header class="site-header">
   <div class="container">
     <div class="header-inner">
       <a href="/" class="logo-wrap">
@@ -326,78 +413,109 @@
   </div>
 </section>
 
-<section class="content-section" aria-labelledby="problems-title">
-  <div class="container prose-block">
-    <h2 class="section-title" id="problems-title">Problématiques traitées</h2>
-    <p>Montage de réseaux sprinkler sous eau, sous air ou à préaction, coordination avec les autres corps de métier sur chantier, respect des plans et spécifications techniques du mandant, finitions et supportage conformes aux exigences du projet.</p>
+<section class="content-section svc-section" id="diagnostic-interventions" aria-labelledby="problems-title">
+  <div class="container svc-section__inner">
+    <div class="svc-split">
+      <div class="svc-split__col svc-split__col--problems">
+        <h2 class="section-title" id="problems-title">Problématiques traitées</h2>
+        <ul class="problem-list"><li>Montage de réseaux sprinkler sous eau, sous air ou à préaction</li><li>Coordination avec les autres corps de métier sur chantier</li><li>Respect des plans et spécifications techniques du mandant</li><li>Finitions et supportage conformes aux exigences du projet</li></ul>
+      </div>
+      <div class="svc-split__col svc-split__col--interventions">
+        <h2 class="section-title" id="interventions-title">Types d'interventions</h2>
+        <div class="z-grid"><article class="z-row">
+  <div class="z-row__visual" aria-hidden="true"><span class="z-row__num">01</span></div>
+  <div class="z-row__body"><p>Pose de collecteurs, vannes d'alarme et postes de contrôle</p></div>
+</article><article class="z-row z-row--flip">
+  <div class="z-row__visual" aria-hidden="true"><span class="z-row__num">02</span></div>
+  <div class="z-row__body"><p>Raccordements et supportage (dont raccords Victaulic)</p></div>
+</article><article class="z-row">
+  <div class="z-row__visual" aria-hidden="true"><span class="z-row__num">03</span></div>
+  <div class="z-row__body"><p>Sous-traitance spécialisée pour bureaux d'ingénieurs et entreprises générales</p></div>
+</article><article class="z-row z-row--flip">
+  <div class="z-row__visual" aria-hidden="true"><span class="z-row__num">04</span></div>
+  <div class="z-row__body"><p>Coordination chantier avec les autres corps de métier</p></div>
+</article><article class="z-row">
+  <div class="z-row__visual" aria-hidden="true"><span class="z-row__num">05</span></div>
+  <div class="z-row__body"><p>Essais de pression et de débit avant mise en service</p></div>
+</article><article class="z-row z-row--flip">
+  <div class="z-row__visual" aria-hidden="true"><span class="z-row__num">06</span></div>
+  <div class="z-row__body"><p>Finitions techniques et mise en conformité selon plans</p></div>
+</article></div>
+      </div>
+    </div>
   </div>
-</section>
-<section class="content-section alt" aria-labelledby="interventions-title">
-  <div class="container prose-block">
-    <h2 class="section-title" id="interventions-title">Types d'interventions</h2>
-    <ul class="bullet-list"><li>Pose de collecteurs, vannes d'alarme et postes de contrôle</li><li>Raccordements et supportage (dont raccords Victaulic)</li><li>Sous-traitance spécialisée pour bureaux d'ingénieurs et entreprises générales</li><li>Coordination chantier avec les autres corps de métier</li><li>Essais de pression et de débit avant mise en service</li><li>Finitions techniques et mise en conformité selon plans</li></ul>
-  </div>
-</section>
-<section class="content-section" aria-labelledby="expertise-title">
-  <div class="container prose-block">
-    <h2 class="section-title" id="expertise-title">Équipements et cadre suisse</h2>
-    <p>Nous intervenons en sous-traitance sur des réseaux sprinkler sous eau, sous air ou à préaction : postes de contrôle, vannes d'alarme, collecteurs, supportage et raccords (dont raccords Victaulic).</p>
-<h3>Normes AEAI</h3>
-<p>Les exigences de protection incendie applicables (classes de risque, catégories de bâtiments concernées) sont définies par les directives de l'Association des établissements cantonaux d'assurance incendie (AEAI). Nous exécutons les réseaux selon les plans et spécifications du mandant et du bureau d'ingénieurs en charge du projet.</p>
-  </div>
-</section>
-<section class="content-section alt" aria-labelledby="clients-title">
-  <div class="container prose-block">
-    <h2 class="section-title" id="clients-title">Pour quels bâtiments</h2>
-    <p>Bâtiments soumis à des exigences de protection incendie (ERP, hôtels, industriel, logistique), selon obligations applicables.</p>
-    <h3 style="margin-top:28px;">Déroulement d'une intervention</h3>
-    <ol class="bullet-list"><li>Prise de contact et description du besoin</li><li>Visite ou diagnostic sur place si nécessaire</li><li>Proposition technique et devis détaillé</li><li>Réalisation des travaux et mise en service</li><li>Suivi et maintenance si souhaitée</li></ol>
-  </div>
-</section>
-
-<section class="content-section magnetic-section" aria-labelledby="real-title">
-  <div class="container">
-    <span class="label">Chantiers</span>
-    <div class="rule"></div>
-    <h2 class="section-title" id="real-title">Réalisations — Sprinkler / protection incendie</h2>
-    <p class="section-lead">Survolez ou touchez une photo pour l'agrandir. Aperçu d'interventions réalisées par Sopjani Tech Sàrl.</p>
-    <div class="magnetic-carousel" role="group" aria-label="Galerie réalisations — Sprinkler / protection incendie"><div class="magnetic-carousel__track"><button type="button" class="magnetic-bar" data-index="0" data-src="/assets/realisations/sprinkler-poste-controle.jpg" aria-label="Poste de contrôle sprinkler" aria-expanded="false" style="background-image:url('/assets/realisations/sprinkler-poste-controle.jpg')"><img src="/assets/realisations/sprinkler-poste-controle.jpg" alt="Poste de contrôle sprinkler avec tuyauterie rouge, vannes bleues et manomètres installé par Sopjani Tech Sàrl" width="960" height="1280" loading="lazy" decoding="async" class="magnetic-bar__img"></button><button type="button" class="magnetic-bar" data-index="1" data-src="/assets/realisations/sprinkler-technicien-brasure.jpg" aria-label="Soude au TIG sous station chauffage à distance" aria-expanded="false" style="background-image:url('/assets/realisations/sprinkler-technicien-brasure.jpg')"><img src="/assets/realisations/sprinkler-technicien-brasure.jpg" alt="Technicien de Sopjani Tech Sàrl soude au TIG sous station de chauffage à distance sur chantier" width="720" height="1280" loading="lazy" decoding="async" class="magnetic-bar__img"></button><button type="button" class="magnetic-bar" data-index="2" data-src="/assets/realisations/sprinkler-vanne-arret-secteur.jpg" aria-label="Poste d'alarme sous eau" aria-expanded="false" style="background-image:url('/assets/realisations/sprinkler-vanne-arret-secteur.jpg')"><img src="/assets/realisations/sprinkler-vanne-arret-secteur.jpg" alt="Poste d'alarme sous eau d'un réseau sprinkler avec manomètres de contrôle, par Sopjani Tech Sàrl" width="720" height="1280" loading="lazy" decoding="async" class="magnetic-bar__img"></button><button type="button" class="magnetic-bar" data-index="3" data-src="/assets/realisations/sprinkler-collecteur-rouges.jpg" aria-label="Centrale sprinkler sous eau" aria-expanded="false" style="background-image:url('/assets/realisations/sprinkler-collecteur-rouges.jpg')"><img src="/assets/realisations/sprinkler-collecteur-rouges.jpg" alt="Centrale sprinkler sous eau avec tuyauterie rouge et vannes en local technique, par Sopjani Tech Sàrl" width="1280" height="720" loading="lazy" decoding="async" class="magnetic-bar__img"></button><button type="button" class="magnetic-bar" data-index="4" data-src="/assets/realisations/sprinkler-vanne-seche-victaulic.jpg" aria-label="Poste d'alarme sous air" aria-expanded="false" style="background-image:url('/assets/realisations/sprinkler-vanne-seche-victaulic.jpg')"><img src="/assets/realisations/sprinkler-vanne-seche-victaulic.jpg" alt="Poste d'alarme sous air pour installation sprinkler, station Parking Nord, par Sopjani Tech Sàrl" width="720" height="1280" loading="lazy" decoding="async" class="magnetic-bar__img"></button><button type="button" class="magnetic-bar" data-index="5" data-src="/assets/realisations/sprinkler-vanne-alarme-humide.jpg" aria-label="Poste d'alarme sous eau avec pompe de suppression" aria-expanded="false" style="background-image:url('/assets/realisations/sprinkler-vanne-alarme-humide.jpg')"><img src="/assets/realisations/sprinkler-vanne-alarme-humide.jpg" alt="Poste d'alarme sous eau avec pompe de suppression et vanne d'arrêt générale d'un réseau sprinkler, par Sopjani Tech Sàrl" width="720" height="1280" loading="lazy" decoding="async" class="magnetic-bar__img"></button><button type="button" class="magnetic-bar" data-index="6" data-src="/assets/realisations/sanitaire-collecteur-galvanise.jpg" aria-label="Test débit sprinkler" aria-expanded="false" style="background-image:url('/assets/realisations/sanitaire-collecteur-galvanise.jpg')"><img src="/assets/realisations/sanitaire-collecteur-galvanise.jpg" alt="Test de débit sprinkler sur collecteur en acier galvanisé avec raccords laiton et vannes, par Sopjani Tech Sàrl" width="1280" height="720" loading="lazy" decoding="async" class="magnetic-bar__img"></button></div><div class="magnetic-carousel__backdrop" hidden aria-hidden="true"></div></div>
-    <p style="margin-top:24px;"><a href="/realisations/" class="text-link">Voir toutes nos réalisations →</a></p>
-  </div>
-</section>
-<section class="content-section alt" aria-labelledby="zones-title">
-  <div class="container">
-    <h2 class="section-title" id="zones-title">Zones desservies</h2>
-    <p class="section-lead">Sopjani Tech Sàrl intervient en Suisse romande — cantons de Genève, Vaud, Valais, Fribourg et Neuchâtel, ainsi que les principales villes de ces cantons. Contactez-nous pour vérifier la disponibilité dans votre secteur.</p>
-    <div class="zone-coverage">
-  <p class="zone-coverage__label">Cantons</p>
-  <div class="zone-links"><a class="zone-pill" href="/geneve/">Genève</a><a class="zone-pill" href="/vaud/">Vaud</a><a class="zone-pill" href="/valais/">Valais</a><a class="zone-pill" href="/fribourg/">Fribourg</a><a class="zone-pill" href="/neuchatel/">Neuchâtel</a></div>
-  <p class="zone-coverage__label">Villes &amp; agglomérations</p>
-  <div class="zone-links"><a class="zone-pill zone-pill--city" href="/geneve/">Genève</a><a class="zone-pill zone-pill--city" href="/lausanne/">Lausanne</a><a class="zone-pill zone-pill--city" href="/nyon/">Nyon</a><a class="zone-pill zone-pill--city" href="/vaud/">Morges</a><a class="zone-pill zone-pill--city" href="/vaud/">Vevey</a><a class="zone-pill zone-pill--city" href="/vaud/">Yverdon-les-Bains</a><a class="zone-pill zone-pill--city" href="/valais/">Sion</a><a class="zone-pill zone-pill--city" href="/valais/">Martigny</a><a class="zone-pill zone-pill--city" href="/valais/">Monthey</a><a class="zone-pill zone-pill--city" href="/valais/">Sierre</a><a class="zone-pill zone-pill--city" href="/fribourg/">Fribourg</a><a class="zone-pill zone-pill--city" href="/fribourg/">Bulle</a><a class="zone-pill zone-pill--city" href="/fribourg/">Romont</a><a class="zone-pill zone-pill--city" href="/neuchatel/">Neuchâtel</a><a class="zone-pill zone-pill--city" href="/neuchatel/">La Chaux-de-Fonds</a></div>
-</div>
-    <p style="margin-top:20px;"><a href="/zones-intervention/" class="text-link">Voir toutes les zones d'intervention →</a></p>
-  </div>
-</section>
-<section class="content-section" aria-labelledby="related-title">
-  <div class="container">
-    <h2 class="section-title" id="related-title">Prestations connexes</h2>
-    <div class="zone-links"><a class="zone-pill" href="/chauffage/">Chauffage</a><a class="zone-pill" href="/ventilation/">Ventilation</a><a class="zone-pill" href="/climatisation/">Climatisation</a><a class="zone-pill" href="/sanitaire/">Sanitaire</a><a class="zone-pill" href="/depannage-sav/">Dépannage SAV</a></div>
-  </div>
-</section>
-<section class="faq content-section alt" aria-labelledby="faq-title">
-  <div class="container">
-    <div class="faq-head">
-    <span class="label">FAQ</span>
-    <div class="rule"></div>
-    <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
-  </div>
-    <div class="faq-list"><div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">01</span><span class="faq-q-text">Les travaux sprinkler sont-ils réalisés directement ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><p>Les interventions sont assurées en sous-traitance spécialisée, selon la nature du projet.</p></div>
-</div><div class="faq-item">
-  <button class="faq-q" aria-expanded="false"><span class="faq-idx" aria-hidden="true">02</span><span class="faq-q-text">Un sprinkler est-il obligatoire ?</span><span class="faq-icon" aria-hidden="true"></span></button>
-  <div class="faq-a"><p>Selon les directives AEAI, certaines catégories de bâtiments peuvent être concernées selon leur classe de risque. Nous pouvons analyser votre situation sur demande.</p></div>
+</section><section class="content-section svc-section svc-section--alt" id="expertise" aria-labelledby="expertise-title">
+  <div class="container svc-section__inner">
+    <div class="svc-section__head">
+      <h2 class="section-title" id="expertise-title">Équipements et cadre suisse</h2>
+      
+    </div>
+    <div class="svc-section__body prose-block"><p>Nous intervenons en sous-traitance sur des réseaux sprinkler sous eau, sous air ou à préaction : postes de contrôle, vannes d'alarme, collecteurs, supportage et raccords (dont raccords Victaulic).</p>
+<div class="details-accordion">
+  <h3 class="details-accordion__title">Détails réglementaires et techniques</h3>
+  <p class="details-accordion__hint">Ouvrez un volet uniquement si vous souhaitez le détail.</p>
+  <div class="details-accordion__list"><details class="details-item" name="expertise">
+  <summary class="details-summary">
+    <span class="faq-idx" aria-hidden="true">01</span>
+    <span class="faq-q-text">Normes AEAI et classes de risque</span>
+    <span class="faq-icon" aria-hidden="true"></span>
+  </summary>
+  <div class="details-panel"><p>Les exigences de protection incendie applicables (classes de risque, catégories de bâtiments concernées) sont définies par les directives de l'Association des établissements cantonaux d'assurance incendie (AEAI). Nous exécutons les réseaux selon les plans et spécifications du mandant et du bureau d'ingénieurs en charge du projet.</p></div>
+</details></div>
 </div></div>
+  </div>
+</section><section class="content-section svc-section" id="clients" aria-labelledby="clients-title">
+  <div class="container svc-section__inner">
+    <div class="svc-section__head">
+      <h2 class="section-title" id="clients-title">Pour quels bâtiments</h2>
+      
+    </div>
+    <div class="svc-section__body prose-block"><p>Bâtiments soumis à des exigences de protection incendie (ERP, hôtels, industriel, logistique), selon obligations applicables.</p>
+<h3>Déroulement d'une intervention</h3>
+<ol class="bullet-list"><li>Prise de contact et description du besoin</li><li>Visite ou diagnostic sur place si nécessaire</li><li>Proposition technique et devis détaillé</li><li>Réalisation des travaux et mise en service</li><li>Suivi et maintenance si souhaitée</li></ol></div>
+  </div>
+</section><section class="content-section magnetic-section svc-section svc-section--alt" id="realisations" aria-labelledby="real-title">
+  <div class="container svc-section__inner">
+    <div class="svc-section__head">
+      <h2 class="section-title" id="real-title">Réalisations — Sprinkler / protection incendie</h2>
+      <p class="prose-lead">Survolez ou touchez une photo pour l'agrandir. Aperçu d'interventions réalisées par Sopjani Tech Sàrl.</p>
+    </div>
+    <div class="svc-section__body"><div class="magnetic-carousel" role="group" aria-label="Galerie réalisations — Sprinkler / protection incendie"><div class="magnetic-carousel__track"><button type="button" class="magnetic-bar" data-index="0" data-src="/assets/realisations/sprinkler-poste-controle.jpg" aria-label="Poste de contrôle sprinkler" aria-expanded="false" style="background-image:url('/assets/realisations/sprinkler-poste-controle.jpg')"><img src="/assets/realisations/sprinkler-poste-controle.jpg" alt="Poste de contrôle sprinkler avec tuyauterie rouge, vannes bleues et manomètres installé par Sopjani Tech Sàrl" width="960" height="1280" loading="lazy" decoding="async" class="magnetic-bar__img"></button><button type="button" class="magnetic-bar" data-index="1" data-src="/assets/realisations/sprinkler-technicien-brasure.jpg" aria-label="Soude au TIG sous station chauffage à distance" aria-expanded="false" style="background-image:url('/assets/realisations/sprinkler-technicien-brasure.jpg')"><img src="/assets/realisations/sprinkler-technicien-brasure.jpg" alt="Technicien de Sopjani Tech Sàrl soude au TIG sous station de chauffage à distance sur chantier" width="720" height="1280" loading="lazy" decoding="async" class="magnetic-bar__img"></button><button type="button" class="magnetic-bar" data-index="2" data-src="/assets/realisations/sprinkler-vanne-arret-secteur.jpg" aria-label="Poste d'alarme sous eau" aria-expanded="false" style="background-image:url('/assets/realisations/sprinkler-vanne-arret-secteur.jpg')"><img src="/assets/realisations/sprinkler-vanne-arret-secteur.jpg" alt="Poste d'alarme sous eau d'un réseau sprinkler avec manomètres de contrôle, par Sopjani Tech Sàrl" width="720" height="1280" loading="lazy" decoding="async" class="magnetic-bar__img"></button><button type="button" class="magnetic-bar" data-index="3" data-src="/assets/realisations/sprinkler-collecteur-rouges.jpg" aria-label="Centrale sprinkler sous eau" aria-expanded="false" style="background-image:url('/assets/realisations/sprinkler-collecteur-rouges.jpg')"><img src="/assets/realisations/sprinkler-collecteur-rouges.jpg" alt="Centrale sprinkler sous eau avec tuyauterie rouge et vannes en local technique, par Sopjani Tech Sàrl" width="1280" height="720" loading="lazy" decoding="async" class="magnetic-bar__img"></button><button type="button" class="magnetic-bar" data-index="4" data-src="/assets/realisations/sprinkler-vanne-seche-victaulic.jpg" aria-label="Poste d'alarme sous air" aria-expanded="false" style="background-image:url('/assets/realisations/sprinkler-vanne-seche-victaulic.jpg')"><img src="/assets/realisations/sprinkler-vanne-seche-victaulic.jpg" alt="Poste d'alarme sous air pour installation sprinkler, station Parking Nord, par Sopjani Tech Sàrl" width="720" height="1280" loading="lazy" decoding="async" class="magnetic-bar__img"></button><button type="button" class="magnetic-bar" data-index="5" data-src="/assets/realisations/sprinkler-vanne-alarme-humide.jpg" aria-label="Poste d'alarme sous eau avec pompe de suppression" aria-expanded="false" style="background-image:url('/assets/realisations/sprinkler-vanne-alarme-humide.jpg')"><img src="/assets/realisations/sprinkler-vanne-alarme-humide.jpg" alt="Poste d'alarme sous eau avec pompe de suppression et vanne d'arrêt générale d'un réseau sprinkler, par Sopjani Tech Sàrl" width="720" height="1280" loading="lazy" decoding="async" class="magnetic-bar__img"></button><button type="button" class="magnetic-bar" data-index="6" data-src="/assets/realisations/sanitaire-collecteur-galvanise.jpg" aria-label="Test débit sprinkler" aria-expanded="false" style="background-image:url('/assets/realisations/sanitaire-collecteur-galvanise.jpg')"><img src="/assets/realisations/sanitaire-collecteur-galvanise.jpg" alt="Test de débit sprinkler sur collecteur en acier galvanisé avec raccords laiton et vannes, par Sopjani Tech Sàrl" width="1280" height="720" loading="lazy" decoding="async" class="magnetic-bar__img"></button></div><div class="magnetic-carousel__backdrop" hidden aria-hidden="true"></div></div>
+<p class="svc-section__link"><a href="/realisations/" class="text-link">Voir toutes nos réalisations →</a></p></div>
+  </div>
+</section><section class="content-section svc-section" id="zones" aria-labelledby="zones-title">
+  <div class="container svc-section__inner">
+    <div class="svc-section__head">
+      <h2 class="section-title" id="zones-title">Zones desservies</h2>
+      
+    </div>
+    <div class="svc-section__body prose-block"><p class="zones-compact">Couverture : <a href="/geneve/">Genève</a>, <a href="/vaud/">Vaud</a>, <a href="/valais/">Valais</a>, <a href="/fribourg/">Fribourg</a>, <a href="/neuchatel/">Neuchâtel</a>. Vérifiez la disponibilité pour votre commune sur la page zones.</p>
+<p class="svc-section__link"><a href="/zones-intervention/" class="text-link">Voir toutes les zones d'intervention →</a></p>
+<div class="svc-related">
+  <h3 class="svc-related__title">Prestations connexes</h3>
+  <div class="zone-links"><a class="zone-pill" href="/chauffage/">Chauffage</a><a class="zone-pill" href="/ventilation/">Ventilation</a><a class="zone-pill" href="/climatisation/">Climatisation</a><a class="zone-pill" href="/sanitaire/">Sanitaire</a><a class="zone-pill" href="/depannage-sav/">Dépannage SAV</a></div>
+</div></div>
+  </div>
+</section><section class="faq content-section svc-section svc-section--alt" id="faq" aria-labelledby="faq-title">
+  <div class="container svc-section__inner">
+    <div class="svc-section__head">
+      <h2 class="section-title" id="faq-title">Questions fréquentes</h2>
+    </div>
+    <div class="faq-prose"><div class="faq-list faq-list--details"><details class="faq-details" name="faq">
+  <summary class="faq-summary">
+    <span class="faq-idx" aria-hidden="true">01</span>
+    <span class="faq-q-text">Les travaux sprinkler sont-ils réalisés directement ?</span>
+    <span class="faq-icon" aria-hidden="true"></span>
+  </summary>
+  <div class="faq-a-panel"><p>Les interventions sont assurées en sous-traitance spécialisée, selon la nature du projet.</p></div>
+</details><details class="faq-details" name="faq">
+  <summary class="faq-summary">
+    <span class="faq-idx" aria-hidden="true">02</span>
+    <span class="faq-q-text">Un sprinkler est-il obligatoire ?</span>
+    <span class="faq-icon" aria-hidden="true"></span>
+  </summary>
+  <div class="faq-a-panel"><p>Selon les directives AEAI, certaines catégories de bâtiments peuvent être concernées selon leur classe de risque. Nous pouvons analyser votre situation sur demande.</p></div>
+</details></div></div>
   </div>
 </section>
 <section class="trust-bar site-trust" aria-label="Preuves de confiance">
