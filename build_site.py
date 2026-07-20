@@ -527,7 +527,7 @@ def realisations_section(cat, limit=None):
 SERVICE_CAROUSEL_CATS = {
     "chauffage": ["chauffage", "ventilation"],
     "ventilation": ["ventilation"],
-    "climatisation": ["ventilation", "chauffage"],
+    "climatisation": [],  # pas de photos dédiées pour l'instant (voir /realisations/)
     "sanitaire": ["sanitaire"],
     "depannage-sav": ["chauffage", "ventilation", "sanitaire"],
     "sprinkler-protection-incendie": ["sprinkler"],
@@ -1899,7 +1899,8 @@ def write_premium_service_page(cfg):
   </div>
 </section>"""
     else:
-        gallery_imgs = carousel_images_for_service(slug, gallery_cat=gallery_cat, limit=2)
+        # Pas de galerie : ne pas emprunter d'images d'autres prestations
+        gallery_imgs = []
         gallery_section = ""
 
     equip_list = "".join(f"<li>{x}</li>" for x in cfg["equip"])
@@ -2187,9 +2188,8 @@ def _premium_service_configs():
                 ("maintain", "Entretien filtres et unités", "Contrôle de performance annuel."),
                 ("repair", "Dépannage climatisation", "Perte de froid, fuite, unité à l'arrêt."),
             ],
-            "gallery_cat": "ventilation",
-            "gallery_title": "Nos réalisations en climatisation",
-            "gallery_lead": f"Interventions CVC et confort thermique réalisées par {COMPANY_NAME}.",
+            "show_gallery": False,
+            "gallery_cat": None,
             "expertise_title": "Des solutions adaptées à votre usage",
             "expertise_lead": "Nous intervenons sur climatisations split, multi-split et PAC air-air — notamment à Nyon, Lausanne et Genève.",
             "equip": [
