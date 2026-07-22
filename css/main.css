@@ -1626,9 +1626,7 @@
         gap: 12px;
       }
 
-      .logo-wrap img {
-        width: 64px !important;
-      }
+      /* taille logo définie plus bas (height) — éviter width fixe conflictuelle */
 
       .logo-text {
         font-size: 15px;
@@ -2309,13 +2307,14 @@ header .nav-submenu a:hover .svc-icon__badge,
 .cookie-banner__accept {
   flex-shrink: 0;
   min-height: 44px;
-  background: var(--c-text-on-dark);
-  color: var(--c-cta);
-  border-color: var(--c-text-on-dark);
+  background: #fff !important;
+  color: var(--c-navy) !important;
+  border-color: #fff !important;
 }
 .cookie-banner__accept:hover {
-  background: #fff;
-  color: var(--c-cta-hover);
+  background: var(--c-logo) !important;
+  color: var(--c-navy) !important;
+  border-color: var(--c-logo) !important;
 }
 .contact-google-link .cm-value {
   color: var(--c-accent);
@@ -3007,7 +3006,7 @@ header .header-cta .btn-primary:focus-visible {
 /* Hero photo full-bleed */
 .hero--photo {
   position: relative;
-  min-height: min(78vh, 720px);
+  min-height: min(78dvh, 720px);
   padding: 0;
   background: var(--c-navy);
   color: #fff;
@@ -3365,6 +3364,13 @@ header .header-cta .btn-primary:focus-visible {
   gap: 40px 48px;
   align-items: start;
 }
+/* Empêche le contenu (pills, titres) d’élargir la colonne grille sur mobile */
+.about-intro-grid > *,
+.about-intro-copy,
+.about-zones {
+  min-width: 0;
+  max-width: 100%;
+}
 .about-intro-copy .section-title { margin-bottom: 16px; }
 .about-lead {
   font-size: 19px;
@@ -3544,6 +3550,7 @@ a.about-contact-row:hover .about-contact-row__v { color: var(--c-logo); }
     padding-left: 0;
     padding-right: 0;
     overflow: visible;
+    max-width: 100%;
   }
   .svc-strip-grid {
     display: flex;
@@ -3557,6 +3564,10 @@ a.about-contact-row:hover .about-contact-row__v { color: var(--c-logo); }
     overscroll-behavior-x: contain;
     padding: 4px 16px 14px;
     margin: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
     scrollbar-width: none;
   }
   .svc-strip-grid::-webkit-scrollbar {
@@ -3588,6 +3599,10 @@ a.about-contact-row:hover .about-contact-row__v { color: var(--c-logo); }
     overscroll-behavior-x: contain;
     padding-left: 16px;
     padding-right: 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
     scrollbar-width: none;
   }
   .trust-bar-grid::-webkit-scrollbar {
@@ -3614,6 +3629,7 @@ a.about-contact-row:hover .about-contact-row__v { color: var(--c-logo); }
   .home-realisations .container {
     padding-left: 0;
     padding-right: 0;
+    max-width: 100%;
   }
   .home-realisations__head {
     padding-inline: 16px;
@@ -3630,6 +3646,10 @@ a.about-contact-row:hover .about-contact-row__v { color: var(--c-logo); }
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
     padding: 0 16px 8px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
     scrollbar-width: none;
   }
   .real-tiles::-webkit-scrollbar {
@@ -3642,8 +3662,7 @@ a.about-contact-row:hover .about-contact-row__v { color: var(--c-logo); }
   }
 }
 @media (max-width: 768px) {
-  .hero--photo { min-height: 70vh; }
-  .hero--photo .hero-inner { padding: 72px 0 96px; }
+  /* min-height hero photo : défini plus bas (56dvh) pour éviter conflit 70vh */
   .svc-strip { margin-top: -40px; }
   .svc-strip-grid { scroll-padding-inline: 16px; padding-inline: 16px; }
   .svc-strip-card { flex-basis: 136px; width: 136px; min-height: 118px; }
@@ -4067,9 +4086,9 @@ header .header-cta .btn-primary {
     padding-bottom: calc(16px + env(safe-area-inset-bottom, 0));
   }
 
-  /* Hero photo moins haut sur mobile */
+  /* Hero photo : dvh évite le saut de viewport iOS Safari */
   .hero--photo {
-    min-height: 56vh;
+    min-height: min(56dvh, 560px);
   }
 
   .hero--photo .hero-inner {
@@ -4130,8 +4149,51 @@ header .header-cta .btn-primary {
   }
 }
 
-/* ── SCROLL HORIZONTAL MOBILE — partout où c’est utile ── */
+/* ── SCROLL HORIZONTAL MOBILE — contenu confiné (pas d’élargissement page) ── */
 @media (max-width: 1100px) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  /* Conteneurs grille/flex : ne jamais laisser le min-content élargir la page */
+  .container,
+  .about-intro-grid,
+  .about-intro-copy,
+  .about-zones,
+  .about-split-grid,
+  .prose-block,
+  .content-section,
+  main,
+  .hub-grid,
+  .zone-links,
+  .gallery,
+  .equipe-grid,
+  .svc-strip-grid,
+  .trust-bar-grid,
+  .real-tiles,
+  .cantons-grid,
+  .norms-bar-inner,
+  .magnetic-carousel,
+  .magnetic-carousel__track {
+    min-width: 0;
+  }
+
+  /* Pattern commun : largeur = parent, pas somme des enfants */
+  .hub-grid,
+  .gallery.gallery-cols-3,
+  .gallery.gallery-cols-2,
+  .equipe-grid,
+  .about-split .about-photo-duo,
+  .zone-links,
+  .cantons-grid,
+  .svc-strip-grid,
+  .real-tiles {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+  }
+
   /* Prestations / zones hubs */
   .hub-grid {
     display: flex !important;
@@ -4146,6 +4208,8 @@ header .header-cta .btn-primary {
     background: transparent !important;
     border: none !important;
     border-radius: 0 !important;
+    width: calc(100% + 32px);
+    max-width: calc(100% + 32px);
     margin-left: -16px;
     margin-right: -16px;
     padding: 4px 16px 14px;
@@ -4177,6 +4241,8 @@ header .header-cta .btn-primary {
     scroll-padding-inline: 16px;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
+    width: calc(100% + 32px);
+    max-width: calc(100% + 32px);
     margin-left: -16px;
     margin-right: -16px;
     padding: 0 16px 10px;
@@ -4204,6 +4270,8 @@ header .header-cta .btn-primary {
     scroll-padding-inline: 16px;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
+    width: calc(100% + 32px);
+    max-width: calc(100% + 32px);
     margin-left: -16px;
     margin-right: -16px;
     padding: 0 16px 8px;
@@ -4217,14 +4285,17 @@ header .header-cta .btn-primary {
     scroll-snap-align: start;
   }
 
-  /* Pills zones / communes */
+  /* Pills zones / communes — scroll interne, largeur = parent */
   .zone-links {
+    display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
+    width: calc(100% + 32px);
+    max-width: calc(100% + 32px);
     margin-left: -16px;
     margin-right: -16px;
     padding: 2px 16px 8px;
@@ -4245,6 +4316,7 @@ header .header-cta .btn-primary {
     overflow-x: auto;
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
+    max-width: 100%;
     padding-bottom: 6px;
     scrollbar-width: none;
   }
@@ -4261,6 +4333,7 @@ header .header-cta .btn-primary {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     gap: 16px;
+    max-width: 100%;
     scrollbar-width: none;
     padding-bottom: 4px;
   }
@@ -4268,6 +4341,11 @@ header .header-cta .btn-primary {
   .norms-logos,
   .norms-tags {
     flex: 0 0 auto;
+  }
+
+  /* Carrousel magnétique : rester dans le viewport */
+  .magnetic-carousel.is-expanded .magnetic-carousel__track {
+    overflow-x: auto;
   }
 }
 
