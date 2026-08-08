@@ -54,6 +54,28 @@ HOURS = "Tous les jours, 7h00 – 17h00"
 MAP_URL = "https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+9,+1680+Romont"
 MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1481964.3806735645!2d5.895466104411914!3d46.67378415677807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9458f52305e1fe3%3A0x31fd51d876fffe44!2sSopjani-tech%20s%C3%A0rl!5e1!3m2!1sfr!2sch!4v1781214251877!5m2!1sfr!2sch"
 GOOGLE_BUSINESS_URL = "https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7"
+
+# Avis Google réels affichés sur le site (texte = source Google Business Profile)
+GOOGLE_REVIEWS = [
+    {
+        "author": "Karl Gaming",
+        "badge": "Local Guide",
+        "rating": 5,
+        "date_label": "il y a un mois",
+        "date_published": "2026-07-09",
+        "body": "Conseil rapide et efficace. Travail de qualité à prix plus que raisonnable ! Je ne peux que recommander.",
+        "initial": "K",
+    },
+    {
+        "author": "Sammy Crettenand",
+        "badge": "",
+        "rating": 5,
+        "date_label": "il y a un mois",
+        "date_published": "2026-07-09",
+        "body": "Travail de qualité à un bon prix, prise en charge rapide de ma panne de chauffage.",
+        "initial": "S",
+    },
+]
 COPYRIGHT_YEAR = 2026
 IMAGE_LICENSE_URL = f"{SITE}/mentions-legales/#propriete-intellectuelle"
 IMAGE_ACQUIRE_LICENSE_URL = f"{SITE}/contact/"
@@ -65,23 +87,23 @@ CVCS_ALL_PROSE = "chauffage, ventilation, climatisation, sanitaire, dépannage S
 
 META_DESCRIPTIONS = {
     "home": f"Sopjani Tech Sàrl : étude, installation et dépannage en {CVCS_PROSE} en Suisse romande. Devis gratuit.",
-    "prestations": f"{CVCS_GROUP}, dépannage SAV et sprinkler en Suisse romande. Découvrez toutes les prestations CVC de Sopjani Tech Sàrl.",
+    "prestations": f"{CVCS_GROUP}, dépannage SAV et sprinkler en Suisse romande. Découvrez toutes les prestations CVCS de Sopjani Tech Sàrl.",
     "zones-intervention": f"{COMPANY_NAME} intervient près de vous en Suisse romande : Genève, Vaud, Valais, Fribourg, Neuchâtel et agglomérations. Siège à {ADDRESS_LOCALITY}.",
-    "a-propos": f"{COMPANY_NAME}, entreprise CVC basée à {ADDRESS_FULL}. {CVCS_GROUP}, sprinkler et dépannage en Suisse romande.",
-    "contact": f"Devis gratuit et dépannage CVC urgent. {COMPANY_NAME} — {PHONE_DISP} · {EMAIL} · {ADDRESS_FULL}.",
-    "depannage-sav": f"Dépannage en {CVCS_PROSE} en Suisse romande. Urgence : appelez le {PHONE_DISP}.",
-    "chauffage": "Chauffagiste en Suisse romande (Nyon, Lausanne, Genève, Fribourg, Valais) : installation, entretien et dépannage. Pompes à chaleur et chaudières. Devis gratuit.",
-    "ventilation": "Entreprise de ventilation en Suisse romande. VMC, traitement de l'air, dépannage et maintenance.",
-    "climatisation": "Climatisation à Nyon, Lausanne et Genève : étude, pose et dépannage. Split, multi-split et PAC air-air. Devis gratuit — Sopjani Tech Sàrl.",
+    "a-propos": f"{COMPANY_NAME}, entreprise CVCS basée à {ADDRESS_FULL}. {CVCS_GROUP}, sprinkler et dépannage en Suisse romande.",
+    "contact": f"Devis gratuit et dépannage CVCS urgent. {COMPANY_NAME} — {PHONE_DISP} · {EMAIL} · {ADDRESS_FULL}.",
+    "depannage-sav": f"Urgence ventilation, dépannage chauffage et climatisation en Suisse romande. Appelez le {PHONE_DISP}.",
+    "chauffage": "Chauffagiste à Nyon, Lausanne, Genève et Fribourg : installation, entretien et dépannage. Pompes à chaleur et chaudières. Devis gratuit.",
+    "ventilation": "Entreprise de ventilation en Suisse romande (Nyon, Fribourg, Valais, Vaud, Genève) : VMC, gaines, dépannage et urgence. Devis gratuit.",
+    "climatisation": f"Climatisation à Nyon, Lausanne et Genève : étude, pose et dépannage. Split, multi-split et PAC air-air. Devis — {PHONE_DISP}.",
     "sprinkler-protection-incendie": "Installation de réseaux sprinkler en sous-traitance en Suisse romande. Protection incendie pour ERP et bâtiments industriels.",
     "sanitaire": "Installations et dépannages sanitaires en Suisse romande. Réseaux eau chaude/froide, fuites, chauffe-eau et rénovations.",
-    "geneve": "Chauffagiste à Genève : installation, entretien et dépannage chauffage, climatisation et CVC. Devis gratuit — Sopjani Tech Sàrl.",
-    "vaud": "Chauffagiste dans le canton de Vaud (Nyon, Lausanne, Morges) : chauffage, climatisation et dépannage CVC. Devis gratuit.",
-    "lausanne": "Chauffagiste à Lausanne : installation, entretien et dépannage chauffage. Pompes à chaleur, chaudières et CVC. Devis gratuit.",
-    "nyon": "Climatisation et chauffagiste à Nyon : installation, entretien et dépannage CVC. Devis gratuit — Sopjani Tech Sàrl.",
-    "valais": "Chauffagiste en Valais (Sion, Martigny, Monthey) : chauffage, climatisation et dépannage CVC. Devis gratuit.",
-    "fribourg": "Chauffagiste Fribourg et Romont : installation, entretien et dépannage chauffage et CVC. Siège à Romont — devis gratuit.",
-    "neuchatel": "Chauffagiste à Neuchâtel et La Chaux-de-Fonds : chauffage, climatisation et dépannage CVC. Devis gratuit.",
+    "geneve": f"Chauffagiste à Genève : installation, entretien et dépannage chauffage et climatisation. Devis gratuit — {PHONE_DISP}.",
+    "vaud": f"Chauffagiste dans le canton de Vaud (Nyon, Lausanne, Morges) : chauffage, climatisation et dépannage. Devis — {PHONE_DISP}.",
+    "lausanne": f"Chauffagiste à Lausanne : dépannage chauffage, installation et entretien. Pompes à chaleur et chaudières. Appelez le {PHONE_DISP}.",
+    "nyon": f"Climatisation et chauffagiste à Nyon : installation, entretien et dépannage. Devis gratuit — appelez le {PHONE_DISP}.",
+    "valais": f"Chauffagiste et climatisation en Valais (Sion, Martigny, Monthey). Installation et dépannage CVCS. Devis — {PHONE_DISP}.",
+    "fribourg": f"Chauffagiste Fribourg et Romont : installation, entretien et dépannage chauffage. Siège à Romont — {PHONE_DISP}.",
+    "neuchatel": f"Chauffagiste à Neuchâtel et La Chaux-de-Fonds : chauffage, climatisation et dépannage. Devis — {PHONE_DISP}.",
     "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
     "plan-du-site": "Plan du site Sopjani Tech Sàrl : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
@@ -89,26 +111,26 @@ META_DESCRIPTIONS = {
 }
 
 PAGE_TITLES = {
-    "home": f"Sopjani Tech Sàrl | {CVCS_GROUP} et dépannage en Suisse romande",
-    "a-propos": "Sopjani Tech Sàrl | Entreprise CVC à Romont, Suisse romande",
-    "contact": "Devis et dépannage CVC | Contact | Sopjani Tech Sàrl",
-    "prestations": f"Prestations CVC | {CVCS_GROUP} | Sopjani Tech Sàrl",
-    "zones-intervention": "Zones d'intervention CVC | Suisse romande | Sopjani Tech Sàrl",
+    "home": "CVCS et sprinkler en Suisse romande | Sopjani Tech Sàrl",
+    "a-propos": "Sopjani Tech Sàrl | Entreprise CVCS à Romont",
+    "contact": "Devis et dépannage CVCS | Contact | Sopjani Tech Sàrl",
+    "prestations": "Prestations CVCS et sprinkler | Sopjani Tech Sàrl",
+    "zones-intervention": "Zones d'intervention CVCS | Suisse romande | Sopjani Tech Sàrl",
     "plan-du-site": "Plan du site | Sopjani Tech Sàrl",
-    "chauffage": "Chauffagiste Suisse romande | Nyon, Lausanne, Genève | Sopjani Tech Sàrl",
-    "ventilation": "Entreprise ventilation Suisse romande | Sopjani Tech Sàrl",
-    "climatisation": "Climatisation Nyon, Lausanne & Genève | Installation | Sopjani Tech Sàrl",
-    "depannage-sav": f"Dépannage {CVCS_PROSE} | Urgence CVC | Sopjani Tech Sàrl",
-    "sanitaire": "Sanitaire | Travaux et dépannage | Sopjani Tech Sàrl",
+    "chauffage": "Chauffagiste Lausanne, Nyon, Genève | Sopjani Tech Sàrl",
+    "ventilation": "Entreprise de ventilation Suisse romande | Sopjani Tech Sàrl",
+    "climatisation": "Climatisation Nyon, Lausanne, Genève | Sopjani Tech Sàrl",
+    "depannage-sav": "Urgence ventilation et dépannage CVCS | Sopjani Tech Sàrl",
+    "sanitaire": "Sanitaire Suisse romande | Dépannage | Sopjani Tech Sàrl",
     "sprinkler-protection-incendie": "Sprinkler et protection incendie | Sopjani Tech Sàrl",
-    "geneve": "Chauffagiste Genève | Climatisation & CVC | Sopjani Tech Sàrl",
+    "geneve": "Chauffagiste Genève | Climatisation | Sopjani Tech Sàrl",
     "vaud": "Chauffagiste Vaud | Nyon, Lausanne | Sopjani Tech Sàrl",
-    "lausanne": "Chauffagiste Lausanne | Chauffage & dépannage | Sopjani Tech Sàrl",
-    "nyon": "Climatisation & chauffagiste Nyon | Sopjani Tech Sàrl",
-    "valais": "Chauffagiste Valais | CVC & climatisation | Sopjani Tech Sàrl",
-    "fribourg": "Chauffagiste Fribourg | CVC Romont | Sopjani Tech Sàrl",
-    "neuchatel": "Chauffagiste Neuchâtel | CVC & climatisation | Sopjani Tech Sàrl",
-    "realisations": "Réalisations CVC : chauffage, sanitaire, ventilation et sprinkler | Sopjani Tech Sàrl",
+    "lausanne": "Chauffagiste Lausanne | Dépannage | Sopjani Tech Sàrl",
+    "nyon": "Climatisation Nyon | Chauffagiste | Sopjani Tech Sàrl",
+    "valais": "Climatisation et chauffagiste Valais | Sopjani Tech Sàrl",
+    "fribourg": "Chauffagiste Fribourg et Romont | Sopjani Tech Sàrl",
+    "neuchatel": "Chauffagiste Neuchâtel | CVCS et clim | Sopjani Tech Sàrl",
+    "realisations": "Réalisations CVCS et sprinkler | Sopjani Tech Sàrl",
 }
 
 SERVICES = [
@@ -116,7 +138,7 @@ SERVICES = [
     ("ventilation", "Ventilation", "Ventilation et traitement de l'air pour bâtiments."),
     ("climatisation", "Climatisation", "Étude et installation de systèmes de climatisation."),
     ("sanitaire", "Sanitaire", "Installations sanitaires, dépannage et rénovations en Suisse romande."),
-    ("depannage-sav", "Dépannage SAV", "Maintenance et dépannage de vos installations CVC."),
+    ("depannage-sav", "Dépannage SAV", "Maintenance et dépannage de vos installations CVCS."),
     ("sprinkler-protection-incendie", "Sprinkler / protection incendie", "Réseaux sprinkler en sous-traitance spécialisée."),
 ]
 
@@ -354,7 +376,7 @@ QUI_SOMMES_NOUS_HTML = f"""
 """
 
 HOME_ABOUT_TEASER = """
-<p>Entreprise technique en Suisse romande, nous réalisons installations, maintenance et dépannage CVC pour bâtiments résidentiels, tertiaires et industriels.</p>
+<p>Entreprise technique en Suisse romande, nous réalisons installations, maintenance et dépannage CVCS pour bâtiments résidentiels, tertiaires et industriels.</p>
 <p><a href="/a-propos/" class="text-link">Présentation de l'entreprise →</a></p>
 """
 
@@ -390,15 +412,15 @@ def hero_side_panel():
 def geo_presence_block(compact=False):
     zones = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES)
     lead = (
-        f"Basés à {ADDRESS_FULL}, nous intervenons en Suisse romande pour l'installation, la maintenance et le dépannage CVC."
+        f"Basés à {ADDRESS_FULL}, nous intervenons en Suisse romande pour l'installation, la maintenance et le dépannage CVCS."
         if not compact else
-        f"Entreprise CVC basée à {ADDRESS_LOCALITY}, active en Suisse romande."
+        f"Entreprise CVCS basée à {ADDRESS_LOCALITY}, active en Suisse romande."
     )
     return f"""<section class="geo-presence content-section{' alt' if not compact else ''}" aria-labelledby="geo-title">
   <div class="container">
     <span class="label">Proximité</span>
     <div class="rule"></div>
-    <h2 class="section-title" id="geo-title">Une entreprise CVC près de vous en Suisse romande</h2>
+    <h2 class="section-title" id="geo-title">Une entreprise CVCS près de vous en Suisse romande</h2>
     <p class="section-lead">{lead} Contactez-nous pour vérifier la disponibilité dans votre commune.</p>
     <div class="zone-links">{zones}</div>
     <p style="margin-top:16px;"><a href="/contact/" class="text-link">Demander un devis ou un dépannage →</a></p>
@@ -425,11 +447,11 @@ def urgence_band():
 
 
 def zone_aeo_faq(name, region):
-    """FAQ orientée requêtes locales et moteurs de réponse."""
+    """FAQ orientée requêtes locales et moteurs de réponse (alignée GSC)."""
     return [
         (f"Qui appeler pour un chauffagiste à {name} ?", f"{COMPANY_NAME} intervient comme chauffagiste dans {region} : installation, entretien et dépannage de chaudières et pompes à chaleur. Appelez le {PHONE_DISP} ou passez par la page contact."),
-        (f"Qui appeler pour un dépannage CVC à {name} ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp. Indiquez votre commune, le type de bâtiment et la nature de la panne."),
-        (f"Intervenez-vous pour la ventilation dans {region} ?", f"Oui, nous réalisons installation, maintenance et dépannage de ventilation dans {region}, selon faisabilité et planning."),
+        (f"Qui appeler pour un dépannage CVCS à {name} ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp. Indiquez votre commune, le type de bâtiment et la nature de la panne."),
+        (f"Quelle entreprise de ventilation contacter dans {region} ?", f"{COMPANY_NAME} réalise installation, maintenance et dépannage de ventilation (VMC, gaines) dans {region}, selon faisabilité et planning."),
         (f"Proposez-vous le chauffage, la ventilation et la climatisation à {name} ?", f"Oui. Étude, installation, entretien et dépannage en {CVCS_PROSE} selon votre projet."),
         (f"Comment obtenir un devis à {name} ?", "Via notre page contact ou par téléphone : décrivez le bâtiment, la localisation exacte et le type de travaux (installation, maintenance ou dépannage)."),
     ]
@@ -1140,6 +1162,103 @@ def trust_strip():
 </section>"""
 
 
+def _stars_svg(rating=5):
+    """Étoiles accessibles (5 max) — SVG inline, pas d’emoji."""
+    full = max(0, min(5, int(rating)))
+    star = (
+        '<svg class="g-review__star" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">'
+        '<path fill="currentColor" d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.47L12 17.77l-5.8 3.05 1.11-6.47-4.7-4.58 6.49-.94L12 2.5z"/>'
+        "</svg>"
+    )
+    return f'<span class="g-review__stars" aria-label="{full} sur 5">{star * full}</span>'
+
+
+def google_g_mark():
+    return (
+        '<svg class="g-review__g" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">'
+        '<path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>'
+        '<path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>'
+        '<path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>'
+        '<path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>'
+        "</svg>"
+    )
+
+
+def google_reviews_schema():
+    """Schema Review + AggregateRating alignés sur les avis visibles (pas le total GBP)."""
+    reviews = []
+    total = 0
+    for r in GOOGLE_REVIEWS:
+        total += r["rating"]
+        reviews.append({
+            "@type": "Review",
+            "author": {"@type": "Person", "name": r["author"]},
+            "datePublished": r["date_published"],
+            "reviewBody": r["body"],
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": str(r["rating"]),
+                "bestRating": "5",
+                "worstRating": "1",
+            },
+            "publisher": {"@type": "Organization", "name": "Google"},
+        })
+    avg = round(total / len(GOOGLE_REVIEWS), 1) if GOOGLE_REVIEWS else 0
+    return {
+        "@type": "HVACBusiness",
+        "@id": f"{SITE}/#organization-reviews",
+        "name": COMPANY_NAME,
+        "url": SITE,
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": str(avg),
+            "reviewCount": str(len(GOOGLE_REVIEWS)),
+            "bestRating": "5",
+            "worstRating": "1",
+        },
+        "review": reviews,
+    }
+
+
+def google_reviews_section(*, heading_id="avis-google-title"):
+    """Bloc avis Google — citations éditoriales + lien fiche (pas de widget générique)."""
+    n = len(GOOGLE_REVIEWS)
+    avg = round(sum(r["rating"] for r in GOOGLE_REVIEWS) / n, 1) if n else 0
+    avg_disp = str(avg).replace(".", ",")
+    items = []
+    for r in GOOGLE_REVIEWS:
+        badge = f'<span class="g-review__badge">{r["badge"]}</span>' if r.get("badge") else ""
+        items.append(
+            f"""<blockquote class="g-review" cite="{GOOGLE_BUSINESS_URL}">
+  <div class="g-review__top">
+    <span class="g-review__avatar" aria-hidden="true">{r["initial"]}</span>
+    <div class="g-review__who">
+      <cite class="g-review__name">{r["author"]}</cite>
+      {badge}
+      <p class="g-review__when"><time datetime="{r["date_published"]}">{r["date_label"]}</time> · via Google</p>
+    </div>
+    {_stars_svg(r["rating"])}
+  </div>
+  <p class="g-review__body">« {r["body"]} »</p>
+</blockquote>"""
+        )
+    return f"""<section class="g-reviews" aria-labelledby="{heading_id}">
+  <div class="container">
+    <div class="g-reviews__head">
+      <div class="g-reviews__brand">
+        {google_g_mark()}
+        <div>
+          <h2 class="section-title" id="{heading_id}">Avis clients Google</h2>
+          <p class="g-reviews__score"><strong>{avg_disp}/5</strong> · {n} avis affichés · source Google</p>
+        </div>
+      </div>
+      <a href="{GOOGLE_BUSINESS_URL}" class="btn btn-secondary track-google" target="_blank" rel="noopener noreferrer">Voir la fiche Google</a>
+    </div>
+    <div class="g-reviews__grid">{"".join(items)}</div>
+  </div>
+</section>"""
+
+
 def hero_image_for(key):
     """Chemin hero 16:9 (2000×1125). Sources stock + équipe réelle (a-propos/contact)."""
     path = f"/assets/heroes/{key}.jpg"
@@ -1387,7 +1506,7 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
     hero = page_hero(
         "Zone d'intervention",
         h1,
-        f"Chauffagiste et CVC dans {region} : chauffage, ventilation, climatisation et sanitaire. Contactez Sopjani Tech Sàrl pour vérifier la disponibilité selon votre localisation.",
+        f"Chauffagiste et CVCS dans {region} : chauffage, ventilation, climatisation et sanitaire. Contactez Sopjani Tech Sàrl pour vérifier la disponibilité selon votre localisation.",
         image=hero_image_for("zones"),
         image_alt=h1,
     )
@@ -1440,7 +1559,7 @@ def path_strip_html():
     paths = [
         (
             "Installation",
-            "Étude, pose et mise en service de vos systèmes CVC.",
+            "Étude, pose et mise en service de vos systèmes CVCS.",
             "/contact/?need=installation#contact-form",
             "Demander un devis",
             "path-card--install",
@@ -1573,7 +1692,7 @@ def build_home():
   <div class="container hero-inner">
     <div class="hero-content">
       <p class="hero-eyebrow">Chantiers réels · Suisse romande</p>
-      <h1 id="hero-h1">CVC et sprinkler, exécutés sur le terrain.</h1>
+      <h1 id="hero-h1">CVCS et sprinkler, exécutés sur le terrain.</h1>
       <p class="hero-sub">{CVCS_GROUP} et protection incendie — installation, maintenance et dépannage.</p>
       <div class="hero-ctas">
         <a href="/contact/#contact-form" class="btn btn-brand btn-brand--on-dark track-devis">Demander un devis</a>
@@ -1581,7 +1700,7 @@ def build_home():
       </div>
       <ul class="hero-trust">
         <li>Photos de chantiers réels</li>
-        <li>Devis gratuit</li>
+        <li><a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google 5/5</a></li>
         <li>Normes suisses</li>
       </ul>
     </div>
@@ -1599,6 +1718,8 @@ def build_home():
     {cases_html}
   </div>
 </section>
+
+{google_reviews_section()}
 
 <section class="about-split about-split--compact" aria-labelledby="about-title">
   <div class="container about-split-grid">
@@ -1631,14 +1752,14 @@ def build_home():
 {cta_band()}"""
     home_title = PAGE_TITLES["home"]
     home_desc = META_DESCRIPTIONS["home"]
-    graph = base_graph(home_title, home_desc, SITE + "/", faq=faq)
+    graph = base_graph(home_title, home_desc, SITE + "/", faq=faq, extra=google_reviews_schema())
     write_page(["index.html"], page_shell(home_title, home_desc, SITE + "/", graph, body))
 
 
 
 def build_prestations():
     faq = [
-        ("Quelles prestations CVC proposez-vous ?", f"{CVCS_GROUP}, ainsi que dépannage SAV et sprinkler en sous-traitance."),
+        ("Quelles prestations CVCS proposez-vous ?", f"{CVCS_GROUP}, ainsi que dépannage SAV et sprinkler en sous-traitance."),
         ("Comment choisir la bonne prestation ?", "Chaque page prestation détaille les problématiques traitées et les interventions courantes. En cas de doute, décrivez votre bâtiment et votre besoin via notre page contact : nous vous orienterons vers la prestation adaptée."),
         ("Intervenez-vous en Suisse romande ?", f"Oui, principalement à Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à {ADDRESS_LOCALITY}."),
     ]
@@ -1678,7 +1799,7 @@ def build_zones_hub():
         ("Comment savoir si vous intervenez chez moi ?", f"Contactez-nous avec votre commune. Nous sommes basés à {ADDRESS_LOCALITY} et nous déplaçons selon la nature des travaux."),
         ("Avez-vous une agence dans chaque canton ?", "Non. Nos interventions sont assurées par une équipe mobile depuis notre siège à Romont FR."),
     ]
-    cards = "".join(f'<a class="hub-card" href="/{z}/"><h3>{n}</h3><p>Interventions CVC dans {r}</p><span class="link-arrow">Voir la zone →</span></a>' for z, n, r in ZONES)
+    cards = "".join(f'<a class="hub-card" href="/{z}/"><h3>{n}</h3><p>Interventions CVCS dans {r}</p><span class="link-arrow">Voir la zone →</span></a>' for z, n, r in ZONES)
     hero = page_hero(
         "Géographie",
         "Nos zones d'intervention en Suisse romande",
@@ -1715,7 +1836,7 @@ def build_zones_hub():
 
 def build_about():
     faq = [
-        (f"Où est située {COMPANY_NAME} ?", f"Notre siège est à {ADDRESS_FULL}. Nous intervenons en Suisse romande pour le {CVCS_PROSE} et le dépannage CVC."),
+        (f"Où est située {COMPANY_NAME} ?", f"Notre siège est à {ADDRESS_FULL}. Nous intervenons en Suisse romande pour le {CVCS_PROSE} et le dépannage CVCS."),
         ("Quels services propose l'entreprise ?", f"{CVCS_GROUP}, ainsi que dépannage SAV et sprinkler en sous-traitance."),
         ("Comment contacter Sopjani Tech Sàrl ?", f"Par téléphone au {PHONE_DISP}, par email ({EMAIL}) ou via WhatsApp. Horaires : {HOURS}."),
     ]
@@ -1801,6 +1922,7 @@ def build_about():
     </div>
   </div>
 </section>
+{google_reviews_section(heading_id="about-avis-title")}
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
     {faq_section_head()}
@@ -1813,7 +1935,17 @@ def build_about():
     crumbs = [("Accueil", "/"), ("À propos", "/a-propos/")]
     about_title = PAGE_TITLES["a-propos"]
     about_desc = META_DESCRIPTIONS["a-propos"]
-    graph = base_graph(about_title, about_desc, SITE + "/a-propos/", crumbs, faq, extra={"@type": "AboutPage", "name": "À propos", "url": SITE + "/a-propos/"})
+    graph = base_graph(
+        about_title,
+        about_desc,
+        SITE + "/a-propos/",
+        crumbs,
+        faq,
+        extra=[
+            {"@type": "AboutPage", "name": "À propos", "url": SITE + "/a-propos/"},
+            google_reviews_schema(),
+        ],
+    )
     write_page(["a-propos", "index.html"], page_shell(about_title, about_desc, SITE + "/a-propos/", graph, body, crumbs))
 
 
@@ -1822,7 +1954,7 @@ def build_contact():
         ("Comment nous joindre ?", f"Par téléphone ({PHONE_DISP}), email ({EMAIL}) ou WhatsApp."),
         ("Quelles informations fournir pour un devis ?", "Type de bâtiment, localisation (canton/commune), nature du besoin (installation, maintenance, dépannage) et urgence éventuelle."),
         ("Horaires de contact", HOURS + ". Pour un dépannage, contactez-nous par téléphone ou WhatsApp."),
-        ("Qui appeler en cas de panne CVC ?", f"Appelez le {PHONE_DISP} ou contactez-nous via WhatsApp en décrivant la panne et votre adresse."),
+        ("Qui appeler en cas de panne CVCS ?", f"Appelez le {PHONE_DISP} ou contactez-nous via WhatsApp en décrivant la panne et votre adresse."),
         ("Proposez-vous un devis gratuit ?", "Oui, le devis est gratuit et sans engagement. Décrivez votre projet via le formulaire ci-dessus ou par téléphone : nous confirmons la faisabilité et les prochaines étapes."),
     ]
     body = f"""
@@ -1880,6 +2012,7 @@ def build_contact():
       referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </section>
+{google_reviews_section(heading_id="contact-avis-title")}
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
     {faq_section_head()}
@@ -1892,7 +2025,16 @@ def build_contact():
     crumbs = [("Accueil", "/"), ("Contact", "/contact/")]
     contact_title = PAGE_TITLES["contact"]
     contact_desc = META_DESCRIPTIONS["contact"]
-    graph = base_graph(contact_title, contact_desc, SITE + "/contact/", faq=faq, extra={"@type": "ContactPage", "name": "Contact", "url": SITE + "/contact/"})
+    graph = base_graph(
+        contact_title,
+        contact_desc,
+        SITE + "/contact/",
+        faq=faq,
+        extra=[
+            {"@type": "ContactPage", "name": "Contact", "url": SITE + "/contact/"},
+            google_reviews_schema(),
+        ],
+    )
     write_page(["contact", "index.html"], page_shell(contact_title, contact_desc, SITE + "/contact/", graph, body))
 
 
@@ -2269,8 +2411,8 @@ def _premium_service_configs():
         {
             "slug": "ventilation",
             "name": "Ventilation",
-            "h1": "Ventilation et traitement de l'air",
-            "intro": "Mise en place et suivi de systèmes de ventilation pour le confort, la qualité de l'air et la maîtrise énergétique de votre bâtiment.",
+            "h1": "Entreprise de ventilation en Suisse romande",
+            "intro": "Entreprise de ventilation pour particuliers et professionnels : installation VMC, entretien des gaines, dépannage et urgence — Nyon, Fribourg, Valais, Vaud et Genève.",
             "problems_title": "Un problème de ventilation ?",
             "problems_lead": "Nous diagnostiquons et intervenons sur les VMC et réseaux d'air en Suisse romande.",
             "problems": [
@@ -2311,15 +2453,15 @@ def _premium_service_configs():
                 ("Entretien et nettoyage des réseaux",
                  "Un nettoyage périodique des gaines, bouches et filtres permet de préserver le débit d'air prévu à l'installation et d'éviter la surconsommation électrique des moteurs encrassés."),
             ],
-            "zones_title": "Ventiliste en Suisse romande",
-            "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Genève, Lausanne, Nyon et dans le canton de Vaud.",
-            "zone_slugs": ["geneve", "lausanne", "nyon", "vaud"],
+            "zones_title": "Entreprise de ventilation en Suisse romande",
+            "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Nyon, Fribourg, en Valais, à Genève, Lausanne et dans le canton de Vaud.",
+            "zone_slugs": ["nyon", "fribourg", "valais", "geneve", "lausanne", "vaud"],
             "related_svc": ["chauffage", "climatisation", "sanitaire", "depannage-sav"],
             "faq": [
+                ("Quelle entreprise de ventilation (ventiliste) contacter en Suisse romande ?", f"{COMPANY_NAME} intervient pour l'installation, la maintenance et le dépannage de ventilation à Nyon, Fribourg, Valais, Vaud et Genève."),
+                ("Intervenez-vous en urgence pour une panne VMC ?", f"Oui — urgence ventilation : appelez le {PHONE_DISP}. Nous évaluons la disponibilité selon le secteur et la nature de la panne."),
                 ("Réalisez-vous des travaux de rénovation de ventilation ?", "Oui, nous rénovons les VMC existantes : remplacement de moteurs, filtres et gaines, ou passage à une VMC double flux avec récupération de chaleur. Contactez-nous avec le type de bâtiment et l'état de l'installation actuelle."),
                 ("Comment obtenir un devis ventilation ?", "Contactez-nous avec le type de bâtiment, la surface et l'état des installations existantes."),
-                ("Quelle entreprise de ventilation (ventiliste) contacter en Suisse romande ?", f"{COMPANY_NAME} intervient pour l'installation, la maintenance et le dépannage de ventilation."),
-                ("Intervenez-vous en urgence pour une panne VMC ?", f"Oui, appelez-nous directement au {PHONE_DISP} : nous évaluons la disponibilité selon le secteur et la nature de la panne."),
             ],
         },
         {
@@ -2434,10 +2576,10 @@ def _premium_service_configs():
         {
             "slug": "depannage-sav",
             "name": "Dépannage SAV",
-            "h1": "Dépannage et maintenance (SAV) de vos installations CVC",
-            "intro": "Intervention sur vos installations en panne ou en fin de vie, avec une approche orientée remise en service et fiabilisation.",
+            "h1": "Urgence ventilation et dépannage CVCS",
+            "intro": "Panne de ventilation, chauffage ou climatisation ? Intervention SAV pour diagnostiquer et remettre en service — y compris en urgence.",
             "problems_title": "Une panne sur votre installation ?",
-            "problems_lead": "Chauffage, ventilation, climatisation ou sanitaire — nous diagnostiquons et remettons en service.",
+            "problems_lead": "Urgence ventilation, chauffage, climatisation ou sanitaire — nous diagnostiquons et remettons en service.",
             "problems": [
                 ("boiler", "Panne de chaudière ou de PAC", "Absence de chaleur ou arrêt inattendu."),
                 ("fan", "VMC à l'arrêt", "Plus de renouvellement d'air."),
@@ -2460,7 +2602,7 @@ def _premium_service_configs():
             "show_gallery": True,
             "gallery_cat": None,
             "gallery_title": "Nos interventions sur site",
-            "gallery_lead": f"Exemples d'interventions CVC réalisées par {COMPANY_NAME}.",
+            "gallery_lead": f"Exemples d'interventions CVCS réalisées par {COMPANY_NAME}.",
             "expertise_title": "Un SAV multi-techniques",
             "expertise_lead": "Nos dépannages couvrent le chauffage, la ventilation, la climatisation et les réseaux sanitaires.",
             "equip": [
@@ -2483,9 +2625,10 @@ def _premium_service_configs():
             "cta_title": "Besoin d'un dépannage ?",
             "cta_text": f"Appelez le {PHONE_DISP} ou décrivez-nous la panne. Nous évaluons la disponibilité selon l'urgence.",
             "faq": [
+                ("Qui appeler en urgence ventilation ?", f"Appelez {COMPANY_NAME} au {PHONE_DISP} ou WhatsApp : indiquez votre adresse et si la VMC / ventilation est totalement à l'arrêt."),
                 ("Comment signaler une urgence ?", f"Appelez le {PHONE_DISP} ou contactez-nous via WhatsApp en décrivant la situation."),
-                ("Quel délai d'intervention ?", "Le délai dépend de la nature de la panne (une absence totale de chauffage en hiver est traitée en priorité) et du secteur. Un appel direct permet une évaluation immédiate de la disponibilité, plus rapide qu'un formulaire."),
-                ("Qui appeler pour un dépannage chauffage ou climatisation ?", f"{COMPANY_NAME} au {PHONE_DISP}. Indiquez votre adresse et le type de panne."),
+                ("Quel délai d'intervention ?", "Le délai dépend de la nature de la panne (une absence totale de chauffage en hiver ou une VMC arrêtée est traitée en priorité) et du secteur. Un appel direct permet une évaluation immédiate de la disponibilité."),
+                ("Qui appeler pour un dépannage chauffage ou climatisation ?", f"{COMPANY_NAME} au {PHONE_DISP}. Indiquez votre adresse et le type de panne — notamment à Lausanne, Nyon ou Genève."),
                 ("Intervenez-vous le week-end ?", f"Oui, nos horaires sont : {HOURS}, y compris le week-end. Appelez-nous pour évaluer la disponibilité selon la nature de la panne."),
             ],
         },
@@ -2569,7 +2712,7 @@ def build_zones():
     zone_page("geneve", "Genève", "la région de Genève",
         PAGE_TITLES["geneve"],
         META_DESCRIPTIONS["geneve"],
-        "Chauffagiste et CVC dans la région de Genève",
+        "Chauffagiste et CVCS dans la région de Genève",
         p("Vous cherchez un chauffagiste à Genève ? Le canton présente un parc bâti dense — immeubles résidentiels, PPE, commerces et bâtiments tertiaires — avec des contraintes techniques variées. Certains quartiers sont raccordés à un réseau de chauffage à distance (dont GeniLac, alimenté par l'eau du lac) ; la loi cantonale sur l'énergie encourage par ailleurs le remplacement des chauffages fossiles par des pompes à chaleur lors de leur renouvellement.") +
         p("Que vous soyez propriétaire, régie ou responsable technique, contactez-nous pour vérifier la disponibilité d'intervention dans votre secteur.") +
         communes_block(["Genève", "Vernier", "Lancy", "Meyrin", "Carouge", "Onex", "Thônex", "Plan-les-Ouates", "Veyrier", "Grand-Saconnex", "Chêne-Bougeries", "Confignon"]) +
@@ -2595,9 +2738,9 @@ def build_zones():
     zone_page("lausanne", "Lausanne", "Lausanne et environs",
         PAGE_TITLES["lausanne"],
         META_DESCRIPTIONS["lausanne"],
-        "Chauffagiste à Lausanne : chauffage, CVC et dépannage",
+        "Chauffagiste à Lausanne : dépannage chauffage et CVCS",
         p("Vous cherchez un chauffagiste à Lausanne ? L'agglomération concentre immeubles résidentiels, bâtiments tertiaires et un parc ancien important (quartiers du centre-ville, Sous-Gare, Chailly) qui nécessite souvent une adaptation soignée des installations techniques lors d'une rénovation. Une partie de la ville est desservie par le réseau de chauffage à distance des Services industriels de Lausanne (SiL).") +
-        p("Nous intervenons aussi en dépannage chauffage à Lausanne et communes voisines. Indiquez le quartier ou la commune exacte lors de votre demande.") +
+        p("Nous intervenons aussi en dépannage chauffage à Lausanne et communes voisines — chaudière, pompe à chaleur, radiateurs. Indiquez le quartier ou la commune exacte lors de votre demande.") +
         p('Pour la climatisation ou une pompe à chaleur, consultez aussi nos pages <a href="/climatisation/">climatisation</a> et <a href="/chauffage/">chauffage</a>.') +
         communes_block(["Renens", "Prilly", "Le Mont-sur-Lausanne", "Épalinges", "Pully", "Chavannes-près-Renens", "Ecublens", "Crissier"]) +
         SUBSIDY_NOTE.format(extra="Les demandes pour l'agglomération lausannoise sont instruites par la Direction de l'énergie du canton de Vaud."),
@@ -2617,7 +2760,8 @@ def build_zones():
         communes_block(["Gland", "Rolle", "Prangins", "Founex", "Coppet", "Genolier", "Duillier", "Trélex"]) +
         SUBSIDY_NOTE.format(extra="La région de Nyon dépend du barème et du guichet du canton de Vaud (Direction de l'énergie)."),
         zone_aeo_faq("Nyon", "la région de Nyon") + [
-            ("Installez-vous la climatisation à Nyon ?", f"Oui. {COMPANY_NAME} étudie et installe la climatisation à Nyon et communes voisines (Gland, Rolle, Coppet…). Devis via la page contact."),
+            ("Installez-vous la climatisation à Nyon ?", f"Oui. {COMPANY_NAME} étudie et installe la climatisation à Nyon et communes voisines (Gland, Rolle, Coppet…). Devis via la page contact ou au {PHONE_DISP}."),
+            ("Qui appeler pour un chauffagiste à Nyon ?", f"{COMPANY_NAME} intervient comme chauffagiste à Nyon : chaudières, pompes à chaleur, entretien et dépannage. Appelez le {PHONE_DISP}."),
             ("Intervenez-vous sur des bâtiments Minergie récents ?", "Oui. Les constructions Minergie demandent une ventilation mécanique contrôlée bien réglée et un entretien régulier : nous pouvons intervenir sur ces installations comme sur du bâti plus ancien."),
         ],
         ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["geneve", "lausanne", "vaud"])
@@ -2625,7 +2769,7 @@ def build_zones():
     zone_page("valais", "Valais", "le canton du Valais",
         PAGE_TITLES["valais"],
         META_DESCRIPTIONS["valais"],
-        "Chauffagiste en Valais : chauffage, CVC et climatisation",
+        "Chauffagiste en Valais : chauffage, CVCS et climatisation",
         p("Chauffagiste en Valais : le canton présente de fortes variations d'altitude — de la plaine du Rhône aux stations de montagne — qui influencent directement le dimensionnement des installations de chauffage. Les résidences secondaires et chalets, souvent inoccupés une partie de l'année, demandent une attention particulière (protection hors gel, remise en service saisonnière).") +
         p("Contactez-nous avec votre commune (Sion, Martigny, Monthey, Sierre…) pour vérifier la disponibilité d'intervention.") +
         communes_block(["Sion", "Martigny", "Monthey", "Sierre", "Crans-Montana", "Verbier", "Saint-Maurice", "Conthey"]) +
@@ -2652,7 +2796,7 @@ def build_zones():
         PAGE_TITLES["neuchatel"],
         META_DESCRIPTIONS["neuchatel"],
         "Chauffagiste à Neuchâtel et La Chaux-de-Fonds",
-        p("Chauffagiste dans le canton de Neuchâtel : le territoire s'étend du littoral du lac de Neuchâtel aux hauteurs du Jura (La Chaux-de-Fonds, Le Locle). Le parc bâti mêle immeubles en ville, villas sur les coteaux et bâtiments industriels ou horlogers qui demandent souvent des installations CVC adaptées.") +
+        p("Chauffagiste dans le canton de Neuchâtel : le territoire s'étend du littoral du lac de Neuchâtel aux hauteurs du Jura (La Chaux-de-Fonds, Le Locle). Le parc bâti mêle immeubles en ville, villas sur les coteaux et bâtiments industriels ou horlogers qui demandent souvent des installations CVCS adaptées.") +
         p("Contactez-nous en précisant votre commune pour vérifier la disponibilité d'intervention.") +
         communes_block(["Neuchâtel", "La Chaux-de-Fonds", "Le Locle", "Peseux", "Boudry", "Cortaillod", "Saint-Blaise", "Val-de-Ruz"]) +
         SUBSIDY_NOTE.format(extra="Dans le canton de Neuchâtel, les demandes sont instruites par le Service de l'énergie et de l'environnement (SENE)."),
@@ -2925,7 +3069,7 @@ def build_realisations():
 {norms_bar()}
 {cta_band()}"""
     crumbs = [("Accueil", "/"), ("Réalisations", "/realisations/")]
-    title = PAGE_TITLES.get("realisations", "Réalisations CVC, sprinkler et sanitaire | Sopjani Tech Sàrl")
+    title = PAGE_TITLES.get("realisations", "Réalisations CVCS, sprinkler et sanitaire | Sopjani Tech Sàrl")
     desc = META_DESCRIPTIONS.get("realisations", f"Réalisations de {COMPANY_NAME} en Suisse romande : installations sprinkler, ventilation et tuyauterie sanitaire. Photos de chantiers réels.")
     gallery_schema = {
         "@type": "ImageGallery",
