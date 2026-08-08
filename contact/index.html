@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/main.css?v=1784501563">
+  <link rel="stylesheet" href="/css/main.css?v=1786224986">
   <script>window.dataLayer = window.dataLayer || []; function gtag(){ dataLayer.push(arguments); }</script>
   <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -343,25 +343,79 @@
     <div class="contact-inner">
       <div class="contact-form-section" id="contact-form">
         <h2 class="contact-block-title" id="contact-form-title">Formulaire de demande</h2>
-        <p class="contact-block-lead">Remplissez ce formulaire — nous vous répondons rapidement.</p>
-        <form class="contact-form track-form" action="#" method="post" data-form-endpoint="">
-          <div class="form-field"><label for="name">Nom</label><input id="name" name="name" type="text" required autocomplete="name" placeholder="Votre nom"></div>
-          <div class="form-field"><label for="phone">Téléphone</label><input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+41 79 …"></div>
-          <div class="form-field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="vous@exemple.ch"></div>
-          <div class="form-field"><label for="canton">Canton / Commune</label><input id="canton" name="canton" type="text" required placeholder="Ex. Lausanne, Vaud"></div>
-          <div class="form-field"><label for="need">Type de besoin</label>
-            <select id="need" name="need" required>
-              <option value="">Choisir…</option>
-              <option>Devis installation</option>
-              <option>Maintenance / entretien</option>
-              <option>Dépannage</option>
-              <option>Autre</option>
-            </select>
-          </div>
-          <div class="form-field"><label for="message">Message</label><textarea id="message" name="message" required placeholder="Décrivez votre besoin…"></textarea></div>
-          <button type="submit" class="btn btn-brand btn-block track-form-submit">Envoyer la demande</button>
-          <p class="form-feedback" role="status" aria-live="polite" hidden></p>
-        </form>
+        <p class="contact-block-lead">Quatre questions rapides — on vous recontacte avec la bonne orientation.</p>
+        <form class="contact-form contact-form--smart track-form" action="#" method="post" data-form-endpoint="" novalidate>
+  <div class="form-progress" role="group" aria-label="Progression du formulaire">
+    <div class="form-progress__bar" data-form-progress style="--progress: 25%"></div>
+    <ol class="form-progress__steps">
+      <li class="is-active" data-step-label="1">Bâtiment</li>
+      <li data-step-label="2">Besoin</li>
+      <li data-step-label="3">Urgence</li>
+      <li data-step-label="4">Contact</li>
+    </ol>
+  </div>
+
+  <fieldset class="form-step is-active" data-step="1">
+    <legend class="form-step__legend">Type de bâtiment</legend>
+    <div class="form-choice-grid" role="radiogroup" aria-label="Type de bâtiment">
+      <label class="form-choice"><input type="radio" name="building" value="Maison individuelle" required><span>Maison</span></label>
+      <label class="form-choice"><input type="radio" name="building" value="Appartement"><span>Appartement</span></label>
+      <label class="form-choice"><input type="radio" name="building" value="Immeuble"><span>Immeuble</span></label>
+      <label class="form-choice"><input type="radio" name="building" value="Commerce / tertiaire"><span>Commerce / tertiaire</span></label>
+      <label class="form-choice"><input type="radio" name="building" value="Autre"><span>Autre</span></label>
+    </div>
+    <div class="form-step__nav">
+      <button type="button" class="btn btn-brand" data-form-next>Continuer</button>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-step" data-step="2" hidden>
+    <legend class="form-step__legend">Type de besoin</legend>
+    <div class="form-choice-grid" role="radiogroup" aria-label="Type de besoin">
+      <label class="form-choice"><input type="radio" name="need" value="Devis installation" required><span>Installation</span></label>
+      <label class="form-choice"><input type="radio" name="need" value="Maintenance / entretien"><span>Maintenance</span></label>
+      <label class="form-choice"><input type="radio" name="need" value="Dépannage"><span>Dépannage</span></label>
+      <label class="form-choice"><input type="radio" name="need" value="Sprinkler / incendie"><span>Sprinkler</span></label>
+      <label class="form-choice"><input type="radio" name="need" value="Autre"><span>Autre</span></label>
+    </div>
+    <div class="form-step__nav">
+      <button type="button" class="btn btn-secondary" data-form-back>Retour</button>
+      <button type="button" class="btn btn-brand" data-form-next>Continuer</button>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-step" data-step="3" hidden>
+    <legend class="form-step__legend">Est-ce urgent ?</legend>
+    <div class="form-choice-grid form-choice-grid--2" role="radiogroup" aria-label="Urgence">
+      <label class="form-choice form-choice--urgent"><input type="radio" name="urgency" value="Urgent" required><span>Oui — panne en cours</span></label>
+      <label class="form-choice"><input type="radio" name="urgency" value="Non urgent"><span>Non — devis / planification</span></label>
+    </div>
+    <div class="form-urgent-cta" data-urgent-cta hidden>
+      <p>Pour une panne en cours, appelez-nous directement :</p>
+      <a href="tel:+41799326862" class="btn btn-urgence track-phone">Appeler · +41 79 932 68 62</a>
+      <a href="https://wa.me/41799326862" class="btn btn-secondary track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+    <div class="form-step__nav">
+      <button type="button" class="btn btn-secondary" data-form-back>Retour</button>
+      <button type="button" class="btn btn-brand" data-form-next>Continuer</button>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-step" data-step="4" hidden>
+    <legend class="form-step__legend">Vos coordonnées</legend>
+    <div class="form-field"><label for="name">Nom</label><input id="name" name="name" type="text" required autocomplete="name" placeholder="Votre nom"></div>
+    <div class="form-field"><label for="phone">Téléphone</label><input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+41 79 …"></div>
+    <div class="form-field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="vous@exemple.ch"></div>
+    <div class="form-field"><label for="canton">Canton / Commune</label><input id="canton" name="canton" type="text" required placeholder="Ex. Lausanne, Vaud"></div>
+    <div class="form-field"><label for="message">Message <span class="form-optional">(optionnel)</span></label><textarea id="message" name="message" placeholder="Précisez le bâtiment, la panne ou le projet…"></textarea></div>
+    <div class="form-step__nav">
+      <button type="button" class="btn btn-secondary" data-form-back>Retour</button>
+      <button type="submit" class="btn btn-brand track-form-submit">Envoyer la demande</button>
+    </div>
+  </fieldset>
+
+  <p class="form-feedback" role="status" aria-live="polite" hidden></p>
+</form>
       </div>
       <div class="contact-details-section">
         <h2 class="contact-block-title">Coordonnées</h2>

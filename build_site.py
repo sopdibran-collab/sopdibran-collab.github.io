@@ -485,6 +485,99 @@ REALISATIONS_BY_CAT = {}
 for _fn, _w, _h, _alt, _cat, _cap in REALISATIONS:
     REALISATIONS_BY_CAT.setdefault(_cat, []).append((_fn, _w, _h, _alt, _cap))
 
+# Cas chantiers — titres concrets (lieux réels uniquement quand connus dans les légendes)
+CASE_STUDIES = [
+    {
+        "title": "Centrale sprinkler sous eau",
+        "location": "Suisse romande",
+        "service": "Sprinkler",
+        "href": "/sprinkler-protection-incendie/",
+        "summary": "Collecteurs rouges, postes d'alarme et manomètres en local technique.",
+        "image": "sprinkler-collecteur-rouges.jpg",
+    },
+    {
+        "title": "Poste d'alarme sous air",
+        "location": "Parking Nord",
+        "service": "Sprinkler",
+        "href": "/sprinkler-protection-incendie/",
+        "summary": "Station sprinkler sous air avec vanne et contrôles d'alarme.",
+        "image": "sprinkler-vanne-seche-victaulic.jpg",
+    },
+    {
+        "title": "Conduits de ventilation galvanisés",
+        "location": "Suisse romande",
+        "service": "Ventilation",
+        "href": "/ventilation/",
+        "summary": "Pose de gaines en acier galvanisé sur chantier tertiaire.",
+        "image": "ventilation-conduit-galvanise-chantier.jpg",
+    },
+    {
+        "title": "Local technique sanitaire",
+        "location": "Suisse romande",
+        "service": "Sanitaire",
+        "href": "/sanitaire/",
+        "summary": "Collecteurs, réseaux métalliques et distribution en local technique.",
+        "image": "sanitaire-local-technique-collecteurs.jpg",
+    },
+    {
+        "title": "Tuyauterie sanitaire plafond",
+        "location": "Suisse romande",
+        "service": "Sanitaire",
+        "href": "/sanitaire/",
+        "summary": "Réseaux au plafond avec collecteurs laiton et supportage.",
+        "image": "sanitaire-tuyauterie-plafond-collecteurs.jpg",
+    },
+    {
+        "title": "Fabrication tuyauterie chauffage",
+        "location": "Atelier",
+        "service": "Chauffage",
+        "href": "/chauffage/",
+        "summary": "Assemblage de tuyauterie de chauffage préparé en atelier.",
+        "image": "tuyauterie-fabrication-atelier.jpg",
+    },
+    {
+        "title": "Unité de ventilation HVAC",
+        "location": "Suisse romande",
+        "service": "Ventilation",
+        "href": "/ventilation/",
+        "summary": "Unité HVAC raccordée à une gaine souple en local technique.",
+        "image": "ventilation-unite-hvac-gaine.jpg",
+    },
+    {
+        "title": "Bâti-support WC Geberit",
+        "location": "Suisse romande",
+        "service": "Sanitaire",
+        "href": "/sanitaire/",
+        "summary": "Installation bâti-support Geberit Sigma avec colonne d'évacuation.",
+        "image": "sanitaire-bati-wc-geberit-sigma.jpg",
+    },
+]
+
+
+def case_card_html(case, *, heading="h3"):
+    img = case["image"]
+    title = case["title"]
+    loc = case["location"]
+    svc = case["service"]
+    summary = case["summary"]
+    href = case["href"]
+    return f"""<article class="case-card">
+  <a class="case-card__media" href="/realisations/#cas-chantiers" tabindex="-1" aria-hidden="true">
+    <img src="/assets/realisations/{img}" alt="" width="640" height="480" loading="lazy" decoding="async">
+  </a>
+  <div class="case-card__body">
+    <p class="case-card__meta"><span>{svc}</span> · <span>{loc}</span></p>
+    <{heading} class="case-card__title"><a href="{href}">{title}</a></{heading}>
+    <p class="case-card__summary">{summary}</p>
+  </div>
+</article>"""
+
+
+def case_studies_grid(cases, *, limit=None, heading="h3"):
+    items = cases[:limit] if limit else cases
+    cards = "".join(case_card_html(c, heading=heading) for c in items)
+    return f'<div class="case-grid">{cards}</div>'
+
 
 def image_object_ld(fn, w, h, alt, cap):
     return {
@@ -1342,109 +1435,192 @@ def svc_strip_card(slug, name, tag):
     )
 
 
+def path_strip_html():
+    """3 chemins clairs : Installation / Maintenance / Dépannage."""
+    paths = [
+        (
+            "Installation",
+            "Étude, pose et mise en service de vos systèmes CVC.",
+            "/contact/?need=installation#contact-form",
+            "Demander un devis",
+            "path-card--install",
+        ),
+        (
+            "Maintenance",
+            "Entretien préventif pour fiabilité et conformité.",
+            "/contact/?need=maintenance#contact-form",
+            "Planifier un entretien",
+            "path-card--maint",
+        ),
+        (
+            "Dépannage",
+            "Intervention rapide en cas de panne — appelez-nous.",
+            f"tel:{PHONE}",
+            f"Appeler · {PHONE_DISP}",
+            "path-card--urgent",
+        ),
+    ]
+    cards = []
+    for title, lead, href, cta, mod in paths:
+        track = "track-phone" if href.startswith("tel:") else "track-devis"
+        cards.append(
+            f'<a class="path-card {mod} {track}" href="{href}">'
+            f'<span class="path-card__title">{title}</span>'
+            f'<span class="path-card__lead">{lead}</span>'
+            f'<span class="path-card__cta">{cta} →</span></a>'
+        )
+    return f"""<section class="path-strip" aria-label="Comment pouvons-nous vous aider ?">
+  <div class="container">
+    <div class="path-strip__head">
+      <h2 class="section-title">Installation · Maintenance · Dépannage</h2>
+      <p class="section-lead">Choisissez votre besoin — on vous oriente immédiatement.</p>
+    </div>
+    <div class="path-grid">{"".join(cards)}</div>
+    <p class="path-strip__more"><a href="/prestations/" class="text-link">Voir toutes les prestations →</a></p>
+  </div>
+</section>"""
+
+
+def smart_contact_form_html():
+    """Formulaire multi-étapes : bâtiment → besoin → urgence → coordonnées."""
+    return f"""<form class="contact-form contact-form--smart track-form" action="{FORM_ENDPOINT or '#'}" method="post" data-form-endpoint="{FORM_ENDPOINT}" novalidate>
+  <div class="form-progress" role="group" aria-label="Progression du formulaire">
+    <div class="form-progress__bar" data-form-progress style="--progress: 25%"></div>
+    <ol class="form-progress__steps">
+      <li class="is-active" data-step-label="1">Bâtiment</li>
+      <li data-step-label="2">Besoin</li>
+      <li data-step-label="3">Urgence</li>
+      <li data-step-label="4">Contact</li>
+    </ol>
+  </div>
+
+  <fieldset class="form-step is-active" data-step="1">
+    <legend class="form-step__legend">Type de bâtiment</legend>
+    <div class="form-choice-grid" role="radiogroup" aria-label="Type de bâtiment">
+      <label class="form-choice"><input type="radio" name="building" value="Maison individuelle" required><span>Maison</span></label>
+      <label class="form-choice"><input type="radio" name="building" value="Appartement"><span>Appartement</span></label>
+      <label class="form-choice"><input type="radio" name="building" value="Immeuble"><span>Immeuble</span></label>
+      <label class="form-choice"><input type="radio" name="building" value="Commerce / tertiaire"><span>Commerce / tertiaire</span></label>
+      <label class="form-choice"><input type="radio" name="building" value="Autre"><span>Autre</span></label>
+    </div>
+    <div class="form-step__nav">
+      <button type="button" class="btn btn-brand" data-form-next>Continuer</button>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-step" data-step="2" hidden>
+    <legend class="form-step__legend">Type de besoin</legend>
+    <div class="form-choice-grid" role="radiogroup" aria-label="Type de besoin">
+      <label class="form-choice"><input type="radio" name="need" value="Devis installation" required><span>Installation</span></label>
+      <label class="form-choice"><input type="radio" name="need" value="Maintenance / entretien"><span>Maintenance</span></label>
+      <label class="form-choice"><input type="radio" name="need" value="Dépannage"><span>Dépannage</span></label>
+      <label class="form-choice"><input type="radio" name="need" value="Sprinkler / incendie"><span>Sprinkler</span></label>
+      <label class="form-choice"><input type="radio" name="need" value="Autre"><span>Autre</span></label>
+    </div>
+    <div class="form-step__nav">
+      <button type="button" class="btn btn-secondary" data-form-back>Retour</button>
+      <button type="button" class="btn btn-brand" data-form-next>Continuer</button>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-step" data-step="3" hidden>
+    <legend class="form-step__legend">Est-ce urgent ?</legend>
+    <div class="form-choice-grid form-choice-grid--2" role="radiogroup" aria-label="Urgence">
+      <label class="form-choice form-choice--urgent"><input type="radio" name="urgency" value="Urgent" required><span>Oui — panne en cours</span></label>
+      <label class="form-choice"><input type="radio" name="urgency" value="Non urgent"><span>Non — devis / planification</span></label>
+    </div>
+    <div class="form-urgent-cta" data-urgent-cta hidden>
+      <p>Pour une panne en cours, appelez-nous directement :</p>
+      <a href="tel:{PHONE}" class="btn btn-urgence track-phone">Appeler · {PHONE_DISP}</a>
+      <a href="{WA}" class="btn btn-secondary track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+    <div class="form-step__nav">
+      <button type="button" class="btn btn-secondary" data-form-back>Retour</button>
+      <button type="button" class="btn btn-brand" data-form-next>Continuer</button>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-step" data-step="4" hidden>
+    <legend class="form-step__legend">Vos coordonnées</legend>
+    <div class="form-field"><label for="name">Nom</label><input id="name" name="name" type="text" required autocomplete="name" placeholder="Votre nom"></div>
+    <div class="form-field"><label for="phone">Téléphone</label><input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+41 79 …"></div>
+    <div class="form-field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="vous@exemple.ch"></div>
+    <div class="form-field"><label for="canton">Canton / Commune</label><input id="canton" name="canton" type="text" required placeholder="Ex. Lausanne, Vaud"></div>
+    <div class="form-field"><label for="message">Message <span class="form-optional">(optionnel)</span></label><textarea id="message" name="message" placeholder="Précisez le bâtiment, la panne ou le projet…"></textarea></div>
+    <div class="form-step__nav">
+      <button type="button" class="btn btn-secondary" data-form-back>Retour</button>
+      <button type="submit" class="btn btn-brand track-form-submit">Envoyer la demande</button>
+    </div>
+  </fieldset>
+
+  <p class="form-feedback" role="status" aria-live="polite" hidden></p>
+</form>"""
+
+
 def build_home():
-    strip = [
-        ("chauffage", "Chauffage", "Installation & entretien"),
-        ("ventilation", "Ventilation", "Traitement de l'air"),
-        ("climatisation", "Climatisation", "Étude & installation"),
-        ("sanitaire", "Sanitaire", "Rénovation & dépannage"),
-        ("sprinkler-protection-incendie", "Sprinkler", "Protection incendie"),
-        ("depannage-sav", "Dépannage SAV", "Intervention rapide"),
-    ]
-    svc_strip = "".join(svc_strip_card(s, n, t) for s, n, t in strip)
-    real_tiles = [
-        ("sprinkler-collecteur-rouges.jpg", "Réseau Sprinkler", "Protection incendie"),
-        ("tuyauterie-fabrication-atelier.jpg", "Centrale de chauffage", "Installation complète"),
-        ("ventilation-conduit-galvanise-chantier.jpg", "Ventilation", "Conduits chantier tertiaire"),
-        ("sanitaire-local-technique-collecteurs.jpg", "Sanitaire", "Rénovation"),
-        ("ventilation-unite-hvac-gaine.jpg", "Climatisation", "Installation"),
-    ]
-    real_html = "".join(
-        f'<a class="real-tile" href="/realisations/">'
-        f'<img src="/assets/realisations/{fn}" alt="{title} — {sub} · Sopjani Tech Sàrl" width="480" height="640" loading="lazy" decoding="async">'
-        f'<span class="real-tile__cap"><strong>{title}</strong><em>{sub}</em></span></a>'
-        for fn, title, sub in real_tiles
-    )
+    cases_html = case_studies_grid(CASE_STUDIES, limit=4, heading="h3")
     faq = [
-        ("Quels services proposez-vous ?", f"{CVCS_GROUP}, ainsi que dépannage SAV et sprinkler / protection incendie en Suisse romande."),
-        ("Dans quelles zones intervenez-vous ?", f"Principalement Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à {ADDRESS_LOCALITY}."),
-        ("Comment obtenir un devis ?", "Via notre page contact ou par téléphone : décrivez le type de bâtiment, la localisation et la nature du besoin. Le devis est gratuit et sans engagement."),
-        ("Intervenez-vous en dépannage ?", f"Oui, nous intervenons en dépannage en {CVCS_PROSE} en Suisse romande. Nos horaires : {HOURS}. Appelez-nous directement pour une panne en cours."),
-        ("Qui contacter pour un dépannage CVC en Suisse romande ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp."),
-        ("Combien de temps pour obtenir un devis ?", f"Pour une réponse immédiate, appelez-nous au {PHONE_DISP} ; pour une demande non urgente, utilisez le formulaire. Horaires : {HOURS}."),
-        ("Intervenez-vous près de chez moi ?", f"Nous sommes basés à {ADDRESS_FULL} et intervenons en Suisse romande. Contactez-nous pour vérifier la disponibilité dans votre commune."),
+        ("Comment obtenir un devis ?", "Via le formulaire contact (quelques questions) ou par téléphone. Le devis est gratuit et sans engagement."),
+        ("Intervenez-vous en dépannage ?", f"Oui, en {CVCS_PROSE} en Suisse romande. Appelez le {PHONE_DISP} pour une panne en cours. Horaires : {HOURS}."),
+        ("Dans quelles zones intervenez-vous ?", f"Genève, Vaud, Lausanne, Nyon, Valais, Fribourg et alentours. Siège à {ADDRESS_LOCALITY}."),
     ]
     body = f"""
 <section class="hero hero--photo" aria-labelledby="hero-h1">
   <div class="hero-media" aria-hidden="true">
-    <img src="/assets/heroes/home.jpg" alt="" width="2000" height="1125" fetchpriority="high" decoding="async">
+    <img src="/assets/heroes/home.jpg" alt="Centrale sprinkler installée par Sopjani Tech Sàrl — chantier réel en Suisse romande" width="2000" height="1125" fetchpriority="high" decoding="async">
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-content">
-      <p class="hero-eyebrow">Étude · Installation · Maintenance · Dépannage</p>
-      <h1 id="hero-h1">Solutions CVC fiables pour vos bâtiments.</h1>
-      <p class="hero-sub">{CVCS_GROUP} et protection incendie en Suisse romande.</p>
+      <p class="hero-eyebrow">Chantiers réels · Suisse romande</p>
+      <h1 id="hero-h1">CVC et sprinkler, exécutés sur le terrain.</h1>
+      <p class="hero-sub">{CVCS_GROUP} et protection incendie — installation, maintenance et dépannage.</p>
       <div class="hero-ctas">
-        <a href="/contact/" class="btn btn-brand btn-brand--on-dark track-devis">Demander un devis</a>
+        <a href="/contact/#contact-form" class="btn btn-brand btn-brand--on-dark track-devis">Demander un devis</a>
         <a href="tel:{PHONE}" class="btn btn-urgence track-phone">Dépannage urgent</a>
       </div>
       <ul class="hero-trust">
+        <li>Photos de chantiers réels</li>
         <li>Devis gratuit</li>
-        <li>Intervention rapide</li>
         <li>Normes suisses</li>
       </ul>
     </div>
   </div>
 </section>
 
-<section class="svc-strip" aria-label="Prestations">
-  <div class="container">
-    <div class="svc-strip-grid">{svc_strip}</div>
-  </div>
-</section>
+{path_strip_html()}
 
-{trust_strip()}
-
-<section class="home-realisations" aria-labelledby="real-title">
+<section class="home-cases" aria-labelledby="cases-title">
   <div class="container">
     <div class="home-realisations__head">
-      <h2 class="section-title" id="real-title">Nos réalisations</h2>
-      <a href="/realisations/" class="text-link">Voir toutes les réalisations →</a>
+      <h2 class="section-title" id="cases-title">Cas chantiers</h2>
+      <a href="/realisations/#cas-chantiers" class="text-link">Voir toutes les réalisations →</a>
     </div>
-    <div class="real-tiles">{real_html}</div>
+    {cases_html}
   </div>
 </section>
 
-<section class="about-split" aria-labelledby="about-title">
+<section class="about-split about-split--compact" aria-labelledby="about-title">
   <div class="container about-split-grid">
     <div class="about-copy">
-      <span class="label label--brand">À propos de Sopjani Tech</span>
-      <h2 class="section-title" id="about-title">Rigueur, transparence et proximité.</h2>
-      <p>Nous concevons, installons et assurons la mise en service avec un interlocuteur unique et un suivi clair à chaque étape.</p>
-      <ul class="check-list">
-        <li>Devis clairs et détaillés</li>
-        <li>Respect des normes suisses (SIA, SUVA, AEAI…)</li>
-        <li>Interlocuteur direct et réactif</li>
-        <li>Qualité d'exécution et traçabilité</li>
-      </ul>
+      <span class="label label--brand">À propos</span>
+      <h2 class="section-title" id="about-title">Un interlocuteur, du devis à la mise en service.</h2>
+      <p>Étude, installation et suivi avec devis clairs et respect des normes suisses (SIA, SUVA, AEAI).</p>
       <p class="about-copy-links">
-        <a href="/a-propos/" class="text-link">Présentation de l'entreprise →</a>
-        <a href="/contact/" class="text-link track-devis">Demander un devis →</a>
+        <a href="/a-propos/" class="text-link">Présentation →</a>
+        <a href="/contact/#contact-form" class="text-link track-devis">Demander un devis →</a>
       </p>
     </div>
     <div class="about-photo-duo" aria-label="Équipe Sopjani Tech">
       <figure class="about-photo">
-        <img src="/assets/equipe/equipe-soudure-logo-dos.jpg" alt="Technicien Sopjani Tech Sàrl en intervention — logo visible sur la tenue" width="900" height="900" loading="lazy" decoding="async">
+        <img src="/assets/equipe/equipe-soudure-logo-dos.jpg" alt="Technicien Sopjani Tech Sàrl en intervention" width="900" height="900" loading="lazy" decoding="async">
       </figure>
       <figure class="about-photo">
-        <img src="/assets/equipe/equipe-formation-logo-dos.jpg" alt="Collaborateur Sopjani Tech Sàrl en formation — tenue aux couleurs de l'entreprise" width="775" height="1024" loading="lazy" decoding="async">
+        <img src="/assets/equipe/equipe-formation-logo-dos.jpg" alt="Collaborateur Sopjani Tech Sàrl en formation" width="775" height="1024" loading="lazy" decoding="async">
       </figure>
     </div>
   </div>
 </section>
-
-{norms_bar()}
 
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
@@ -1663,25 +1839,8 @@ def build_contact():
     <div class="contact-inner">
       <div class="contact-form-section" id="contact-form">
         <h2 class="contact-block-title" id="contact-form-title">Formulaire de demande</h2>
-        <p class="contact-block-lead">Remplissez ce formulaire — nous vous répondons rapidement.</p>
-        <form class="contact-form track-form" action="{FORM_ENDPOINT or '#'}" method="post" data-form-endpoint="{FORM_ENDPOINT}">
-          <div class="form-field"><label for="name">Nom</label><input id="name" name="name" type="text" required autocomplete="name" placeholder="Votre nom"></div>
-          <div class="form-field"><label for="phone">Téléphone</label><input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+41 79 …"></div>
-          <div class="form-field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="vous@exemple.ch"></div>
-          <div class="form-field"><label for="canton">Canton / Commune</label><input id="canton" name="canton" type="text" required placeholder="Ex. Lausanne, Vaud"></div>
-          <div class="form-field"><label for="need">Type de besoin</label>
-            <select id="need" name="need" required>
-              <option value="">Choisir…</option>
-              <option>Devis installation</option>
-              <option>Maintenance / entretien</option>
-              <option>Dépannage</option>
-              <option>Autre</option>
-            </select>
-          </div>
-          <div class="form-field"><label for="message">Message</label><textarea id="message" name="message" required placeholder="Décrivez votre besoin…"></textarea></div>
-          <button type="submit" class="btn btn-brand btn-block track-form-submit">Envoyer la demande</button>
-          <p class="form-feedback" role="status" aria-live="polite" hidden></p>
-        </form>
+        <p class="contact-block-lead">Quatre questions rapides — on vous recontacte avec la bonne orientation.</p>
+        {smart_contact_form_html()}
       </div>
       <div class="contact-details-section">
         <h2 class="contact-block-title">Coordonnées</h2>
@@ -2748,10 +2907,17 @@ def build_realisations():
     body = f"""
 {page_hero(
         "Réalisations",
-        f"Nos réalisations en {CVCS_PROSE} et sprinkler",
-        f"Aperçu de chantiers réalisés par {COMPANY_NAME} en Suisse romande : chauffage, ventilation, sanitaire et sprinkler / protection incendie.",
+        f"Cas chantiers en {CVCS_PROSE} et sprinkler",
+        f"Projets réalisés par {COMPANY_NAME} en Suisse romande — photos de chantiers réels.",
         image=hero_image_for("realisations"),
     )}
+<section class="content-section home-cases" id="cas-chantiers" aria-labelledby="cases-h2">
+  <div class="container">
+    <h2 class="section-title" id="cases-h2">Cas chantiers</h2>
+    <p class="section-lead">Quelques interventions représentatives — titres concrets, photos prises sur site.</p>
+    {case_studies_grid(CASE_STUDIES, heading="h3")}
+  </div>
+</section>
 {duo_hvac}
 {duo_san_spr}
 <p class="gallery-legal-note container"><a href="{IMAGE_LICENSE_URL}">Droits et utilisation des images</a> · {IMAGE_COPYRIGHT_NOTICE}</p>
@@ -3034,7 +3200,110 @@ document.querySelectorAll('.track-form').forEach(form => {
         feedback.hidden = false;
       }
       form.reset();
+      if (form.classList.contains('contact-form--smart')) {
+        const steps = form.querySelectorAll('.form-step');
+        steps.forEach((s, i) => {
+          s.hidden = i !== 0;
+          s.classList.toggle('is-active', i === 0);
+        });
+        const urgent = form.querySelector('[data-urgent-cta]');
+        if (urgent) urgent.hidden = true;
+        updateSmartFormProgress(form, 1);
+      }
     }
+  });
+});
+
+function updateSmartFormProgress(form, step) {
+  const bar = form.querySelector('[data-form-progress]');
+  const labels = form.querySelectorAll('[data-step-label]');
+  if (bar) bar.style.setProperty('--progress', (step / 4 * 100) + '%');
+  labels.forEach(li => {
+    const n = Number(li.getAttribute('data-step-label'));
+    li.classList.toggle('is-active', n === step);
+    li.classList.toggle('is-done', n < step);
+  });
+}
+
+function validateSmartStep(stepEl) {
+  const required = stepEl.querySelectorAll('[required]');
+  for (const el of required) {
+    if (el.type === 'radio') {
+      const name = el.name;
+      if (!stepEl.querySelector(`input[name="${name}"]:checked`)) {
+        const first = stepEl.querySelector(`input[name="${name}"]`);
+        if (first) first.focus();
+        return false;
+      }
+    } else if (!el.value.trim()) {
+      el.focus();
+      return false;
+    }
+  }
+  return true;
+}
+
+document.querySelectorAll('.contact-form--smart').forEach(form => {
+  const steps = Array.from(form.querySelectorAll('.form-step'));
+  let current = 1;
+  updateSmartFormProgress(form, current);
+
+  // Prefill from ?need=installation|maintenance|depannage
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const needMap = {
+      installation: 'Devis installation',
+      maintenance: 'Maintenance / entretien',
+      depannage: 'Dépannage',
+      sprinkler: 'Sprinkler / incendie',
+    };
+    const needKey = (params.get('need') || '').toLowerCase();
+    if (needMap[needKey]) {
+      const radio = form.querySelector(`input[name="need"][value="${needMap[needKey]}"]`);
+      if (radio) radio.checked = true;
+    }
+  } catch (_) {}
+
+  form.addEventListener('change', e => {
+    if (e.target && e.target.name === 'urgency') {
+      const urgent = form.querySelector('[data-urgent-cta]');
+      if (urgent) urgent.hidden = e.target.value !== 'Urgent';
+    }
+  });
+
+  form.querySelectorAll('[data-form-next]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const stepEl = form.querySelector(`.form-step[data-step="${current}"]`);
+      if (!stepEl || !validateSmartStep(stepEl)) return;
+      if (current >= steps.length) return;
+      stepEl.hidden = true;
+      stepEl.classList.remove('is-active');
+      current += 1;
+      const next = form.querySelector(`.form-step[data-step="${current}"]`);
+      if (next) {
+        next.hidden = false;
+        next.classList.add('is-active');
+      }
+      updateSmartFormProgress(form, current);
+    });
+  });
+
+  form.querySelectorAll('[data-form-back]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (current <= 1) return;
+      const stepEl = form.querySelector(`.form-step[data-step="${current}"]`);
+      if (stepEl) {
+        stepEl.hidden = true;
+        stepEl.classList.remove('is-active');
+      }
+      current -= 1;
+      const prev = form.querySelector(`.form-step[data-step="${current}"]`);
+      if (prev) {
+        prev.hidden = false;
+        prev.classList.add('is-active');
+      }
+      updateSmartFormProgress(form, current);
+    });
   });
 });
 document.querySelectorAll('.track-google').forEach(el => {
