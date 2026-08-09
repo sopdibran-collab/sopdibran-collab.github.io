@@ -250,15 +250,48 @@
       color: var(--c-navy);
     }
 
+    /* Lien « suite » éditorial — pas le pattern SaaS souligné + → */
     .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55em;
+      font-family: var(--font-display);
+      font-size: 0.8125rem;
       font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       color: var(--c-navy);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-color: var(--c-logo);
+      text-decoration: none;
+      padding-bottom: 5px;
+      background-image: linear-gradient(var(--c-logo), var(--c-logo));
+      background-repeat: no-repeat;
+      background-position: 0 100%;
+      background-size: 1.35rem 2px;
+      transition: background-size 0.28s ease, color 0.2s ease;
     }
 
-    .text-link:hover { color: var(--c-navy-hover); }
+    .text-link::after {
+      content: "";
+      width: 0.42em;
+      height: 0.42em;
+      margin-top: -0.08em;
+      border-right: 1.5px solid currentColor;
+      border-top: 1.5px solid currentColor;
+      transform: rotate(45deg);
+      transition: transform 0.22s ease;
+      flex-shrink: 0;
+    }
+
+    .text-link:hover,
+    .text-link:focus-visible {
+      color: var(--c-navy);
+      background-size: calc(100% - 1.1em) 2px;
+    }
+
+    .text-link:hover::after,
+    .text-link:focus-visible::after {
+      transform: rotate(45deg) translate(2px, -2px);
+    }
 
     /* ── HEADER (site only — ne pas cibler les <header> de section) ── */
     header.site-header {
@@ -3747,8 +3780,7 @@ a.about-contact-row:hover .about-contact-row__v { color: var(--c-logo); }
 
 .label { color: var(--c-navy); }
 .rule { background: var(--c-logo); }
-.text-link { color: var(--c-navy); text-decoration-color: var(--c-logo); }
-.text-link:hover { color: var(--c-navy-hover); }
+/* .text-link : style défini dans le design system (filet cyan + chevron) */
 
 /* Trust + norms on all pages */
 .site-trust,
