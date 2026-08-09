@@ -1366,7 +1366,7 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
   <meta name="twitter:image:alt" content="Sopjani Tech Sàrl — CVCS Suisse romande">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css?v={int((ROOT / 'css' / 'main.css').stat().st_mtime)}">
 {analytics_head()}
   <script type="application/ld+json">{schema_json(schema_graph)}</script>
@@ -1757,7 +1757,7 @@ def build_home():
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-content">
-      <p class="hero-eyebrow">Chantiers réels · Suisse romande</p>
+      <p class="hero-eyebrow">Suisse romande</p>
       <h1 id="hero-h1">CVCS et sprinkler, exécutés sur le terrain.</h1>
       <p class="hero-sub">{CVCS_GROUP} et protection incendie — installation, maintenance et dépannage.</p>
       <div class="hero-ctas">
@@ -1765,7 +1765,7 @@ def build_home():
         <a href="tel:{PHONE}" class="btn btn-urgence track-phone">Dépannage urgent</a>
       </div>
       <ul class="hero-trust">
-        <li>Photos de chantiers réels</li>
+        <li>Devis gratuit</li>
         <li><a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google 5/5</a></li>
         <li>Normes suisses</li>
       </ul>
