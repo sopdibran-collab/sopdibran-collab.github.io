@@ -115,10 +115,10 @@ PAGE_TITLES = {
     "a-propos": "Sopjani Tech Sàrl | Entreprise CVCS à Romont",
     "contact": "Devis et dépannage CVCS | Contact | Sopjani Tech Sàrl",
     "prestations": "Prestations CVCS et sprinkler | Sopjani Tech Sàrl",
-    "zones-intervention": "Zones d'intervention CVCS | Suisse romande | Sopjani Tech Sàrl",
+    "zones-intervention": "Zones d'intervention | Suisse romande | Sopjani Tech Sàrl",
     "plan-du-site": "Plan du site | Sopjani Tech Sàrl",
     "chauffage": "Chauffagiste Lausanne, Nyon, Genève | Sopjani Tech Sàrl",
-    "ventilation": "Entreprise de ventilation Suisse romande | Sopjani Tech Sàrl",
+    "ventilation": "Entreprise ventilation Suisse romande | Sopjani Tech Sàrl",
     "climatisation": "Climatisation Nyon, Lausanne, Genève | Sopjani Tech Sàrl",
     "depannage-sav": "Urgence ventilation et dépannage CVCS | Sopjani Tech Sàrl",
     "sanitaire": "Sanitaire Suisse romande | Dépannage | Sopjani Tech Sàrl",
@@ -582,8 +582,8 @@ def case_card_html(case, *, heading="h3"):
     summary = case["summary"]
     href = case["href"]
     return f"""<article class="case-card">
-  <a class="case-card__media" href="/realisations/#cas-chantiers" tabindex="-1" aria-hidden="true">
-    <img src="/assets/realisations/{img}" alt="" width="640" height="480" loading="lazy" decoding="async">
+  <a class="case-card__media" href="/realisations/#cas-chantiers" tabindex="-1">
+    <img src="/assets/realisations/{img}" alt="{title.replace(chr(34), '&quot;')} — {svc}, {loc}" width="640" height="480" loading="lazy" decoding="async">
   </a>
   <div class="case-card__body">
     <p class="case-card__meta"><span>{svc}</span> · <span>{loc}</span></p>
@@ -952,65 +952,57 @@ def header():
 
 
 def footer():
-    svc = "".join(f'<li><a href="/{s}/">{n}</a></li>' for s, n, _ in SERVICES)
-    zones = '<li><a href="/zones-intervention/">Toutes les zones</a></li>' + "".join(
-        f'<li><a href="/{z}/">{n}</a></li>' for z, n, _ in ZONES
+    svc_chips = "".join(
+        f'<li><a href="/{s}/">{n}</a></li>' for s, n, _ in SERVICES
     )
-    return f"""<footer>
-  <div class="container">
-    <div class="footer-brand">
+    zone_chips = (
+        '<li><a href="/zones-intervention/">Toutes</a></li>'
+        + "".join(f'<li><a href="/{z}/">{n}</a></li>' for z, n, _ in ZONES)
+    )
+    return f"""<footer class="site-footer" role="contentinfo">
+  <div class="container site-footer__inner">
+    <div class="site-footer__top">
       <a href="/" class="footer-logo-wrap">
-        <img class="logo-img logo-img--responsive" src="{LOGO_FOOTER}" alt="Sopjani Tech Sàrl" width="160" height="78" loading="lazy" decoding="async">
+        <img class="logo-img logo-img--responsive" src="{LOGO_FOOTER}" alt="Sopjani Tech Sàrl" width="120" height="36" loading="lazy" decoding="async">
       </a>
+      <p class="site-footer__tagline">{CVCS_GROUP} · Dépannage SAV · Suisse romande</p>
     </div>
-    <div class="footer-grid">
-      <div class="footer-col footer-col--services">
-        <div class="footer-col-title">Services</div>
-        <ul class="footer-links">{svc}</ul>
+    <div class="site-footer__rows">
+      <div class="site-footer__row">
+        <p class="site-footer__label">Services</p>
+        <ul class="site-footer__chips">{svc_chips}</ul>
       </div>
-      <div class="footer-col footer-col--zones">
-        <div class="footer-col-title">Zones</div>
-        <ul class="footer-links">{zones}</ul>
+      <div class="site-footer__row">
+        <p class="site-footer__label">Zones</p>
+        <ul class="site-footer__chips">{zone_chips}</ul>
       </div>
-      <div class="footer-col footer-col--entreprise">
-        <div class="footer-col-title">Entreprise</div>
-        <ul class="footer-links">
+      <div class="site-footer__row">
+        <p class="site-footer__label">Entreprise</p>
+        <ul class="site-footer__chips">
           <li><a href="/">Accueil</a></li>
           <li><a href="/a-propos/">À propos</a></li>
           <li><a href="/realisations/">Réalisations</a></li>
           <li><a href="/contact/">Contact</a></li>
-          <li class="footer-dup-legal"><a href="/plan-du-site/">Plan du site</a></li>
-          <li class="footer-dup-legal"><a href="/mentions-legales/">Mentions légales</a></li>
-          <li class="footer-dup-legal"><a href="/politique-confidentialite/">Politique de confidentialité</a></li>
         </ul>
       </div>
-      <div class="footer-col footer-col--contact">
-        <div class="footer-col-title">Contact</div>
-        <ul class="footer-contact-list">
+      <div class="site-footer__row site-footer__row--contact">
+        <p class="site-footer__label">Contact</p>
+        <ul class="site-footer__contact">
           <li><a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a></li>
           <li><a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a></li>
           <li><a href="{WA}" class="track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-          <li class="footer-contact-address"><a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a></li>
-          <li class="footer-contact-hours">{HOURS}</li>
-          <li><a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Voir nos avis sur Google</a></li>
+          <li><a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a></li>
+          <li><a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google</a></li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-bottom-main">
-        <p class="footer-copy">© {COPYRIGHT_YEAR} {COMPANY_NAME} · Tous droits réservés</p>
-        <p class="footer-address"><a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a></p>
-        <nav class="footer-legal" aria-label="Informations légales">
-          <a href="/mentions-legales/">Mentions légales</a>
-          <span aria-hidden="true">·</span>
-          <a href="/politique-confidentialite/">Politique de confidentialité</a>
-          <span aria-hidden="true">·</span>
-          <a href="/plan-du-site/">Plan du site</a>
-          <span aria-hidden="true">·</span>
-          <a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google</a>
-        </nav>
-      </div>
-      <p class="footer-seo">{CVCS_GROUP} · Dépannage SAV · Sprinkler · Suisse romande</p>
+    <div class="site-footer__bottom">
+      <p class="site-footer__copy">© {COPYRIGHT_YEAR} {COMPANY_NAME}</p>
+      <nav class="site-footer__legal" aria-label="Informations légales">
+        <a href="/mentions-legales/">Mentions légales</a>
+        <a href="/politique-confidentialite/">Confidentialité</a>
+        <a href="/plan-du-site/">Plan du site</a>
+      </nav>
     </div>
   </div>
 </footer>"""
@@ -1284,10 +1276,10 @@ def page_hero(label, h1, sub, *, icon_html="", primary_href="/contact/", primary
         <a href="{secondary_href}" class="btn {secondary_class}">{secondary_label}</a>
       </div>"""
     if image:
-        alt = image_alt or h1
+        alt = (image_alt or h1).replace('"', "&quot;")
         return f"""<section class="page-hero hero hero--photo" aria-labelledby="page-h1">
-  <div class="hero-media" aria-hidden="true">
-    <img src="{image}" alt="" width="2000" height="1125" fetchpriority="high" decoding="async">
+  <div class="hero-media">
+    <img src="{image}" alt="{alt}" width="2000" height="1125" fetchpriority="high" decoding="async">
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="container hero-inner">
@@ -1759,7 +1751,7 @@ def build_home():
     ]
     body = f"""
 <section class="hero hero--photo" aria-labelledby="hero-h1">
-  <div class="hero-media" aria-hidden="true">
+  <div class="hero-media">
     <img src="/assets/heroes/home.jpg" alt="Centrale sprinkler installée par Sopjani Tech Sàrl — chantier réel en Suisse romande" width="2000" height="1125" fetchpriority="high" decoding="async">
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
