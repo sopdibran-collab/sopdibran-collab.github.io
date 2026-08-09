@@ -447,13 +447,11 @@ def urgence_band():
 
 
 def zone_aeo_faq(name, region):
-    """FAQ orientée requêtes locales et moteurs de réponse (alignée GSC)."""
+    """FAQ locale compacte (3 items) — laisse de la place aux FAQ spécifiques zone (max 5 au total)."""
     return [
         (f"Qui appeler pour un chauffagiste à {name} ?", f"{COMPANY_NAME} intervient comme chauffagiste dans {region} : installation, entretien et dépannage de chaudières et pompes à chaleur. Appelez le {PHONE_DISP} ou passez par la page contact."),
         (f"Qui appeler pour un dépannage CVCS à {name} ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp. Indiquez votre commune, le type de bâtiment et la nature de la panne."),
-        (f"Quelle entreprise de ventilation contacter dans {region} ?", f"{COMPANY_NAME} réalise installation, maintenance et dépannage de ventilation (VMC, gaines) dans {region}, selon faisabilité et planning."),
-        (f"Proposez-vous le chauffage, la ventilation et la climatisation à {name} ?", f"Oui. Étude, installation, entretien et dépannage en {CVCS_PROSE} selon votre projet."),
-        (f"Comment obtenir un devis à {name} ?", "Via notre page contact ou par téléphone : décrivez le bâtiment, la localisation exacte et le type de travaux (installation, maintenance ou dépannage)."),
+        (f"Comment obtenir un devis à {name} ?", f"Par téléphone au {PHONE_DISP} ou via la page contact : décrivez le bâtiment, la localisation et le type de travaux (installation, maintenance ou dépannage)."),
     ]
 
 
@@ -853,8 +851,9 @@ def breadcrumbs_html(items):
     return f'<nav class="breadcrumbs" aria-label="Fil d\'Ariane"><ol>{"".join(lis)}</ol></nav>'
 
 
-def mobile_quick_bar():
-    return f"""<div class="mobile-quick-bar" role="group" aria-label="Actions de contact rapides">
+def mobile_quick_bar(*, sticky=False):
+    cls = "mobile-quick-bar mobile-quick-bar--sticky" if sticky else "mobile-quick-bar"
+    return f"""<div class="{cls}" role="group" aria-label="Actions de contact rapides">
   <a href="tel:{PHONE}" class="mobile-quick-btn track-phone">Appeler</a>
   <a href="{WA}" class="mobile-quick-btn track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
   <a href="/contact/#contact-form" class="mobile-quick-btn track-devis">Devis</a>
@@ -1308,13 +1307,18 @@ def page_hero(label, h1, sub, *, icon_html="", primary_href="/contact/", primary
 </section>"""
 
 
-def cta_band(title="Besoin d'un devis ou d'un dépannage ?", text="Contactez-nous pour décrire votre besoin. Nous vous répondrons dans les meilleurs délais."):
+def cta_band(title="Besoin d'un devis ou d'un dépannage ?", text="Contactez-nous pour décrire votre besoin. Nous vous répondrons dans les meilleurs délais.", *, phone_first=False):
+    if phone_first:
+        buttons = f"""<a href="tel:{PHONE}" class="btn btn-urgence track-phone">Appeler · {PHONE_DISP}</a>
+    <a href="/contact/#contact-form" class="btn btn-brand btn-brand--on-dark track-devis">Demander un devis</a>"""
+    else:
+        buttons = f"""<a href="/contact/" class="btn btn-brand track-devis">Demander un devis</a>
+    <a href="tel:{PHONE}" class="btn btn-secondary-on-dark track-phone">{PHONE_DISP}</a>"""
     return f"""<section class="cta-band" aria-label="Appel à l'action">
   <div class="container">
     <h2>{title}</h2>
     <p>{text}</p>
-    <a href="/contact/" class="btn btn-brand track-devis">Demander un devis</a>
-    <a href="tel:{PHONE}" class="btn btn-secondary-on-dark track-phone">{PHONE_DISP}</a>
+    {buttons}
   </div>
 </section>"""
 
@@ -1498,49 +1502,119 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
     write_page([slug, "index.html"], page_shell(title, desc, SITE + url, graph, body, crumbs))
 
 
-def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, related_zones):
+def zone_action_paths(name):
+    """3 rangées d'action (pas de cards) — pages zone."""
+    paths = [
+        (
+            "Climatisation",
+            "Étude, pose et entretien — split, multi-split, PAC air-air.",
+            "/climatisation/",
+            "Voir",
+            "",
+        ),
+        (
+            "Chauffage",
+            "Installation, entretien et dépannage — chaudières et pompes à chaleur.",
+            "/chauffage/",
+            "Voir",
+            "",
+        ),
+        (
+            "Dépannage",
+            "Panne en cours ? Appelez pour une intervention rapide.",
+            f"tel:{PHONE}",
+            "Appeler",
+            "zone-action--urgent",
+        ),
+    ]
+    rows = []
+    for title, lead, href, cta, mod in paths:
+        track = "track-phone" if href.startswith("tel:") else "track-devis"
+        mod_cls = f" {mod}" if mod else ""
+        rows.append(
+            f'<a class="zone-action{mod_cls} {track}" href="{href}">'
+            f'<span class="zone-action__body">'
+            f'<span class="zone-action__title">{title}</span>'
+            f'<span class="zone-action__lead">{lead}</span>'
+            f"</span>"
+            f'<span class="zone-action__cta">{cta} <span aria-hidden="true">→</span></span>'
+            f"</a>"
+        )
+    return f"""<section class="zone-actions" aria-labelledby="zone-actions-title">
+  <div class="container">
+    <h2 class="zone-actions__title" id="zone-actions-title">Votre besoin à {name}</h2>
+    <div class="zone-actions__list">{"".join(rows)}</div>
+  </div>
+</section>"""
+
+
+def zone_proof_quote():
+    """Pull-quote d'un avis Google réel — pas de bandeau compteur."""
+    if not GOOGLE_REVIEWS:
+        return ""
+    # Préférer un avis qui mentionne le chantier / dépannage si possible
+    review = next((r for r in GOOGLE_REVIEWS if "panne" in r["body"].lower() or "chauffage" in r["body"].lower()), GOOGLE_REVIEWS[0])
+    return f"""<figure class="zone-quote">
+  {_stars_svg(review["rating"])}
+  <blockquote cite="{GOOGLE_BUSINESS_URL}">
+    <p>« {review["body"]} »</p>
+  </blockquote>
+  <figcaption class="zone-quote__cap">
+    <cite>{review["author"]}</cite>
+    <span aria-hidden="true">·</span>
+    <a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google</a>
+  </figcaption>
+</figure>"""
+
+
+def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, related_zones, hero_sub=None):
+    """Page zone mobile-first : hero, local+preuve, actions, FAQ+CTA."""
     url = f"/{slug}/"
     crumbs = [("Accueil", "/"), ("Zones d'intervention", "/zones-intervention/"), (name, url)]
-    svc = "".join(f'<a class="zone-pill" href="/{s}/">{n}</a>' for s, n, _ in SERVICES if s in svc_slugs)
-    rz = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES if z in related_zones)
+    sub = hero_sub or f"Chauffagiste et CVCS dans {region}. Appelez le {PHONE_DISP} pour un devis ou un dépannage."
     hero = page_hero(
         "Zone d'intervention",
         h1,
-        f"Chauffagiste et CVCS dans {region} : chauffage, ventilation, climatisation et sanitaire. Contactez Sopjani Tech Sàrl pour vérifier la disponibilité selon votre localisation.",
+        sub,
+        primary_href=f"tel:{PHONE}",
+        primary_label=f"Appeler · {PHONE_DISP}",
+        primary_class="btn-urgence track-phone",
+        secondary_href="/contact/#contact-form",
+        secondary_label="Demander un devis",
+        secondary_class="btn-brand btn-brand--on-dark track-devis",
         image=hero_image_for("zones"),
         image_alt=h1,
     )
+    # FAQ ≤ 5, dédupliquée par question
+    seen_q = set()
+    faq_trim = []
+    for q, a in faq:
+        if q in seen_q:
+            continue
+        seen_q.add(q)
+        faq_trim.append((q, a))
+        if len(faq_trim) >= 5:
+            break
     body = f"""
 {hero}
-<section class="content-section" aria-labelledby="local-title">
+{mobile_quick_bar(sticky=True)}
+<section class="content-section zone-local" aria-labelledby="local-title">
   <div class="container prose-block">
     <h2 class="section-title" id="local-title">Interventions dans {region}</h2>
     {local_text}
-    <p class="geo-local-note">Siège à <strong>{ADDRESS_FULL}</strong> — équipe mobile en Suisse romande. <a href="/contact/">Contactez-nous</a> pour vérifier la disponibilité à {name}.</p>
+    {zone_proof_quote()}
+    <p class="geo-local-note">Siège à <strong>{ADDRESS_FULL}</strong> — équipe mobile. <a href="tel:{PHONE}" class="track-phone">Appelez le {PHONE_DISP}</a> pour vérifier la disponibilité à {name}.</p>
   </div>
 </section>
-<section class="content-section alt" aria-labelledby="svc-title">
-  <div class="container">
-    <h2 class="section-title" id="svc-title">Services disponibles</h2>
-    <div class="zone-links">{svc}</div>
-  </div>
-</section>
-<section class="content-section" aria-labelledby="near-title">
-  <div class="container">
-    <h2 class="section-title" id="near-title">Autres zones proches</h2>
-    <div class="zone-links">{rz}</div>
-  </div>
-</section>
+{zone_action_paths(name)}
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
     {faq_section_head(f"FAQ — {name}")}
-    {faq_html(faq)}
+    {faq_html(faq_trim)}
   </div>
 </section>
-{trust_strip()}
-{norms_bar()}
-{cta_band(f"Un projet à {name} ?", "Décrivez votre besoin par téléphone, email ou WhatsApp.")}"""
-    graph = base_graph(title, desc, SITE + url, crumbs, faq)
+{cta_band(f"Un projet à {name} ?", f"Appelez le {PHONE_DISP} ou décrivez votre besoin par WhatsApp / formulaire.", phone_first=True)}"""
+    graph = base_graph(title, desc, SITE + url, crumbs, faq_trim)
     write_page([slug, "index.html"], page_shell(title, desc, SITE + url, graph, body, crumbs))
 
 
@@ -1803,19 +1877,22 @@ def build_zones_hub():
     hero = page_hero(
         "Géographie",
         "Nos zones d'intervention en Suisse romande",
-        "Sopjani Tech Sàrl intervient dans les cantons et agglomérations ci-dessous. Contactez-nous pour vérifier la disponibilité dans votre secteur.",
+        f"Choisissez votre secteur — ou appelez le {PHONE_DISP} pour vérifier la disponibilité.",
+        primary_href=f"tel:{PHONE}",
+        primary_label=f"Appeler · {PHONE_DISP}",
+        primary_class="btn-urgence track-phone",
+        secondary_href="/contact/#contact-form",
+        secondary_label="Demander un devis",
+        secondary_class="btn-brand btn-brand--on-dark track-devis",
         image=hero_image_for("zones-intervention"),
     )
     body = f"""
 {hero}
-{geo_presence_block(compact=True)}
-<section class="content-section">
+{mobile_quick_bar(sticky=True)}
+<section class="content-section zone-hub">
   <div class="container">
+    <p class="section-lead zone-hub__lead">Basés à {ADDRESS_LOCALITY}, équipe mobile en Suisse romande — pas d'agences locales dans chaque canton.</p>
     <div class="hub-grid">{cards}</div>
-    <div class="prose-block" style="margin-top:40px;">
-      <p>Pour d'autres secteurs en Suisse romande, contactez-nous afin de vérifier la faisabilité d'une intervention selon la nature du projet.</p>
-      <p style="margin-top:12px;font-size:14px;color:var(--c-muted);">Nos interventions sont assurées par une équipe mobile : il ne s'agit pas d'agences locales dans chaque canton.</p>
-    </div>
   </div>
 </section>
 <section class="faq content-section alt" aria-labelledby="faq-title">
@@ -1824,9 +1901,7 @@ def build_zones_hub():
     {faq_html(faq)}
   </div>
 </section>
-{trust_strip()}
-{norms_bar()}
-{cta_band("Votre commune n'est pas listée ?", "Contactez-nous pour vérifier la faisabilité d'une intervention.")}"""
+{cta_band("Votre commune n'est pas listée ?", f"Appelez le {PHONE_DISP} pour vérifier la faisabilité d'une intervention.", phone_first=True)}"""
     crumbs = [("Accueil", "/"), ("Zones d'intervention", "/zones-intervention/")]
     zones_title = PAGE_TITLES["zones-intervention"]
     zones_desc = META_DESCRIPTIONS["zones-intervention"]
@@ -2695,16 +2770,29 @@ def build_services():
 
 
 def communes_block(names):
-    pills = "".join(f'<span class="zone-pill">{n}</span>' for n in names)
-    return f'<h3>Communes desservies</h3><p class="section-lead" style="margin-bottom:12px;">Liste non exhaustive — contactez-nous pour toute autre commune du secteur.</p><div class="zone-links">{pills}</div>'
+    """Communes en ligne typo — pas d'accordéon ni pastilles."""
+    line = " · ".join(names)
+    return (
+        '<p class="zone-communes">'
+        '<span class="zone-communes__label">Communes desservies</span>'
+        f'<span class="zone-communes__line">{line}</span>'
+        '<span class="zone-communes__hint">Liste non exhaustive — contactez-nous pour toute autre commune du secteur.</span>'
+        "</p>"
+    )
 
 
-SUBSIDY_NOTE = ("<h3>Aides et subventions</h3>"
+SUBSIDY_NOTE = (
+    '<details class="zone-details zone-details--subsidy">'
+    "<summary>Aides et subventions</summary>"
+    '<div class="zone-details__body">'
     "<p>Le remplacement d'un chauffage à mazout, à gaz ou électrique par une pompe à chaleur peut être subventionné "
-    "dans le cadre du <strong>Programme Bâtiments</strong>, sur <a href=\"https://www.leprogrammebatiments.ch\" target=\"_blank\" rel=\"noopener noreferrer\">leprogrammebatiments.ch</a>. "
+    'dans le cadre du <strong>Programme Bâtiments</strong>, sur <a href="https://www.leprogrammebatiments.ch" target="_blank" rel="noopener noreferrer">leprogrammebatiments.ch</a>. '
     "{extra} Les barèmes et conditions varient chaque année : nous vous recommandons de déposer votre demande "
     "auprès du service cantonal de l'énergie <strong>avant le début des travaux</strong>, et de vérifier les montants en vigueur sur le portail officiel. "
-    "Nous pouvons vous accompagner dans cette démarche.</p>")
+    "Nous pouvons vous accompagner dans cette démarche.</p>"
+    "</div>"
+    "</details>"
+)
 
 
 def build_zones():
@@ -2713,97 +2801,101 @@ def build_zones():
         PAGE_TITLES["geneve"],
         META_DESCRIPTIONS["geneve"],
         "Chauffagiste et CVCS dans la région de Genève",
-        p("Vous cherchez un chauffagiste à Genève ? Le canton présente un parc bâti dense — immeubles résidentiels, PPE, commerces et bâtiments tertiaires — avec des contraintes techniques variées. Certains quartiers sont raccordés à un réseau de chauffage à distance (dont GeniLac, alimenté par l'eau du lac) ; la loi cantonale sur l'énergie encourage par ailleurs le remplacement des chauffages fossiles par des pompes à chaleur lors de leur renouvellement.") +
-        p("Que vous soyez propriétaire, régie ou responsable technique, contactez-nous pour vérifier la disponibilité d'intervention dans votre secteur.") +
+        p("Vous cherchez un chauffagiste à Genève ? Le canton présente un parc bâti dense — immeubles, PPE, commerces et tertiaire — avec des contraintes techniques variées (chauffage à distance, GeniLac, remplacement des chauffages fossiles).") +
+        p("Contactez-nous pour vérifier la disponibilité d'intervention dans votre secteur.") +
         communes_block(["Genève", "Vernier", "Lancy", "Meyrin", "Carouge", "Onex", "Thônex", "Plan-les-Ouates", "Veyrier", "Grand-Saconnex", "Chêne-Bougeries", "Confignon"]) +
         SUBSIDY_NOTE.format(extra="À Genève, les demandes passent par l'Office cantonal de l'énergie (OCEN) et peuvent se combiner avec le programme SIG-éco21 des Services industriels de Genève."),
         zone_aeo_faq("Genève", "la région de Genève") + [
             ("Existe-t-il des aides pour rénover le chauffage à Genève ?", "Oui, via le Programme Bâtiments et le programme SIG-éco21 (Services industriels de Genève), sous conditions d'éligibilité et selon le barème en vigueur. Contactez-nous pour évaluer votre projet."),
         ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "nyon", "lausanne"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "nyon", "lausanne"],
+        hero_sub=f"Chauffagiste et CVCS à Genève. Appelez le {PHONE_DISP} pour un devis ou un dépannage.")
 
     zone_page("vaud", "Vaud", "le canton de Vaud",
         PAGE_TITLES["vaud"],
         META_DESCRIPTIONS["vaud"],
         "Chauffagiste dans le canton de Vaud",
-        p("Chauffagiste dans le canton de Vaud : nous couvrons un territoire étendu — rives du Léman, agglomérations de Lausanne et Nyon, Riviera vaudoise, Chablais et Nord vaudois jusqu'au pied du Jura. Le bâti va de la villa individuelle à l'immeuble locatif ou à la PPE, avec des besoins très différents selon l'altitude et l'exposition.") +
-        p("Pour les communes hors axes principaux, contactez-nous afin de confirmer la faisabilité et la planification.") +
+        p("Chauffagiste dans le canton de Vaud : rives du Léman, Lausanne, Nyon, Riviera, Chablais et Nord vaudois. Du villa à l'immeuble locatif ou PPE, selon l'altitude et l'exposition.") +
+        p("Pour les communes hors axes principaux, contactez-nous afin de confirmer la faisabilité.") +
         communes_block(["Morges", "Yverdon-les-Bains", "Vevey", "Montreux", "Renens", "Pully", "Rolle", "Aigle", "Payerne", "Echallens", "Cossonay", "Orbe"]) +
         SUBSIDY_NOTE.format(extra="Dans le canton de Vaud, les demandes sont instruites par la Direction générale de l'environnement (DGE) / Direction de l'énergie."),
         zone_aeo_faq("Vaud", "le canton de Vaud") + [
             ("Le canton de Vaud subventionne-t-il les pompes à chaleur ?", "Oui, sous conditions, dans le cadre du Programme Bâtiments géré par la Direction de l'énergie du canton de Vaud. Les certificats de qualité requis (PAC système-module) et les barèmes évoluent chaque année : vérifiez les conditions en vigueur avant de commander votre matériel."),
         ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["lausanne", "nyon", "geneve", "fribourg"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["lausanne", "nyon", "geneve", "fribourg"],
+        hero_sub=f"Chauffagiste dans le canton de Vaud. Appelez le {PHONE_DISP} pour un devis ou un dépannage.")
 
     zone_page("lausanne", "Lausanne", "Lausanne et environs",
         PAGE_TITLES["lausanne"],
         META_DESCRIPTIONS["lausanne"],
         "Chauffagiste à Lausanne : dépannage chauffage et CVCS",
-        p("Vous cherchez un chauffagiste à Lausanne ? L'agglomération concentre immeubles résidentiels, bâtiments tertiaires et un parc ancien important (quartiers du centre-ville, Sous-Gare, Chailly) qui nécessite souvent une adaptation soignée des installations techniques lors d'une rénovation. Une partie de la ville est desservie par le réseau de chauffage à distance des Services industriels de Lausanne (SiL).") +
-        p("Nous intervenons aussi en dépannage chauffage à Lausanne et communes voisines — chaudière, pompe à chaleur, radiateurs. Indiquez le quartier ou la commune exacte lors de votre demande.") +
-        p('Pour la climatisation ou une pompe à chaleur, consultez aussi nos pages <a href="/climatisation/">climatisation</a> et <a href="/chauffage/">chauffage</a>.') +
+        p("Vous cherchez un chauffagiste à Lausanne ? L'agglomération concentre immeubles, tertiaire et parc ancien — souvent à adapter lors d'une rénovation. Une partie de la ville est desservie par le chauffage à distance (SiL).") +
+        p('Nous intervenons aussi en dépannage chauffage. Pour la climatisation ou une pompe à chaleur, voir <a href="/climatisation/">climatisation</a> et <a href="/chauffage/">chauffage</a>.') +
         communes_block(["Renens", "Prilly", "Le Mont-sur-Lausanne", "Épalinges", "Pully", "Chavannes-près-Renens", "Ecublens", "Crissier"]) +
         SUBSIDY_NOTE.format(extra="Les demandes pour l'agglomération lausannoise sont instruites par la Direction de l'énergie du canton de Vaud."),
         zone_aeo_faq("Lausanne", "Lausanne et environs") + [
             ("Proposez-vous le dépannage chauffage à Lausanne ?", f"Oui. Appelez {COMPANY_NAME} au {PHONE_DISP} en indiquant votre adresse lausannoise et le type de panne (chaudière, PAC, radiateurs)."),
             ("Mon immeuble est raccordé au chauffage à distance (CAD), intervenez-vous quand même ?", "Oui : nous intervenons sur les sous-stations, la distribution interne (radiateurs, vannes, régulation) et les réseaux sanitaires, même si la production de chaleur est assurée par un réseau CAD."),
         ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["nyon", "vaud", "geneve"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["nyon", "vaud", "geneve"],
+        hero_sub=f"Chauffagiste et dépannage à Lausanne. Appelez le {PHONE_DISP}.")
 
     zone_page("nyon", "Nyon", "la région de Nyon",
         PAGE_TITLES["nyon"],
         META_DESCRIPTIONS["nyon"],
         "Climatisation et chauffagiste à Nyon",
-        p("Climatisation à Nyon et chauffagiste local : la région entre Genève et Lausanne combine constructions récentes (villas, PPE neuves autour du lac) et bâti plus ancien dans les villages environnants. C'est une zone de forte croissance résidentielle, avec des standards énergétiques élevés (Minergie) fréquents sur les nouvelles constructions.") +
-        p("Nous installons et entretenons la climatisation (split, multi-split, PAC air-air) ainsi que le chauffage (pompes à chaleur, chaudières) à Nyon, Gland, Rolle, Coppet et environs.") +
-        p('Besoin d\'un devis climatisation ou chauffage ? Consultez nos pages <a href="/climatisation/">climatisation</a> et <a href="/chauffage/">chauffagiste</a>, ou contactez-nous en précisant l\'adresse.') +
+        p("Climatisation à Nyon et chauffagiste local : la région entre Genève et Lausanne combine constructions récentes (villas, PPE autour du lac) et bâti plus ancien dans les villages. Standards énergétiques élevés (Minergie) fréquents sur les neuves.") +
+        p('Nous installons et entretenons la climatisation (split, multi-split, PAC air-air) ainsi que le chauffage (pompes à chaleur, chaudières) à Nyon, Gland, Rolle, Coppet et environs. Devis via <a href="/climatisation/">climatisation</a>, <a href="/chauffage/">chauffage</a> ou téléphone.') +
         communes_block(["Gland", "Rolle", "Prangins", "Founex", "Coppet", "Genolier", "Duillier", "Trélex"]) +
         SUBSIDY_NOTE.format(extra="La région de Nyon dépend du barème et du guichet du canton de Vaud (Direction de l'énergie)."),
         zone_aeo_faq("Nyon", "la région de Nyon") + [
             ("Installez-vous la climatisation à Nyon ?", f"Oui. {COMPANY_NAME} étudie et installe la climatisation à Nyon et communes voisines (Gland, Rolle, Coppet…). Devis via la page contact ou au {PHONE_DISP}."),
-            ("Qui appeler pour un chauffagiste à Nyon ?", f"{COMPANY_NAME} intervient comme chauffagiste à Nyon : chaudières, pompes à chaleur, entretien et dépannage. Appelez le {PHONE_DISP}."),
             ("Intervenez-vous sur des bâtiments Minergie récents ?", "Oui. Les constructions Minergie demandent une ventilation mécanique contrôlée bien réglée et un entretien régulier : nous pouvons intervenir sur ces installations comme sur du bâti plus ancien."),
         ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["geneve", "lausanne", "vaud"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["geneve", "lausanne", "vaud"],
+        hero_sub=f"Climatisation et chauffagiste à Nyon — devis ou appel au {PHONE_DISP}.")
 
     zone_page("valais", "Valais", "le canton du Valais",
         PAGE_TITLES["valais"],
         META_DESCRIPTIONS["valais"],
         "Chauffagiste en Valais : chauffage, CVCS et climatisation",
-        p("Chauffagiste en Valais : le canton présente de fortes variations d'altitude — de la plaine du Rhône aux stations de montagne — qui influencent directement le dimensionnement des installations de chauffage. Les résidences secondaires et chalets, souvent inoccupés une partie de l'année, demandent une attention particulière (protection hors gel, remise en service saisonnière).") +
-        p("Contactez-nous avec votre commune (Sion, Martigny, Monthey, Sierre…) pour vérifier la disponibilité d'intervention.") +
+        p("Chauffagiste en Valais : de la plaine du Rhône aux stations, l'altitude influence le dimensionnement du chauffage. Résidences secondaires et chalets demandent souvent une attention hors gel / remise en service.") +
+        p("Contactez-nous avec votre commune (Sion, Martigny, Monthey, Sierre…) pour vérifier la disponibilité.") +
         communes_block(["Sion", "Martigny", "Monthey", "Sierre", "Crans-Montana", "Verbier", "Saint-Maurice", "Conthey"]) +
         SUBSIDY_NOTE.format(extra="En Valais, les demandes sont instruites par le Service de l'énergie et des forces hydrauliques (SEFH) de l'État du Valais."),
         zone_aeo_faq("Valais", "le canton du Valais") + [
             ("Intervenez-vous sur un chalet ou une résidence secondaire ?", "Oui, en tenant compte des contraintes propres à ces logements (occupation partielle, altitude, risque de gel). Précisez l'altitude et le mode d'occupation lors de votre demande."),
         ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav", "sprinkler-protection-incendie"], ["geneve", "vaud", "fribourg"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav", "sprinkler-protection-incendie"], ["geneve", "vaud", "fribourg"],
+        hero_sub=f"Chauffagiste en Valais. Appelez le {PHONE_DISP} pour un devis ou un dépannage.")
 
     zone_page("fribourg", "Fribourg", "le canton de Fribourg",
         PAGE_TITLES["fribourg"],
         META_DESCRIPTIONS["fribourg"],
         "Chauffagiste Fribourg et Romont",
-        p(f"Chauffagiste à Fribourg et Romont : notre siège est basé à {ADDRESS_LOCALITY}, dans le canton de Fribourg. Nous connaissons bien ce territoire à cheval sur les régions linguistiques, qui compte un parc bâti varié entre la ville de Fribourg, les districts de la Glâne, de la Gruyère et de la Broye.") +
-        p("Précisez la commune et l'urgence de votre demande lors du premier contact.") +
+        p(f"Chauffagiste à Fribourg et Romont : notre siège est basé à {ADDRESS_LOCALITY}. Nous connaissons ce territoire — Fribourg, Glâne, Gruyère, Broye.") +
+        p("Précisez la commune et l'urgence lors du premier contact.") +
         communes_block(["Fribourg", "Bulle", "Romont", "Châtel-Saint-Denis", "Estavayer-le-Lac", "Domdidier", "Marly", "Villars-sur-Glâne"]) +
         SUBSIDY_NOTE.format(extra="Dans le canton de Fribourg, les demandes sont instruites par le Service de l'énergie (SdE)."),
         zone_aeo_faq("Fribourg", "le canton de Fribourg") + [
             ("Sopjani Tech Sàrl est-elle basée dans le canton de Fribourg ?", f"Oui, notre siège se trouve à {ADDRESS_FULL}, dans le district de la Glâne."),
         ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "lausanne", "valais", "neuchatel"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "lausanne", "valais", "neuchatel"],
+        hero_sub=f"Chauffagiste Fribourg / Romont. Appelez le {PHONE_DISP}.")
 
     zone_page("neuchatel", "Neuchâtel", "le canton de Neuchâtel",
         PAGE_TITLES["neuchatel"],
         META_DESCRIPTIONS["neuchatel"],
         "Chauffagiste à Neuchâtel et La Chaux-de-Fonds",
-        p("Chauffagiste dans le canton de Neuchâtel : le territoire s'étend du littoral du lac de Neuchâtel aux hauteurs du Jura (La Chaux-de-Fonds, Le Locle). Le parc bâti mêle immeubles en ville, villas sur les coteaux et bâtiments industriels ou horlogers qui demandent souvent des installations CVCS adaptées.") +
-        p("Contactez-nous en précisant votre commune pour vérifier la disponibilité d'intervention.") +
+        p("Chauffagiste dans le canton de Neuchâtel : du littoral du lac aux hauteurs du Jura (La Chaux-de-Fonds, Le Locle). Immeubles, villas et bâtiments industriels ou horlogers.") +
+        p("Contactez-nous en précisant votre commune pour vérifier la disponibilité.") +
         communes_block(["Neuchâtel", "La Chaux-de-Fonds", "Le Locle", "Peseux", "Boudry", "Cortaillod", "Saint-Blaise", "Val-de-Ruz"]) +
         SUBSIDY_NOTE.format(extra="Dans le canton de Neuchâtel, les demandes sont instruites par le Service de l'énergie et de l'environnement (SENE)."),
         zone_aeo_faq("Neuchâtel", "le canton de Neuchâtel") + [
             ("Intervenez-vous à La Chaux-de-Fonds et dans le Haut ?", "Oui, sous réserve de planification. Précisez l'adresse et l'urgence lors du premier contact."),
         ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "fribourg", "geneve"])
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "fribourg", "geneve"],
+        hero_sub=f"Chauffagiste à Neuchâtel et La Chaux-de-Fonds. Appelez le {PHONE_DISP}.")
 
 
 def legal_identity_block():
