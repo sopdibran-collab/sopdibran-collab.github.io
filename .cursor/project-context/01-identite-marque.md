@@ -39,8 +39,10 @@
 
 | Élément | Police | Graisses |
 |---------|--------|----------|
-| Titres | Manrope | 600–800 |
-| Corps | Inter | 400–600 |
+| Titres / UI display | Outfit | 500–800 |
+| Corps / lecture | Source Sans 3 | 400–700 |
+
+Chargement Google Fonts via `page_shell()` dans `build_site.py`. Variables CSS : `--font-display`, `--font-body`.
 
 ## Logo
 

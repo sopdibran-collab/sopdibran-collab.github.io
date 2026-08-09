@@ -272,7 +272,7 @@ def service_zones_compact(zone_slugs=None):
             parts.append(f'<a href="/{z}/">{n}</a>')
     joined = ", ".join(parts)
     return f"""<p class="zones-compact">Couverture : {joined}. Vérifiez la disponibilité pour votre commune sur la page zones.</p>
-<p class="svc-section__link"><a href="/zones-intervention/" class="text-link">Voir toutes les zones d'intervention →</a></p>"""
+<p class="svc-section__link"><a href="/zones-intervention/" class="text-link">Toutes les zones</a></p>"""
 
 
 def service_area_served_schema(zone_slugs=None):
@@ -370,14 +370,14 @@ QUI_SOMMES_NOUS_HTML = f"""
     <li>Échanges clairs sur la nature et le coût des travaux avant intervention</li>
     <li>Société à responsabilité limitée inscrite au registre du commerce suisse (UID {COMPANY_UID}, vérifiable sur <a href="https://www.zefix.ch" target="_blank" rel="noopener noreferrer">Zefix</a>)</li>
   </ul>
-  <p style="margin-top:20px;"><a href="{GOOGLE_BUSINESS_URL}" class="text-link track-google" target="_blank" rel="noopener noreferrer">Voir notre fiche Google et nos avis →</a></p>
+  <p style="margin-top:20px;"><a href="{GOOGLE_BUSINESS_URL}" class="text-link track-google" target="_blank" rel="noopener noreferrer">Fiche Google et avis</a></p>
 </div>
 <p>Vous avez une demande en {CVCS_PROSE} ou en dépannage SAV ? <a href="/contact/">Contactez-nous</a> pour échanger sur votre besoin et vérifier la disponibilité d'intervention dans votre zone.</p>
 """
 
 HOME_ABOUT_TEASER = """
 <p>Entreprise technique en Suisse romande, nous réalisons installations, maintenance et dépannage CVCS pour bâtiments résidentiels, tertiaires et industriels.</p>
-<p><a href="/a-propos/" class="text-link">Présentation de l'entreprise →</a></p>
+<p><a href="/a-propos/" class="text-link">Présentation</a></p>
 """
 
 
@@ -423,7 +423,7 @@ def geo_presence_block(compact=False):
     <h2 class="section-title" id="geo-title">Une entreprise CVCS près de vous en Suisse romande</h2>
     <p class="section-lead">{lead} Contactez-nous pour vérifier la disponibilité dans votre commune.</p>
     <div class="zone-links">{zones}</div>
-    <p style="margin-top:16px;"><a href="/contact/" class="text-link">Demander un devis ou un dépannage →</a></p>
+    <p style="margin-top:16px;"><a href="/contact/" class="text-link">Devis ou dépannage</a></p>
   </div>
 </section>"""
 
@@ -470,7 +470,7 @@ def chauffagiste_local_block():
     return f"""<h3>Chauffagiste près de chez vous</h3>
 <p>Vous cherchez un chauffagiste à Nyon, Lausanne, Genève ou ailleurs en Suisse romande ? Nous intervenons pour l'installation, l'entretien et le dépannage — pompes à chaleur, chaudières et réseaux de chauffage.</p>
 <div class="zone-links">{pills}</div>
-<p style="margin-top:16px;"><a href="/climatisation/" class="text-link">Voir aussi la climatisation (Nyon, Lausanne, Genève) →</a></p>"""
+<p style="margin-top:16px;"><a href="/climatisation/" class="text-link">Climatisation (Nyon, Lausanne, Genève)</a></p>"""
 
 
 # Photos de chantiers réels (fichier, largeur, hauteur, alt SEO, catégorie, légende)
@@ -921,7 +921,7 @@ def header():
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           {PHONE_DISP}
         </a>
-        <a href="/contact/" class="btn btn-brand track-devis">Demander un devis →</a>
+        <a href="/contact/" class="btn btn-brand track-devis">Demander un devis</a>
       </div>
       <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-controls="mobileNav" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
@@ -1366,7 +1366,7 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
   <meta name="twitter:image:alt" content="Sopjani Tech Sàrl — CVCS Suisse romande">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css?v={int((ROOT / 'css' / 'main.css').stat().st_mtime)}">
 {analytics_head()}
   <script type="application/ld+json">{schema_json(schema_graph)}</script>
@@ -1442,7 +1442,7 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
     # 4. Réalisations
     if carousel_imgs:
         gallery_inner = f"""{magnetic_carousel_html(carousel_imgs, name)}
-<p class="svc-section__link"><a href="/realisations/" class="text-link">Voir toutes nos réalisations →</a></p>"""
+<p class="svc-section__link"><a href="/realisations/" class="text-link">Toutes les réalisations</a></p>"""
         sections.append(svc_section(
             tone, "realisations", f"Réalisations — {name}", gallery_inner,
             lead=f"Survolez ou touchez une photo pour l'agrandir. Aperçu d'interventions réalisées par {COMPANY_NAME}.",
@@ -1661,7 +1661,7 @@ def path_strip_html():
       <p class="section-lead">Choisissez votre besoin — on vous oriente immédiatement.</p>
     </div>
     <div class="path-grid">{"".join(cards)}</div>
-    <p class="path-strip__more"><a href="/prestations/" class="text-link">Voir toutes les prestations →</a></p>
+    <p class="path-strip__more"><a href="/prestations/" class="text-link">Toutes les prestations</a></p>
   </div>
 </section>"""
 
@@ -1757,7 +1757,7 @@ def build_home():
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-content">
-      <p class="hero-eyebrow">Chantiers réels · Suisse romande</p>
+      <p class="hero-eyebrow">Suisse romande</p>
       <h1 id="hero-h1">CVCS et sprinkler, exécutés sur le terrain.</h1>
       <p class="hero-sub">{CVCS_GROUP} et protection incendie — installation, maintenance et dépannage.</p>
       <div class="hero-ctas">
@@ -1765,7 +1765,7 @@ def build_home():
         <a href="tel:{PHONE}" class="btn btn-urgence track-phone">Dépannage urgent</a>
       </div>
       <ul class="hero-trust">
-        <li>Photos de chantiers réels</li>
+        <li>Devis gratuit</li>
         <li><a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google 5/5</a></li>
         <li>Normes suisses</li>
       </ul>
@@ -1779,7 +1779,7 @@ def build_home():
   <div class="container">
     <div class="home-realisations__head">
       <h2 class="section-title" id="cases-title">Cas chantiers</h2>
-      <a href="/realisations/#cas-chantiers" class="text-link">Voir toutes les réalisations →</a>
+      <a href="/realisations/#cas-chantiers" class="text-link">Toutes les réalisations</a>
     </div>
     {cases_html}
   </div>
@@ -1794,8 +1794,8 @@ def build_home():
       <h2 class="section-title" id="about-title">Un interlocuteur, du devis à la mise en service.</h2>
       <p>Étude, installation et suivi avec devis clairs et respect des normes suisses (SIA, SUVA, AEAI).</p>
       <p class="about-copy-links">
-        <a href="/a-propos/" class="text-link">Présentation →</a>
-        <a href="/contact/#contact-form" class="text-link track-devis">Demander un devis →</a>
+        <a href="/a-propos/" class="text-link">Présentation</a>
+        <a href="/contact/#contact-form" class="text-link track-devis">Demander un devis</a>
       </p>
     </div>
     <div class="about-photo-duo" aria-label="Équipe Sopjani Tech">
@@ -1968,7 +1968,7 @@ def build_about():
       <li>Échanges clairs sur la nature et le coût avant intervention</li>
       <li>Sàrl inscrite au registre du commerce (UID {COMPANY_UID} · <a href="https://www.zefix.ch" target="_blank" rel="noopener noreferrer">Zefix</a>)</li>
     </ul>
-    <p class="about-google"><a href="{GOOGLE_BUSINESS_URL}" class="text-link track-google" target="_blank" rel="noopener noreferrer">Voir notre fiche Google et nos avis →</a></p>
+    <p class="about-google"><a href="{GOOGLE_BUSINESS_URL}" class="text-link track-google" target="_blank" rel="noopener noreferrer">Fiche Google et avis</a></p>
   </div>
 </section>
 <section class="content-section" aria-labelledby="equipe-title">
@@ -2192,7 +2192,7 @@ def _premium_gallery_block(slug, gallery_cat):
     if not gallery_imgs:
         return (
             '<p class="section-lead">Galerie en cours de mise à jour — '
-            '<a href="/realisations/" class="text-link">voir toutes nos réalisations →</a></p>'
+            '<a href="/realisations/" class="text-link">toutes les réalisations</a></p>'
         ), gallery_imgs
     featured, rest = gallery_imgs[0], gallery_imgs[1:5]
     fn, w, h, alt, cap = featured
@@ -2206,7 +2206,7 @@ def _premium_gallery_block(slug, gallery_cat):
         for fn, w, h, alt, cap in rest
     )
     block = f"""<div class="svc-gallery">{featured_html}<div class="svc-gallery__grid">{rest_html}</div></div>
-<p class="svc-section__link"><a href="/realisations/" class="text-link">Voir toutes nos réalisations →</a></p>"""
+<p class="svc-section__link"><a href="/realisations/" class="text-link">Toutes les réalisations</a></p>"""
     return block, gallery_imgs
 
 
@@ -2374,7 +2374,7 @@ def write_premium_service_page(cfg):
       <p class="section-lead">{cfg["zones_lead"]}</p>
     </div>
     <div class="zone-links">{zone_chips}</div>
-    <p class="svc-section__link"><a href="/zones-intervention/" class="text-link">Voir toutes les zones d'intervention →</a></p>
+    <p class="svc-section__link"><a href="/zones-intervention/" class="text-link">Toutes les zones</a></p>
   </div>
 </section>
 
@@ -2921,7 +2921,7 @@ def build_legal_pages():
     <p>Le site peut contenir des liens vers des sites tiers. {COMPANY_NAME} n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.</p>
     <h3>Droit applicable</h3>
     <p>Le présent site et les présentes mentions légales sont soumis au droit suisse. Le for juridique est celui du siège de l'entreprise, sous réserve des dispositions légales impératives.</p>
-    <p style="margin-top:28px;"><a href="/politique-confidentialite/" class="text-link">Politique de confidentialité →</a></p>
+    <p style="margin-top:28px;"><a href="/politique-confidentialite/" class="text-link">Politique de confidentialité</a></p>
   </div>
 </section>"""
     mentions_title = f"Mentions légales | {COMPANY_NAME}"
@@ -2974,7 +2974,7 @@ def build_legal_pages():
     <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre l'accès non autorisé, la perte ou la divulgation.</p>
     <h3>Modifications</h3>
     <p>Cette politique peut être mise à jour pour refléter l'évolution du site ou de la réglementation. La version en vigueur est celle publiée sur cette page.</p>
-    <p style="margin-top:28px;"><a href="/mentions-legales/" class="text-link">Mentions légales →</a></p>
+    <p style="margin-top:28px;"><a href="/mentions-legales/" class="text-link">Mentions légales</a></p>
   </div>
 </section>"""
     privacy_title = f"Politique de confidentialité | {COMPANY_NAME}"
