@@ -1310,7 +1310,9 @@ def cta_band(title="Besoin d'un devis ou d'un dépannage ?", text="Contactez-nou
   <div class="container">
     <h2>{title}</h2>
     <p>{text}</p>
+    <div class="cta-band__actions">
     {buttons}
+    </div>
   </div>
 </section>"""
 

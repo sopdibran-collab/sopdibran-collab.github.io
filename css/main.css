@@ -1346,7 +1346,7 @@
     }
 
     .site-footer__inner {
-      padding: 0.7rem 0 0;
+      padding: 0.7rem var(--edge) 0;
     }
 
     .site-footer__top {
@@ -1507,6 +1507,8 @@
     @media (min-width: 768px) {
       .site-footer__inner {
         padding-top: 0.9rem;
+        padding-left: var(--edge);
+        padding-right: var(--edge);
       }
 
       .site-footer__rows {
@@ -1723,8 +1725,8 @@
         justify-content: center;
         padding-left: 12px;
         padding-right: 12px;
-        font-size: 12px;
-        letter-spacing: 0.04em;
+        font-size: 15px;
+        letter-spacing: 0.01em;
         white-space: nowrap;
       }
 
@@ -2782,19 +2784,26 @@ header .header-cta .btn-primary:focus-visible {
   .cta-band { padding: 48px 0; }
   .cta-band h2,
   .cta-band p { padding: 0; }
-  .cta-band .btn-primary,
-  .cta-band .btn-secondary-on-dark,
-  .cta-band .btn-urgence,
-  .cta-band .btn-brand,
-  .cta-band .btn-ghost {
+  .cta-band__actions {
     display: flex;
-    width: 100%;
-    max-width: 360px;
-    margin: 0 auto 10px;
+    flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: center;
-    min-height: 52px;
-    padding-left: 20px;
-    padding-right: 20px;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+  }
+  .cta-band__actions .btn {
+    flex: 1 1 0;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    min-height: 48px;
+    padding: 12px 10px;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    justify-content: center;
   }
   .page-hero h1,
   .hero h1,
@@ -2819,8 +2828,8 @@ header .header-cta .btn-primary:focus-visible {
     min-width: 0;
     min-height: 48px;
     padding: 12px 10px;
-    font-size: 12px;
-    letter-spacing: 0.04em;
+    font-size: 15px;
+    letter-spacing: 0.01em;
     white-space: nowrap;
   }
   .section-lead { margin-bottom: 18px; }
@@ -2833,7 +2842,6 @@ header .header-cta .btn-primary:focus-visible {
   .zone-local { padding: 36px 0 28px; }
   .zone-actions { padding: 36px 0 40px; }
   .g-reviews { padding-inline: 0; }
-  .site-footer__inner { padding-left: 0; padding-right: 0; }
 }
 
 @media (min-width: 1025px) {
@@ -3125,7 +3133,7 @@ header .header-cta .btn-primary:focus-visible {
   align-items: flex-end;
 }
 .page-hero.hero--photo .hero-inner {
-  padding: 72px 0 64px;
+  padding: 72px var(--edge) 64px;
 }
 .page-hero.hero--photo h1 {
   color: #fff;
@@ -3167,7 +3175,7 @@ header .header-cta .btn-primary:focus-visible {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: 88px 0 120px;
+  padding: 88px var(--edge) 120px;
 }
 .hero--photo .hero-content { max-width: 640px; }
 .hero--photo .hero-eyebrow {
@@ -3194,6 +3202,11 @@ header .header-cta .btn-primary:focus-visible {
   margin-bottom: 28px;
 }
 .hero--photo .hero-ctas { margin-bottom: 28px; }
+.hero--photo .hero-ctas .btn {
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  padding: 15px 22px;
+}
 .hero-trust {
   list-style: none;
   display: flex;
@@ -3790,6 +3803,13 @@ a.about-contact-row:hover .about-contact-row__v { color: var(--c-logo); }
 .cta-band {
   background: var(--c-navy);
 }
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
 .cta-band .btn-brand,
 .cta-band .btn-primary {
   background: var(--c-logo) !important;
@@ -4092,7 +4112,7 @@ header .header-cta .btn-primary {
 
   .hero--photo .hero-inner,
   .page-hero.hero--photo .hero-inner {
-    padding: 64px 0 80px;
+    padding: 64px var(--edge) 80px;
   }
 
   .page-hero.hero--photo {
@@ -4117,14 +4137,17 @@ header .header-cta .btn-primary {
     row-gap: 10px;
   }
 
-  .cta-band .btn-brand,
-  .cta-band .btn-primary,
-  .cta-band .btn-secondary-on-dark,
-  .cta-band .btn-ghost {
-    display: flex;
-    width: 100%;
-    max-width: 360px;
-    margin: 0 auto 8px;
+  .cta-band__actions {
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .cta-band__actions .btn {
+    flex: 1 1 0;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    display: inline-flex;
     justify-content: center;
   }
 
