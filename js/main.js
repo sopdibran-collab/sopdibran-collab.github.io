@@ -176,17 +176,15 @@ document.querySelectorAll('.track-devis').forEach(el => {
   });
 });
 document.querySelectorAll('.track-form').forEach(form => {
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
     const endpoint = form.getAttribute('data-form-endpoint') || form.getAttribute('action') || '';
+    const feedback = form.querySelector('.form-feedback');
+    const submitBtn = form.querySelector('[type="submit"]');
     trackEvent('generate_lead', { method: 'contact_form', event_category: 'conversion' });
     trackEvent('form_submit', { event_category: 'conversion', event_label: 'contact_form' });
-    if (!endpoint || endpoint === '#') {
-      e.preventDefault();
-      const feedback = form.querySelector('.form-feedback');
-      if (feedback) {
-        feedback.textContent = 'Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.';
-        feedback.hidden = false;
-      }
+
+    function resetSmartForm() {
       form.reset();
       if (form.classList.contains('contact-form--smart')) {
         const steps = form.querySelectorAll('.form-step');
@@ -197,6 +195,51 @@ document.querySelectorAll('.track-form').forEach(form => {
         const urgent = form.querySelector('[data-urgent-cta]');
         if (urgent) urgent.hidden = true;
         updateSmartFormProgress(form, 1);
+      }
+    }
+
+    if (!endpoint || endpoint === '#') {
+      if (feedback) {
+        feedback.textContent = 'Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.';
+        feedback.hidden = false;
+      }
+      resetSmartForm();
+      return;
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.setAttribute('aria-busy', 'true');
+    }
+    if (feedback) {
+      feedback.textContent = 'Envoi en cours…';
+      feedback.hidden = false;
+    }
+
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.success === 'false' || data.success === false) {
+        throw new Error((data && data.message) || 'send_failed');
+      }
+      if (feedback) {
+        feedback.textContent = 'Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.';
+        feedback.hidden = false;
+      }
+      resetSmartForm();
+    } catch (_) {
+      if (feedback) {
+        feedback.textContent = 'Envoi impossible pour le moment. Appelez-nous au +41 79 932 68 62 ou écrivez à info@sopjanitech.ch.';
+        feedback.hidden = false;
+      }
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-busy');
       }
     }
   });

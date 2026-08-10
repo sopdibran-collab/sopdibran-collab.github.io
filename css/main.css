@@ -2418,6 +2418,14 @@ header .nav-submenu a:hover .svc-icon__badge,
 .contact-form textarea { min-height: 120px; resize: vertical; }
 .form-feedback { margin-top: 4px; padding: 12px 14px; border-radius: var(--radius); background: var(--c-bg3); border: 1px solid var(--c-border); font-size: 14px; color: var(--c-text); line-height: 1.5; }
 .form-feedback[hidden] { display: none; }
+.form-honey {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
 header .header-inner { height: 56px; gap: 16px; }
 header .logo-wrap img,
 header .logo-img--responsive {

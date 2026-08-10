@@ -23,8 +23,10 @@ WA = "https://wa.me/41799326862"
 GA4_MEASUREMENT_ID = "G-KXN3RQB89P"
 # Search Console : https://search.google.com/search-console → Propriété → Vérification → Balise HTML
 GOOGLE_SITE_VERIFICATION = "ESyhz2gRqYIspy2MPXHOD9v4uMjd_KAdkQjRYWHWinw"
-# Formulaire contact (ex. https://formspree.io/f/xxxxxxxx) — laisser vide = message local sans envoi
-FORM_ENDPOINT = ""
+# Formulaire contact → info@sopjanitech.ch via FormSubmit (AJAX).
+# 1ʳᵉ soumission : confirmer le lien reçu dans la boîte info@ (activation FormSubmit).
+FORM_ENDPOINT = f"https://formsubmit.co/ajax/{EMAIL}"
+FORM_SUBJECT = "Demande de devis — Sopjani Tech"
 # Logos — variantes officielles Alpë → assets/brand/
 # PRINCIPALE · RESPONSIVE · SUBMARK · FAVICON · grayscale · mono noir/blanc · couleur inversée
 LOGO_HEADER = "/assets/brand/logo-responsive.svg"
@@ -1671,6 +1673,10 @@ def path_strip_html():
 def smart_contact_form_html():
     """Formulaire multi-étapes : bâtiment → besoin → urgence → coordonnées."""
     return f"""<form class="contact-form contact-form--smart track-form" action="{FORM_ENDPOINT or '#'}" method="post" data-form-endpoint="{FORM_ENDPOINT}" novalidate>
+  <input type="hidden" name="_subject" value="{FORM_SUBJECT}">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
   <div class="form-progress" role="group" aria-label="Progression du formulaire">
     <div class="form-progress__bar" data-form-progress style="--progress: 25%"></div>
     <ol class="form-progress__steps">
@@ -2962,6 +2968,7 @@ def build_legal_pages():
     <p>Les données peuvent être accessibles aux collaborateurs habilités de {COMPANY_NAME}, ainsi qu'à nos prestataires techniques dans la mesure nécessaire :</p>
     <ul class="bullet-list">
       <li><strong>{HOST_NAME}</strong> — hébergement du site ({HOST_ADDRESS}).</li>
+      <li><strong>FormSubmit</strong> — transmission sécurisée des messages du formulaire de contact vers {EMAIL}.</li>
       {"<li><strong>Google LLC</strong> — mesure d'audience via Google Analytics 4.</li>" if GA4_MEASUREMENT_ID else ""}
     </ul>
     <h3>Durée de conservation</h3>
@@ -3418,17 +3425,15 @@ document.querySelectorAll('.track-devis').forEach(el => {
   });
 });
 document.querySelectorAll('.track-form').forEach(form => {
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
     const endpoint = form.getAttribute('data-form-endpoint') || form.getAttribute('action') || '';
+    const feedback = form.querySelector('.form-feedback');
+    const submitBtn = form.querySelector('[type="submit"]');
     trackEvent('generate_lead', { method: 'contact_form', event_category: 'conversion' });
     trackEvent('form_submit', { event_category: 'conversion', event_label: 'contact_form' });
-    if (!endpoint || endpoint === '#') {
-      e.preventDefault();
-      const feedback = form.querySelector('.form-feedback');
-      if (feedback) {
-        feedback.textContent = 'Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.';
-        feedback.hidden = false;
-      }
+
+    function resetSmartForm() {
       form.reset();
       if (form.classList.contains('contact-form--smart')) {
         const steps = form.querySelectorAll('.form-step');
@@ -3439,6 +3444,51 @@ document.querySelectorAll('.track-form').forEach(form => {
         const urgent = form.querySelector('[data-urgent-cta]');
         if (urgent) urgent.hidden = true;
         updateSmartFormProgress(form, 1);
+      }
+    }
+
+    if (!endpoint || endpoint === '#') {
+      if (feedback) {
+        feedback.textContent = 'Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.';
+        feedback.hidden = false;
+      }
+      resetSmartForm();
+      return;
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.setAttribute('aria-busy', 'true');
+    }
+    if (feedback) {
+      feedback.textContent = 'Envoi en cours…';
+      feedback.hidden = false;
+    }
+
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.success === 'false' || data.success === false) {
+        throw new Error((data && data.message) || 'send_failed');
+      }
+      if (feedback) {
+        feedback.textContent = 'Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.';
+        feedback.hidden = false;
+      }
+      resetSmartForm();
+    } catch (_) {
+      if (feedback) {
+        feedback.textContent = 'Envoi impossible pour le moment. Appelez-nous au +41 79 932 68 62 ou écrivez à info@sopjanitech.ch.';
+        feedback.hidden = false;
+      }
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-busy');
       }
     }
   });
