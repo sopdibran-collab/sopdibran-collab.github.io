@@ -223,17 +223,26 @@ document.querySelectorAll('.track-form').forEach(form => {
         headers: { Accept: 'application/json' },
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok || data.success === 'false' || data.success === false) {
-        throw new Error((data && data.message) || 'send_failed');
+      const ok = data.success === true || data.success === 'true';
+      if (!res.ok || !ok) {
+        const raw = String((data && data.message) || '');
+        if (/activat/i.test(raw)) {
+          throw new Error('activation');
+        }
+        throw new Error(raw || 'send_failed');
       }
       if (feedback) {
         feedback.textContent = 'Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.';
         feedback.hidden = false;
       }
       resetSmartForm();
-    } catch (_) {
+    } catch (err) {
       if (feedback) {
-        feedback.textContent = 'Envoi impossible pour le moment. Appelez-nous au +41 79 932 68 62 ou écrivez à info@sopjanitech.ch.';
+        if (err && err.message === 'activation') {
+          feedback.textContent = 'Le formulaire n’est pas encore activé. Ouvrez la boîte info@sopjanitech.ch (et les indésirables), cherchez l’e-mail FormSubmit « Activate Form », puis cliquez le lien. Ensuite renvoyez une demande.';
+        } else {
+          feedback.textContent = 'Envoi impossible pour le moment. Appelez-nous au +41 79 932 68 62 ou écrivez à info@sopjanitech.ch.';
+        }
         feedback.hidden = false;
       }
     } finally {
