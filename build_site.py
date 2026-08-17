@@ -88,51 +88,51 @@ CVCS_PROSE = "chauffage, ventilation, climatisation et sanitaire"
 CVCS_ALL_PROSE = "chauffage, ventilation, climatisation, sanitaire, dépannage SAV et sprinkler"
 
 META_DESCRIPTIONS = {
-    "home": f"Sopjani Tech Sàrl : étude, installation et dépannage en {CVCS_PROSE} en Suisse romande. Devis gratuit.",
-    "prestations": f"{CVCS_GROUP}, dépannage SAV et sprinkler en Suisse romande. Découvrez toutes les prestations CVCS de Sopjani Tech Sàrl.",
+    "home": "Chauffage, ventilation, climatisation, sanitaire et sprinkler : installation, maintenance et dépannage en Suisse romande. Devis gratuit, normes suisses, intervention 7j/7.",
+    "prestations": "Installation, maintenance et dépannage : chauffage, ventilation, climatisation, sanitaire, sprinkler et SAV en Suisse romande. Devis gratuit et sans engagement.",
     "zones-intervention": f"{COMPANY_NAME} intervient près de vous en Suisse romande : Genève, Vaud, Valais, Fribourg, Neuchâtel et agglomérations. Siège à {ADDRESS_LOCALITY}.",
-    "a-propos": f"{COMPANY_NAME}, entreprise CVCS basée à {ADDRESS_FULL}. {CVCS_GROUP}, sprinkler et dépannage en Suisse romande.",
-    "contact": f"Devis gratuit et dépannage CVCS urgent. {COMPANY_NAME} — {PHONE_DISP} · {EMAIL} · {ADDRESS_FULL}.",
-    "depannage-sav": f"Urgence ventilation, dépannage chauffage et climatisation en Suisse romande. Appelez le {PHONE_DISP}.",
-    "chauffage": "Chauffagiste à Nyon, Lausanne, Genève et Fribourg : installation, entretien et dépannage. Pompes à chaleur et chaudières. Devis gratuit.",
-    "ventilation": "Entreprise de ventilation en Suisse romande (Nyon, Fribourg, Valais, Vaud, Genève) : VMC, gaines, dépannage et urgence. Devis gratuit.",
-    "climatisation": f"Climatisation à Nyon, Lausanne et Genève : étude, pose et dépannage. Split, multi-split et PAC air-air. Devis — {PHONE_DISP}.",
-    "sprinkler-protection-incendie": "Installation de réseaux sprinkler en sous-traitance en Suisse romande. Protection incendie pour ERP et bâtiments industriels.",
-    "sanitaire": "Installations et dépannages sanitaires en Suisse romande. Réseaux eau chaude/froide, fuites, chauffe-eau et rénovations.",
-    "geneve": f"Chauffagiste à Genève : installation, entretien et dépannage chauffage et climatisation. Devis gratuit — {PHONE_DISP}.",
-    "vaud": f"Chauffagiste dans le canton de Vaud (Nyon, Lausanne, Morges) : chauffage, climatisation et dépannage. Devis — {PHONE_DISP}.",
-    "lausanne": f"Chauffagiste à Lausanne : dépannage chauffage, installation et entretien. Pompes à chaleur et chaudières. Appelez le {PHONE_DISP}.",
-    "nyon": f"Climatisation et chauffagiste à Nyon : installation, entretien et dépannage. Devis gratuit — appelez le {PHONE_DISP}.",
-    "valais": f"Chauffagiste et climatisation en Valais (Sion, Martigny, Monthey). Installation et dépannage CVCS. Devis — {PHONE_DISP}.",
-    "fribourg": f"Chauffagiste Fribourg et Romont : installation, entretien et dépannage chauffage. Siège à Romont — {PHONE_DISP}.",
-    "neuchatel": f"Chauffagiste à Neuchâtel et La Chaux-de-Fonds : chauffage, climatisation et dépannage. Devis — {PHONE_DISP}.",
+    "a-propos": "Entreprise technique à Romont FR : chauffage, ventilation, climatisation, sanitaire, SAV et sprinkler en Suisse romande. Un interlocuteur unique, normes SIA, SUVA et AEAI.",
+    "contact": f"Demandez un devis gratuit ou un dépannage urgent (chauffage, clim, ventilation, sanitaire) en Suisse romande. Réponse rapide — {PHONE_DISP}.",
+    "depannage-sav": f"Panne de chauffage, clim ou ventilation ? Dépannage CVCS urgent en Suisse romande, 7j/7 de 7h à 17h. Appelez le {PHONE_DISP}.",
+    "chauffage": "Chauffagiste en Suisse romande : chaudières, pompes à chaleur, entretien et dépannage. Villas, immeubles, PPE. Devis gratuit et sans engagement.",
+    "ventilation": "VMC, gaines et traitement de l'air : étude, pose et dépannage en Suisse romande (Genève, Vaud, Fribourg, Valais). Urgence ventilation 7j/7. Devis gratuit.",
+    "climatisation": f"Climatisation à Nyon, Lausanne et Genève : étude, pose et dépannage de splits, multi-splits et PAC air-air. Devis gratuit — {PHONE_DISP}.",
+    "sprinkler-protection-incendie": "Réseaux sprinkler en sous-traitance spécialisée : étude et installation pour ERP, parkings et bâtiments industriels en Suisse romande. Normes AEAI respectées.",
+    "sanitaire": "Installations, rénovations et dépannages sanitaires : réseaux eau chaude/froide, fuites, chauffe-eau. Intervention en Suisse romande. Devis gratuit.",
+    "geneve": f"Chauffagiste à Genève et environs : installation, entretien et dépannage de chauffage et de climatisation (split, multi-split, PAC). Devis gratuit — {PHONE_DISP}.",
+    "vaud": "Chauffagiste dans le canton de Vaud : Lausanne, Nyon, Riviera, Chablais, Nord vaudois. Chauffage, PAC, entretien et dépannage. Devis gratuit.",
+    "lausanne": f"Chauffagiste à Lausanne et environs : dépannage chauffage, pompes à chaleur, chaudières. Intervention rapide, devis gratuit — {PHONE_DISP}.",
+    "nyon": "Climatisation (split, multi-split, PAC air-air) et chauffage à Nyon, Gland, Rolle et Coppet : installation, entretien, dépannage. Devis gratuit.",
+    "valais": f"Chauffagiste en Valais : Sion, Martigny, Monthey, Sierre et stations. Chaudières, PAC, remise en service après hiver. Devis gratuit — {PHONE_DISP}.",
+    "fribourg": "Chauffagiste à Fribourg, Romont, Glâne, Gruyère et Broye : installation, entretien, dépannage, aides aux subventions PAC. Devis gratuit.",
+    "neuchatel": "Chauffagiste dans le canton de Neuchâtel : littoral et Jura (La Chaux-de-Fonds, Le Locle). Chauffage, CVCS, entretien et dépannage. Devis gratuit.",
     "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
     "plan-du-site": "Plan du site Sopjani Tech Sàrl : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
-    "realisations": f"Réalisations de {COMPANY_NAME} en Suisse romande : chauffage, ventilation, sanitaire et sprinkler. Photos de chantiers réels.",
+    "realisations": "Cas chantiers réels : centrale sprinkler, poste d'alarme sous air, conduits de ventilation, locaux techniques sanitaires. Photos de nos interventions en Suisse romande.",
 }
 
 PAGE_TITLES = {
     "home": "CVCS et sprinkler en Suisse romande | Sopjani Tech Sàrl",
-    "a-propos": "Sopjani Tech Sàrl | Entreprise CVCS à Romont",
-    "contact": "Devis et dépannage CVCS | Contact | Sopjani Tech Sàrl",
-    "prestations": "Prestations CVCS et sprinkler | Sopjani Tech Sàrl",
+    "a-propos": "Sopjani Tech Sàrl : entreprise CVCS & sprinkler à Romont",
+    "contact": "Devis gratuit & dépannage CVCS | Sopjani Tech Sàrl",
+    "prestations": "Prestations CVCS & sprinkler — Suisse romande | Sopjani Tech",
     "zones-intervention": "Zones d'intervention | Suisse romande | Sopjani Tech Sàrl",
     "plan-du-site": "Plan du site | Sopjani Tech Sàrl",
-    "chauffage": "Chauffagiste Lausanne, Nyon, Genève | Sopjani Tech Sàrl",
-    "ventilation": "Entreprise ventilation Suisse romande | Sopjani Tech Sàrl",
-    "climatisation": "Climatisation Nyon, Lausanne, Genève | Sopjani Tech Sàrl",
-    "depannage-sav": "Urgence ventilation et dépannage CVCS | Sopjani Tech Sàrl",
-    "sanitaire": "Sanitaire Suisse romande | Dépannage | Sopjani Tech Sàrl",
-    "sprinkler-protection-incendie": "Sprinkler et protection incendie | Sopjani Tech Sàrl",
-    "geneve": "Chauffagiste Genève | Climatisation | Sopjani Tech Sàrl",
-    "vaud": "Chauffagiste Vaud | Nyon, Lausanne | Sopjani Tech Sàrl",
-    "lausanne": "Chauffagiste Lausanne | Dépannage | Sopjani Tech Sàrl",
-    "nyon": "Climatisation Nyon | Chauffagiste | Sopjani Tech Sàrl",
-    "valais": "Climatisation et chauffagiste Valais | Sopjani Tech Sàrl",
-    "fribourg": "Chauffagiste Fribourg et Romont | Sopjani Tech Sàrl",
-    "neuchatel": "Chauffagiste Neuchâtel | CVCS et clim | Sopjani Tech Sàrl",
-    "realisations": "Réalisations CVCS et sprinkler | Sopjani Tech Sàrl",
+    "chauffage": "Chauffagiste en Suisse romande | Sopjani Tech Sàrl",
+    "ventilation": "Ventilation & VMC en Suisse romande | Sopjani Tech Sàrl",
+    "climatisation": "Climatisation à Nyon, Lausanne & Genève | Sopjani Tech Sàrl",
+    "depannage-sav": "Dépannage CVCS urgent en Suisse romande | Sopjani Tech",
+    "sanitaire": "Sanitaire en Suisse romande : installation & dépannage | Sopjani Tech",
+    "sprinkler-protection-incendie": "Sprinkler & protection incendie en Suisse romande | Sopjani Tech",
+    "geneve": "Chauffagiste à Genève — chauffage & climatisation | Sopjani Tech",
+    "vaud": "Chauffagiste dans le canton de Vaud | Sopjani Tech Sàrl",
+    "lausanne": "Chauffagiste à Lausanne — chauffage & dépannage | Sopjani Tech",
+    "nyon": "Climatisation & chauffagiste à Nyon | Sopjani Tech Sàrl",
+    "valais": "Chauffagiste en Valais : chauffage & climatisation | Sopjani Tech",
+    "fribourg": "Chauffagiste à Fribourg & Romont | Sopjani Tech Sàrl",
+    "neuchatel": "Chauffagiste Neuchâtel & La Chaux-de-Fonds | Sopjani Tech",
+    "realisations": "Nos réalisations CVCS & sprinkler — Sopjani Tech Sàrl",
 }
 
 SERVICES = [
@@ -1177,42 +1177,6 @@ def google_g_mark():
     )
 
 
-def google_reviews_schema():
-    """Schema Review + AggregateRating alignés sur les avis visibles (pas le total GBP)."""
-    reviews = []
-    total = 0
-    for r in GOOGLE_REVIEWS:
-        total += r["rating"]
-        reviews.append({
-            "@type": "Review",
-            "author": {"@type": "Person", "name": r["author"]},
-            "datePublished": r["date_published"],
-            "reviewBody": r["body"],
-            "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": str(r["rating"]),
-                "bestRating": "5",
-                "worstRating": "1",
-            },
-            "publisher": {"@type": "Organization", "name": "Google"},
-        })
-    avg = round(total / len(GOOGLE_REVIEWS), 1) if GOOGLE_REVIEWS else 0
-    return {
-        "@type": "HVACBusiness",
-        "@id": f"{SITE}/#organization-reviews",
-        "name": COMPANY_NAME,
-        "url": SITE,
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": str(avg),
-            "reviewCount": str(len(GOOGLE_REVIEWS)),
-            "bestRating": "5",
-            "worstRating": "1",
-        },
-        "review": reviews,
-    }
-
-
 def google_reviews_section(*, heading_id="avis-google-title"):
     """Bloc avis Google — citations éditoriales + lien fiche (pas de widget générique)."""
     n = len(GOOGLE_REVIEWS)
@@ -1826,7 +1790,7 @@ def build_home():
 {cta_band()}"""
     home_title = PAGE_TITLES["home"]
     home_desc = META_DESCRIPTIONS["home"]
-    graph = base_graph(home_title, home_desc, SITE + "/", faq=faq, extra=google_reviews_schema())
+    graph = base_graph(home_title, home_desc, SITE + "/", faq=faq)
     write_page(["index.html"], page_shell(home_title, home_desc, SITE + "/", graph, body))
 
 
@@ -2016,10 +1980,7 @@ def build_about():
         SITE + "/a-propos/",
         crumbs,
         faq,
-        extra=[
-            {"@type": "AboutPage", "name": "À propos", "url": SITE + "/a-propos/"},
-            google_reviews_schema(),
-        ],
+        extra={"@type": "AboutPage", "name": "À propos", "url": SITE + "/a-propos/"},
     )
     write_page(["a-propos", "index.html"], page_shell(about_title, about_desc, SITE + "/a-propos/", graph, body, crumbs))
 
@@ -2105,10 +2066,7 @@ def build_contact():
         contact_desc,
         SITE + "/contact/",
         faq=faq,
-        extra=[
-            {"@type": "ContactPage", "name": "Contact", "url": SITE + "/contact/"},
-            google_reviews_schema(),
-        ],
+        extra={"@type": "ContactPage", "name": "Contact", "url": SITE + "/contact/"},
     )
     write_page(["contact", "index.html"], page_shell(contact_title, contact_desc, SITE + "/contact/", graph, body))
 
