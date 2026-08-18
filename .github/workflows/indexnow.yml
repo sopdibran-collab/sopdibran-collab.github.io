@@ -1,0 +1,108 @@
+name: IndexNow
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.html"
+      - "!**/*.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed HTML pages
+        id: changed
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.sha }}"
+
+          if [[ "$BEFORE" == "0000000000000000000000000000000000000000" ]]; then
+            FILES=$(git diff-tree --no-commit-id --name-only -r "$AFTER" -- '*.html')
+          else
+            FILES=$(git diff --name-only "$BEFORE" "$AFTER" -- '*.html')
+          fi
+
+          URLS=""
+
+          while IFS= read -r file; do
+            [[ -z "$file" ]] && continue
+
+            if [[ "$file" == "index.html" ]]; then
+              url="https://sopjanitech.ch/"
+            elif [[ "$file" == */index.html ]]; then
+              directory="${file%/index.html}"
+              url="https://sopjanitech.ch/${directory}/"
+            else
+              url="https://sopjanitech.ch/${file}"
+            fi
+
+            URLS="${URLS}${url}"$'\n'
+          done <<< "$FILES"
+
+          printf '%s' "$URLS" > changed_urls.txt
+
+          echo "URLs détectées :"
+          cat changed_urls.txt
+
+      - name: Wait for pages to be publicly available
+        if: hashFiles('changed_urls.txt') != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          while IFS= read -r url; do
+            [[ -z "$url" ]] && continue
+
+            echo "Vérification : $url"
+
+            success=false
+
+            for attempt in {1..12}; do
+              status=$(curl -L -s -o /dev/null -w "%{http_code}" "$url" || true)
+
+              if [[ "$status" == "200" ]]; then
+                echo "Disponible : $url"
+                success=true
+                break
+              fi
+
+              echo "HTTP $status — nouvelle tentative dans 10 secondes..."
+              sleep 10
+            done
+
+            if [[ "$success" != true ]]; then
+              echo "La page n'est pas devenue accessible : $url"
+              exit 1
+            fi
+          done < changed_urls.txt
+
+      - name: Submit URLs to IndexNow
+        if: hashFiles('changed_urls.txt') != ''
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          while IFS= read -r url; do
+            [[ -z "$url" ]] && continue
+
+            echo "Envoi IndexNow : $url"
+
+            python3 scripts/indexnow.py "$url"
+          done < changed_urls.txt
