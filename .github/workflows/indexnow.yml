@@ -1,12 +1,11 @@
 name: IndexNow
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "**/*.html"
-      - "!**/*.txt"
+  workflow_run:
+    workflows:
+      - pages build and deployment
+    types:
+      - completed
   workflow_dispatch:
 
 permissions:
@@ -14,6 +13,7 @@ permissions:
 
 jobs:
   submit:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
 
     steps:
@@ -21,6 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
       - name: Detect changed HTML pages
         id: changed
@@ -28,13 +29,13 @@ jobs:
         run: |
           set -euo pipefail
 
-          BEFORE="${{ github.event.before }}"
-          AFTER="${{ github.sha }}"
+          HEAD_SHA="$(git rev-parse HEAD)"
+          echo "Commit analysé : ${HEAD_SHA}"
 
-          if [[ "$BEFORE" == "0000000000000000000000000000000000000000" ]]; then
-            FILES=$(git diff-tree --no-commit-id --name-only -r "$AFTER" -- '*.html')
+          if git rev-parse --verify "${HEAD_SHA}^" >/dev/null 2>&1; then
+            FILES="$(git diff --name-only "${HEAD_SHA}^" "${HEAD_SHA}" -- '*.html')"
           else
-            FILES=$(git diff --name-only "$BEFORE" "$AFTER" -- '*.html')
+            FILES="$(git diff-tree --no-commit-id --name-only -r "${HEAD_SHA}" -- '*.html')"
           fi
 
           URLS=""
@@ -56,43 +57,17 @@ jobs:
 
           printf '%s' "$URLS" > changed_urls.txt
 
-          echo "URLs détectées :"
-          cat changed_urls.txt
-
-      - name: Wait for pages to be publicly available
-        if: hashFiles('changed_urls.txt') != ''
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          while IFS= read -r url; do
-            [[ -z "$url" ]] && continue
-
-            echo "Vérification : $url"
-
-            success=false
-
-            for attempt in {1..12}; do
-              status=$(curl -L -s -o /dev/null -w "%{http_code}" "$url" || true)
-
-              if [[ "$status" == "200" ]]; then
-                echo "Disponible : $url"
-                success=true
-                break
-              fi
-
-              echo "HTTP $status — nouvelle tentative dans 10 secondes..."
-              sleep 10
-            done
-
-            if [[ "$success" != true ]]; then
-              echo "La page n'est pas devenue accessible : $url"
-              exit 1
-            fi
-          done < changed_urls.txt
+          if [[ -z "$URLS" ]]; then
+            echo "has_urls=false" >> "$GITHUB_OUTPUT"
+            echo "Aucun fichier HTML modifié. Pas de soumission IndexNow."
+          else
+            echo "has_urls=true" >> "$GITHUB_OUTPUT"
+            echo "URLs détectées :"
+            cat changed_urls.txt
+          fi
 
       - name: Submit URLs to IndexNow
-        if: hashFiles('changed_urls.txt') != ''
+        if: steps.changed.outputs.has_urls == 'true'
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         shell: bash
@@ -103,6 +78,5 @@ jobs:
             [[ -z "$url" ]] && continue
 
             echo "Envoi IndexNow : $url"
-
             python3 scripts/indexnow.py "$url"
           done < changed_urls.txt
