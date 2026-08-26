@@ -3197,6 +3197,13 @@ def build_404():
 
 def build_sitemap():
     today = date.today().isoformat()
+    # Preserve lastmod for URLs already listed (avoid date-only noise on regenerate).
+    sitemap_path = ROOT / "sitemap.xml"
+    existing_lastmod = {}
+    if sitemap_path.exists():
+        existing_lastmod = dict(
+            re.findall(r"<loc>(.*?)</loc>\s*<lastmod>(.*?)</lastmod>", sitemap_path.read_text(encoding="utf-8"))
+        )
     entries = [
         ("/", "weekly", "1.0"),
         ("/contact/", "monthly", "0.9"),
@@ -3212,9 +3219,11 @@ def build_sitemap():
     entries += [(f"/{z}/", "monthly", "0.8") for z, _, _ in ZONES]
     lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for path, freq, priority in entries:
-        lines.append(f"  <url><loc>{SITE}{path}</loc><lastmod>{today}</lastmod><changefreq>{freq}</changefreq><priority>{priority}</priority></url>")
+        loc = f"{SITE}{path}"
+        lastmod = existing_lastmod.get(loc, today)
+        lines.append(f"  <url><loc>{loc}</loc><lastmod>{lastmod}</lastmod><changefreq>{freq}</changefreq><priority>{priority}</priority></url>")
     lines.append("</urlset>")
-    (ROOT / "sitemap.xml").write_text("\n".join(lines), encoding="utf-8")
+    sitemap_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def build_robots():
