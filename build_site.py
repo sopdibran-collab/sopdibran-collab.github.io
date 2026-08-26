@@ -120,11 +120,11 @@ META_DESCRIPTIONS = {
     "home": "Chauffagiste à Romont FR : chauffage, ventilation, climatisation, sanitaire et sprinkler — installation, maintenance et dépannage en Suisse romande. Devis gratuit, normes suisses, intervention 7j/7.",
     "prestations": "Installation, maintenance et dépannage : chauffage, ventilation, climatisation, sanitaire, sprinkler et SAV en Suisse romande. Devis gratuit et sans engagement.",
     "zones-intervention": f"{COMPANY_NAME} intervient près de vous en Suisse romande : Genève, Vaud, Valais, Fribourg, Romont, Neuchâtel et agglomérations. Siège à {ADDRESS_LOCALITY}.",
-    "a-propos": "Entreprise technique à Romont FR : chauffage, ventilation, climatisation, sanitaire, SAV et sprinkler en Suisse romande. Un interlocuteur unique, normes SIA, SUVA et AEAI.",
+    "a-propos": "Entreprise CVCS à Romont FR : chauffage, ventilation, climatisation et sanitaire de l'étude à la réalisation en Suisse romande. Pilotage technique de chantier, normes SIA.",
     "contact": f"Demandez un devis gratuit ou un dépannage urgent (chauffage, clim, ventilation, sanitaire) en Suisse romande. Réponse rapide — {PHONE_DISP}.",
     "depannage-sav": f"Panne de chauffage, clim, ventilation ou sanitaire ? Dépannage CVCS urgent en Suisse romande, 7j/7 de 7h à 17h. Appelez le {PHONE_DISP}.",
-    "chauffage": "Chauffagiste en Suisse romande : chaudières, pompes à chaleur, entretien et dépannage. Villas, immeubles, PPE. Devis gratuit et sans engagement.",
-    "ventilation": "VMC, gaines et traitement de l'air : étude, pose et dépannage en Suisse romande (Genève, Vaud, Fribourg, Valais). Urgence ventilation 7j/7. Devis gratuit.",
+    "chauffage": "Chauffagiste en Suisse romande : conception SIA, installation et dépannage de pompes à chaleur et chaudières. Villas, PPE, immeubles et appels d'offres. Devis gratuit.",
+    "ventilation": "Entreprise de ventilation en Suisse romande : conception SIA, VMC simple/double flux, pose de réseaux et équilibrage. Villas, immeubles et AO. Devis gratuit.",
     "climatisation": f"Climatisation à Nyon, Lausanne et Genève : étude, pose et dépannage de splits, multi-splits et PAC air-air. Devis gratuit — {PHONE_DISP}.",
     "sprinkler-protection-incendie": "Réseaux sprinkler en sous-traitance spécialisée : étude et installation pour ERP, parkings et bâtiments industriels en Suisse romande. Normes AEAI respectées.",
     "sanitaire": "Installations, rénovations et dépannages sanitaires : réseaux eau chaude/froide, fuites, chauffe-eau. Intervention en Suisse romande. Devis gratuit.",
@@ -150,8 +150,8 @@ PAGE_TITLES = {
     "prestations": "Prestations CVCS & sprinkler — Suisse romande | Sopjani Tech",
     "zones-intervention": "Zones d'intervention | Suisse romande | Sopjani Tech Sàrl",
     "plan-du-site": "Plan du site | Sopjani Tech Sàrl",
-    "chauffage": "Chauffagiste en Suisse romande | Sopjani Tech Sàrl",
-    "ventilation": "Ventilation & VMC en Suisse romande | Sopjani Tech Sàrl",
+    "chauffage": "Chauffagiste en Suisse romande : PAC & chaudières | Sopjani Tech",
+    "ventilation": "Entreprise de ventilation en Suisse romande | Sopjani Tech",
     "climatisation": "Climatisation à Nyon, Lausanne & Genève | Sopjani Tech Sàrl",
     "depannage-sav": "Dépannage CVCS urgent en Suisse romande | Sopjani Tech",
     "sanitaire": "Sanitaire en Suisse romande : installation & dépannage | Sopjani Tech",
@@ -169,8 +169,8 @@ PAGE_TITLES = {
 }
 
 SERVICES = [
-    ("chauffage", "Chauffage", "Installation, entretien et dépannage de systèmes de chauffage."),
-    ("ventilation", "Ventilation", "Ventilation et traitement de l'air pour bâtiments."),
+    ("chauffage", "Chauffage", "Conception, installation et dépannage de systèmes de chauffage."),
+    ("ventilation", "Ventilation", "Conception, installation et équilibrage de systèmes de ventilation."),
     ("climatisation", "Climatisation", "Étude et installation de systèmes de climatisation."),
     ("sanitaire", "Sanitaire", "Installations sanitaires, dépannage et rénovations en Suisse romande."),
     ("depannage-sav", "Dépannage SAV", "Maintenance et dépannage de vos installations CVCS."),
@@ -1942,7 +1942,7 @@ def build_about():
         <span class="label">Entreprise</span>
         <div class="rule"></div>
         <h2 class="section-title" id="about-who">Qui sommes-nous</h2>
-        <p class="about-lead">Sopjani Tech Sàrl accompagne les bâtiments résidentiels, tertiaires et techniques en Suisse romande — du premier échange à la mise en service.</p>
+        <p class="about-lead">En charge des projets CVCS (chauffage, ventilation, climatisation et sanitaire) de l'étude à la réalisation — pour les bâtiments résidentiels, tertiaires et techniques en Suisse romande.</p>
         <p>Basés à <a href="/romont/"><strong>{ADDRESS_FULL}</strong></a>, nous couvrons le {CVCS_PROSE}, le dépannage SAV et le sprinkler / protection incendie. Approche simple : comprendre le besoin, proposer une solution adaptée, intervenir avec sérieux.</p>
         <p>Nous privilégions la clarté des échanges, la réactivité et l'adaptation aux contraintes du terrain — installation, maintenance ou dépannage.</p>
         <div class="about-zones">
@@ -1973,7 +1973,20 @@ def build_about():
     </div>
   </div>
 </section>
-<section class="about-engagements content-section alt" aria-labelledby="engagements-title">
+<section class="about-method content-section alt" aria-labelledby="method-title">
+  <div class="container">
+    <span class="label">Méthode</span>
+    <div class="rule"></div>
+    <h2 class="section-title" id="method-title">Comment nous menons vos projets</h2>
+    <p class="section-lead">De l'étude à la mise en service, nous assurons le pilotage technique du chantier — sans diluer les responsabilités.</p>
+    <ul class="check-list about-check">
+      <li>Gestion technique des chantiers, de la conception à la réception</li>
+      <li>Coordination des intervenants CVCS et des autres corps de métier</li>
+      <li>Suivi de la qualité d'exécution et des coûts tout au long du projet</li>
+    </ul>
+  </div>
+</section>
+<section class="about-engagements content-section" aria-labelledby="engagements-title">
   <div class="container about-engagements-inner">
     <header class="about-engagements-head">
       <span class="label">Engagements</span>
@@ -2178,8 +2191,8 @@ DEFAULT_PROCESS_STEPS = [
 ]
 
 DEFAULT_BUILDINGS_NOTE = (
-    "Pour villas, immeubles, PPE, commerces, bureaux, hôtels, sites industriels "
-    "et bâtiments publics, selon faisabilité technique."
+    "Pour villas, immeubles, PPE, commerces, bureaux, hôtels, bâtiments tertiaires, "
+    "ateliers, halls et bâtiments publics, selon faisabilité technique."
 )
 
 
@@ -2249,6 +2262,12 @@ def write_premium_service_page(cfg):
     faq = cfg["faq"]
     process_steps = cfg.get("process_steps", DEFAULT_PROCESS_STEPS)
     buildings_note = cfg.get("buildings_note", DEFAULT_BUILDINGS_NOTE)
+    audience_html = cfg.get("audience_html")
+    if audience_html:
+        audience_block = f'<div class="svc-premium__audience prose-block">{audience_html}</div>'
+    else:
+        audience_block = f'<p class="svc-premium__note">{buildings_note}</p>'
+    zones_prose = cfg.get("zones_prose", "")
     gallery_cat = cfg.get("gallery_cat")
     show_urgence = cfg.get("show_urgence", False)
     reg_items = cfg.get("regulatory", [])
@@ -2351,7 +2370,7 @@ def write_premium_service_page(cfg):
       <p class="section-lead">{cfg["services_lead"]}</p>
     </div>
     <div class="svc-card-grid">{service_cards}</div>
-    <p class="svc-premium__note">{buildings_note}</p>
+    {audience_block}
     <p class="svc-premium__cta"><a href="/contact/" class="btn btn-secondary track-devis">Demander un devis</a></p>
   </div>
 </section>
@@ -2386,6 +2405,7 @@ def write_premium_service_page(cfg):
       <h2 class="section-title" id="zones-title">{cfg["zones_title"]}</h2>
       <p class="section-lead">{cfg["zones_lead"]}</p>
     </div>
+    {f'<div class="svc-premium__zones-prose prose-block">{zones_prose}</div>' if zones_prose else ""}
     <div class="zone-links">{zone_chips}</div>
     <p class="svc-section__link"><a href="/zones-intervention/" class="text-link">Toutes les zones</a></p>
   </div>
@@ -2432,118 +2452,235 @@ def _premium_service_configs():
         {
             "slug": "chauffage",
             "name": "Chauffage",
-            "h1": "Chauffagiste en Suisse romande : installation, entretien et dépannage",
-            "intro": "Installation, entretien et dépannage de chauffage — de l'étude à la maintenance — pour le confort thermique et la fiabilité de vos installations.",
-            "problems_title": "Un problème de chauffage ?",
-            "problems_lead": "Nous intervenons pour diagnostiquer, réparer, entretenir ou remplacer votre installation de chauffage en Suisse romande.",
+            "h1": "Chauffagiste en Suisse romande : conception, installation et dépannage",
+            "intro": (
+                "En charge des projets CVCS (chauffage, ventilation, climatisation et sanitaire) "
+                "de l'étude à la réalisation. Nous concevons des installations de chauffage "
+                "performantes et adaptées à chaque projet, en intégrant les exigences techniques, "
+                "énergétiques et réglementaires — villas, PPE, immeubles et appels d'offres."
+            ),
+            "problems_title": "Conception chauffage",
+            "problems_lead": (
+                "Avant la pose : dossier, dimensionnement et choix du système — pour un rendement "
+                "durable et un dossier technique cohérent."
+            ),
             "problems": [
-                ("boiler", "Chaudière qui ne démarre plus", "Panne au démarrage ou arrêt en cours de cycle."),
-                ("radiator", "Radiateurs froids ou déséquilibrés", "Circuit mal équilibré ou émetteurs froids."),
-                ("water", "Boiler sans eau chaude", "Production d'ECS insuffisante ou à l'arrêt."),
-                ("noise", "Bruit anormal au démarrage", "Bruit de brûleur, circulateur ou chaudière."),
-                ("gauge", "Consommation en hausse", "Mazout ou gaz — rendement à vérifier."),
-                ("pac", "Chaudière vétuste à remplacer", "Passage possible vers une pompe à chaleur."),
+                ("study", "Étude thermique SIA", "Besoins thermiques calculés selon le cadre SIA du bâtiment."),
+                ("pac", "Choix du système de production", "PAC, chaudière ou solution mixte, selon le projet."),
+                ("balance", "Dimensionnement réseaux et émetteurs", "Distribution et émetteurs dimensionnés au juste besoin."),
+                ("study", "Dossier de mise à l'enquête", "Pièces techniques pour l'autorisation et le suivi du projet."),
+                ("gauge", "Dimensionnement des besoins CVC", "Chauffage, ventilation et climatisation calés ensemble."),
+                ("coord", "Coordination avec les corps de métier CVCS", "Interface claire avec ventilation, clim et sanitaire (plomberie)."),
             ],
-            "services_title": "Installation, entretien et dépannage",
-            "services_lead": "Une prise en charge complète, de l'étude technique à la mise en service.",
+            "services_title": "Réalisation et mise en service",
+            "services_lead": (
+                "De l'installation de production à la mise en service : réseaux, émetteurs, réglages — "
+                "puis entretien et dépannage pour la durée de vie de l'installation."
+            ),
             "services": [
-                ("study", "Étude et dimensionnement thermique", "Calcul de puissance et choix des émetteurs."),
-                ("pac", "Installation de pompe à chaleur", "Air/eau ou sol/eau, selon le bâtiment."),
-                ("install", "Installation ou remplacement de chaudière", "Gaz, mazout ou bois / pellets."),
-                ("water", "Entretien et détartrage de boiler", "Entretien pour préserver le rendement."),
-                ("balance", "Désembouage et équilibrage", "Circuits nettoyés et débits réglés."),
-                ("repair", "Dépannage et remise en service", "Diagnostic et réparation sur site."),
+                ("install", "Installation des systèmes de production", "Pose de pompes à chaleur ou chaudières selon le dossier."),
+                ("pipe", "Pose des réseaux de distribution", "Réseaux hydrauliques réalisés selon la conception."),
+                ("radiator", "Émetteurs : sol, radiateurs, batteries", "Plancher chauffant, radiateurs ou batteries selon le local."),
+                ("maintain", "Mise en service et réglages", "Réglages pour atteindre le rendement prévu."),
+                ("water", "Entretien et détartrage", "Contrôles périodiques pour préserver la performance."),
+                ("repair", "Dépannage et remise en service", "Diagnostic et intervention sur panne en cours."),
+            ],
+            "audience_html": (
+                "<p><strong>Particuliers</strong> — villas, maisons individuelles et PPE : remplacement "
+                "de chaudière, pompe à chaleur, entretien et dépannage, avec orientation sur les aides "
+                "du Programme Bâtiments lorsque le projet s'y prête.</p>"
+                "<p><strong>Professionnels et appels d'offres</strong> — immeubles, bâtiments tertiaires, "
+                "ateliers, halls et zones d'activité : conception et réalisation de chauffage dans ces "
+                "bâtiments. Mandat CVC ou CVCS (CVC + sanitaire / plomberie) selon le cahier des charges.</p>"
+            ),
+            "process_title": "De l'étude à la mise en service",
+            "process_steps": [
+                "Analyse du besoin et dossier de mise à l'enquête",
+                "Dimensionnement CVC et comparaison des solutions techniques",
+                "Conception des réseaux hydrauliques et optimisation du rendement",
+                "Réalisation, coordination CVCS et pose des émetteurs",
+                "Mise en service, réglages et suivi d'entretien",
             ],
             "gallery_cat": "chauffage",
             "gallery_title": "Nos réalisations en chauffage",
             "gallery_lead": f"Découvrez quelques interventions réalisées par {COMPANY_NAME} en Suisse romande.",
-            "expertise_title": "Des solutions adaptées à votre installation",
-            "expertise_lead": "Nous intervenons sur les principaux générateurs de chaleur utilisés en Suisse romande.",
+            "expertise_title": "Production et émetteurs",
+            "expertise_lead": (
+                "Systèmes de production et d'émission courants en Suisse romande — "
+                "conception et réalisation chauffage / CVC, sans spécialités inventées."
+            ),
             "equip": [
-                "Pompes à chaleur air/eau",
-                "Pompes à chaleur sol/eau",
-                "Chaudières à mazout",
-                "Chaudières à gaz",
-                "Chaudières à bois et pellets",
+                "Pompes à chaleur air/eau et sol/eau",
+                "Chaudières gaz, mazout, bois et pellets",
+                "Réseaux hydrauliques de distribution",
+                "Plancher chauffant et radiateurs",
+                "Batteries et émetteurs tertiaires",
             ],
-            "reg_title": "Subventions et exigences techniques",
-            "reg_lead": "Nous pouvons vous orienter selon votre projet et votre canton.",
+            "reg_title": "Cadre technique et réglementaire",
+            "reg_lead": "Exigences SIA, autorisations et aides — du dossier à la pose.",
             "regulatory": [
-                ("Subventions pour le remplacement par une pompe à chaleur",
-                 "Le remplacement d'une chaudière à mazout ou à gaz par une pompe à chaleur peut être subventionné dans le cadre du Programme Bâtiments, avec un barème propre à chaque canton (Genève, Vaud, Valais, Fribourg, Neuchâtel). Les conditions évoluent chaque année : vérifiez les montants en vigueur avant le début des travaux."),
-                ("Contrôle de combustion et exigences OPair",
-                 "Le contrôle périodique officiel des installations à combustion reste du ressort du maître ramoneur agréé de votre secteur, selon l'ordonnance fédérale sur la protection de l'air (OPair), tous les 2 à 4 ans selon le combustible. Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité suite à un contrôle."),
+                ("Étude thermique et normes SIA",
+                 "Le dimensionnement et le choix du système s'appuient sur les besoins thermiques du bâtiment et le cadre SIA applicable. Nous intégrons ces exigences dès la conception."),
+                ("Dossier de mise à l'enquête",
+                 "Selon le projet et le canton, un dossier technique peut être requis. Nous préparons les éléments relevant de notre périmètre (production, réseaux, émetteurs)."),
+                ("Subventions Programme Bâtiments",
+                 "Le remplacement d'une chaudière fossile par une pompe à chaleur peut être subventionné via le Programme Bâtiments, avec un barème cantonal. Les conditions évoluent : vérifiez les montants avant les travaux."),
+                ("Contrôle de combustion OPair",
+                 "Le contrôle périodique officiel reste du ressort du maître ramoneur agréé (OPair). Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité."),
             ],
             "zones_title": "Chauffagiste en Suisse romande",
-            "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient dans plusieurs cantons et villes de Suisse romande.",
+            "zones_lead": (
+                f"{COMPANY_NAME} intervient comme chauffagiste dans toute la Suisse romande — "
+                f"conception, pose, entretien et dépannage. Siège à <a href=\"/romont/\">{ADDRESS_LOCALITY}</a>."
+            ),
+            "zones_prose": (
+                "<p>Notre bassin d'intervention couvre notamment "
+                '<a href="/geneve/">Genève</a>, <a href="/lausanne/">Lausanne</a>, '
+                '<a href="/fribourg/">Fribourg</a>, <a href="/neuchatel/">Neuchâtel</a>, '
+                "Yverdon, Vevey, Montreux, Monthey, Martigny, Sion et Sierre, ainsi que les cantons "
+                '<a href="/vaud/">Vaud</a>, <a href="/valais/">Valais</a>, '
+                '<a href="/nyon/">Nyon</a> et environs. '
+                "Confirmez la disponibilité via les pages zones ou le formulaire devis.</p>"
+            ),
             "zone_slugs": ["geneve", "lausanne", "nyon", "vaud", "valais", "fribourg", "neuchatel"],
             "related_svc": ["ventilation", "climatisation", "sanitaire", "depannage-sav"],
+            "cta_title": "Besoin d'un devis chauffage ou d'un AO ?",
+            "cta_text": (
+                f"Décrivez votre projet (conception, PAC, chaudière, entretien) ou appelez le {PHONE_DISP}. "
+                "Réponse rapide pour particuliers, régies et entreprises."
+            ),
             "faq": [
-                ("Qui appeler pour un chauffagiste à Nyon ou Lausanne ?", f"{COMPANY_NAME} intervient comme chauffagiste à Nyon, Lausanne et dans toute la Suisse romande. Appelez le {PHONE_DISP} ou consultez nos pages zones Nyon et Lausanne."),
-                ("Intervenez-vous en dépannage chauffage ?", "Oui, nous intervenons sur chaudières, pompes à chaleur et radiateurs : absence de chauffage, bruit anormal, fuite ou baisse de rendement. Appelez-nous directement pour une panne en cours."),
-                ("Proposez-vous des contrats d'entretien ?", "Oui, un entretien régulier de votre chaudière ou pompe à chaleur (contrôle, réglage, détartrage du boiler) permet de limiter les pannes. Contactez-nous pour une fréquence adaptée."),
-                ("Combien coûte un devis chauffage ?", "Le devis est gratuit. Il dépend du type d'installation, de la surface et de l'état de l'existant."),
-                ("Qui effectue le contrôle officiel de combustion ?", "Le contrôle périodique OPair (tous les 2 à 4 ans selon le combustible) est réalisé par le maître ramoneur agréé de votre secteur. Nous intervenons en complément pour l'entretien, le réglage du brûleur et la remise en conformité."),
-                ("Une pompe à chaleur peut-elle être subventionnée ?", "Oui, sous conditions, dans le cadre du Programme Bâtiments (leprogrammebatiments.ch), avec un barème propre à chaque canton. Contactez-nous pour évaluer votre projet."),
-                ("Dans quelles zones intervenez-vous ?", f"Depuis {ADDRESS_LOCALITY}, nous intervenons notamment à Genève, Vaud (Nyon, Lausanne), Valais, Fribourg et Neuchâtel. Vérifiez la disponibilité via notre page zones."),
+                ("Qui appeler pour un chauffagiste en Suisse romande ?",
+                 f"{COMPANY_NAME} conçoit et réalise des installations de chauffage (étude SIA, PAC, chaudières, réseaux et émetteurs), avec entretien et dépannage. Appelez le {PHONE_DISP} ou demandez un devis."),
+                ("Proposez-vous la conception et le dossier de mise à l'enquête ?",
+                 "Oui. Étude thermique, dimensionnement, comparaison des solutions et éléments techniques du dossier de mise à l'enquête relevant du chauffage / CVC."),
+                ("Intervenez-vous pour les particuliers et les appels d'offres ?",
+                 "Oui. Particuliers (villas, maisons, PPE) et professionnels (immeubles, tertiaire, ateliers, halls, zones d'activité). Mandat CVC ou CVCS (CVC + sanitaire / plomberie) selon le besoin. Nous répondons aussi aux appels d'offres."),
+                ("Quels émetteurs installez-vous ?",
+                 "Plancher chauffant, radiateurs et batteries — selon le dimensionnement et le type de bâtiment."),
+                ("Intervenez-vous en dépannage chauffage ?",
+                 "Oui, sur chaudières, pompes à chaleur et radiateurs. Appelez-nous pour une panne en cours."),
+                ("Une pompe à chaleur peut-elle être subventionnée ?",
+                 "Oui, sous conditions, via le Programme Bâtiments, avec un barème cantonal. Contactez-nous pour évaluer votre projet."),
+                ("Dans quelles villes intervenez-vous ?",
+                 "Notamment Genève, Lausanne, Fribourg, Neuchâtel, Yverdon, Vevey, Montreux, Monthey, Martigny, Sion et Sierre, ainsi que Vaud, Valais et Nyon."),
+                ("Qui effectue le contrôle officiel de combustion ?",
+                 "Le contrôle OPair est réalisé par le maître ramoneur agréé. Nous intervenons en complément pour l'entretien, le réglage et la remise en conformité."),
             ],
         },
         {
             "slug": "ventilation",
             "name": "Ventilation",
-            "h1": "Entreprise de ventilation en Suisse romande",
-            "intro": "Entreprise de ventilation pour particuliers et professionnels : installation VMC, entretien des gaines, dépannage et urgence — Nyon, Fribourg, Valais, Vaud et Genève.",
-            "problems_title": "Un problème de ventilation ?",
-            "problems_lead": "Nous diagnostiquons et intervenons sur les VMC et réseaux d'air en Suisse romande.",
+            "h1": "Entreprise de ventilation en Suisse romande : conception et installation",
+            "intro": (
+                "En charge des projets CVCS (chauffage, ventilation, climatisation et sanitaire) "
+                "de l'étude à la réalisation. Nous concevons des installations de ventilation "
+                "performantes et adaptées à chaque projet — calcul des débits SIA, choix simple ou "
+                "double flux, pose des réseaux et équilibrage."
+            ),
+            "problems_title": "Conception ventilation",
+            "problems_lead": (
+                "Nous définissons le système adapté au bâtiment : débits, réseaux aérauliques et type "
+                "de ventilation — avant la pose, pour un air sain et un rendement maîtrisé."
+            ),
             "problems": [
-                ("noise", "VMC bruyante ou peu performante", "Débit insuffisant ou nuisance sonore."),
-                ("humidity", "Condensation et humidité", "Renouvellement d'air insuffisant."),
-                ("filter", "Filtres encrassés", "Perte de débit et surconsommation."),
-                ("duct", "Gaines mal isolées ou obstruées", "Réseau à contrôler ou réhabiliter."),
-                ("fan", "Moteur ou caisson en panne", "Arrêt partiel ou total de la VMC."),
-                ("balance", "Mise en conformité locale", "Local technique, parking ou cuisine pro."),
+                ("fan", "Calcul des débits d'air (SIA)", "Débits dimensionnés selon le cadre SIA et l'usage des locaux."),
+                ("duct", "Dimensionnement des réseaux aérauliques", "Gaines et parcours conçus pour les pertes de charge prévues."),
+                ("balance", "Choix naturel, simple ou double flux", "Avec récupération de chaleur lorsque le projet le justifie."),
+                ("study", "Dossier de mise à l'enquête", "Éléments techniques ventilation pour l'autorisation du projet."),
+                ("gauge", "Dimensionnement des besoins CVC", "Ventilation calée avec chauffage et climatisation."),
+                ("coord", "Coordination avec les corps de métier CVCS", "Interface avec chauffage, clim et sanitaire (plomberie)."),
             ],
-            "services_title": "Installation, entretien et réhabilitation",
-            "services_lead": "De l'installation neuve au nettoyage des réseaux existants.",
+            "services_title": "Réalisation et équilibrage",
+            "services_lead": (
+                "De la pose des monoblocs à l'équilibrage des débits : réseaux, gaines, diffuseurs et "
+                "mise en service — puis entretien pour maintenir la qualité de l'air."
+            ),
             "services": [
-                ("install", "Installation VMC simple ou double flux", "Avec récupération de chaleur si adapté."),
-                ("duct", "Nettoyage et désinfection de gaines", "Bouches et réseaux d'extraction."),
-                ("filter", "Remplacement filtres, moteurs, caissons", "Pièces et entretien courant."),
-                ("balance", "Réglage et équilibrage des débits", "Confort et efficacité énergétique."),
-                ("fan", "Ventilation locaux techniques", "Parkings et cuisines professionnelles."),
-                ("repair", "Réhabilitation de réseaux existants", "Remise à niveau d'installations anciennes."),
+                ("fan", "Monoblocs de ventilation", "Pose des centrales / monoblocs selon le dossier de conception."),
+                ("duct", "Pose des réseaux et gaines", "Réseaux aérauliques réalisés selon le dimensionnement."),
+                ("filter", "Diffuseurs et grilles", "Bouches, diffuseurs et grilles adaptés aux locaux."),
+                ("balance", "Mise en service et équilibrage", "Équilibrage des débits pour atteindre les valeurs prévues."),
+                ("maintain", "Entretien filtres et caissons", "Maintenance pour préserver débit et qualité d'air."),
+                ("repair", "Dépannage et réhabilitation", "Remise en service ou remise à niveau d'installations existantes."),
+            ],
+            "audience_html": (
+                "<p><strong>Particuliers</strong> — villas, maisons et PPE : VMC simple ou double flux, "
+                "entretien des filtres et dépannage, y compris bâtiments Minergie.</p>"
+                "<p><strong>Professionnels et appels d'offres</strong> — immeubles, tertiaire, ateliers, "
+                "halls et zones d'activité : conception et réalisation de ventilation dans ces bâtiments. "
+                "Mandat CVC ou CVCS (CVC + sanitaire / plomberie) selon le cahier des charges.</p>"
+            ),
+            "process_title": "De l'étude à l'équilibrage",
+            "process_steps": [
+                "Analyse du besoin et dossier de mise à l'enquête",
+                "Calcul des débits SIA et comparaison des solutions (naturel / simple / double flux)",
+                "Conception des réseaux aérauliques et optimisation énergétique",
+                "Pose des monoblocs, gaines, diffuseurs et coordination CVCS",
+                "Mise en service, équilibrage des débits et suivi d'entretien",
             ],
             "gallery_cat": "ventilation",
             "gallery_title": "Nos réalisations en ventilation",
-            "gallery_lead": f"Quelques interventions VMC et traitement de l'air réalisées par {COMPANY_NAME}.",
-            "expertise_title": "Des systèmes adaptés à votre bâtiment",
-            "expertise_lead": "Nous intervenons sur les principales architectures de ventilation en Suisse romande.",
+            "gallery_lead": f"Quelques interventions VMC et réseaux d'air réalisées par {COMPANY_NAME}.",
+            "expertise_title": "Systèmes de ventilation",
+            "expertise_lead": (
+                "Architectures de ventilation courantes en Suisse romande — "
+                "du simple flux au double flux avec récupération de chaleur."
+            ),
             "equip": [
+                "Ventilation naturelle (selon projet)",
                 "VMC simple flux",
                 "VMC double flux avec récupération de chaleur",
-                "Ventilation de locaux techniques",
-                "Ventilation de parkings",
-                "Cuisines professionnelles",
+                "Monoblocs et caissons de ventilation",
+                "Réseaux, gaines, diffuseurs et grilles",
             ],
-            "reg_title": "Exigences techniques et entretien",
-            "reg_lead": "Qualité de l'air, étanchéité et maintenance des réseaux.",
+            "reg_title": "Cadre technique et entretien",
+            "reg_lead": "Débits SIA, qualité de l'air et maintenance des réseaux.",
             "regulatory": [
+                ("Calcul des débits et cadre SIA",
+                 "Les débits d'air sont définis selon l'usage des locaux et le cadre SIA applicable. Ce dimensionnement guide le choix du système et la conception des réseaux."),
+                ("Dossier de mise à l'enquête",
+                 "Lorsque le projet l'exige, nous fournissons les éléments techniques ventilation du dossier de mise à l'enquête, en cohérence avec le chauffage et la climatisation."),
                 ("Bâtiments Minergie et étanchéité à l'air",
-                 "Les constructions récentes ou labellisées Minergie reposent sur une bonne étanchéité à l'air et nécessitent une ventilation mécanique contrôlée correctement dimensionnée et entretenue, pour garantir la qualité de l'air intérieur et éviter les problèmes d'humidité."),
+                 "Les constructions étanches ou labellisées Minergie nécessitent une ventilation mécanique correctement dimensionnée et entretenue."),
                 ("Entretien et nettoyage des réseaux",
-                 "Un nettoyage périodique des gaines, bouches et filtres permet de préserver le débit d'air prévu à l'installation et d'éviter la surconsommation électrique des moteurs encrassés."),
+                 "Le nettoyage périodique des gaines, bouches et filtres préserve les débits prévus et limite la surconsommation des moteurs."),
             ],
             "zones_title": "Entreprise de ventilation en Suisse romande",
-            "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Nyon, Fribourg, en Valais, à Genève, Lausanne et dans le canton de Vaud.",
+            "zones_lead": (
+                f"{COMPANY_NAME} intervient pour la conception et la réalisation de ventilation en Suisse romande. "
+                f"Siège à <a href=\"/romont/\">{ADDRESS_LOCALITY}</a>."
+            ),
+            "zones_prose": (
+                "<p>Interventions notamment à "
+                '<a href="/nyon/">Nyon</a>, <a href="/fribourg/">Fribourg</a>, '
+                '<a href="/geneve/">Genève</a>, <a href="/lausanne/">Lausanne</a>, '
+                '<a href="/vaud/">Vaud</a> et <a href="/valais/">Valais</a> — '
+                "villas, immeubles et bâtiments tertiaires. Confirmez la disponibilité via les pages zones.</p>"
+            ),
             "zone_slugs": ["nyon", "fribourg", "valais", "geneve", "lausanne", "vaud"],
             "related_svc": ["chauffage", "climatisation", "sanitaire", "depannage-sav"],
+            "cta_title": "Besoin d'un devis ventilation ou d'un AO ?",
+            "cta_text": (
+                f"Décrivez le bâtiment et le type de ventilation souhaité, ou appelez le {PHONE_DISP}. "
+                "Réponse rapide pour particuliers, régies et entreprises."
+            ),
             "faq": [
-                ("Quelle entreprise de ventilation (ventiliste) contacter en Suisse romande ?", f"{COMPANY_NAME} intervient pour l'installation, la maintenance et le dépannage de ventilation à Nyon, Fribourg, Valais, Vaud et Genève."),
-                ("Intervenez-vous en urgence pour une panne VMC ?", f"Oui — urgence ventilation : appelez le {PHONE_DISP}. Nous évaluons la disponibilité selon le secteur et la nature de la panne."),
-                ("Réalisez-vous des travaux de rénovation de ventilation ?", "Oui, nous rénovons les VMC existantes : remplacement de moteurs, filtres et gaines, ou passage à une VMC double flux avec récupération de chaleur. Contactez-nous avec le type de bâtiment et l'état de l'installation actuelle."),
-                ("Comment obtenir un devis ventilation ?", "Contactez-nous avec le type de bâtiment, la surface et l'état des installations existantes."),
+                ("Quelle entreprise de ventilation contacter en Suisse romande ?",
+                 f"{COMPANY_NAME} conçoit et installe la ventilation (débits SIA, simple/double flux, réseaux, équilibrage) à Nyon, Fribourg, Genève, Lausanne, Vaud et Valais."),
+                ("Faites-vous le calcul des débits et le dossier de mise à l'enquête ?",
+                 "Oui. Calcul des débits d'air selon le cadre SIA, dimensionnement des réseaux aérauliques, choix du système et éléments techniques pour le dossier de mise à l'enquête."),
+                ("Quelle différence entre simple flux et double flux ?",
+                 "La VMC simple flux extrait l'air vicié ; la double flux ajoute l'insufflation et, souvent, une récupération de chaleur. Le choix dépend du bâtiment, de l'étanchéité et des objectifs énergétiques."),
+                ("Intervenez-vous pour les particuliers et les appels d'offres ?",
+                 "Oui. Villas et PPE comme immeubles, tertiaire, ateliers et halls. Mandat CVC ou CVCS (CVC + sanitaire / plomberie) selon le besoin. Nous répondons aussi aux AO."),
+                ("Intervenez-vous en urgence pour une panne VMC ?",
+                 f"Oui — appelez le {PHONE_DISP}. Nous évaluons la disponibilité selon le secteur et la nature de la panne."),
+                ("Comment obtenir un devis ventilation ?",
+                 "Indiquez le type de bâtiment, la surface, l'état de l'existant et si un dossier d'enquête ou un AO est prévu. Devis via la page contact ou par téléphone."),
             ],
         },
+
         {
             "slug": "climatisation",
             "name": "Climatisation",
@@ -2820,7 +2957,8 @@ def build_zones():
         PAGE_TITLES["vaud"],
         META_DESCRIPTIONS["vaud"],
         "Chauffagiste dans le canton de Vaud",
-        p("Chauffagiste dans le canton de Vaud : rives du Léman, Lausanne, Nyon, Riviera, Chablais et Nord vaudois. Du villa à l'immeuble locatif ou PPE, selon l'altitude et l'exposition.") +
+        p("Chauffagiste dans le canton de Vaud : rives du Léman, Lausanne, Nyon, Riviera (Vevey, Montreux), Chablais et Nord vaudois (Yverdon-les-Bains). Du villa à l'immeuble locatif ou PPE, selon l'altitude et l'exposition.") +
+        p("À Yverdon et dans les zones d'activité du Nord vaudois, comme sur la Riviera, nous intervenons aussi pour le CVC et le sanitaire (plomberie) en bâtiments tertiaires, ateliers et halls — pas uniquement en habitat.") +
         p("Pour les communes hors axes principaux, contactez-nous afin de confirmer la faisabilité.") +
         communes_block(["Morges", "Yverdon-les-Bains", "Vevey", "Montreux", "Renens", "Pully", "Rolle", "Aigle", "Payerne", "Echallens", "Cossonay", "Orbe"]) +
         SUBSIDY_NOTE.format(extra="Dans le canton de Vaud, les demandes sont instruites par la Direction générale de l'environnement (DGE) / Direction de l'énergie."),
@@ -2864,8 +3002,9 @@ def build_zones():
         PAGE_TITLES["valais"],
         META_DESCRIPTIONS["valais"],
         "Chauffagiste en Valais : chauffage, CVCS et climatisation",
-        p("Chauffagiste en Valais : de la plaine du Rhône aux stations, l'altitude influence le dimensionnement du chauffage. Résidences secondaires et chalets demandent souvent une attention hors gel / remise en service.") +
-        p("Contactez-nous avec votre commune (Sion, Martigny, Monthey, Sierre…) pour vérifier la disponibilité.") +
+        p("Chauffagiste en Valais : de la plaine du Rhône (Sion, Martigny, Monthey, Sierre) aux stations, l'altitude influence le dimensionnement du chauffage. Résidences secondaires et chalets demandent souvent une attention hors gel / remise en service.") +
+        p("À Monthey et dans les zones d'activité de la plaine, nous intervenons aussi pour le CVC et le sanitaire (plomberie) en bâtiments tertiaires, ateliers et halls.") +
+        p("Contactez-nous avec votre commune pour vérifier la disponibilité.") +
         communes_block(["Sion", "Martigny", "Monthey", "Sierre", "Crans-Montana", "Verbier", "Saint-Maurice", "Conthey"]) +
         SUBSIDY_NOTE.format(extra="En Valais, les demandes sont instruites par le Service de l'énergie et des forces hydrauliques (SEFH) de l'État du Valais."),
         zone_aeo_faq("Valais", "le canton du Valais") + [
