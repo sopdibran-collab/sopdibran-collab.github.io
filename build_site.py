@@ -119,7 +119,7 @@ CVCS_ALL_PROSE = "chauffage, ventilation, climatisation, sanitaire, dépannage S
 META_DESCRIPTIONS = {
     "home": "Chauffagiste à Romont FR : chauffage, ventilation, climatisation, sanitaire et sprinkler — installation, maintenance et dépannage en Suisse romande. Devis gratuit, normes suisses, intervention 7j/7.",
     "prestations": "Installation, maintenance et dépannage : chauffage, ventilation, climatisation, sanitaire, sprinkler et SAV en Suisse romande. Devis gratuit et sans engagement.",
-    "zones-intervention": f"{COMPANY_NAME} intervient près de vous en Suisse romande : Genève, Vaud, Valais, Fribourg, Neuchâtel et agglomérations. Siège à {ADDRESS_LOCALITY}.",
+    "zones-intervention": f"{COMPANY_NAME} intervient près de vous en Suisse romande : Genève, Vaud, Valais, Fribourg, Romont, Neuchâtel et agglomérations. Siège à {ADDRESS_LOCALITY}.",
     "a-propos": "Entreprise technique à Romont FR : chauffage, ventilation, climatisation, sanitaire, SAV et sprinkler en Suisse romande. Un interlocuteur unique, normes SIA, SUVA et AEAI.",
     "contact": f"Demandez un devis gratuit ou un dépannage urgent (chauffage, clim, ventilation, sanitaire) en Suisse romande. Réponse rapide — {PHONE_DISP}.",
     "depannage-sav": f"Panne de chauffage, clim, ventilation ou sanitaire ? Dépannage CVCS urgent en Suisse romande, 7j/7 de 7h à 17h. Appelez le {PHONE_DISP}.",
@@ -133,7 +133,8 @@ META_DESCRIPTIONS = {
     "lausanne": f"Chauffagiste à Lausanne et environs : dépannage chauffage, pompes à chaleur, chaudières. Intervention rapide, devis gratuit — {PHONE_DISP}.",
     "nyon": "Climatisation (split, multi-split, PAC air-air) et chauffage à Nyon, Gland, Rolle et Coppet : installation, entretien, dépannage. Devis gratuit.",
     "valais": f"Chauffagiste en Valais : Sion, Martigny, Monthey, Sierre et stations. Chaudières, PAC, remise en service après hiver. Devis gratuit — {PHONE_DISP}.",
-    "fribourg": "Chauffagiste à Fribourg, Romont, Glâne, Gruyère et Broye : installation, entretien, dépannage, aides aux subventions PAC. Devis gratuit.",
+    "fribourg": "Chauffagiste à Fribourg, Glâne, Gruyère et Broye : installation, entretien, dépannage, aides aux subventions PAC. Devis gratuit. Siège à Romont.",
+    "romont": f"CVCS à Romont FR (siège) : chauffage, ventilation, climatisation, sanitaire et dépannage SAV pour villas, immeubles, PPE et entreprises. Devis gratuit — {PHONE_DISP}.",
     "neuchatel": "Chauffagiste dans le canton de Neuchâtel : littoral et Jura (La Chaux-de-Fonds, Le Locle). Chauffage, CVCS, entretien et dépannage. Devis gratuit.",
     "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
@@ -160,7 +161,8 @@ PAGE_TITLES = {
     "lausanne": "Chauffagiste à Lausanne — chauffage & dépannage | Sopjani Tech",
     "nyon": "Climatisation & chauffagiste à Nyon | Sopjani Tech Sàrl",
     "valais": "Chauffagiste en Valais : chauffage & climatisation | Sopjani Tech",
-    "fribourg": "Chauffagiste à Fribourg & Romont | Sopjani Tech Sàrl",
+    "fribourg": "Chauffagiste à Fribourg (canton) | Sopjani Tech Sàrl",
+    "romont": "CVCS à Romont — siège Sopjani Tech | chauffage & dépannage",
     "neuchatel": "Chauffagiste Neuchâtel & La Chaux-de-Fonds | Sopjani Tech",
     "realisations": "Nos réalisations CVCS & sprinkler — Sopjani Tech Sàrl",
     "404": f"Page introuvable | {COMPANY_NAME}",
@@ -242,6 +244,7 @@ ZONES = [
     ("nyon", "Nyon", "la région de Nyon"),
     ("valais", "Valais", "le canton du Valais"),
     ("fribourg", "Fribourg", "le canton de Fribourg"),
+    ("romont", "Romont", "Romont et la Glâne"),
     ("neuchatel", "Neuchâtel", "le canton de Neuchâtel"),
 ]
 
@@ -260,7 +263,7 @@ CITY_COVERAGE_LINKS = (
     ("Sierre", "/valais/"),
     ("Fribourg", "/fribourg/"),
     ("Bulle", "/fribourg/"),
-    ("Romont", "/fribourg/"),
+    ("Romont", "/romont/"),
     ("Neuchâtel", "/neuchatel/"),
     ("La Chaux-de-Fonds", "/neuchatel/"),
 )
@@ -502,13 +505,14 @@ def chauffagiste_local_block():
         ("Lausanne", "/lausanne/"),
         ("Genève", "/geneve/"),
         ("Fribourg", "/fribourg/"),
+        ("Romont", "/romont/"),
         ("Valais", "/valais/"),
         ("Vaud", "/vaud/"),
         ("Neuchâtel", "/neuchatel/"),
     )
     pills = "".join(f'<a class="zone-pill" href="{href}">Chauffagiste {label}</a>' for label, href in links)
     return f"""<h3>Chauffagiste près de chez vous</h3>
-<p>Vous cherchez un chauffagiste à Nyon, Lausanne, Genève ou ailleurs en Suisse romande ? Nous intervenons pour l'installation, l'entretien et le dépannage — pompes à chaleur, chaudières et réseaux de chauffage.</p>
+<p>Vous cherchez un chauffagiste à Nyon, Lausanne, Genève, Romont ou ailleurs en Suisse romande ? Nous intervenons pour l'installation, l'entretien et le dépannage — pompes à chaleur, chaudières et réseaux de chauffage.</p>
 <div class="zone-links">{pills}</div>
 <p style="margin-top:16px;"><a href="/climatisation/" class="text-link">Climatisation (Nyon, Lausanne, Genève)</a></p>"""
 
@@ -860,12 +864,15 @@ def webpage_schema(title, description, url):
 
 
 def faq_schema(items):
+    """FAQPage JSON-LD — plain text only (strip markup from answers used also in HTML)."""
+    def plain(text):
+        return re.sub(r"<[^>]+>", "", text)
     return {
         "@type": "FAQPage",
         "mainEntity": [{
             "@type": "Question",
-            "name": q,
-            "acceptedAnswer": {"@type": "Answer", "text": a},
+            "name": plain(q),
+            "acceptedAnswer": {"@type": "Answer", "text": plain(a)},
         } for q, a in items],
     }
 
@@ -923,7 +930,7 @@ def header():
     </div>"""
     return f"""<div class="topbar" role="complementary" aria-label="Coordonnées">
   <div class="container topbar-inner">
-    <p class="topbar-left">Société basée à {ADDRESS_LOCALITY} — Interventions en Suisse romande</p>
+    <p class="topbar-left">Société basée à <a href="/romont/">{ADDRESS_LOCALITY}</a> — Interventions en Suisse romande</p>
     <p class="topbar-right">
       <a href="tel:{PHONE}" class="track-phone topbar-phone">{PHONE_DISP}</a>
       <span class="topbar-extra">
@@ -1758,7 +1765,7 @@ def build_home():
     faq = [
         ("Comment obtenir un devis ?", "Via le formulaire contact (quelques questions) ou par téléphone. Le devis est gratuit et sans engagement."),
         ("Intervenez-vous en dépannage ?", f"Oui, en {CVCS_PROSE} en Suisse romande. Appelez le {PHONE_DISP} pour une panne en cours. Horaires : {HOURS}."),
-        ("Dans quelles zones intervenez-vous ?", f"Genève, Vaud, Lausanne, Nyon, Valais, Fribourg et alentours. Siège à {ADDRESS_LOCALITY}."),
+        ("Dans quelles zones intervenez-vous ?", f"Genève, Vaud, Lausanne, Nyon, Valais, Fribourg et alentours. Siège à <a href=\"/romont/\">{ADDRESS_LOCALITY}</a>."),
     ]
     body = f"""
 <section class="hero hero--photo" aria-labelledby="hero-h1">
@@ -1804,6 +1811,7 @@ def build_home():
       <span class="label label--brand">À propos</span>
       <h2 class="section-title" id="about-title">Un interlocuteur, du devis à la mise en service.</h2>
       <p>Étude, installation et suivi avec devis clairs et respect des normes suisses (SIA, SUVA, AEAI).</p>
+      <p>Siège à <a href="/romont/">{ADDRESS_FULL}</a> — équipe mobile en Suisse romande.</p>
       <p class="about-copy-links">
         <a href="/a-propos/" class="text-link">Présentation</a>
         <a href="/contact/#contact-form" class="text-link track-devis">Demander un devis</a>
@@ -1874,7 +1882,7 @@ def build_zones_hub():
     faq = [
         ("Dans quelles zones intervenez-vous ?", "Genève, Vaud, Lausanne, Nyon, Valais et Fribourg, ainsi que d'autres secteurs en Suisse romande selon le projet."),
         ("Comment savoir si vous intervenez chez moi ?", f"Contactez-nous avec votre commune. Nous sommes basés à {ADDRESS_LOCALITY} et nous déplaçons selon la nature des travaux."),
-        ("Avez-vous une agence dans chaque canton ?", "Non. Nos interventions sont assurées par une équipe mobile depuis notre siège à Romont FR."),
+        ("Avez-vous une agence dans chaque canton ?", f"Non. Nos interventions sont assurées par une équipe mobile depuis notre <a href=\"/romont/\">siège à {ADDRESS_LOCALITY}</a>."),
     ]
     cards = "".join(f'<a class="hub-card" href="/{z}/"><h3>{n}</h3><p>Interventions CVCS dans {r}</p><span class="link-arrow">Voir la zone →</span></a>' for z, n, r in ZONES)
     hero = page_hero(
@@ -1914,7 +1922,7 @@ def build_zones_hub():
 
 def build_about():
     faq = [
-        (f"Où est située {COMPANY_NAME} ?", f"Notre siège est à {ADDRESS_FULL}. Nous intervenons en Suisse romande pour le {CVCS_PROSE} et le dépannage CVCS."),
+        (f"Où est située {COMPANY_NAME} ?", f"Notre siège est à <a href=\"/romont/\">{ADDRESS_FULL}</a>. Nous intervenons en Suisse romande pour le {CVCS_PROSE} et le dépannage CVCS."),
         ("Quels services propose l'entreprise ?", f"{CVCS_GROUP}, ainsi que dépannage SAV et sprinkler en sous-traitance."),
         (f"Comment contacter {COMPANY_NAME} ?", f"Par téléphone au {PHONE_DISP}, par email ({EMAIL}) ou via WhatsApp. Horaires : {HOURS}."),
     ]
@@ -1935,7 +1943,7 @@ def build_about():
         <div class="rule"></div>
         <h2 class="section-title" id="about-who">Qui sommes-nous</h2>
         <p class="about-lead">Sopjani Tech Sàrl accompagne les bâtiments résidentiels, tertiaires et techniques en Suisse romande — du premier échange à la mise en service.</p>
-        <p>Basés à <strong>{ADDRESS_FULL}</strong>, nous couvrons le {CVCS_PROSE}, le dépannage SAV et le sprinkler / protection incendie. Approche simple : comprendre le besoin, proposer une solution adaptée, intervenir avec sérieux.</p>
+        <p>Basés à <a href="/romont/"><strong>{ADDRESS_FULL}</strong></a>, nous couvrons le {CVCS_PROSE}, le dépannage SAV et le sprinkler / protection incendie. Approche simple : comprendre le besoin, proposer une solution adaptée, intervenir avec sérieux.</p>
         <p>Nous privilégions la clarté des échanges, la réactivité et l'adaptation aux contraintes du terrain — installation, maintenance ou dépannage.</p>
         <div class="about-zones">
           <p class="about-zones-label">Zones prioritaires</p>
@@ -2869,16 +2877,36 @@ def build_zones():
     zone_page("fribourg", "Fribourg", "le canton de Fribourg",
         PAGE_TITLES["fribourg"],
         META_DESCRIPTIONS["fribourg"],
-        "Chauffagiste Fribourg et Romont",
-        p(f"Chauffagiste à Fribourg et Romont : notre siège est basé à {ADDRESS_LOCALITY}. Nous connaissons ce territoire — Fribourg, Glâne, Gruyère, Broye.") +
+        "Chauffagiste dans le canton de Fribourg",
+        p(f'Chauffagiste dans le canton de Fribourg : Fribourg-ville, Gruyère, Broye et Glâne. Notre <a href="/romont/">siège est à Romont</a> ({ADDRESS_LOCALITY}) — équipe mobile sur tout le canton.') +
         p("Précisez la commune et l'urgence lors du premier contact.") +
-        communes_block(["Fribourg", "Bulle", "Romont", "Châtel-Saint-Denis", "Estavayer-le-Lac", "Domdidier", "Marly", "Villars-sur-Glâne"]) +
+        communes_block(["Fribourg", "Bulle", "Châtel-Saint-Denis", "Estavayer-le-Lac", "Domdidier", "Marly", "Villars-sur-Glâne", "Romont"]) +
         SUBSIDY_NOTE.format(extra="Dans le canton de Fribourg, les demandes sont instruites par le Service de l'énergie (SdE)."),
         zone_aeo_faq("Fribourg", "le canton de Fribourg") + [
-            ("Sopjani Tech Sàrl est-elle basée dans le canton de Fribourg ?", f"Oui, notre siège se trouve à {ADDRESS_FULL}, dans le district de la Glâne."),
+            ("Où se trouve le siège de Sopjani Tech Sàrl ?", f'À <a href="/romont/">{ADDRESS_FULL}</a>, dans le district de la Glâne. La page Romont détaille nos prestations CVCS locales.'),
         ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "lausanne", "valais", "neuchatel"],
-        hero_sub=f"Chauffagiste Fribourg / Romont. Appelez le {PHONE_DISP}.")
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["romont", "vaud", "lausanne", "neuchatel"],
+        hero_sub=f"Chauffagiste dans le canton de Fribourg. Appelez le {PHONE_DISP}.")
+
+    zone_page("romont", "Romont", "Romont et la Glâne",
+        PAGE_TITLES["romont"],
+        META_DESCRIPTIONS["romont"],
+        "CVCS à Romont — siège Sopjani Tech Sàrl",
+        p(f'<strong>{COMPANY_NAME}</strong> a son siège à <a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a>. Depuis Romont, nous répondons aux demandes de devis et d\'appels d\'offres en chauffage, ventilation, climatisation, sanitaire et dépannage SAV — villas, immeubles, PPE, entreprises et collectivités.') +
+        p(f'Téléphone <a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a> · <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a> · Horaires {HOURS}.') +
+        p('Prestations locales : <a href="/chauffage/">chauffage</a>, <a href="/ventilation/">ventilation</a>, <a href="/climatisation/">climatisation</a>, <a href="/sanitaire/">sanitaire</a> et <a href="/depannage-sav/">dépannage SAV</a>. Pour le canton élargi, voir aussi <a href="/fribourg/">chauffagiste Fribourg</a>.') +
+        p('Activité complémentaire : exécution sprinkler en <a href="/sprinkler-protection-incendie/">sous-traitance spécialisée</a>, selon mandat.') +
+        communes_block(["Romont", "Siviriez", "Ursy", "Mézières", "Vuisternens-devant-Romont", "Billens-Hennens", "Massonnens", "Villaz-Saint-Pierre"]) +
+        SUBSIDY_NOTE.format(extra="À Romont et dans la Glâne, les demandes d'aides passent par le Service de l'énergie (SdE) du canton de Fribourg."),
+        [
+            (f"Qui appeler pour un chauffagiste à Romont ?", f"{COMPANY_NAME} est basée à Romont : installation, entretien et dépannage de chaudières et pompes à chaleur. Appelez le {PHONE_DISP} ou passez par la page contact."),
+            (f"Qui appeler pour un dépannage CVCS à Romont ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp. Indiquez l'adresse à Romont ou dans la Glâne, le type de bâtiment et la nature de la panne."),
+            ("Comment obtenir un devis à Romont ?", f"Par téléphone au {PHONE_DISP} ou via la <a href=\"/contact/#contact-form\">page contact</a> : décrivez le bâtiment, la localisation et le type de travaux (installation, maintenance ou dépannage)."),
+            ("Intervenez-vous aussi ailleurs dans le canton de Fribourg ?", f'Oui. Pour le canton (Fribourg-ville, Gruyère, Broye…), voir la page <a href="/fribourg/">chauffagiste Fribourg</a>. Le siège et les interventions locales Glâne sont détaillés ici.'),
+            ("Proposez-vous aussi le sprinkler ?", "Oui, en sous-traitance spécialisée selon le mandat — ce n'est pas notre canal commercial principal. Pour un devis CVCS (chauffage, clim, ventilation, sanitaire, dépannage), contactez-nous directement."),
+        ],
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["fribourg", "vaud", "neuchatel"],
+        hero_sub=f"Siège à Romont — devis CVCS et dépannage. Appelez le {PHONE_DISP}.")
 
     zone_page("neuchatel", "Neuchâtel", "le canton de Neuchâtel",
         PAGE_TITLES["neuchatel"],
@@ -3169,6 +3197,13 @@ def build_404():
 
 def build_sitemap():
     today = date.today().isoformat()
+    # Preserve lastmod for URLs already listed (avoid date-only noise on regenerate).
+    sitemap_path = ROOT / "sitemap.xml"
+    existing_lastmod = {}
+    if sitemap_path.exists():
+        existing_lastmod = dict(
+            re.findall(r"<loc>(.*?)</loc>\s*<lastmod>(.*?)</lastmod>", sitemap_path.read_text(encoding="utf-8"))
+        )
     entries = [
         ("/", "weekly", "1.0"),
         ("/contact/", "monthly", "0.9"),
@@ -3184,9 +3219,11 @@ def build_sitemap():
     entries += [(f"/{z}/", "monthly", "0.8") for z, _, _ in ZONES]
     lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for path, freq, priority in entries:
-        lines.append(f"  <url><loc>{SITE}{path}</loc><lastmod>{today}</lastmod><changefreq>{freq}</changefreq><priority>{priority}</priority></url>")
+        loc = f"{SITE}{path}"
+        lastmod = existing_lastmod.get(loc, today)
+        lines.append(f"  <url><loc>{loc}</loc><lastmod>{lastmod}</lastmod><changefreq>{freq}</changefreq><priority>{priority}</priority></url>")
     lines.append("</urlset>")
-    (ROOT / "sitemap.xml").write_text("\n".join(lines), encoding="utf-8")
+    sitemap_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def build_robots():
