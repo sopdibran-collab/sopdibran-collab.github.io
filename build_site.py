@@ -47,15 +47,44 @@ ADDRESS_STREET = "Rue Pierre de Savoie 9"
 ADDRESS_POSTAL = "1680"
 ADDRESS_LOCALITY = "Romont FR"
 ADDRESS_FULL = "Rue Pierre de Savoie 9, 1680 Romont FR"
-COMPANY_NAME = "Sopjani Tech Sàrl"
+COMPANY_NAME = "Sopjani Tech Sàrl"  # raison sociale canonique (mentions légales / RC)
 COMPANY_UID = "CHE-177.567.012"
 PUBLICATION_MANAGER = "Shkodran Sopjani"
 HOST_NAME = "GitHub, Inc. (GitHub Pages)"
 HOST_ADDRESS = "88 Colin P. Kelly Jr. St, San Francisco, CA 94107, États-Unis"
+# Horaires canoniques — HTML + JSON-LD (7j/7, 07:00–17:00)
 HOURS = "Tous les jours, 7h00 – 17h00"
+HOURS_OPENS = "07:00"
+HOURS_CLOSES = "17:00"
 MAP_URL = "https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+9,+1680+Romont"
+# Place ID Google (libellé fiche GBP « Sopjani-tech sàrl » — à aligner manuellement côté Google)
 MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1481964.3806735645!2d5.895466104411914!3d46.67378415677807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9458f52305e1fe3%3A0x31fd51d876fffe44!2sSopjani-tech%20s%C3%A0rl!5e1!3m2!1sfr!2sch!4v1781214251877!5m2!1sfr!2sch"
 GOOGLE_BUSINESS_URL = "https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7"
+# Chemins hors contenu éditorial (robots Disallow). Les .txt de vérification restent publics.
+JUNK_DISALLOW_PATHS = (
+    "/build_site.py",
+    "/signature-mail-hostpoint.html",
+    "/signature-mail-hostpoint-v2.html",
+    "/signature-mail-hostpoint-v3.html",
+    "/scripts/",
+    "/2a4c1f14188cf21440b6fdbad88d7e38.txt",
+    "/4e83fba7d06a413e96b4abe69b2f5256.txt",
+)
+# Fichiers de vérification Search Console : accessibles, mais X-Robots-Tag noindex via Worker
+VERIFICATION_TXT_PATHS = (
+    "/2a4c1f14188cf21440b6fdbad88d7e38.txt",
+    "/4e83fba7d06a413e96b4abe69b2f5256.txt",
+)
+# Masqués en HTTP 404 par le Worker Cloudflare (source / anciennes signatures)
+WORKER_BLOCK_EXACT = (
+    "/build_site.py",
+    "/signature-mail-hostpoint.html",
+    "/signature-mail-hostpoint-v2.html",
+    "/signature-mail-hostpoint-v3.html",
+)
+WORKER_BLOCK_PREFIXES = (
+    "/scripts/",
+)
 
 # Avis Google réels affichés sur le site (texte = source Google Business Profile)
 GOOGLE_REVIEWS = [
@@ -88,12 +117,12 @@ CVCS_PROSE = "chauffage, ventilation, climatisation et sanitaire"
 CVCS_ALL_PROSE = "chauffage, ventilation, climatisation, sanitaire, dépannage SAV et sprinkler"
 
 META_DESCRIPTIONS = {
-    "home": "Chauffage, ventilation, climatisation, sanitaire et sprinkler : installation, maintenance et dépannage en Suisse romande. Devis gratuit, normes suisses, intervention 7j/7.",
+    "home": "Chauffagiste à Romont FR : chauffage, ventilation, climatisation, sanitaire et sprinkler — installation, maintenance et dépannage en Suisse romande. Devis gratuit, normes suisses, intervention 7j/7.",
     "prestations": "Installation, maintenance et dépannage : chauffage, ventilation, climatisation, sanitaire, sprinkler et SAV en Suisse romande. Devis gratuit et sans engagement.",
     "zones-intervention": f"{COMPANY_NAME} intervient près de vous en Suisse romande : Genève, Vaud, Valais, Fribourg, Neuchâtel et agglomérations. Siège à {ADDRESS_LOCALITY}.",
     "a-propos": "Entreprise technique à Romont FR : chauffage, ventilation, climatisation, sanitaire, SAV et sprinkler en Suisse romande. Un interlocuteur unique, normes SIA, SUVA et AEAI.",
     "contact": f"Demandez un devis gratuit ou un dépannage urgent (chauffage, clim, ventilation, sanitaire) en Suisse romande. Réponse rapide — {PHONE_DISP}.",
-    "depannage-sav": f"Panne de chauffage, clim ou ventilation ? Dépannage CVCS urgent en Suisse romande, 7j/7 de 7h à 17h. Appelez le {PHONE_DISP}.",
+    "depannage-sav": f"Panne de chauffage, clim, ventilation ou sanitaire ? Dépannage CVCS urgent en Suisse romande, 7j/7 de 7h à 17h. Appelez le {PHONE_DISP}.",
     "chauffage": "Chauffagiste en Suisse romande : chaudières, pompes à chaleur, entretien et dépannage. Villas, immeubles, PPE. Devis gratuit et sans engagement.",
     "ventilation": "VMC, gaines et traitement de l'air : étude, pose et dépannage en Suisse romande (Genève, Vaud, Fribourg, Valais). Urgence ventilation 7j/7. Devis gratuit.",
     "climatisation": f"Climatisation à Nyon, Lausanne et Genève : étude, pose et dépannage de splits, multi-splits et PAC air-air. Devis gratuit — {PHONE_DISP}.",
@@ -108,12 +137,13 @@ META_DESCRIPTIONS = {
     "neuchatel": "Chauffagiste dans le canton de Neuchâtel : littoral et Jura (La Chaux-de-Fonds, Le Locle). Chauffage, CVCS, entretien et dépannage. Devis gratuit.",
     "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
-    "plan-du-site": "Plan du site Sopjani Tech Sàrl : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
+    "plan-du-site": f"Plan du site {COMPANY_NAME} : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
     "realisations": "Cas chantiers réels : centrale sprinkler, poste d'alarme sous air, conduits de ventilation, locaux techniques sanitaires. Photos de nos interventions en Suisse romande.",
+    "404": f"Page introuvable — {COMPANY_NAME}, chauffagiste CVCS et sprinkler à Romont (Suisse romande).",
 }
 
 PAGE_TITLES = {
-    "home": "CVCS et sprinkler en Suisse romande | Sopjani Tech Sàrl",
+    "home": "Chauffagiste à Romont — CVCS et sprinkler | Sopjani Tech Sàrl",
     "a-propos": "Sopjani Tech Sàrl : entreprise CVCS & sprinkler à Romont",
     "contact": "Devis gratuit & dépannage CVCS | Sopjani Tech Sàrl",
     "prestations": "Prestations CVCS & sprinkler — Suisse romande | Sopjani Tech",
@@ -133,6 +163,7 @@ PAGE_TITLES = {
     "fribourg": "Chauffagiste à Fribourg & Romont | Sopjani Tech Sàrl",
     "neuchatel": "Chauffagiste Neuchâtel & La Chaux-de-Fonds | Sopjani Tech",
     "realisations": "Nos réalisations CVCS & sprinkler — Sopjani Tech Sàrl",
+    "404": f"Page introuvable | {COMPANY_NAME}",
 }
 
 SERVICES = [
@@ -297,7 +328,8 @@ def service_area_served_schema(zone_slugs=None):
 ORG_SCHEMA = {
     "@type": ["HVACBusiness", "LocalBusiness"],
     "@id": f"{SITE}/#organization",
-    "name": "Sopjani Tech Sàrl",
+    "name": COMPANY_NAME,
+    "legalName": COMPANY_NAME,
     "url": SITE,
     "description": f"{CVCS_GROUP}, dépannage SAV et sprinkler en Suisse romande.",
     "telephone": PHONE,
@@ -326,12 +358,18 @@ ORG_SCHEMA = {
         "contactType": "customer service",
         "areaServed": "CH",
         "availableLanguage": ["French"],
+        "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": HOURS_OPENS,
+            "closes": HOURS_CLOSES,
+        },
     }],
     "openingHoursSpecification": [{
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "07:00",
-        "closes": "17:00",
+        "opens": HOURS_OPENS,
+        "closes": HOURS_CLOSES,
     }],
     "areaServed": [
         {"@type": "AdministrativeArea", "name": n} for _, n, _ in ZONES
@@ -348,7 +386,7 @@ WEBSITE_SCHEMA = {
     "@type": "WebSite",
     "@id": f"{SITE}/#website",
     "url": SITE,
-    "name": "Sopjani Tech Sàrl",
+    "name": COMPANY_NAME,
     "description": f"{CVCS_GROUP} et dépannage en Suisse romande.",
     "publisher": {"@id": f"{SITE}/#organization"},
     "inLanguage": "fr-CH",
@@ -360,7 +398,7 @@ WEBSITE_SCHEMA = {
 }
 
 QUI_SOMMES_NOUS_HTML = f"""
-<p>Sopjani Tech Sàrl est une entreprise active dans les domaines du chauffage, de la ventilation, de la climatisation, du sanitaire, du dépannage SAV et du sprinkler / protection incendie en Suisse romande. Notre siège se trouve à {ADDRESS_FULL}, dans le canton de Fribourg.</p>
+<p>{COMPANY_NAME} est une entreprise active dans les domaines du chauffage, de la ventilation, de la climatisation, du sanitaire, du dépannage SAV et du sprinkler / protection incendie en Suisse romande. Notre siège se trouve à {ADDRESS_FULL}, dans le canton de Fribourg.</p>
 <p>Nous accompagnons nos clients avec une approche simple : comprendre le besoin, proposer une solution adaptée et intervenir avec sérieux selon la nature de la demande.</p>
 <p>Nous intervenons principalement à Genève, dans le canton de Vaud, à Lausanne, à Nyon, ainsi qu'en Valais et à Fribourg. Pour d'autres secteurs en Suisse romande, la possibilité d'intervention peut être étudiée selon le projet.</p>
 <p>Notre activité couvre différents besoins techniques, qu'il s'agisse d'installation, de maintenance ou de dépannage. Nous accordons une attention particulière à la clarté des échanges, à la réactivité et à l'adaptation aux contraintes du terrain.</p>
@@ -892,7 +930,7 @@ def header():
         <span aria-hidden="true">·</span>
         <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a>
         <span aria-hidden="true">·</span>
-        <span>Heures&nbsp;: 7h00 – 17h00</span>
+        <span>Horaires&nbsp;: {HOURS}</span>
       </span>
     </p>
   </div>
@@ -901,7 +939,7 @@ def header():
   <div class="container">
     <div class="header-inner">
       <a href="/" class="logo-wrap">
-        <img class="logo-img logo-img--responsive" src="{LOGO_HEADER}" alt="Sopjani Tech Sàrl" width="160" height="78" loading="eager" decoding="async">
+        <img class="logo-img logo-img--responsive" src="{LOGO_HEADER}" alt="{COMPANY_NAME}" width="160" height="78" loading="eager" decoding="async">
         <span class="sr-only"> – Accueil</span>
       </a>
       <nav class="nav-main" aria-label="Navigation principale">
@@ -965,7 +1003,7 @@ def footer():
   <div class="container site-footer__inner">
     <div class="site-footer__top">
       <a href="/" class="footer-logo-wrap">
-        <img class="logo-img logo-img--responsive" src="{LOGO_FOOTER}" alt="Sopjani Tech Sàrl" width="120" height="36" loading="lazy" decoding="async">
+        <img class="logo-img logo-img--responsive" src="{LOGO_FOOTER}" alt="{COMPANY_NAME}" width="120" height="36" loading="lazy" decoding="async">
       </a>
       <p class="site-footer__tagline">{CVCS_GROUP} · Dépannage SAV · Suisse romande</p>
     </div>
@@ -994,6 +1032,7 @@ def footer():
           <li><a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a></li>
           <li><a href="{WA}" class="track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
           <li><a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a></li>
+          <li>{HOURS}</li>
           <li><a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google</a></li>
         </ul>
       </div>
@@ -1293,7 +1332,7 @@ def analytics_head():
     return """  <script>window.dataLayer = window.dataLayer || []; function gtag(){ dataLayer.push(arguments); }</script>"""
 
 
-def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
+def page_shell(title, description, canonical, schema_graph, body, crumbs=None, *, robots="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"):
     # Fil d'Ariane : conservé en JSON-LD uniquement (pas d'affichage visible)
     crumbs_html = ""
     safe_title = title.replace('"', "&quot;")
@@ -1305,7 +1344,7 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
   <meta name="description" content="{description}">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="robots" content="{robots}">
   <meta name="geo.region" content="CH-FR">
   <meta name="geo.placename" content="Suisse romande">
   <meta name="geo.position" content="46.6917;6.9119">
@@ -1320,18 +1359,18 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None):
   <meta property="og:title" content="{safe_title}">
   <meta property="og:description" content="{safe_desc}">
   <meta property="og:url" content="{canonical}">
-  <meta property="og:site_name" content="Sopjani Tech Sàrl">
+  <meta property="og:site_name" content="{COMPANY_NAME}">
   <meta property="og:image" content="{OG_IMAGE}">
   <meta property="og:image:secure_url" content="{OG_IMAGE}">
   <meta property="og:image:type" content="{OG_IMAGE_TYPE}">
   <meta property="og:image:width" content="{OG_IMAGE_WIDTH}">
   <meta property="og:image:height" content="{OG_IMAGE_HEIGHT}">
-  <meta property="og:image:alt" content="Sopjani Tech Sàrl — Chauffage, ventilation, climatisation et sanitaire en Suisse romande">
+  <meta property="og:image:alt" content="{COMPANY_NAME} — Chauffage, ventilation, climatisation et sanitaire en Suisse romande">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{safe_title}">
   <meta name="twitter:description" content="{safe_desc}">
   <meta name="twitter:image" content="{OG_IMAGE}">
-  <meta name="twitter:image:alt" content="Sopjani Tech Sàrl — CVCS Suisse romande">
+  <meta name="twitter:image:alt" content="{COMPANY_NAME} — CVCS Suisse romande">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -1729,8 +1768,8 @@ def build_home():
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-content">
-      <p class="hero-eyebrow">Suisse romande</p>
-      <h1 id="hero-h1">CVCS et sprinkler, exécutés sur le terrain.</h1>
+      <p class="hero-eyebrow">Romont · Suisse romande</p>
+      <h1 id="hero-h1">Chauffagiste CVCS et sprinkler à Romont.</h1>
       <p class="hero-sub">{CVCS_GROUP} et protection incendie — installation, maintenance et dépannage.</p>
       <div class="hero-ctas">
         <a href="/contact/#contact-form" class="btn btn-brand btn-brand--on-dark track-devis">Demander un devis</a>
@@ -1877,11 +1916,11 @@ def build_about():
     faq = [
         (f"Où est située {COMPANY_NAME} ?", f"Notre siège est à {ADDRESS_FULL}. Nous intervenons en Suisse romande pour le {CVCS_PROSE} et le dépannage CVCS."),
         ("Quels services propose l'entreprise ?", f"{CVCS_GROUP}, ainsi que dépannage SAV et sprinkler en sous-traitance."),
-        ("Comment contacter Sopjani Tech Sàrl ?", f"Par téléphone au {PHONE_DISP}, par email ({EMAIL}) ou via WhatsApp. Horaires : {HOURS}."),
+        (f"Comment contacter {COMPANY_NAME} ?", f"Par téléphone au {PHONE_DISP}, par email ({EMAIL}) ou via WhatsApp. Horaires : {HOURS}."),
     ]
     hero = page_hero(
         "Entreprise",
-        "À propos de Sopjani Tech Sàrl",
+        f"À propos de {COMPANY_NAME}",
         f"Entreprise technique spécialisée en {CVCS_ALL_PROSE} en Suisse romande.",
         image=hero_image_for("a-propos"),
     )
@@ -1997,7 +2036,7 @@ def build_contact():
 {urgence_band()}
 {page_hero(
         "Contact",
-        "Contactez Sopjani Tech Sàrl",
+        f"Contactez {COMPANY_NAME}",
         "Devis, maintenance ou dépannage : décrivez votre besoin et nous vous orienterons vers la solution adaptée.",
         image=hero_image_for("contact"),
     )}
@@ -2556,7 +2595,7 @@ def _premium_service_configs():
         {
             "slug": "sanitaire",
             "name": "Sanitaire",
-            "h1": "Sanitaire",
+            "h1": "Installations et dépannages sanitaires en Suisse romande",
             "intro": f"{COMPANY_NAME} intervient également pour vos installations et dépannages sanitaires en Suisse romande.",
             "problems_title": "Un problème sanitaire ?",
             "problems_lead": "Fuites, évacuations, chauffe-eau et rénovations — nous intervenons rapidement.",
@@ -2609,8 +2648,8 @@ def _premium_service_configs():
         {
             "slug": "depannage-sav",
             "name": "Dépannage SAV",
-            "h1": "Urgence ventilation et dépannage CVCS",
-            "intro": "Panne de ventilation, chauffage ou climatisation ? Intervention SAV pour diagnostiquer et remettre en service — y compris en urgence.",
+            "h1": "Dépannage CVCS et SAV en Suisse romande",
+            "intro": "Panne de chauffage, ventilation, climatisation ou sanitaire ? Intervention SAV pour diagnostiquer et remettre en service — y compris en urgence.",
             "problems_title": "Une panne sur votre installation ?",
             "problems_lead": "Urgence ventilation, chauffage, climatisation ou sanitaire — nous diagnostiquons et remettons en service.",
             "problems": [
@@ -3000,21 +3039,40 @@ def build_nojekyll():
 
 
 def build_cloudflare_worker():
-    """Worker Cloudflare : vraies redirections HTTP 301 devant GitHub Pages."""
+    """Worker Cloudflare : redirections 301 + masquage des URLs junk (404) + noindex fichiers vérif."""
     redirects = {f"/{old_name}": new_path for old_name, new_path in LEGACY_REDIRECTS.items()}
     redirects_js = json.dumps(redirects, indent=2, ensure_ascii=False)
+    block_exact_js = json.dumps(list(WORKER_BLOCK_EXACT), ensure_ascii=False)
+    block_prefixes_js = json.dumps(list(WORKER_BLOCK_PREFIXES), ensure_ascii=False)
+    verify_js = json.dumps(list(VERIFICATION_TXT_PATHS), ensure_ascii=False)
     content = f"""/**
- * Redirections HTTP 301 — généré par build_site.py
- * Déploiement (une fois) : npx wrangler deploy
+ * Redirections HTTP 301 + SEO junk URLs — généré par build_site.py
+ * Déploiement : push sur main (workflow) ou npx wrangler deploy
  * Prérequis : domaine sopjanitech.ch géré par Cloudflare (DNS proxy activé).
  */
 const REDIRECTS = {redirects_js};
+const BLOCK_EXACT = new Set({block_exact_js});
+const BLOCK_PREFIXES = {block_prefixes_js};
+const VERIFICATION_TXT = new Set({verify_js});
 const APEX_HOST = "sopjanitech.ch";
 
 function needsTrailingSlash(pathname) {{
   if (pathname === "/" || pathname.endsWith("/")) return false;
   const last = pathname.split("/").pop() || "";
   return !last.includes(".");
+}}
+
+function isBlocked(pathname) {{
+  if (BLOCK_EXACT.has(pathname)) return true;
+  return BLOCK_PREFIXES.some((p) => pathname === p.slice(0, -1) || pathname.startsWith(p));
+}}
+
+async function branded404(request, url) {{
+  const res = await fetch(new URL("/404.html", url.origin), request);
+  const headers = new Headers(res.headers);
+  headers.set("Cache-Control", "public, max-age=300");
+  headers.set("X-Robots-Tag", "noindex, nofollow");
+  return new Response(res.body, {{ status: 404, statusText: "Not Found", headers }});
 }}
 
 export default {{
@@ -3040,14 +3098,107 @@ export default {{
     if (dest) {{
       return Response.redirect(`${{url.origin}}${{dest}}`, 301);
     }}
+    if (isBlocked(url.pathname)) {{
+      return branded404(request, url);
+    }}
     if (needsTrailingSlash(url.pathname)) {{
       return Response.redirect(`${{url.origin}}${{url.pathname}}/`, 301);
     }}
-    return fetch(request);
+    const originRes = await fetch(request);
+    if (VERIFICATION_TXT.has(url.pathname)) {{
+      const headers = new Headers(originRes.headers);
+      headers.set("X-Robots-Tag", "noindex, nofollow");
+      return new Response(originRes.body, {{
+        status: originRes.status,
+        statusText: originRes.statusText,
+        headers,
+      }});
+    }}
+    return originRes;
   }},
 }};
 """
     (ROOT / "redirect-worker.mjs").write_text(content, encoding="utf-8")
+
+
+def build_404():
+    """Page 404 GitHub Pages (404.html) — noindex, charte site."""
+    title = PAGE_TITLES["404"]
+    desc = META_DESCRIPTIONS["404"]
+    body = f"""
+<section class="page-hero hero" aria-labelledby="page-h1">
+  <div class="container">
+    <p class="hero-eyebrow">Erreur 404</p>
+    <h1 id="page-h1">Cette page n'existe pas.</h1>
+    <p class="hero-sub">Le lien est peut-être obsolète, ou l'adresse comporte une faute de frappe. Retrouvez {COMPANY_NAME} — CVCS et sprinkler à Romont.</p>
+    <div class="hero-ctas">
+      <a href="/" class="btn btn-brand">Retour à l'accueil</a>
+      <a href="/contact/" class="btn btn-secondary track-devis">Contact / devis</a>
+    </div>
+  </div>
+</section>
+<section class="content-section">
+  <div class="container">
+    <h2 class="section-title">Pages utiles</h2>
+    <ul class="bullet-list">
+      <li><a href="/prestations/">Prestations CVCS &amp; sprinkler</a></li>
+      <li><a href="/depannage-sav/">Dépannage SAV</a></li>
+      <li><a href="/zones-intervention/">Zones d'intervention</a></li>
+      <li><a href="/contact/">Demander un devis</a></li>
+    </ul>
+  </div>
+</section>
+"""
+    graph = [
+        {
+            "@type": "WebPage",
+            "@id": f"{SITE}/404.html#webpage",
+            "url": f"{SITE}/404.html",
+            "name": title,
+            "description": desc,
+            "isPartOf": {"@id": f"{SITE}/#website"},
+            "about": {"@id": f"{SITE}/#organization"},
+            "inLanguage": "fr-CH",
+        }
+    ]
+    write_page(
+        ["404.html"],
+        page_shell(title, desc, f"{SITE}/404.html", graph, body, robots="noindex, follow"),
+    )
+
+
+def build_sitemap():
+    today = date.today().isoformat()
+    entries = [
+        ("/", "weekly", "1.0"),
+        ("/contact/", "monthly", "0.9"),
+        ("/prestations/", "monthly", "0.9"),
+        ("/zones-intervention/", "monthly", "0.9"),
+        ("/a-propos/", "monthly", "0.8"),
+        ("/realisations/", "monthly", "0.8"),
+        ("/plan-du-site/", "monthly", "0.5"),
+        ("/mentions-legales/", "yearly", "0.3"),
+        ("/politique-confidentialite/", "yearly", "0.3"),
+    ]
+    entries += [(f"/{s}/", "monthly", "0.8") for s, _, _ in SERVICES]
+    entries += [(f"/{z}/", "monthly", "0.8") for z, _, _ in ZONES]
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for path, freq, priority in entries:
+        lines.append(f"  <url><loc>{SITE}{path}</loc><lastmod>{today}</lastmod><changefreq>{freq}</changefreq><priority>{priority}</priority></url>")
+    lines.append("</urlset>")
+    (ROOT / "sitemap.xml").write_text("\n".join(lines), encoding="utf-8")
+
+
+def build_robots():
+    lines = [
+        "User-agent: *",
+        "Allow: /",
+    ]
+    for path in JUNK_DISALLOW_PATHS:
+        lines.append(f"Disallow: {path}")
+    lines.append(f"Sitemap: {SITE}/sitemap.xml")
+    lines.append("")
+    (ROOT / "robots.txt").write_text("\n".join(lines), encoding="utf-8")
 
 
 def build_realisations():
@@ -3102,7 +3253,7 @@ def build_realisations():
     body = f"""
 {page_hero(
         "Réalisations",
-        f"Cas chantiers en {CVCS_PROSE} et sprinkler",
+        "Nos réalisations CVCS et sprinkler",
         f"Projets réalisés par {COMPANY_NAME} en Suisse romande — photos de chantiers réels.",
         image=hero_image_for("realisations"),
     )}
@@ -3120,11 +3271,11 @@ def build_realisations():
 {norms_bar()}
 {cta_band()}"""
     crumbs = [("Accueil", "/"), ("Réalisations", "/realisations/")]
-    title = PAGE_TITLES.get("realisations", "Réalisations CVCS, sprinkler et sanitaire | Sopjani Tech Sàrl")
+    title = PAGE_TITLES.get("realisations", f"Réalisations CVCS, sprinkler et sanitaire | {COMPANY_NAME}")
     desc = META_DESCRIPTIONS.get("realisations", f"Réalisations de {COMPANY_NAME} en Suisse romande : installations sprinkler, ventilation et tuyauterie sanitaire. Photos de chantiers réels.")
     gallery_schema = {
         "@type": "ImageGallery",
-        "name": "Réalisations Sopjani Tech Sàrl",
+        "name": f"Réalisations {COMPANY_NAME}",
         "url": SITE + "/realisations/",
         "image": image_objects,
     }
@@ -3163,32 +3314,6 @@ def build_sitemap_page():
     }
     graph = base_graph(title, desc, SITE + "/plan-du-site/", crumbs, extra=item_list)
     write_page(["plan-du-site", "index.html"], page_shell(title, desc, SITE + "/plan-du-site/", graph, body, crumbs))
-
-
-def build_sitemap():
-    today = date.today().isoformat()
-    entries = [
-        ("/", "weekly", "1.0"),
-        ("/contact/", "monthly", "0.9"),
-        ("/prestations/", "monthly", "0.9"),
-        ("/zones-intervention/", "monthly", "0.9"),
-        ("/a-propos/", "monthly", "0.8"),
-        ("/realisations/", "monthly", "0.8"),
-        ("/plan-du-site/", "monthly", "0.5"),
-        ("/mentions-legales/", "yearly", "0.3"),
-        ("/politique-confidentialite/", "yearly", "0.3"),
-    ]
-    entries += [(f"/{s}/", "monthly", "0.8") for s, _, _ in SERVICES]
-    entries += [(f"/{z}/", "monthly", "0.8") for z, _, _ in ZONES]
-    lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    for path, freq, priority in entries:
-        lines.append(f"  <url><loc>{SITE}{path}</loc><lastmod>{today}</lastmod><changefreq>{freq}</changefreq><priority>{priority}</priority></url>")
-    lines.append("</urlset>")
-    (ROOT / "sitemap.xml").write_text("\n".join(lines), encoding="utf-8")
-
-
-def build_robots():
-    (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
 
 
 def build_js():
@@ -3739,6 +3864,7 @@ def main():
     build_legacy_redirect_stubs()
     build_redirects_file()
     build_cloudflare_worker()
+    build_404()
     build_nojekyll()
     build_sitemap()
     build_robots()

@@ -1,3 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /build_site.py
+Disallow: /signature-mail-hostpoint.html
+Disallow: /signature-mail-hostpoint-v2.html
+Disallow: /signature-mail-hostpoint-v3.html
+Disallow: /scripts/
+Disallow: /2a4c1f14188cf21440b6fdbad88d7e38.txt
+Disallow: /4e83fba7d06a413e96b4abe69b2f5256.txt
 Sitemap: https://sopjanitech.ch/sitemap.xml
