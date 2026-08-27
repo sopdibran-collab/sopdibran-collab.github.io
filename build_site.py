@@ -117,7 +117,7 @@ CVCS_PROSE = "chauffage, ventilation, climatisation et sanitaire"
 CVCS_ALL_PROSE = "chauffage, ventilation, climatisation, sanitaire, dépannage SAV et sprinkler"
 
 META_DESCRIPTIONS = {
-    "home": "Chauffagiste à Romont FR : chauffage, ventilation, climatisation, sanitaire et sprinkler — installation, maintenance et dépannage en Suisse romande. Devis gratuit, normes suisses, intervention 7j/7.",
+    "home": "CVCS en Suisse romande : chauffage, ventilation, climatisation et sanitaire — de l'étude à la réalisation. Villas, immeubles et appels d'offres. Siège à Romont FR.",
     "prestations": "Installation, maintenance et dépannage : chauffage, ventilation, climatisation, sanitaire, sprinkler et SAV en Suisse romande. Devis gratuit et sans engagement.",
     "zones-intervention": f"{COMPANY_NAME} intervient près de vous en Suisse romande : Genève, Vaud, Valais, Fribourg, Romont, Neuchâtel et agglomérations. Siège à {ADDRESS_LOCALITY}.",
     "a-propos": "Entreprise technique à Romont FR : chauffage, ventilation, climatisation, sanitaire, SAV et sprinkler en Suisse romande. Un interlocuteur unique, normes SIA, SUVA et AEAI.",
@@ -144,7 +144,7 @@ META_DESCRIPTIONS = {
 }
 
 PAGE_TITLES = {
-    "home": "Chauffagiste à Romont — CVCS et sprinkler | Sopjani Tech Sàrl",
+    "home": "CVCS en Suisse romande : étude et installation | Sopjani Tech Sàrl",
     "a-propos": "Sopjani Tech Sàrl : entreprise CVCS & sprinkler à Romont",
     "contact": "Devis gratuit & dépannage CVCS | Sopjani Tech Sàrl",
     "prestations": "Prestations CVCS & sprinkler — Suisse romande | Sopjani Tech",
@@ -1775,9 +1775,9 @@ def build_home():
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="container hero-inner">
     <div class="hero-content">
-      <p class="hero-eyebrow">Romont · Suisse romande</p>
-      <h1 id="hero-h1">Chauffagiste CVCS et sprinkler à Romont.</h1>
-      <p class="hero-sub">{CVCS_GROUP} et protection incendie — installation, maintenance et dépannage.</p>
+      <p class="hero-eyebrow">Suisse romande</p>
+      <h1 id="hero-h1">Chauffage, ventilation, climatisation et sanitaire.</h1>
+      <p class="hero-sub">Projets CVCS de l'étude à la réalisation — villas, immeubles et appels d'offres en Suisse romande.</p>
       <div class="hero-ctas">
         <a href="/contact/#contact-form" class="btn btn-brand btn-brand--on-dark track-devis">Demander un devis</a>
         <a href="tel:{PHONE}" class="btn btn-urgence track-phone">Dépannage urgent</a>
