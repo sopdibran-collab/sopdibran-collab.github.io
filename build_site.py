@@ -140,6 +140,7 @@ META_DESCRIPTIONS = {
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
     "plan-du-site": f"Plan du site {COMPANY_NAME} : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
     "realisations": "Cas chantiers réels : centrale sprinkler, poste d'alarme sous air, conduits de ventilation, locaux techniques sanitaires. Photos de nos interventions en Suisse romande.",
+    "merci": f"Votre demande a bien été envoyée à {COMPANY_NAME}. Nous vous recontacterons dans les meilleurs délais.",
     "404": f"Page introuvable — {COMPANY_NAME}, chauffagiste CVCS et sprinkler à Romont (Suisse romande).",
 }
 
@@ -165,6 +166,7 @@ PAGE_TITLES = {
     "romont": "CVCS à Romont — siège Sopjani Tech | chauffage & dépannage",
     "neuchatel": "Chauffagiste Neuchâtel & La Chaux-de-Fonds | Sopjani Tech",
     "realisations": "Nos réalisations CVCS & sprinkler — Sopjani Tech Sàrl",
+    "merci": f"Demande envoyée | {COMPANY_NAME}",
     "404": f"Page introuvable | {COMPANY_NAME}",
 }
 
@@ -1344,6 +1346,12 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None, *
     crumbs_html = ""
     safe_title = title.replace('"', "&quot;")
     safe_desc = description.replace('"', "&quot;")
+    # Merci / pages utilitaires : pas de JSON-LD (schema_graph falsy)
+    schema_tag = (
+        f'  <script type="application/ld+json">{schema_json(schema_graph)}</script>\n'
+        if schema_graph
+        else ""
+    )
     return f"""<!DOCTYPE html>
 <html lang="fr-CH">
 <head>
@@ -1383,8 +1391,7 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None, *
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css?v={int((ROOT / 'css' / 'main.css').stat().st_mtime)}">
 {analytics_head()}
-  <script type="application/ld+json">{schema_json(schema_graph)}</script>
-</head>
+{schema_tag}</head>
 <body>
 {header()}
 <main>
@@ -2116,6 +2123,46 @@ def build_contact():
         extra={"@type": "ContactPage", "name": "Contact", "url": SITE + "/contact/"},
     )
     write_page(["contact", "index.html"], page_shell(contact_title, contact_desc, SITE + "/contact/", graph, body))
+
+
+def build_merci():
+    """Page de confirmation formulaire — noindex, hors sitemap, sans JSON-LD, non liée en nav."""
+    title = PAGE_TITLES["merci"]
+    desc = META_DESCRIPTIONS["merci"]
+    body = f"""
+<section class="page-hero hero" aria-labelledby="page-h1">
+  <div class="container">
+    <p class="hero-eyebrow">Confirmation</p>
+    <h1 id="page-h1">Merci, votre demande a bien été envoyée</h1>
+    <p class="hero-sub">Nous vous recontacterons dans les meilleurs délais pour préciser votre besoin. Pour une urgence (panne en cours), appelez-nous.</p>
+    <div class="hero-ctas">
+      <a href="tel:{PHONE}" class="btn btn-urgence track-phone">Appeler · {PHONE_DISP}</a>
+      <a href="/" class="btn btn-secondary">Retour à l'accueil</a>
+    </div>
+  </div>
+</section>
+<section class="content-section" aria-labelledby="merci-coords-title">
+  <div class="container prose-block">
+    <h2 class="section-title" id="merci-coords-title">Coordonnées</h2>
+    <p>{COMPANY_NAME}<br>
+      <a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a><br>
+      Téléphone : <a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a><br>
+      Email : <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a><br>
+      Horaires : {HOURS}</p>
+  </div>
+</section>
+"""
+    write_page(
+        ["merci", "index.html"],
+        page_shell(
+            title,
+            desc,
+            SITE + "/merci/",
+            None,
+            body,
+            robots="noindex, follow",
+        ),
+    )
 
 
 def _card_icon(kind):
@@ -3553,26 +3600,8 @@ document.querySelectorAll('.track-form').forEach(form => {
     trackEvent('generate_lead', { method: 'contact_form', event_category: 'conversion' });
     trackEvent('form_submit', { event_category: 'conversion', event_label: 'contact_form' });
 
-    function resetSmartForm() {
-      form.reset();
-      if (form.classList.contains('contact-form--smart')) {
-        const steps = form.querySelectorAll('.form-step');
-        steps.forEach((s, i) => {
-          s.hidden = i !== 0;
-          s.classList.toggle('is-active', i === 0);
-        });
-        const urgent = form.querySelector('[data-urgent-cta]');
-        if (urgent) urgent.hidden = true;
-        updateSmartFormProgress(form, 1);
-      }
-    }
-
     if (!endpoint || endpoint === '#') {
-      if (feedback) {
-        feedback.textContent = 'Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.';
-        feedback.hidden = false;
-      }
-      resetSmartForm();
+      window.location.assign('/merci/');
       return;
     }
 
@@ -3600,11 +3629,8 @@ document.querySelectorAll('.track-form').forEach(form => {
         }
         throw new Error(raw || 'send_failed');
       }
-      if (feedback) {
-        feedback.textContent = 'Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.';
-        feedback.hidden = false;
-      }
-      resetSmartForm();
+      window.location.assign('/merci/');
+      return;
     } catch (err) {
       if (feedback) {
         if (err && err.message === 'activation') {
@@ -3895,6 +3921,7 @@ def main():
     build_zones()
     build_about()
     build_contact()
+    build_merci()
     build_realisations()
     build_sitemap_page()
     build_legal_pages()
