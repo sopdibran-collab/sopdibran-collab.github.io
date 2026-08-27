@@ -199,11 +199,7 @@ document.querySelectorAll('.track-form').forEach(form => {
     }
 
     if (!endpoint || endpoint === '#') {
-      if (feedback) {
-        feedback.textContent = 'Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.';
-        feedback.hidden = false;
-      }
-      resetSmartForm();
+      window.location.assign('/merci/');
       return;
     }
 
@@ -231,11 +227,8 @@ document.querySelectorAll('.track-form').forEach(form => {
         }
         throw new Error(raw || 'send_failed');
       }
-      if (feedback) {
-        feedback.textContent = 'Merci pour votre message. Nous vous recontacterons dans les meilleurs délais.';
-        feedback.hidden = false;
-      }
-      resetSmartForm();
+      window.location.assign('/merci/');
+      return;
     } catch (err) {
       if (feedback) {
         if (err && err.message === 'activation') {
