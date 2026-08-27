@@ -141,7 +141,10 @@ META_DESCRIPTIONS = {
     "plan-du-site": f"Plan du site {COMPANY_NAME} : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
     "realisations": "Cas chantiers réels : centrale sprinkler, poste d'alarme sous air, conduits de ventilation, locaux techniques sanitaires. Photos de nos interventions en Suisse romande.",
     "merci": f"Votre demande a bien été envoyée à {COMPANY_NAME}. Nous vous recontacterons dans les meilleurs délais.",
-    "404": f"Page introuvable — {COMPANY_NAME}, chauffagiste CVCS et sprinkler à Romont (Suisse romande).",
+    "404": (
+        f"Page introuvable (404). {COMPANY_NAME} — réparation et maintenance CVCS "
+        "et systèmes Sprinkler en Suisse romande."
+    ),
 }
 
 PAGE_TITLES = {
@@ -167,7 +170,7 @@ PAGE_TITLES = {
     "neuchatel": "Chauffagiste Neuchâtel & La Chaux-de-Fonds | Sopjani Tech",
     "realisations": "Nos réalisations CVCS & sprinkler — Sopjani Tech Sàrl",
     "merci": f"Demande envoyée | {COMPANY_NAME}",
-    "404": f"Page introuvable | {COMPANY_NAME}",
+    "404": f"404 — Mauvais tuyau | {COMPANY_NAME}",
 }
 
 SERVICES = [
@@ -3336,38 +3339,18 @@ export default {{
 
 
 def build_404():
-    """Page 404 GitHub Pages (404.html) — noindex, charte site."""
+    """Page 404 GitHub Pages (404.html) — minimale, noindex, sans nav site."""
     title = PAGE_TITLES["404"]
     desc = META_DESCRIPTIONS["404"]
-    body = f"""
-<section class="page-hero hero" aria-labelledby="page-h1">
-  <div class="container">
-    <p class="hero-eyebrow">Erreur 404</p>
-    <h1 id="page-h1">Cette page n'existe pas.</h1>
-    <p class="hero-sub">Le lien est peut-être obsolète, ou l'adresse comporte une faute de frappe. Retrouvez {COMPANY_NAME} — CVCS et sprinkler à Romont.</p>
-    <div class="hero-ctas">
-      <a href="/" class="btn btn-brand">Retour à l'accueil</a>
-      <a href="/contact/" class="btn btn-secondary track-devis">Contact / devis</a>
-    </div>
-  </div>
-</section>
-<section class="content-section">
-  <div class="container">
-    <h2 class="section-title">Pages utiles</h2>
-    <ul class="bullet-list">
-      <li><a href="/prestations/">Prestations CVCS &amp; sprinkler</a></li>
-      <li><a href="/depannage-sav/">Dépannage SAV</a></li>
-      <li><a href="/zones-intervention/">Zones d'intervention</a></li>
-      <li><a href="/contact/">Demander un devis</a></li>
-    </ul>
-  </div>
-</section>
-"""
+    canonical = f"{SITE}/404.html"
+    safe_title = title.replace('"', "&quot;")
+    safe_desc = desc.replace('"', "&quot;")
+    css_ver = int((ROOT / "css" / "main.css").stat().st_mtime)
     graph = [
         {
             "@type": "WebPage",
-            "@id": f"{SITE}/404.html#webpage",
-            "url": f"{SITE}/404.html",
+            "@id": f"{canonical}#webpage",
+            "url": canonical,
             "name": title,
             "description": desc,
             "isPartOf": {"@id": f"{SITE}/#website"},
@@ -3375,10 +3358,66 @@ def build_404():
             "inLanguage": "fr-CH",
         }
     ]
-    write_page(
-        ["404.html"],
-        page_shell(title, desc, f"{SITE}/404.html", graph, body, robots="noindex, follow"),
-    )
+    content = f"""<!DOCTYPE html>
+<html lang="fr-CH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content="{desc}">
+  <meta name="robots" content="noindex, follow">
+  <meta name="geo.region" content="CH-FR">
+  <meta name="geo.placename" content="Suisse romande">
+  <meta name="geo.position" content="46.6917;6.9119">
+  <meta name="ICBM" content="46.6917, 6.9119">
+  <meta name="theme-color" content="#121417">
+  <link rel="canonical" href="{canonical}">
+  <link rel="icon" href="{FAVICON_SVG}" type="image/svg+xml">
+  <link rel="icon" href="{FAVICON_PATH}" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="{APPLE_TOUCH_ICON}" sizes="180x180">
+{gsc_verification_meta()}  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_CH">
+  <meta property="og:title" content="{safe_title}">
+  <meta property="og:description" content="{safe_desc}">
+  <meta property="og:url" content="{canonical}">
+  <meta property="og:site_name" content="{COMPANY_NAME}">
+  <meta property="og:image" content="{OG_IMAGE}">
+  <meta property="og:image:secure_url" content="{OG_IMAGE}">
+  <meta property="og:image:type" content="{OG_IMAGE_TYPE}">
+  <meta property="og:image:width" content="{OG_IMAGE_WIDTH}">
+  <meta property="og:image:height" content="{OG_IMAGE_HEIGHT}">
+  <meta property="og:image:alt" content="{COMPANY_NAME} — Chauffage, ventilation, climatisation et sanitaire en Suisse romande">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{safe_title}">
+  <meta name="twitter:description" content="{safe_desc}">
+  <meta name="twitter:image" content="{OG_IMAGE}">
+  <meta name="twitter:image:alt" content="{COMPANY_NAME} — CVCS Suisse romande">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css?v={css_ver}">
+{analytics_head()}
+  <script type="application/ld+json">{schema_json(graph)}</script>
+</head>
+<body class="page-404">
+  <a class="page-404__logo" href="/">
+    <img src="{LOGO_HEADER}" alt="{COMPANY_NAME}" width="160" height="48" loading="eager" decoding="async">
+  </a>
+  <main class="page-404__main" aria-labelledby="page-h1">
+    <p class="page-404__code" aria-hidden="true">404</p>
+    <h1 id="page-h1" class="page-404__title">404 - Mauvais tuyau</h1>
+    <p class="page-404__sub">Résoudre les bugs informatiques n'est pas notre domaine. En revanche, pour la réparation et la maintenance de vos installations CVCS et systèmes Sprinkler, vous êtes au bon endroit.</p>
+    <div class="page-404__ctas">
+      <a href="/" class="btn page-404__btn page-404__btn--primary">Retourner à l'accueil</a>
+      <a href="/contact/" class="btn page-404__btn page-404__btn--secondary track-devis">Demander une intervention CVCS / Sprinkler</a>
+    </div>
+  </main>
+{cookie_banner()}
+<script src="/js/main.js" defer></script>
+</body>
+</html>
+"""
+    write_page(["404.html"], content)
 
 
 def build_sitemap():

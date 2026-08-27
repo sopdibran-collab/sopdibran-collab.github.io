@@ -5500,3 +5500,175 @@ header .header-cta .btn-primary {
 @media (min-width: 1025px) {
   .mobile-quick-bar--sticky { display: none; }
 }
+
+/* ——— Page 404 (minimale, hors nav site) ——— */
+body.page-404 {
+  min-height: 100dvh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(211, 47, 47, 0.12), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(96, 192, 236, 0.06), transparent 50%),
+    linear-gradient(165deg, #0e1014 0%, #161a1f 45%, #1a1f26 100%);
+  color: #e8eaed;
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+body.page-404 .cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+.page-404__logo {
+  display: inline-flex;
+  align-items: center;
+  padding: 28px clamp(20px, 4vw, 48px) 0;
+  text-decoration: none;
+  opacity: 0;
+  animation: page404-fade-up 0.55s ease 0.05s forwards;
+}
+.page-404__logo img {
+  width: auto;
+  height: 44px;
+  display: block;
+}
+.page-404__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 48px clamp(20px, 4vw, 48px) 72px;
+  position: relative;
+}
+.page-404__code {
+  position: absolute;
+  top: 8%;
+  left: clamp(12px, 3vw, 32px);
+  font-family: var(--font-display);
+  font-size: clamp(120px, 28vw, 220px);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  color: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.page-404__title {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 7vw, 64px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #f4f5f7;
+  margin: 0 0 20px;
+  text-wrap: balance;
+  opacity: 0;
+  animation: page404-fade-up 0.6s ease 0.15s forwards;
+}
+.page-404__title::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  margin-top: 20px;
+  background: #e85d2a;
+  border-radius: 1px;
+}
+.page-404__sub {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(16px, 2.2vw, 18px);
+  line-height: 1.65;
+  color: #9aa3ad;
+  max-width: 38em;
+  margin: 0 0 36px;
+  opacity: 0;
+  animation: page404-fade-up 0.6s ease 0.28s forwards;
+}
+.page-404__ctas {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  opacity: 0;
+  animation: page404-fade-up 0.6s ease 0.4s forwards;
+}
+.page-404__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  padding: 14px 24px;
+  border-radius: 4px;
+  white-space: normal;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.page-404__btn:focus-visible {
+  outline: 2px solid #e85d2a;
+  outline-offset: 3px;
+}
+.page-404__btn--primary {
+  background: #e85d2a;
+  color: #fff !important;
+  border: 1px solid #e85d2a;
+}
+.page-404__btn--primary:hover {
+  background: #f06a38;
+  border-color: #f06a38;
+  transform: translateY(-1px);
+}
+.page-404__btn--primary:active {
+  transform: translateY(0);
+}
+.page-404__btn--secondary {
+  background: transparent;
+  color: #e8eaed !important;
+  border: 1px solid rgba(232, 234, 237, 0.28);
+}
+.page-404__btn--secondary:hover {
+  border-color: rgba(232, 234, 237, 0.55);
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+.page-404__btn--secondary:active {
+  transform: translateY(0);
+}
+@keyframes page404-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 640px) {
+  .page-404__logo { padding-top: 20px; }
+  .page-404__logo img { height: 36px; }
+  .page-404__main { padding-top: 32px; padding-bottom: 56px; }
+  .page-404__ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .page-404__btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-404__logo,
+  .page-404__title,
+  .page-404__sub,
+  .page-404__ctas {
+    animation: none;
+    opacity: 1;
+  }
+}
