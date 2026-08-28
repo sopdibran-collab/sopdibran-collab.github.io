@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Sopjani Tech static site pages."""
+"""Generate Sopjani-tech static site pages."""
 import json
 import re
 from datetime import date
@@ -26,7 +26,7 @@ GOOGLE_SITE_VERIFICATION = "ESyhz2gRqYIspy2MPXHOD9v4uMjd_KAdkQjRYWHWinw"
 # Formulaire contact → info@sopjanitech.ch via FormSubmit (AJAX).
 # 1ʳᵉ soumission : confirmer le lien reçu dans la boîte info@ (activation FormSubmit).
 FORM_ENDPOINT = f"https://formsubmit.co/ajax/{EMAIL}"
-FORM_SUBJECT = "Demande de devis — Sopjani Tech"
+FORM_SUBJECT = "Demande de devis — Sopjani-tech"
 # Logos — variantes officielles Alpë → assets/brand/
 # PRINCIPALE · RESPONSIVE · SUBMARK · FAVICON · grayscale · mono noir/blanc · couleur inversée
 LOGO_HEADER = "/assets/brand/logo-responsive.svg"
@@ -47,7 +47,7 @@ ADDRESS_STREET = "Rue Pierre de Savoie 9"
 ADDRESS_POSTAL = "1680"
 ADDRESS_LOCALITY = "Romont FR"
 ADDRESS_FULL = "Rue Pierre de Savoie 9, 1680 Romont FR"
-COMPANY_NAME = "Sopjani Tech Sàrl"  # raison sociale canonique (mentions légales / RC)
+COMPANY_NAME = "Sopjani-tech Sàrl"  # raison sociale canonique (mentions légales / RC)
 COMPANY_UID = "CHE-177.567.012"
 PUBLICATION_MANAGER = "Shkodran Sopjani"
 HOST_NAME = "GitHub, Inc. (GitHub Pages)"
@@ -148,27 +148,27 @@ META_DESCRIPTIONS = {
 }
 
 PAGE_TITLES = {
-    "home": "CVCS en Suisse romande : étude et installation | Sopjani Tech Sàrl",
-    "a-propos": "Sopjani Tech Sàrl : entreprise CVCS & sprinkler à Romont",
-    "contact": "Devis gratuit & dépannage CVCS | Sopjani Tech Sàrl",
-    "prestations": "Prestations CVCS & sprinkler — Suisse romande | Sopjani Tech",
-    "zones-intervention": "Zones d'intervention | Suisse romande | Sopjani Tech Sàrl",
-    "plan-du-site": "Plan du site | Sopjani Tech Sàrl",
-    "chauffage": "Chauffagiste en Suisse romande : PAC & chaudières | Sopjani Tech",
-    "ventilation": "Entreprise de ventilation en Suisse romande | Sopjani Tech",
-    "climatisation": "Climatisation à Nyon, Lausanne & Genève | Sopjani Tech Sàrl",
-    "depannage-sav": "Dépannage CVCS urgent en Suisse romande | Sopjani Tech",
-    "sanitaire": "Sanitaire en Suisse romande : installation & dépannage | Sopjani Tech",
-    "sprinkler-protection-incendie": "Sprinkler & protection incendie en Suisse romande | Sopjani Tech",
-    "geneve": "Chauffagiste à Genève — chauffage & climatisation | Sopjani Tech",
-    "vaud": "Chauffagiste dans le canton de Vaud | Sopjani Tech Sàrl",
-    "lausanne": "Chauffagiste à Lausanne — chauffage & dépannage | Sopjani Tech",
-    "nyon": "Climatisation & chauffagiste à Nyon | Sopjani Tech Sàrl",
-    "valais": "Chauffagiste en Valais : chauffage & climatisation | Sopjani Tech",
-    "fribourg": "Chauffagiste à Fribourg (canton) | Sopjani Tech Sàrl",
-    "romont": "CVCS à Romont — siège Sopjani Tech | chauffage & dépannage",
-    "neuchatel": "Chauffagiste Neuchâtel & La Chaux-de-Fonds | Sopjani Tech",
-    "realisations": "Nos réalisations CVCS & sprinkler — Sopjani Tech Sàrl",
+    "home": "CVCS en Suisse romande : étude et installation | Sopjani-tech Sàrl",
+    "a-propos": "Sopjani-tech Sàrl : entreprise CVCS & sprinkler à Romont",
+    "contact": "Devis gratuit & dépannage CVCS | Sopjani-tech Sàrl",
+    "prestations": "Prestations CVCS & sprinkler — Suisse romande | Sopjani-tech",
+    "zones-intervention": "Zones d'intervention | Suisse romande | Sopjani-tech Sàrl",
+    "plan-du-site": "Plan du site | Sopjani-tech Sàrl",
+    "chauffage": "Chauffagiste en Suisse romande : PAC & chaudières | Sopjani-tech",
+    "ventilation": "Entreprise de ventilation en Suisse romande | Sopjani-tech",
+    "climatisation": "Climatisation à Nyon, Lausanne & Genève | Sopjani-tech Sàrl",
+    "depannage-sav": "Dépannage CVCS urgent en Suisse romande | Sopjani-tech",
+    "sanitaire": "Sanitaire en Suisse romande : installation & dépannage | Sopjani-tech",
+    "sprinkler-protection-incendie": "Sprinkler & protection incendie en Suisse romande | Sopjani-tech",
+    "geneve": "Chauffagiste à Genève — chauffage & climatisation | Sopjani-tech",
+    "vaud": "Chauffagiste dans le canton de Vaud | Sopjani-tech Sàrl",
+    "lausanne": "Chauffagiste à Lausanne — chauffage & dépannage | Sopjani-tech",
+    "nyon": "Climatisation & chauffagiste à Nyon | Sopjani-tech Sàrl",
+    "valais": "Chauffagiste en Valais : chauffage & climatisation | Sopjani-tech",
+    "fribourg": "Chauffagiste à Fribourg (canton) | Sopjani-tech Sàrl",
+    "romont": "CVCS à Romont — siège Sopjani-tech | chauffage & dépannage",
+    "neuchatel": "Chauffagiste Neuchâtel & La Chaux-de-Fonds | Sopjani-tech",
+    "realisations": "Nos réalisations CVCS & sprinkler — Sopjani-tech Sàrl",
     "merci": f"Demande envoyée | {COMPANY_NAME}",
     "404": f"404 — Mauvais tuyau | {COMPANY_NAME}",
 }
@@ -524,30 +524,30 @@ def chauffagiste_local_block():
 
 # Photos de chantiers réels (fichier, largeur, hauteur, alt SEO, catégorie, légende)
 REALISATIONS = [
-    ("sprinkler-poste-controle.jpg", 960, 1280, "Poste de contrôle sprinkler avec tuyauterie rouge, vannes bleues et manomètres installé par Sopjani Tech Sàrl", "sprinkler", "Poste de contrôle sprinkler"),
-    ("sprinkler-technicien-brasure.jpg", 720, 1280, "Technicien de Sopjani Tech Sàrl soude au TIG sous station de chauffage à distance sur chantier", "sprinkler", "Soude au TIG sous station chauffage à distance"),
-    ("sprinkler-vanne-arret-secteur.jpg", 720, 1280, "Poste d'alarme sous eau d'un réseau sprinkler avec manomètres de contrôle, par Sopjani Tech Sàrl", "sprinkler", "Poste d'alarme sous eau"),
-    ("sprinkler-collecteur-rouges.jpg", 1280, 720, "Centrale sprinkler sous eau avec tuyauterie rouge et vannes en local technique, par Sopjani Tech Sàrl", "sprinkler", "Centrale sprinkler sous eau"),
-    ("sprinkler-vanne-seche-victaulic.jpg", 720, 1280, "Poste d'alarme sous air pour installation sprinkler, station Parking Nord, par Sopjani Tech Sàrl", "sprinkler", "Poste d'alarme sous air"),
-    ("sprinkler-vanne-alarme-humide.jpg", 720, 1280, "Poste d'alarme sous eau avec pompe de suppression et vanne d'arrêt générale d'un réseau sprinkler, par Sopjani Tech Sàrl", "sprinkler", "Poste d'alarme sous eau avec pompe de suppression"),
-    ("sanitaire-collecteur-galvanise.jpg", 1280, 720, "Test de débit sprinkler sur collecteur en acier galvanisé avec raccords laiton et vannes, par Sopjani Tech Sàrl", "sprinkler", "Test débit sprinkler"),
-    ("ventilation-unite-hvac-gaine.jpg", 1280, 720, "Unité de ventilation HVAC raccordée à une gaine souple par Sopjani Tech Sàrl", "ventilation", "Unité de ventilation HVAC"),
-    ("ventilation-conduit-galvanise-chantier.jpg", 1280, 720, "Conduit de ventilation en acier galvanisé installé sur chantier par Sopjani Tech Sàrl", "ventilation", "Conduit de ventilation galvanisé"),
-    ("ventilation-sanitaire-local-technique.jpg", 720, 1280, "Ventilation et pompe à chaleur installées en local technique par Sopjani Tech Sàrl", "ventilation", "Ventilation pompe à chaleur"),
-    ("tuyauterie-fabrication-atelier.jpg", 720, 1280, "Fabrication en atelier d'un assemblage de tuyauterie de chauffage par Sopjani Tech Sàrl", "chauffage", "Fabrication de tuyauterie chauffage en atelier"),
-    ("sanitaire-tuyauterie-plafond-collecteurs.jpg", 1600, 1200, "Tuyauterie sanitaire au plafond avec collecteurs en laiton installés par Sopjani Tech Sàrl", "sanitaire", "Tuyauterie plafond et collecteurs sanitaires"),
-    ("sanitaire-reseau-plafond-tableau.jpg", 1600, 1200, "Réseau technique au plafond et tableau de distribution sur chantier sanitaire Sopjani Tech Sàrl", "sanitaire", "Réseau plafond et tableau technique"),
-    ("sanitaire-collecteurs-laiton-isoles.jpg", 1600, 1200, "Collecteurs sanitaires en laiton avec tuyaux isolés raccordés au plafond par Sopjani Tech Sàrl", "sanitaire", "Collecteurs laiton et tuyaux isolés"),
-    ("sanitaire-local-technique-collecteurs.jpg", 1200, 1600, "Local technique avec collecteurs sanitaires et réseaux métalliques par Sopjani Tech Sàrl", "sanitaire", "Local technique collecteurs sanitaires"),
-    ("sanitaire-reseaux-sol-chantier.jpg", 1600, 1200, "Pose de réseaux sanitaires au sol sur chantier par Sopjani Tech Sàrl", "sanitaire", "Réseaux sanitaires au sol"),
-    ("sanitaire-tuyauterie-sol-raccords.jpg", 1600, 1200, "Tuyauterie sanitaire au sol avec raccords et supportage sur chantier Sopjani Tech Sàrl", "sanitaire", "Tuyauterie sanitaire au sol"),
-    ("sanitaire-bati-support-geberit.jpg", 1600, 1200, "Bâti-support sanitaire Geberit avec réseaux eau et évacuation installé par Sopjani Tech Sàrl", "sanitaire", "Bâti-support sanitaire Geberit"),
-    ("sanitaire-collecteur-bati-metallique.jpg", 1200, 1600, "Collecteur sanitaire sur bâti métallique avec tuyaux isolés par Sopjani Tech Sàrl", "sanitaire", "Collecteur sur bâti métallique"),
-    ("sanitaire-bati-technique-boitier.jpg", 1200, 1600, "Bâti technique sanitaire avec boîtier de distribution et raccords laiton par Sopjani Tech Sàrl", "sanitaire", "Bâti technique sanitaire"),
-    ("sanitaire-percements-gaines.jpg", 1600, 1200, "Percements béton et gaines pour réseaux sanitaires installés par Sopjani Tech Sàrl", "sanitaire", "Percements et gaines sanitaires"),
-    ("sanitaire-bati-wc-geberit-sigma.jpg", 1600, 1200, "Bâti-support WC Geberit Sigma avec colonne d'évacuation installé par Sopjani Tech Sàrl", "sanitaire", "Bâti-support WC Geberit"),
-    ("sanitaire-local-technique-tuyauterie.jpg", 1600, 1200, "Local technique sanitaire avec tuyauterie, manomètre et réseaux suspendus par Sopjani Tech Sàrl", "sanitaire", "Local technique sanitaire"),
-    ("sanitaire-collecteur-vannes-filtre.jpg", 1200, 1600, "Collecteur sanitaire avec vannes, filtre et compteur d'eau installé par Sopjani Tech Sàrl", "sanitaire", "Collecteur, vannes et filtre"),
+    ("sprinkler-poste-controle.jpg", 960, 1280, "Poste de contrôle sprinkler avec tuyauterie rouge, vannes bleues et manomètres installé par Sopjani-tech Sàrl", "sprinkler", "Poste de contrôle sprinkler"),
+    ("sprinkler-technicien-brasure.jpg", 720, 1280, "Technicien de Sopjani-tech Sàrl soude au TIG sous station de chauffage à distance sur chantier", "sprinkler", "Soude au TIG sous station chauffage à distance"),
+    ("sprinkler-vanne-arret-secteur.jpg", 720, 1280, "Poste d'alarme sous eau d'un réseau sprinkler avec manomètres de contrôle, par Sopjani-tech Sàrl", "sprinkler", "Poste d'alarme sous eau"),
+    ("sprinkler-collecteur-rouges.jpg", 1280, 720, "Centrale sprinkler sous eau avec tuyauterie rouge et vannes en local technique, par Sopjani-tech Sàrl", "sprinkler", "Centrale sprinkler sous eau"),
+    ("sprinkler-vanne-seche-victaulic.jpg", 720, 1280, "Poste d'alarme sous air pour installation sprinkler, station Parking Nord, par Sopjani-tech Sàrl", "sprinkler", "Poste d'alarme sous air"),
+    ("sprinkler-vanne-alarme-humide.jpg", 720, 1280, "Poste d'alarme sous eau avec pompe de suppression et vanne d'arrêt générale d'un réseau sprinkler, par Sopjani-tech Sàrl", "sprinkler", "Poste d'alarme sous eau avec pompe de suppression"),
+    ("sanitaire-collecteur-galvanise.jpg", 1280, 720, "Test de débit sprinkler sur collecteur en acier galvanisé avec raccords laiton et vannes, par Sopjani-tech Sàrl", "sprinkler", "Test débit sprinkler"),
+    ("ventilation-unite-hvac-gaine.jpg", 1280, 720, "Unité de ventilation HVAC raccordée à une gaine souple par Sopjani-tech Sàrl", "ventilation", "Unité de ventilation HVAC"),
+    ("ventilation-conduit-galvanise-chantier.jpg", 1280, 720, "Conduit de ventilation en acier galvanisé installé sur chantier par Sopjani-tech Sàrl", "ventilation", "Conduit de ventilation galvanisé"),
+    ("ventilation-sanitaire-local-technique.jpg", 720, 1280, "Ventilation et pompe à chaleur installées en local technique par Sopjani-tech Sàrl", "ventilation", "Ventilation pompe à chaleur"),
+    ("tuyauterie-fabrication-atelier.jpg", 720, 1280, "Fabrication en atelier d'un assemblage de tuyauterie de chauffage par Sopjani-tech Sàrl", "chauffage", "Fabrication de tuyauterie chauffage en atelier"),
+    ("sanitaire-tuyauterie-plafond-collecteurs.jpg", 1600, 1200, "Tuyauterie sanitaire au plafond avec collecteurs en laiton installés par Sopjani-tech Sàrl", "sanitaire", "Tuyauterie plafond et collecteurs sanitaires"),
+    ("sanitaire-reseau-plafond-tableau.jpg", 1600, 1200, "Réseau technique au plafond et tableau de distribution sur chantier sanitaire Sopjani-tech Sàrl", "sanitaire", "Réseau plafond et tableau technique"),
+    ("sanitaire-collecteurs-laiton-isoles.jpg", 1600, 1200, "Collecteurs sanitaires en laiton avec tuyaux isolés raccordés au plafond par Sopjani-tech Sàrl", "sanitaire", "Collecteurs laiton et tuyaux isolés"),
+    ("sanitaire-local-technique-collecteurs.jpg", 1200, 1600, "Local technique avec collecteurs sanitaires et réseaux métalliques par Sopjani-tech Sàrl", "sanitaire", "Local technique collecteurs sanitaires"),
+    ("sanitaire-reseaux-sol-chantier.jpg", 1600, 1200, "Pose de réseaux sanitaires au sol sur chantier par Sopjani-tech Sàrl", "sanitaire", "Réseaux sanitaires au sol"),
+    ("sanitaire-tuyauterie-sol-raccords.jpg", 1600, 1200, "Tuyauterie sanitaire au sol avec raccords et supportage sur chantier Sopjani-tech Sàrl", "sanitaire", "Tuyauterie sanitaire au sol"),
+    ("sanitaire-bati-support-geberit.jpg", 1600, 1200, "Bâti-support sanitaire Geberit avec réseaux eau et évacuation installé par Sopjani-tech Sàrl", "sanitaire", "Bâti-support sanitaire Geberit"),
+    ("sanitaire-collecteur-bati-metallique.jpg", 1200, 1600, "Collecteur sanitaire sur bâti métallique avec tuyaux isolés par Sopjani-tech Sàrl", "sanitaire", "Collecteur sur bâti métallique"),
+    ("sanitaire-bati-technique-boitier.jpg", 1200, 1600, "Bâti technique sanitaire avec boîtier de distribution et raccords laiton par Sopjani-tech Sàrl", "sanitaire", "Bâti technique sanitaire"),
+    ("sanitaire-percements-gaines.jpg", 1600, 1200, "Percements béton et gaines pour réseaux sanitaires installés par Sopjani-tech Sàrl", "sanitaire", "Percements et gaines sanitaires"),
+    ("sanitaire-bati-wc-geberit-sigma.jpg", 1600, 1200, "Bâti-support WC Geberit Sigma avec colonne d'évacuation installé par Sopjani-tech Sàrl", "sanitaire", "Bâti-support WC Geberit"),
+    ("sanitaire-local-technique-tuyauterie.jpg", 1600, 1200, "Local technique sanitaire avec tuyauterie, manomètre et réseaux suspendus par Sopjani-tech Sàrl", "sanitaire", "Local technique sanitaire"),
+    ("sanitaire-collecteur-vannes-filtre.jpg", 1200, 1600, "Collecteur sanitaire avec vannes, filtre et compteur d'eau installé par Sopjani-tech Sàrl", "sanitaire", "Collecteur, vannes et filtre"),
 ]
 
 REALISATIONS_BY_CAT = {}
@@ -1781,7 +1781,7 @@ def build_home():
     body = f"""
 <section class="hero hero--photo" aria-labelledby="hero-h1">
   <div class="hero-media">
-    <img src="/assets/heroes/home.jpg" alt="Centrale sprinkler installée par Sopjani Tech Sàrl — chantier réel en Suisse romande" width="2000" height="1125" fetchpriority="high" decoding="async">
+    <img src="/assets/heroes/home.jpg" alt="Centrale sprinkler installée par Sopjani-tech Sàrl — chantier réel en Suisse romande" width="2000" height="1125" fetchpriority="high" decoding="async">
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="container hero-inner">
@@ -1828,12 +1828,12 @@ def build_home():
         <a href="/contact/#contact-form" class="text-link track-devis">Demander un devis</a>
       </p>
     </div>
-    <div class="about-photo-duo" aria-label="Équipe Sopjani Tech">
+    <div class="about-photo-duo" aria-label="Équipe Sopjani-tech">
       <figure class="about-photo">
-        <img src="/assets/equipe/equipe-soudure-logo-dos.jpg" alt="Technicien Sopjani Tech Sàrl en intervention" width="900" height="900" loading="lazy" decoding="async">
+        <img src="/assets/equipe/equipe-soudure-logo-dos.jpg" alt="Technicien Sopjani-tech Sàrl en intervention" width="900" height="900" loading="lazy" decoding="async">
       </figure>
       <figure class="about-photo">
-        <img src="/assets/equipe/equipe-formation-logo-dos.jpg" alt="Collaborateur Sopjani Tech Sàrl en formation" width="775" height="1024" loading="lazy" decoding="async">
+        <img src="/assets/equipe/equipe-formation-logo-dos.jpg" alt="Collaborateur Sopjani-tech Sàrl en formation" width="775" height="1024" loading="lazy" decoding="async">
       </figure>
     </div>
   </div>
@@ -1863,7 +1863,7 @@ def build_prestations():
     hero = page_hero(
         "Prestations",
         f"Nos prestations en {CVCS_PROSE}",
-        "Sopjani Tech Sàrl conçoit, installe, entretient et dépanne vos installations techniques en Suisse romande.",
+        "Sopjani-tech Sàrl conçoit, installe, entretient et dépanne vos installations techniques en Suisse romande.",
         image=hero_image_for("prestations"),
     )
     body = f"""
@@ -2019,14 +2019,14 @@ def build_about():
     <span class="label">Équipe</span>
     <div class="rule"></div>
     <h2 class="section-title" id="equipe-title">Sur le terrain et en formation</h2>
-    <p class="section-lead">Des professionnels Sopjani Tech Sàrl, identifiable à notre tenue — intervention technique et formation continue.</p>
+    <p class="section-lead">Des professionnels Sopjani-tech Sàrl, identifiable à notre tenue — intervention technique et formation continue.</p>
     <div class="equipe-grid">
       <figure class="gallery-card">
-        <img src="/assets/equipe/equipe-soudure-logo-dos.jpg" alt="Technicien Sopjani Tech Sàrl en soudure — logo sur la tenue" width="900" height="900" loading="lazy" decoding="async">
-        <figcaption>Intervention terrain — tenue Sopjani Tech Sàrl</figcaption>
+        <img src="/assets/equipe/equipe-soudure-logo-dos.jpg" alt="Technicien Sopjani-tech Sàrl en soudure — logo sur la tenue" width="900" height="900" loading="lazy" decoding="async">
+        <figcaption>Intervention terrain — tenue Sopjani-tech Sàrl</figcaption>
       </figure>
       <figure class="gallery-card">
-        <img src="/assets/equipe/equipe-formation-logo-dos.jpg" alt="Collaborateur Sopjani Tech Sàrl en formation sécurité" width="775" height="1024" loading="lazy" decoding="async">
+        <img src="/assets/equipe/equipe-formation-logo-dos.jpg" alt="Collaborateur Sopjani-tech Sàrl en formation sécurité" width="775" height="1024" loading="lazy" decoding="async">
         <figcaption>Formation continue — normes et sécurité</figcaption>
       </figure>
     </div>
@@ -2110,7 +2110,7 @@ def build_contact():
   <div class="contact-map-wrap">
     <iframe
       src="{MAP_EMBED}"
-      title="Localisation de Sopjani Tech Sàrl — {ADDRESS_FULL}"
+      title="Localisation de Sopjani-tech Sàrl — {ADDRESS_FULL}"
       width="1200"
       height="400"
       style="border:0;"
@@ -3073,7 +3073,7 @@ def build_zones():
         communes_block(["Fribourg", "Bulle", "Châtel-Saint-Denis", "Estavayer-le-Lac", "Domdidier", "Marly", "Villars-sur-Glâne", "Romont"]) +
         SUBSIDY_NOTE.format(extra="Dans le canton de Fribourg, les demandes sont instruites par le Service de l'énergie (SdE)."),
         zone_aeo_faq("Fribourg", "le canton de Fribourg") + [
-            ("Où se trouve le siège de Sopjani Tech Sàrl ?", f'À <a href="/romont/">{ADDRESS_FULL}</a>, dans le district de la Glâne. La page Romont détaille nos prestations CVCS locales.'),
+            ("Où se trouve le siège de Sopjani-tech Sàrl ?", f'À <a href="/romont/">{ADDRESS_FULL}</a>, dans le district de la Glâne. La page Romont détaille nos prestations CVCS locales.'),
         ],
         ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["romont", "vaud", "lausanne", "neuchatel"],
         hero_sub=f"Chauffagiste dans le canton de Fribourg. Appelez le {PHONE_DISP}.")
@@ -3081,7 +3081,7 @@ def build_zones():
     zone_page("romont", "Romont", "Romont et la Glâne",
         PAGE_TITLES["romont"],
         META_DESCRIPTIONS["romont"],
-        "CVCS à Romont — siège Sopjani Tech Sàrl",
+        "CVCS à Romont — siège Sopjani-tech Sàrl",
         p(f'<strong>{COMPANY_NAME}</strong> a son siège à <a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a>. Depuis Romont, nous répondons aux demandes de devis et d\'appels d\'offres en chauffage, ventilation, climatisation, sanitaire et dépannage SAV — villas, immeubles, PPE, entreprises et collectivités.') +
         p(f'Téléphone <a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a> · <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a> · Horaires {HOURS}.') +
         p('Prestations locales : <a href="/chauffage/">chauffage</a>, <a href="/ventilation/">ventilation</a>, <a href="/climatisation/">climatisation</a>, <a href="/sanitaire/">sanitaire</a> et <a href="/depannage-sav/">dépannage SAV</a>. Pour le canton élargi, voir aussi <a href="/fribourg/">chauffagiste Fribourg</a>.') +

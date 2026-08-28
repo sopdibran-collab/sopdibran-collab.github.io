@@ -1,4 +1,4 @@
-# 01 — Identité & marque — Sopjani Tech Sàrl
+# 01 — Identité & marque — Sopjani-tech Sàrl
 
 ## Couleurs (charte CVCS & Sprinkler — mat / corporate)
 

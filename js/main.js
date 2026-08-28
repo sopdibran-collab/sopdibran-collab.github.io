@@ -184,20 +184,6 @@ document.querySelectorAll('.track-form').forEach(form => {
     trackEvent('generate_lead', { method: 'contact_form', event_category: 'conversion' });
     trackEvent('form_submit', { event_category: 'conversion', event_label: 'contact_form' });
 
-    function resetSmartForm() {
-      form.reset();
-      if (form.classList.contains('contact-form--smart')) {
-        const steps = form.querySelectorAll('.form-step');
-        steps.forEach((s, i) => {
-          s.hidden = i !== 0;
-          s.classList.toggle('is-active', i === 0);
-        });
-        const urgent = form.querySelector('[data-urgent-cta]');
-        if (urgent) urgent.hidden = true;
-        updateSmartFormProgress(form, 1);
-      }
-    }
-
     if (!endpoint || endpoint === '#') {
       window.location.assign('/merci/');
       return;
