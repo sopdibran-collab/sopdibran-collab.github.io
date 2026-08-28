@@ -1359,7 +1359,7 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None, *
 <html lang="fr-CH">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{title}</title>
   <meta name="description" content="{description}">
   <meta name="robots" content="{robots}">
@@ -1368,6 +1368,7 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None, *
   <meta name="geo.position" content="46.6917;6.9119">
   <meta name="ICBM" content="46.6917, 6.9119">
   <meta name="theme-color" content="{THEME_COLOR}">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="canonical" href="{canonical}">
   <link rel="icon" href="{FAVICON_SVG}" type="image/svg+xml">
   <link rel="icon" href="{FAVICON_PATH}" type="image/png" sizes="32x32">
@@ -3223,7 +3224,7 @@ def build_legacy_redirect_stubs():
 <html lang="fr-CH">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta http-equiv="refresh" content="0;url={target}">
   <link rel="canonical" href="{target}">
   <meta name="robots" content="noindex, nofollow">
@@ -3362,7 +3363,7 @@ def build_404():
 <html lang="fr-CH">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{title}</title>
   <meta name="description" content="{desc}">
   <meta name="robots" content="noindex, follow">
@@ -3370,7 +3371,8 @@ def build_404():
   <meta name="geo.placename" content="Suisse romande">
   <meta name="geo.position" content="46.6917;6.9119">
   <meta name="ICBM" content="46.6917, 6.9119">
-  <meta name="theme-color" content="#121417">
+  <meta name="theme-color" content="{THEME_COLOR}">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="canonical" href="{canonical}">
   <link rel="icon" href="{FAVICON_SVG}" type="image/svg+xml">
   <link rel="icon" href="{FAVICON_PATH}" type="image/png" sizes="32x32">

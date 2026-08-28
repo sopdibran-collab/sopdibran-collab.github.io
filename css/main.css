@@ -3011,12 +3011,13 @@ header .header-cta .btn-primary:focus-visible {
    ══════════════════════════════════════════════ */
 
 .topbar {
-  background: var(--c-navy);
+  background: #0B2545;
   color: rgba(248, 250, 252, 0.7);
   font-size: 11px;
   line-height: 1.2;
   letter-spacing: 0.01em;
   border-bottom: 1px solid rgba(96, 192, 236, 0.12);
+  padding-top: env(safe-area-inset-top);
 }
 .topbar-inner {
   display: flex;
@@ -4040,7 +4041,7 @@ header .header-cta .btn-primary {
 
 @media (max-width: 768px) {
   .topbar {
-    padding: 0;
+    padding: env(safe-area-inset-top) 0 0;
   }
 
   .topbar-inner {
