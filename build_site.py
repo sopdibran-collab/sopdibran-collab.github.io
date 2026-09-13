@@ -117,10 +117,10 @@ CVCS_PROSE = "chauffage, ventilation, climatisation et sanitaire"
 CVCS_ALL_PROSE = "chauffage, ventilation, climatisation, sanitaire, dépannage SAV et sprinkler"
 
 META_DESCRIPTIONS = {
-    "home": "CVCS en Suisse romande : chauffage, ventilation, climatisation et sanitaire — de l'étude à la réalisation. Villas, immeubles et appels d'offres. Siège à Romont FR.",
+    "home": "Chauffage, ventilation, climatisation et sanitaire en Suisse romande — de l'étude à la réalisation. Villas, immeubles et appels d'offres. Siège à Romont FR.",
     "prestations": "Installation, maintenance et dépannage : chauffage, ventilation, climatisation, sanitaire, sprinkler et SAV en Suisse romande. Devis gratuit et sans engagement.",
     "zones-intervention": f"{COMPANY_NAME} intervient près de vous en Suisse romande : Genève, Vaud, Valais, Fribourg, Romont, Neuchâtel et agglomérations. Siège à {ADDRESS_LOCALITY}.",
-    "a-propos": "Entreprise CVCS à Romont FR : chauffage, ventilation, climatisation et sanitaire de l'étude à la réalisation en Suisse romande. Pilotage technique de chantier, normes SIA.",
+    "a-propos": f"{COMPANY_NAME} (siège à Romont FR) : chauffage, ventilation, climatisation et sanitaire de l'étude à la réalisation en Suisse romande. Pilotage technique de chantier, normes SIA.",
     "contact": f"Demandez un devis gratuit ou un dépannage urgent (chauffage, clim, ventilation, sanitaire) en Suisse romande. Réponse rapide — {PHONE_DISP}.",
     "depannage-sav": f"Panne de chauffage, clim, ventilation ou sanitaire ? Dépannage CVCS urgent en Suisse romande, 7j/7 de 7h à 17h. Appelez le {PHONE_DISP}.",
     "chauffage": "Chauffagiste en Suisse romande : conception SIA, installation et dépannage de pompes à chaleur et chaudières. Villas, PPE, immeubles et appels d'offres. Devis gratuit.",
@@ -134,7 +134,7 @@ META_DESCRIPTIONS = {
     "nyon": "Climatisation (split, multi-split, PAC air-air) et chauffage à Nyon, Gland, Rolle et Coppet : installation, entretien, dépannage. Devis gratuit.",
     "valais": f"Chauffagiste en Valais : Sion, Martigny, Monthey, Sierre et stations. Chaudières, PAC, remise en service après hiver. Devis gratuit — {PHONE_DISP}.",
     "fribourg": "Chauffagiste à Fribourg, Glâne, Gruyère et Broye : installation, entretien, dépannage, aides aux subventions PAC. Devis gratuit. Siège à Romont.",
-    "romont": f"CVCS à Romont FR (siège) : chauffage, ventilation, climatisation, sanitaire et dépannage SAV pour villas, immeubles, PPE et entreprises. Devis gratuit — {PHONE_DISP}.",
+    "romont": f"Siège à Romont FR : chauffage, ventilation, climatisation, sanitaire et dépannage SAV pour villas, immeubles, PPE et entreprises. Devis gratuit — {PHONE_DISP}.",
     "neuchatel": "Chauffagiste dans le canton de Neuchâtel : littoral et Jura (La Chaux-de-Fonds, Le Locle). Chauffage, CVCS, entretien et dépannage. Devis gratuit.",
     "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
@@ -148,8 +148,8 @@ META_DESCRIPTIONS = {
 }
 
 PAGE_TITLES = {
-    "home": "CVCS en Suisse romande : étude et installation | Sopjani-tech Sàrl",
-    "a-propos": "Sopjani-tech Sàrl : entreprise CVCS & sprinkler à Romont",
+    "home": "Chauffage, ventilation, clim et sanitaire en Suisse romande | Sopjani-tech Sàrl",
+    "a-propos": "Sopjani-tech Sàrl — chauffage, ventilation, clim et sanitaire | Romont",
     "contact": "Devis gratuit & dépannage CVCS | Sopjani-tech Sàrl",
     "prestations": "Prestations CVCS & sprinkler — Suisse romande | Sopjani-tech",
     "zones-intervention": "Zones d'intervention | Suisse romande | Sopjani-tech Sàrl",
@@ -166,7 +166,7 @@ PAGE_TITLES = {
     "nyon": "Climatisation & chauffagiste à Nyon | Sopjani-tech Sàrl",
     "valais": "Chauffagiste en Valais : chauffage & climatisation | Sopjani-tech",
     "fribourg": "Chauffagiste à Fribourg (canton) | Sopjani-tech Sàrl",
-    "romont": "CVCS à Romont — siège Sopjani-tech | chauffage & dépannage",
+    "romont": "Siège à Romont — chauffage, ventilation, clim, sanitaire | Sopjani-tech",
     "neuchatel": "Chauffagiste Neuchâtel & La Chaux-de-Fonds | Sopjani-tech",
     "realisations": "Nos réalisations CVCS & sprinkler — Sopjani-tech Sàrl",
     "merci": f"Demande envoyée | {COMPANY_NAME}",
@@ -3081,7 +3081,7 @@ def build_zones():
     zone_page("romont", "Romont", "Romont et la Glâne",
         PAGE_TITLES["romont"],
         META_DESCRIPTIONS["romont"],
-        "CVCS à Romont — siège Sopjani-tech Sàrl",
+        "Siège Sopjani-tech à Romont — chauffage, ventilation, clim et sanitaire",
         p(f'<strong>{COMPANY_NAME}</strong> a son siège à <a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a>. Depuis Romont, nous répondons aux demandes de devis et d\'appels d\'offres en chauffage, ventilation, climatisation, sanitaire et dépannage SAV — villas, immeubles, PPE, entreprises et collectivités.') +
         p(f'Téléphone <a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a> · <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a> · Horaires {HOURS}.') +
         p('Prestations locales : <a href="/chauffage/">chauffage</a>, <a href="/ventilation/">ventilation</a>, <a href="/climatisation/">climatisation</a>, <a href="/sanitaire/">sanitaire</a> et <a href="/depannage-sav/">dépannage SAV</a>. Pour le canton élargi, voir aussi <a href="/fribourg/">chauffagiste Fribourg</a>.') +
@@ -3096,7 +3096,7 @@ def build_zones():
             ("Proposez-vous aussi le sprinkler ?", "Oui, en sous-traitance spécialisée selon le mandat — ce n'est pas notre canal commercial principal. Pour un devis CVCS (chauffage, clim, ventilation, sanitaire, dépannage), contactez-nous directement."),
         ],
         ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["fribourg", "vaud", "neuchatel"],
-        hero_sub=f"Siège à Romont — devis CVCS et dépannage. Appelez le {PHONE_DISP}.")
+        hero_sub=f"Siège à Romont — devis et dépannage. Appelez le {PHONE_DISP}.")
 
     zone_page("neuchatel", "Neuchâtel", "le canton de Neuchâtel",
         PAGE_TITLES["neuchatel"],
