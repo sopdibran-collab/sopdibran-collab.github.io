@@ -1895,7 +1895,16 @@ def build_zones_hub():
         ("Comment savoir si vous intervenez chez moi ?", f"Contactez-nous avec votre commune. Nous sommes basés à {ADDRESS_LOCALITY} et nous déplaçons selon la nature des travaux."),
         ("Avez-vous une agence dans chaque canton ?", f"Non. Nos interventions sont assurées par une équipe mobile depuis notre <a href=\"/romont/\">siège à {ADDRESS_LOCALITY}</a>."),
     ]
-    cards = "".join(f'<a class="hub-card" href="/{z}/"><h3>{n}</h3><p>Interventions CVCS dans {r}</p><span class="link-arrow">Voir la zone →</span></a>' for z, n, r in ZONES)
+    def _zone_hub_blurb(z, r):
+        if z == "vaud":
+            return "Chauffagiste dans le canton de Vaud"
+        return f"Interventions CVCS dans {r}"
+
+    cards = "".join(
+        f'<a class="hub-card" href="/{z}/"><h3>{n}</h3><p>{_zone_hub_blurb(z, r)}</p>'
+        f'<span class="link-arrow">Voir la zone →</span></a>'
+        for z, n, r in ZONES
+    )
     hero = page_hero(
         "Géographie",
         "Nos zones d'intervention en Suisse romande",
@@ -2508,7 +2517,8 @@ def _premium_service_configs():
                 "En charge des projets CVCS (chauffage, ventilation, climatisation et sanitaire) "
                 "de l'étude à la réalisation. Nous concevons des installations de chauffage "
                 "performantes et adaptées à chaque projet, en intégrant les exigences techniques, "
-                "énergétiques et réglementaires — villas, PPE, immeubles et appels d'offres."
+                "énergétiques et réglementaires — villas, PPE, immeubles et appels d'offres. "
+                'Installation et dépannage, notamment comme <a href="/vaud/">chauffagiste Vaud</a>.'
             ),
             "problems_title": "Conception chauffage",
             "problems_lead": (
@@ -3024,7 +3034,7 @@ def build_zones():
         META_DESCRIPTIONS["lausanne"],
         "Chauffagiste à Lausanne : dépannage chauffage et CVCS",
         p("Vous cherchez un chauffagiste à Lausanne ? L'agglomération concentre immeubles, tertiaire et parc ancien — souvent à adapter lors d'une rénovation. Une partie de la ville est desservie par le chauffage à distance (SiL).") +
-        p('Nous intervenons aussi en dépannage chauffage. Pour la climatisation ou une pompe à chaleur, voir <a href="/climatisation/">climatisation</a> et <a href="/chauffage/">chauffage</a>.') +
+        p('Nous intervenons aussi en dépannage chauffage. Pour la climatisation ou une pompe à chaleur, voir <a href="/climatisation/">climatisation</a> et <a href="/chauffage/">chauffage</a>. Nous intervenons également dans tout le canton, voir <a href="/vaud/">chauffagiste Vaud</a>.') +
         communes_block(["Renens", "Prilly", "Le Mont-sur-Lausanne", "Épalinges", "Pully", "Chavannes-près-Renens", "Ecublens", "Crissier"]) +
         SUBSIDY_NOTE.format(extra="Les demandes pour l'agglomération lausannoise sont instruites par la Direction de l'énergie du canton de Vaud."),
         zone_aeo_faq("Lausanne", "Lausanne et environs") + [
