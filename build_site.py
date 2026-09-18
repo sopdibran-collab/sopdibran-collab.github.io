@@ -3039,7 +3039,7 @@ def build_zones():
         META_DESCRIPTIONS["nyon"],
         "Climatisation et chauffagiste à Nyon",
         p("Climatisation à Nyon et chauffagiste local : la région entre Genève et Lausanne combine constructions récentes (villas, PPE autour du lac) et bâti plus ancien dans les villages. Standards énergétiques élevés (Minergie) fréquents sur les neuves.") +
-        p('Nous installons et entretenons la climatisation (split, multi-split, PAC air-air) ainsi que le chauffage (pompes à chaleur, chaudières) à Nyon, Gland, Rolle, Coppet et environs. Devis via <a href="/climatisation/">climatisation</a>, <a href="/chauffage/">chauffage</a> ou téléphone.') +
+        p('Nous installons et entretenons la climatisation (split, multi-split, PAC air-air) ainsi que le chauffage (pompes à chaleur, chaudières) à Nyon, Gland, Rolle, Coppet et environs. Demandez un devis via les pages <a href="/climatisation/">climatisation</a> ou <a href="/chauffage/">chauffage</a>, ou par téléphone.') +
         communes_block(["Gland", "Rolle", "Prangins", "Founex", "Coppet", "Genolier", "Duillier", "Trélex"]) +
         SUBSIDY_NOTE.format(extra="La région de Nyon dépend du barème et du guichet du canton de Vaud (Direction de l'énergie)."),
         zone_aeo_faq("Nyon", "la région de Nyon") + [
