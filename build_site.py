@@ -1859,7 +1859,14 @@ def build_prestations():
         ("Comment choisir la bonne prestation ?", "Chaque page prestation détaille les problématiques traitées et les interventions courantes. En cas de doute, décrivez votre bâtiment et votre besoin via notre page contact : nous vous orienterons vers la prestation adaptée."),
         ("Intervenez-vous en Suisse romande ?", f"Oui, principalement à Genève, Vaud, Lausanne, Nyon, Valais et Fribourg. Siège à {ADDRESS_LOCALITY}."),
     ]
-    cards = "".join(hub_card(s, n, d, cta="Voir la prestation →") for s, n, d in SERVICES)
+    # Alternance white ↔ muted : CVCS (blanc) → SAV/sprinkler (.alt) → FAQ (blanc) → normes → CTA
+    cvcs_slugs = {"chauffage", "ventilation", "climatisation", "sanitaire"}
+    cvcs_cards = "".join(
+        hub_card(s, n, d, cta="Voir la prestation →") for s, n, d in SERVICES if s in cvcs_slugs
+    )
+    other_cards = "".join(
+        hub_card(s, n, d, cta="Voir la prestation →") for s, n, d in SERVICES if s not in cvcs_slugs
+    )
     hero = page_hero(
         "Prestations",
         f"Nos prestations en {CVCS_PROSE}",
@@ -1869,12 +1876,19 @@ def build_prestations():
     body = f"""
 {hero}
 {svc_reassure_band()}
-<section class="content-section">
+<section class="content-section" aria-labelledby="presta-cvcs-title">
   <div class="container">
-    <div class="hub-grid">{cards}</div>
+    <h2 class="section-title" id="presta-cvcs-title">{CVCS_GROUP}</h2>
+    <div class="hub-grid">{cvcs_cards}</div>
   </div>
 </section>
-<section class="faq content-section alt" aria-labelledby="faq-title">
+<section class="content-section alt" aria-labelledby="presta-autres-title">
+  <div class="container">
+    <h2 class="section-title" id="presta-autres-title">Dépannage SAV et sprinkler</h2>
+    <div class="hub-grid">{other_cards}</div>
+  </div>
+</section>
+<section class="faq content-section" aria-labelledby="faq-title">
   <div class="container">
     {faq_section_head()}
     {faq_html(faq)}
@@ -2346,10 +2360,25 @@ def write_premium_service_page(cfg):
     service_cards = _premium_cards(cfg["services"], service_class=True)
     timeline = _premium_timeline(process_steps)
 
+    # Alternance white ↔ muted (svc-premium / svc-premium--alt) sur les bandes content.
+    # tone pair = blanc (var(--c-bg2)), impair = muted (#f1f5f9).
+    tone = 0
+
+    def _next_svc_alt():
+        nonlocal tone
+        alt = " svc-premium--alt" if tone % 2 else ""
+        tone += 1
+        return alt
+
+    problems_alt = _next_svc_alt()
+    services_alt = _next_svc_alt()
+    process_alt = _next_svc_alt()
+
     if show_gallery:
+        gallery_alt = _next_svc_alt()
         gallery_block, gallery_imgs = _premium_gallery_block(slug, gallery_cat)
         gallery_section = f"""
-<section class="content-section svc-premium svc-premium--alt magnetic-section" id="realisations" aria-labelledby="real-title">
+<section class="content-section svc-premium{gallery_alt} magnetic-section" id="realisations" aria-labelledby="real-title">
   <div class="container">
     <div class="svc-premium__head">
       <h2 class="section-title" id="real-title">{cfg["gallery_title"]}</h2>
@@ -2363,10 +2392,13 @@ def write_premium_service_page(cfg):
         gallery_imgs = []
         gallery_section = ""
 
+    expertise_alt = _next_svc_alt()
+
     equip_list = "".join(f"<li>{x}</li>" for x in cfg["equip"])
     equip_visual = _premium_equip_visual(gallery_imgs)
 
     if reg_items:
+        reg_alt = _next_svc_alt()
         accordion_inner = "".join(
             f"""<details class="details-item" name="{slug}-reg">
   <summary class="details-summary"><span class="faq-q-text">{t}</span><span class="faq-icon" aria-hidden="true"></span></summary>
@@ -2376,7 +2408,7 @@ def write_premium_service_page(cfg):
         )
         accordion = f'<div class="details-accordion"><div class="details-accordion__list">{accordion_inner}</div></div>'
         reg_section = f"""
-<section class="content-section svc-premium svc-premium--alt" id="reglementaire" aria-labelledby="reg-title">
+<section class="content-section svc-premium{reg_alt}" id="reglementaire" aria-labelledby="reg-title">
   <div class="container svc-premium__narrow">
     <div class="svc-premium__head">
       <h2 class="section-title" id="reg-title">{cfg["reg_title"]}</h2>
@@ -2387,6 +2419,10 @@ def write_premium_service_page(cfg):
 </section>"""
     else:
         reg_section = ""
+
+    zones_alt = _next_svc_alt()
+    related_alt = _next_svc_alt()
+    faq_alt = _next_svc_alt()
 
     zone_chips = "".join(
         f'<a class="zone-pill" href="/{z}/">{n}</a>'
@@ -2399,21 +2435,13 @@ def write_premium_service_page(cfg):
     )
 
     urgence = urgence_band() if show_urgence else ""
-    # Alternance : problems plain → services alt → process plain → [gallery alt] → expertise → [reg alt] → zones → related → faq
-    expertise_alt = "" if show_gallery else " svc-premium--alt"
-    if show_gallery:
-        zones_alt, related_alt, faq_alt = ("", " svc-premium--alt", "")
-    else:
-        zones_alt = "" if reg_section else " svc-premium--alt"
-        related_alt = " svc-premium--alt" if reg_section else ""
-        faq_alt = "" if related_alt else " svc-premium--alt"
 
     body = f"""
 {hero}
 {urgence}
 {svc_reassure_band()}
 
-<section class="content-section svc-premium" id="problems" aria-labelledby="problems-title" data-svc="{slug}">
+<section class="content-section svc-premium{problems_alt}" id="problems" aria-labelledby="problems-title" data-svc="{slug}">
   <div class="container">
     <div class="svc-premium__head">
       <h2 class="section-title" id="problems-title">{cfg["problems_title"]}</h2>
@@ -2423,7 +2451,7 @@ def write_premium_service_page(cfg):
   </div>
 </section>
 
-<section class="content-section svc-premium svc-premium--alt" id="services" aria-labelledby="services-title" data-svc="{slug}">
+<section class="content-section svc-premium{services_alt}" id="services" aria-labelledby="services-title" data-svc="{slug}">
   <div class="container">
     <div class="svc-premium__head">
       <h2 class="section-title" id="services-title">{cfg["services_title"]}</h2>
@@ -2435,7 +2463,7 @@ def write_premium_service_page(cfg):
   </div>
 </section>
 
-<section class="content-section svc-premium" id="process" aria-labelledby="process-title">
+<section class="content-section svc-premium{process_alt}" id="process" aria-labelledby="process-title">
   <div class="container">
     <div class="svc-premium__head svc-premium__head--center">
       <h2 class="section-title" id="process-title">{cfg.get("process_title", "Une intervention claire, de A à Z")}</h2>

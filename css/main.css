@@ -4961,7 +4961,8 @@ header .header-cta .btn-primary {
   line-height: 1.5;
   margin: 0;
 }
-.about-split--compact { padding: 48px 0 56px; }
+/* Home: white surface so FAQ .alt (#eef2f6) reads as the muted band */
+.about-split--compact { padding: 48px 0 56px; background: var(--c-bg2); }
 .about-split--compact .check-list { display: none; }
 
 /* —— Formulaire smart multi-step —— */
