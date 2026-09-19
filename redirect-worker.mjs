@@ -9,8 +9,8 @@ const REDIRECTS = {
   "/mentions-legales.html": "/mentions-legales/",
   "/politique-confidentialite.html": "/politique-confidentialite/"
 };
-const BLOCK_EXACT = new Set(["/build_site.py", "/signature-mail-hostpoint.html", "/signature-mail-hostpoint-v2.html", "/signature-mail-hostpoint-v3.html"]);
-const BLOCK_PREFIXES = ["/scripts/"];
+const BLOCK_EXACT = new Set(["/AGENTS.md", "/README.md", "/.gitignore", "/build_site.py", "/redirect-worker.mjs", "/wrangler.toml", "/skills-lock.json", "/_redirects", "/signature-mail-hostpoint.html", "/signature-mail-hostpoint-v2.html", "/signature-mail-hostpoint-v3.html"]);
+const BLOCK_PREFIXES = ["/scripts/", "/.agents/", "/.cursor/", "/.github/", "/.wrangler/"];
 const VERIFICATION_TXT = new Set(["/2a4c1f14188cf21440b6fdbad88d7e38.txt", "/4e83fba7d06a413e96b4abe69b2f5256.txt"]);
 const APEX_HOST = "sopjanitech.ch";
 

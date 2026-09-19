@@ -45,7 +45,7 @@
       --radius: 8px;
       --edge: 24px;
 
-      /* SAV uniquement — jamais ailleurs */
+      /* Accent urgence / dépannage */
       --c-urgence: #d32f2f;
       --c-urgence-hover: #b71c1c;
       --c-urgence-bg: rgba(211, 47, 47, 0.08);

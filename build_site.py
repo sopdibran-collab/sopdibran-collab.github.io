@@ -60,13 +60,13 @@ MAP_URL = "https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+
 # Place ID Google (libellé fiche GBP « Sopjani-tech sàrl » — à aligner manuellement côté Google)
 MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1481964.3806735645!2d5.895466104411914!3d46.67378415677807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9458f52305e1fe3%3A0x31fd51d876fffe44!2sSopjani-tech%20s%C3%A0rl!5e1!3m2!1sfr!2sch!4v1781214251877!5m2!1sfr!2sch"
 GOOGLE_BUSINESS_URL = "https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7"
-# Chemins hors contenu éditorial (robots Disallow). Les .txt de vérification restent publics.
+# robots Disallow (défense en profondeur). Ne pas lister des chemins junk déjà 404 —
+# ça n'ajoute rien au crawl budget et révèle l'existence d'outils internes.
+# Les .txt de vérification restent publics (GSC/IndexNow) ; noindex via Worker.
 JUNK_DISALLOW_PATHS = (
-    "/build_site.py",
-    "/signature-mail-hostpoint.html",
-    "/signature-mail-hostpoint-v2.html",
-    "/signature-mail-hostpoint-v3.html",
-    "/scripts/",
+    "/AGENTS.md",
+    "/README.md",
+    "/.gitignore",
     "/2a4c1f14188cf21440b6fdbad88d7e38.txt",
     "/4e83fba7d06a413e96b4abe69b2f5256.txt",
 )
@@ -75,15 +75,26 @@ VERIFICATION_TXT_PATHS = (
     "/2a4c1f14188cf21440b6fdbad88d7e38.txt",
     "/4e83fba7d06a413e96b4abe69b2f5256.txt",
 )
-# Masqués en HTTP 404 par le Worker Cloudflare (source / anciennes signatures)
+# Masqués en HTTP 404 par le Worker Cloudflare (outilage repo servi par GitHub Pages)
 WORKER_BLOCK_EXACT = (
+    "/AGENTS.md",
+    "/README.md",
+    "/.gitignore",
     "/build_site.py",
+    "/redirect-worker.mjs",
+    "/wrangler.toml",
+    "/skills-lock.json",
+    "/_redirects",
     "/signature-mail-hostpoint.html",
     "/signature-mail-hostpoint-v2.html",
     "/signature-mail-hostpoint-v3.html",
 )
 WORKER_BLOCK_PREFIXES = (
     "/scripts/",
+    "/.agents/",
+    "/.cursor/",
+    "/.github/",
+    "/.wrangler/",
 )
 
 # Avis Google réels affichés sur le site (texte = source Google Business Profile)
