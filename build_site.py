@@ -1879,13 +1879,13 @@ def build_prestations():
 <section class="content-section" aria-labelledby="presta-cvcs-title">
   <div class="container">
     <h2 class="section-title" id="presta-cvcs-title">{CVCS_GROUP}</h2>
-    <div class="hub-grid">{cvcs_cards}</div>
+    <div class="hub-grid hub-grid--2">{cvcs_cards}</div>
   </div>
 </section>
 <section class="content-section alt" aria-labelledby="presta-autres-title">
   <div class="container">
     <h2 class="section-title" id="presta-autres-title">Dépannage SAV et sprinkler</h2>
-    <div class="hub-grid">{other_cards}</div>
+    <div class="hub-grid hub-grid--2">{other_cards}</div>
   </div>
 </section>
 <section class="faq content-section" aria-labelledby="faq-title">
