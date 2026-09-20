@@ -244,6 +244,7 @@ document.querySelectorAll('.contact-form--short').forEach(form => {
       clim: 'Climatisation',
       sanitaire: 'Sanitaire',
       depannage: 'Dépannage',
+      sprinkler: 'Sprinkler / protection incendie (sous-traitance)',
     };
     const needKey = (params.get('need') || '').toLowerCase();
     if (needMap[needKey]) {

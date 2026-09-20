@@ -1056,7 +1056,7 @@ def footer():
           <li><a href="{WA}" class="track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
           <li><a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a></li>
           <li>{HOURS}</li>
-          <li><a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google</a></li>
+          <li><a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">{google_reviews_proof_label()}</a></li>
         </ul>
       </div>
     </div>
@@ -1206,17 +1206,18 @@ def google_reviews_stats():
     n = len(GOOGLE_REVIEWS)
     if not n:
         return "—", 0
-    avg = sum(r["rating"] for r in GOOGLE_REVIEWS) / n
-    avg_disp = str(int(avg)) if avg == int(avg) else str(round(avg, 1)).replace(".", ",")
+    avg = round(sum(r["rating"] for r in GOOGLE_REVIEWS) / n, 1)
+    # Toujours une décimale FR (ex. 5,0) — aligné sur le bloc avis
+    avg_disp = f"{avg:.1f}".replace(".", ",")
     return avg_disp, n
 
 
 def google_reviews_proof_label():
-    """Libellé factuel unique : « 5/5 · 2 avis Google »."""
+    """Libellé unique partout : « 5,0/5 · 2 avis » (len(GOOGLE_REVIEWS) uniquement)."""
     avg_disp, n = google_reviews_stats()
     if not n:
         return "Avis Google"
-    return f"{avg_disp}/5 · {n} avis Google"
+    return f"{avg_disp}/5 · {n} avis"
 
 
 def trust_strip():
@@ -1264,9 +1265,9 @@ def google_g_mark():
 
 def google_reviews_section(*, heading_id="avis-google-title"):
     """Bloc avis Google — citations éditoriales + lien fiche (pas de widget générique)."""
-    n = len(GOOGLE_REVIEWS)
-    avg = round(sum(r["rating"] for r in GOOGLE_REVIEWS) / n, 1) if n else 0
-    avg_disp = str(avg).replace(".", ",")
+    avg_disp, n = google_reviews_stats()
+    if not n:
+        return ""
     items = []
     for r in GOOGLE_REVIEWS:
         badge = f'<span class="g-review__badge">{r["badge"]}</span>' if r.get("badge") else ""
@@ -1613,7 +1614,7 @@ def zone_proof_quote():
   <figcaption class="zone-quote__cap">
     <cite>{review["author"]}</cite>
     <span aria-hidden="true">·</span>
-    <a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google</a>
+    <a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">{google_reviews_proof_label()}</a>
   </figcaption>
 </figure>"""
 
@@ -1750,6 +1751,7 @@ def smart_contact_form_html():
       <option value="Climatisation">Climatisation</option>
       <option value="Sanitaire">Sanitaire</option>
       <option value="Dépannage">Dépannage</option>
+      <option value="Sprinkler / protection incendie (sous-traitance)">Sprinkler — sous-traitance</option>
     </select>
   </div>
   <div class="form-field">
@@ -2366,14 +2368,30 @@ def write_premium_service_page(cfg):
     reg_items = cfg.get("regulatory", [])
     show_gallery = cfg.get("show_gallery", True)
 
-    hero = page_hero(
-        "Prestation",
-        cfg["h1"],
-        cfg["intro"],
-        icon_html=service_icon(slug, "hero"),
-        image=hero_image_for(slug),
-        image_alt=cfg["h1"],
-    )
+    if slug == "depannage-sav" or cfg.get("show_urgence"):
+        hero = page_hero(
+            "Prestation",
+            cfg["h1"],
+            cfg["intro"],
+            icon_html=service_icon(slug, "hero"),
+            primary_href=f"tel:{PHONE}",
+            primary_label=f"Appeler · {PHONE_DISP}",
+            primary_class="btn-urgence track-phone",
+            secondary_href="/contact/#contact-form",
+            secondary_label="Demander un devis",
+            secondary_class="btn-brand btn-brand--on-dark track-devis",
+            image=hero_image_for(slug),
+            image_alt=cfg["h1"],
+        )
+    else:
+        hero = page_hero(
+            "Prestation",
+            cfg["h1"],
+            cfg["intro"],
+            icon_html=service_icon(slug, "hero"),
+            image=hero_image_for(slug),
+            image_alt=cfg["h1"],
+        )
 
     problem_cards = _premium_cards(cfg["problems"])
     service_cards = _premium_cards(cfg["services"], service_class=True)
@@ -3898,6 +3916,7 @@ document.querySelectorAll('.contact-form--short').forEach(form => {
       clim: 'Climatisation',
       sanitaire: 'Sanitaire',
       depannage: 'Dépannage',
+      sprinkler: 'Sprinkler / protection incendie (sous-traitance)',
     };
     const needKey = (params.get('need') || '').toLowerCase();
     if (needMap[needKey]) {
