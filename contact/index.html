@@ -37,7 +37,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/main.css?v=1789849607">
+  <link rel="stylesheet" href="/css/main.css?v=1789900336">
   <script>window.dataLayer = window.dataLayer || []; function gtag(){ dataLayer.push(arguments); }</script>
   <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -206,7 +206,7 @@
           "name": "Quelles informations fournir pour un devis ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Type de bâtiment, localisation (canton/commune), nature du besoin (installation, maintenance, dépannage) et urgence éventuelle."
+            "text": "Indiquez votre nom, un téléphone et le type de besoin (chauffage, ventilation, clim, sanitaire ou dépannage). Canton, email et message sont optionnels."
           }
         },
         {
@@ -353,65 +353,54 @@
     </div>
   </div>
 </section>
-<section class="contact content-section" aria-labelledby="contact-form-title">
-  <div class="container contact-page">
-    <div class="mobile-quick-bar" role="group" aria-label="Actions de contact rapides">
+<div class="mobile-quick-bar mobile-quick-bar--sticky" role="group" aria-label="Actions de contact rapides">
   <a href="tel:+41799326862" class="mobile-quick-btn track-phone">Appeler</a>
   <a href="https://wa.me/41799326862" class="mobile-quick-btn track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
   <a href="/contact/#contact-form" class="mobile-quick-btn track-devis">Devis</a>
 </div>
+<section class="contact content-section" aria-labelledby="contact-form-title">
+  <div class="container contact-page">
     <div class="contact-inner">
       <div class="contact-form-section" id="contact-form">
         <h2 class="contact-block-title" id="contact-form-title">Formulaire de demande</h2>
-        <p class="contact-block-lead">Quatre questions rapides — on vous recontacte avec la bonne orientation.</p>
-        <form class="contact-form contact-form--smart track-form" action="https://formsubmit.co/ajax/info@sopjanitech.ch" method="post" data-form-endpoint="https://formsubmit.co/ajax/info@sopjanitech.ch" novalidate>
+        <p class="contact-block-lead">Nom, téléphone et besoin — on vous recontacte rapidement. Ou appelez directement.</p>
+        <form class="contact-form contact-form--short track-form" action="https://formsubmit.co/ajax/info@sopjanitech.ch" method="post" data-form-endpoint="https://formsubmit.co/ajax/info@sopjanitech.ch">
   <input type="hidden" name="_subject" value="Demande de devis — Sopjani-tech">
   <input type="hidden" name="_template" value="table">
   <input type="hidden" name="_captcha" value="false">
   <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-  <div class="form-progress" role="group" aria-label="Progression du formulaire">
-    <div class="form-progress__bar" data-form-progress style="--progress: 25%"></div>
-    <ol class="form-progress__steps">
-      <li class="is-active" data-step-label="1">Bâtiment</li>
-      <li data-step-label="2">Besoin</li>
-      <li data-step-label="3">Urgence</li>
-      <li data-step-label="4">Contact</li>
-    </ol>
+
+  <div class="form-field">
+    <label for="name">Nom <span class="form-required" aria-hidden="true">*</span></label>
+    <input id="name" name="name" type="text" required autocomplete="name" placeholder="Votre nom">
   </div>
-
-  <fieldset class="form-step is-active" data-step="1">
-    <legend class="form-step__legend">Type de bâtiment</legend>
-    <div class="form-choice-grid" role="radiogroup" aria-label="Type de bâtiment">
-      <label class="form-choice"><input type="radio" name="building" value="Maison individuelle" required><span>Maison</span></label>
-      <label class="form-choice"><input type="radio" name="building" value="Appartement"><span>Appartement</span></label>
-      <label class="form-choice"><input type="radio" name="building" value="Immeuble"><span>Immeuble</span></label>
-      <label class="form-choice"><input type="radio" name="building" value="Commerce / tertiaire"><span>Commerce / tertiaire</span></label>
-      <label class="form-choice"><input type="radio" name="building" value="Autre"><span>Autre</span></label>
-    </div>
-    <div class="form-step__nav">
-      <button type="button" class="btn btn-brand" data-form-next>Continuer</button>
-    </div>
-  </fieldset>
-
-  <fieldset class="form-step" data-step="2" hidden>
-    <legend class="form-step__legend">Type de besoin</legend>
-    <div class="form-choice-grid" role="radiogroup" aria-label="Type de besoin">
-      <label class="form-choice"><input type="radio" name="need" value="Devis installation" required><span>Installation</span></label>
-      <label class="form-choice"><input type="radio" name="need" value="Maintenance / entretien"><span>Maintenance</span></label>
-      <label class="form-choice"><input type="radio" name="need" value="Dépannage"><span>Dépannage</span></label>
-      <label class="form-choice"><input type="radio" name="need" value="Sprinkler / incendie"><span>Sprinkler</span></label>
-      <label class="form-choice"><input type="radio" name="need" value="Autre"><span>Autre</span></label>
-    </div>
-    <div class="form-step__nav">
-      <button type="button" class="btn btn-secondary" data-form-back>Retour</button>
-      <button type="button" class="btn btn-brand" data-form-next>Continuer</button>
-    </div>
-  </fieldset>
-
-  <fieldset class="form-step" data-step="3" hidden>
-    <legend class="form-step__legend">Est-ce urgent ?</legend>
+  <div class="form-field">
+    <label for="phone">Téléphone <span class="form-required" aria-hidden="true">*</span></label>
+    <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+41 79 …">
+  </div>
+  <div class="form-field">
+    <label for="need">Besoin <span class="form-required" aria-hidden="true">*</span></label>
+    <select id="need" name="need" required>
+      <option value="" disabled selected>Choisir un besoin</option>
+      <option value="Chauffage">Chauffage</option>
+      <option value="Ventilation">Ventilation</option>
+      <option value="Climatisation">Climatisation</option>
+      <option value="Sanitaire">Sanitaire</option>
+      <option value="Dépannage">Dépannage</option>
+    </select>
+  </div>
+  <div class="form-field">
+    <label for="email">Email <span class="form-optional">(optionnel)</span></label>
+    <input id="email" name="email" type="email" autocomplete="email" placeholder="vous@exemple.ch">
+  </div>
+  <div class="form-field">
+    <label for="canton">Canton / Commune <span class="form-optional">(optionnel)</span></label>
+    <input id="canton" name="canton" type="text" placeholder="Ex. Lausanne, Vaud">
+  </div>
+  <fieldset class="form-urgency">
+    <legend class="form-urgency__legend">Urgence <span class="form-optional">(optionnel)</span></legend>
     <div class="form-choice-grid form-choice-grid--2" role="radiogroup" aria-label="Urgence">
-      <label class="form-choice form-choice--urgent"><input type="radio" name="urgency" value="Urgent" required><span>Oui — panne en cours</span></label>
+      <label class="form-choice form-choice--urgent"><input type="radio" name="urgency" value="Urgent"><span>Oui — panne en cours</span></label>
       <label class="form-choice"><input type="radio" name="urgency" value="Non urgent"><span>Non — devis / planification</span></label>
     </div>
     <div class="form-urgent-cta" data-urgent-cta hidden>
@@ -419,25 +408,13 @@
       <a href="tel:+41799326862" class="btn btn-urgence track-phone">Appeler · +41 79 932 68 62</a>
       <a href="https://wa.me/41799326862" class="btn btn-secondary track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </div>
-    <div class="form-step__nav">
-      <button type="button" class="btn btn-secondary" data-form-back>Retour</button>
-      <button type="button" class="btn btn-brand" data-form-next>Continuer</button>
-    </div>
   </fieldset>
-
-  <fieldset class="form-step" data-step="4" hidden>
-    <legend class="form-step__legend">Vos coordonnées</legend>
-    <div class="form-field"><label for="name">Nom</label><input id="name" name="name" type="text" required autocomplete="name" placeholder="Votre nom"></div>
-    <div class="form-field"><label for="phone">Téléphone</label><input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+41 79 …"></div>
-    <div class="form-field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="vous@exemple.ch"></div>
-    <div class="form-field"><label for="canton">Canton / Commune</label><input id="canton" name="canton" type="text" required placeholder="Ex. Lausanne, Vaud"></div>
-    <div class="form-field"><label for="message">Message <span class="form-optional">(optionnel)</span></label><textarea id="message" name="message" placeholder="Précisez le bâtiment, la panne ou le projet…"></textarea></div>
-    <div class="form-step__nav">
-      <button type="button" class="btn btn-secondary" data-form-back>Retour</button>
-      <button type="submit" class="btn btn-brand track-form-submit">Envoyer la demande</button>
-    </div>
-  </fieldset>
-
+  <div class="form-field">
+    <label for="message">Message <span class="form-optional">(optionnel)</span></label>
+    <textarea id="message" name="message" rows="4" placeholder="Précisez le bâtiment, la panne ou le projet…"></textarea>
+  </div>
+  <p class="form-required-note"><span class="form-required" aria-hidden="true">*</span> Champs obligatoires</p>
+  <button type="submit" class="btn btn-brand track-form-submit">Envoyer la demande</button>
   <p class="form-feedback" role="status" aria-live="polite" hidden></p>
 </form>
       </div>
@@ -536,7 +513,7 @@
     <span class="faq-q-text">Quelles informations fournir pour un devis ?</span>
     <span class="faq-icon" aria-hidden="true"></span>
   </summary>
-  <div class="faq-a-panel"><p>Type de bâtiment, localisation (canton/commune), nature du besoin (installation, maintenance, dépannage) et urgence éventuelle.</p></div>
+  <div class="faq-a-panel"><p>Indiquez votre nom, un téléphone et le type de besoin (chauffage, ventilation, clim, sanitaire ou dépannage). Canton, email et message sont optionnels.</p></div>
 </details><details class="faq-details" name="faq">
   <summary class="faq-summary">
     <span class="faq-idx" aria-hidden="true">03</span>
@@ -562,10 +539,11 @@
   </div>
 </section>
 <section class="trust-bar site-trust" aria-label="Preuves de confiance">
-  <div class="container trust-bar-grid">
-    <div class="trust-item"><strong>100+</strong><span>Interventions réalisées</span></div>
-    <div class="trust-item"><strong>80+</strong><span>Clients satisfaits</span></div>
-    <div class="trust-item"><strong>10+</strong><span>Années d'expérience</span></div>
+  <div class="container trust-bar-grid trust-bar-grid--factual">
+    <div class="trust-item trust-item--google">
+      <strong>5/5</strong>
+      <span><a href="https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7" class="track-google" target="_blank" rel="noopener noreferrer">2 avis Google</a></span>
+    </div>
     <div class="trust-item trust-item--zones">
       <strong>Zones d'intervention</strong>
       <ul><li><a href="/geneve/">Genève</a></li><li><a href="/vaud/">Vaud</a></li><li><a href="/lausanne/">Lausanne</a></li><li><a href="/nyon/">Nyon</a></li><li><a href="/valais/">Valais</a></li><li><a href="/fribourg/">Fribourg</a></li><li><a href="/romont/">Romont</a></li><li><a href="/neuchatel/">Neuchâtel</a></li></ul>
