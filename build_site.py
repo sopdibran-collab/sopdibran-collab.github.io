@@ -1201,14 +1201,37 @@ def norms_bar():
 </section>"""
 
 
+def google_reviews_stats():
+    """Note et nombre d'avis Google réels (GOOGLE_REVIEWS) — pas de chiffres inventés."""
+    n = len(GOOGLE_REVIEWS)
+    if not n:
+        return "—", 0
+    avg = sum(r["rating"] for r in GOOGLE_REVIEWS) / n
+    avg_disp = str(int(avg)) if avg == int(avg) else str(round(avg, 1)).replace(".", ",")
+    return avg_disp, n
+
+
+def google_reviews_proof_label():
+    """Libellé factuel unique : « 5/5 · 2 avis Google »."""
+    avg_disp, n = google_reviews_stats()
+    if not n:
+        return "Avis Google"
+    return f"{avg_disp}/5 · {n} avis Google"
+
+
 def trust_strip():
-    """Preuves de confiance compactes — pages internes."""
+    """Preuves de confiance compactes — avis Google réels + zones (pas de stats inventées)."""
     zone_list = "".join(f'<li><a href="/{z}/">{n}</a></li>' for z, n, _ in ZONES)
+    avg_disp, n = google_reviews_stats()
+    google_item = ""
+    if n:
+        google_item = f"""<div class="trust-item trust-item--google">
+      <strong>{avg_disp}/5</strong>
+      <span><a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">{n} avis Google</a></span>
+    </div>"""
     return f"""<section class="trust-bar site-trust" aria-label="Preuves de confiance">
-  <div class="container trust-bar-grid">
-    <div class="trust-item"><strong>100+</strong><span>Interventions réalisées</span></div>
-    <div class="trust-item"><strong>80+</strong><span>Clients satisfaits</span></div>
-    <div class="trust-item"><strong>10+</strong><span>Années d'expérience</span></div>
+  <div class="container trust-bar-grid trust-bar-grid--factual">
+    {google_item}
     <div class="trust-item trust-item--zones">
       <strong>Zones d'intervention</strong>
       <ul>{zone_list}</ul>
@@ -1662,14 +1685,14 @@ def path_strip_html():
         (
             "Installation",
             "Étude, pose et mise en service de vos systèmes CVCS.",
-            "/contact/?need=installation#contact-form",
+            "/contact/#contact-form",
             "Demander un devis",
             "path-card--install",
         ),
         (
             "Maintenance",
             "Entretien préventif pour fiabilité et conformité.",
-            "/contact/?need=maintenance#contact-form",
+            "/contact/#contact-form",
             "Planifier un entretien",
             "path-card--maint",
         ),
@@ -1703,55 +1726,44 @@ def path_strip_html():
 
 
 def smart_contact_form_html():
-    """Formulaire multi-étapes : bâtiment → besoin → urgence → coordonnées."""
-    return f"""<form class="contact-form contact-form--smart track-form" action="{FORM_ENDPOINT or '#'}" method="post" data-form-endpoint="{FORM_ENDPOINT}" novalidate>
+    """Formulaire court one-screen : nom + téléphone + besoin (requis) ; email / message / canton / urgence optionnels."""
+    return f"""<form class="contact-form contact-form--short track-form" action="{FORM_ENDPOINT or '#'}" method="post" data-form-endpoint="{FORM_ENDPOINT}">
   <input type="hidden" name="_subject" value="{FORM_SUBJECT}">
   <input type="hidden" name="_template" value="table">
   <input type="hidden" name="_captcha" value="false">
   <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-  <div class="form-progress" role="group" aria-label="Progression du formulaire">
-    <div class="form-progress__bar" data-form-progress style="--progress: 25%"></div>
-    <ol class="form-progress__steps">
-      <li class="is-active" data-step-label="1">Bâtiment</li>
-      <li data-step-label="2">Besoin</li>
-      <li data-step-label="3">Urgence</li>
-      <li data-step-label="4">Contact</li>
-    </ol>
+
+  <div class="form-field">
+    <label for="name">Nom <span class="form-required" aria-hidden="true">*</span></label>
+    <input id="name" name="name" type="text" required autocomplete="name" placeholder="Votre nom">
   </div>
-
-  <fieldset class="form-step is-active" data-step="1">
-    <legend class="form-step__legend">Type de bâtiment</legend>
-    <div class="form-choice-grid" role="radiogroup" aria-label="Type de bâtiment">
-      <label class="form-choice"><input type="radio" name="building" value="Maison individuelle" required><span>Maison</span></label>
-      <label class="form-choice"><input type="radio" name="building" value="Appartement"><span>Appartement</span></label>
-      <label class="form-choice"><input type="radio" name="building" value="Immeuble"><span>Immeuble</span></label>
-      <label class="form-choice"><input type="radio" name="building" value="Commerce / tertiaire"><span>Commerce / tertiaire</span></label>
-      <label class="form-choice"><input type="radio" name="building" value="Autre"><span>Autre</span></label>
-    </div>
-    <div class="form-step__nav">
-      <button type="button" class="btn btn-brand" data-form-next>Continuer</button>
-    </div>
-  </fieldset>
-
-  <fieldset class="form-step" data-step="2" hidden>
-    <legend class="form-step__legend">Type de besoin</legend>
-    <div class="form-choice-grid" role="radiogroup" aria-label="Type de besoin">
-      <label class="form-choice"><input type="radio" name="need" value="Devis installation" required><span>Installation</span></label>
-      <label class="form-choice"><input type="radio" name="need" value="Maintenance / entretien"><span>Maintenance</span></label>
-      <label class="form-choice"><input type="radio" name="need" value="Dépannage"><span>Dépannage</span></label>
-      <label class="form-choice"><input type="radio" name="need" value="Sprinkler / incendie"><span>Sprinkler</span></label>
-      <label class="form-choice"><input type="radio" name="need" value="Autre"><span>Autre</span></label>
-    </div>
-    <div class="form-step__nav">
-      <button type="button" class="btn btn-secondary" data-form-back>Retour</button>
-      <button type="button" class="btn btn-brand" data-form-next>Continuer</button>
-    </div>
-  </fieldset>
-
-  <fieldset class="form-step" data-step="3" hidden>
-    <legend class="form-step__legend">Est-ce urgent ?</legend>
+  <div class="form-field">
+    <label for="phone">Téléphone <span class="form-required" aria-hidden="true">*</span></label>
+    <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+41 79 …">
+  </div>
+  <div class="form-field">
+    <label for="need">Besoin <span class="form-required" aria-hidden="true">*</span></label>
+    <select id="need" name="need" required>
+      <option value="" disabled selected>Choisir un besoin</option>
+      <option value="Chauffage">Chauffage</option>
+      <option value="Ventilation">Ventilation</option>
+      <option value="Climatisation">Climatisation</option>
+      <option value="Sanitaire">Sanitaire</option>
+      <option value="Dépannage">Dépannage</option>
+    </select>
+  </div>
+  <div class="form-field">
+    <label for="email">Email <span class="form-optional">(optionnel)</span></label>
+    <input id="email" name="email" type="email" autocomplete="email" placeholder="vous@exemple.ch">
+  </div>
+  <div class="form-field">
+    <label for="canton">Canton / Commune <span class="form-optional">(optionnel)</span></label>
+    <input id="canton" name="canton" type="text" placeholder="Ex. Lausanne, Vaud">
+  </div>
+  <fieldset class="form-urgency">
+    <legend class="form-urgency__legend">Urgence <span class="form-optional">(optionnel)</span></legend>
     <div class="form-choice-grid form-choice-grid--2" role="radiogroup" aria-label="Urgence">
-      <label class="form-choice form-choice--urgent"><input type="radio" name="urgency" value="Urgent" required><span>Oui — panne en cours</span></label>
+      <label class="form-choice form-choice--urgent"><input type="radio" name="urgency" value="Urgent"><span>Oui — panne en cours</span></label>
       <label class="form-choice"><input type="radio" name="urgency" value="Non urgent"><span>Non — devis / planification</span></label>
     </div>
     <div class="form-urgent-cta" data-urgent-cta hidden>
@@ -1759,25 +1771,13 @@ def smart_contact_form_html():
       <a href="tel:{PHONE}" class="btn btn-urgence track-phone">Appeler · {PHONE_DISP}</a>
       <a href="{WA}" class="btn btn-secondary track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </div>
-    <div class="form-step__nav">
-      <button type="button" class="btn btn-secondary" data-form-back>Retour</button>
-      <button type="button" class="btn btn-brand" data-form-next>Continuer</button>
-    </div>
   </fieldset>
-
-  <fieldset class="form-step" data-step="4" hidden>
-    <legend class="form-step__legend">Vos coordonnées</legend>
-    <div class="form-field"><label for="name">Nom</label><input id="name" name="name" type="text" required autocomplete="name" placeholder="Votre nom"></div>
-    <div class="form-field"><label for="phone">Téléphone</label><input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+41 79 …"></div>
-    <div class="form-field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="vous@exemple.ch"></div>
-    <div class="form-field"><label for="canton">Canton / Commune</label><input id="canton" name="canton" type="text" required placeholder="Ex. Lausanne, Vaud"></div>
-    <div class="form-field"><label for="message">Message <span class="form-optional">(optionnel)</span></label><textarea id="message" name="message" placeholder="Précisez le bâtiment, la panne ou le projet…"></textarea></div>
-    <div class="form-step__nav">
-      <button type="button" class="btn btn-secondary" data-form-back>Retour</button>
-      <button type="submit" class="btn btn-brand track-form-submit">Envoyer la demande</button>
-    </div>
-  </fieldset>
-
+  <div class="form-field">
+    <label for="message">Message <span class="form-optional">(optionnel)</span></label>
+    <textarea id="message" name="message" rows="4" placeholder="Précisez le bâtiment, la panne ou le projet…"></textarea>
+  </div>
+  <p class="form-required-note"><span class="form-required" aria-hidden="true">*</span> Champs obligatoires</p>
+  <button type="submit" class="btn btn-brand track-form-submit">Envoyer la demande</button>
   <p class="form-feedback" role="status" aria-live="polite" hidden></p>
 </form>"""
 
@@ -1806,12 +1806,13 @@ def build_home():
       </div>
       <ul class="hero-trust">
         <li>Devis gratuit</li>
-        <li><a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">Avis Google 5/5</a></li>
+        <li><a href="{GOOGLE_BUSINESS_URL}" class="track-google" target="_blank" rel="noopener noreferrer">{google_reviews_proof_label()}</a></li>
         <li>Normes suisses</li>
       </ul>
     </div>
   </div>
 </section>
+{mobile_quick_bar(sticky=True)}
 
 {path_strip_html()}
 
@@ -1886,6 +1887,7 @@ def build_prestations():
     )
     body = f"""
 {hero}
+{mobile_quick_bar(sticky=True)}
 {svc_reassure_band()}
 <section class="content-section" aria-labelledby="presta-cvcs-title">
   <div class="container">
@@ -1980,6 +1982,7 @@ def build_about():
     zone_pills = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES)
     body = f"""
 {hero}
+{mobile_quick_bar(sticky=True)}
 <section class="about-intro content-section" aria-labelledby="about-who">
   <div class="container">
     <div class="about-intro-grid">
@@ -2093,7 +2096,7 @@ def build_about():
 def build_contact():
     faq = [
         ("Comment nous joindre ?", f"Par téléphone ({PHONE_DISP}), email ({EMAIL}) ou WhatsApp."),
-        ("Quelles informations fournir pour un devis ?", "Type de bâtiment, localisation (canton/commune), nature du besoin (installation, maintenance, dépannage) et urgence éventuelle."),
+        ("Quelles informations fournir pour un devis ?", "Indiquez votre nom, un téléphone et le type de besoin (chauffage, ventilation, clim, sanitaire ou dépannage). Canton, email et message sont optionnels."),
         ("Horaires de contact", HOURS + ". Pour un dépannage, contactez-nous par téléphone ou WhatsApp."),
         ("Qui appeler en cas de panne CVCS ?", f"Appelez le {PHONE_DISP} ou contactez-nous via WhatsApp en décrivant la panne et votre adresse."),
         ("Proposez-vous un devis gratuit ?", "Oui, le devis est gratuit et sans engagement. Décrivez votre projet via le formulaire ci-dessus ou par téléphone : nous confirmons la faisabilité et les prochaines étapes."),
@@ -2106,13 +2109,13 @@ def build_contact():
         "Devis, maintenance ou dépannage : décrivez votre besoin et nous vous orienterons vers la solution adaptée.",
         image=hero_image_for("contact"),
     )}
+{mobile_quick_bar(sticky=True)}
 <section class="contact content-section" aria-labelledby="contact-form-title">
   <div class="container contact-page">
-    {mobile_quick_bar()}
     <div class="contact-inner">
       <div class="contact-form-section" id="contact-form">
         <h2 class="contact-block-title" id="contact-form-title">Formulaire de demande</h2>
-        <p class="contact-block-lead">Quatre questions rapides — on vous recontacte avec la bonne orientation.</p>
+        <p class="contact-block-lead">Nom, téléphone et besoin — on vous recontacte rapidement. Ou appelez directement.</p>
         {smart_contact_form_html()}
       </div>
       <div class="contact-details-section">
@@ -2248,12 +2251,17 @@ def _card_icon(kind):
 
 
 def svc_reassure_band():
-    """Bandeau stats immédiat sous le hero — réassurance compacte."""
-    return """<section class="svc-reassure" aria-label="Preuves de confiance">
-  <div class="container svc-reassure__grid">
-    <div class="svc-reassure__item"><strong>100+</strong><span>Interventions réalisées</span></div>
-    <div class="svc-reassure__item"><strong>80+</strong><span>Clients satisfaits</span></div>
-    <div class="svc-reassure__item"><strong>10+</strong><span>Années d'expérience</span></div>
+    """Bandeau sous le hero — avis Google factuels uniquement (pas de stats inventées)."""
+    _, n = google_reviews_stats()
+    if not n:
+        return ""
+    label = google_reviews_proof_label()
+    return f"""<section class="svc-reassure" aria-label="Avis Google">
+  <div class="container svc-reassure__grid svc-reassure__grid--single">
+    <a class="svc-reassure__item svc-reassure__google track-google" href="{GOOGLE_BUSINESS_URL}" target="_blank" rel="noopener noreferrer">
+      <strong>{label}</strong>
+      <span>Voir la fiche Google</span>
+    </a>
   </div>
 </section>"""
 
@@ -2450,6 +2458,7 @@ def write_premium_service_page(cfg):
     body = f"""
 {hero}
 {urgence}
+{mobile_quick_bar(sticky=True)}
 {svc_reassure_band()}
 
 <section class="content-section svc-premium{problems_alt}" id="problems" aria-labelledby="problems-title" data-svc="{slug}">
@@ -3878,97 +3887,35 @@ document.querySelectorAll('.track-form').forEach(form => {
   });
 });
 
-function updateSmartFormProgress(form, step) {
-  const bar = form.querySelector('[data-form-progress]');
-  const labels = form.querySelectorAll('[data-step-label]');
-  if (bar) bar.style.setProperty('--progress', (step / 4 * 100) + '%');
-  labels.forEach(li => {
-    const n = Number(li.getAttribute('data-step-label'));
-    li.classList.toggle('is-active', n === step);
-    li.classList.toggle('is-done', n < step);
-  });
-}
-
-function validateSmartStep(stepEl) {
-  const required = stepEl.querySelectorAll('[required]');
-  for (const el of required) {
-    if (el.type === 'radio') {
-      const name = el.name;
-      if (!stepEl.querySelector(`input[name="${name}"]:checked`)) {
-        const first = stepEl.querySelector(`input[name="${name}"]`);
-        if (first) first.focus();
-        return false;
-      }
-    } else if (!el.value.trim()) {
-      el.focus();
-      return false;
-    }
-  }
-  return true;
-}
-
-document.querySelectorAll('.contact-form--smart').forEach(form => {
-  const steps = Array.from(form.querySelectorAll('.form-step'));
-  let current = 1;
-  updateSmartFormProgress(form, current);
-
-  // Prefill from ?need=installation|maintenance|depannage
+/* Formulaire contact court — préremplissage ?need= + CTA urgence optionnelle */
+document.querySelectorAll('.contact-form--short').forEach(form => {
   try {
     const params = new URLSearchParams(window.location.search);
     const needMap = {
-      installation: 'Devis installation',
-      maintenance: 'Maintenance / entretien',
+      chauffage: 'Chauffage',
+      ventilation: 'Ventilation',
+      climatisation: 'Climatisation',
+      clim: 'Climatisation',
+      sanitaire: 'Sanitaire',
       depannage: 'Dépannage',
-      sprinkler: 'Sprinkler / incendie',
     };
     const needKey = (params.get('need') || '').toLowerCase();
     if (needMap[needKey]) {
-      const radio = form.querySelector(`input[name="need"][value="${needMap[needKey]}"]`);
-      if (radio) radio.checked = true;
+      const select = form.querySelector('select[name="need"]');
+      if (select) select.value = needMap[needKey];
     }
   } catch (_) {}
 
+  const urgentCta = form.querySelector('[data-urgent-cta]');
+  const syncUrgent = () => {
+    if (!urgentCta) return;
+    const checked = form.querySelector('input[name="urgency"]:checked');
+    urgentCta.hidden = !(checked && checked.value === 'Urgent');
+  };
   form.addEventListener('change', e => {
-    if (e.target && e.target.name === 'urgency') {
-      const urgent = form.querySelector('[data-urgent-cta]');
-      if (urgent) urgent.hidden = e.target.value !== 'Urgent';
-    }
+    if (e.target && e.target.name === 'urgency') syncUrgent();
   });
-
-  form.querySelectorAll('[data-form-next]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const stepEl = form.querySelector(`.form-step[data-step="${current}"]`);
-      if (!stepEl || !validateSmartStep(stepEl)) return;
-      if (current >= steps.length) return;
-      stepEl.hidden = true;
-      stepEl.classList.remove('is-active');
-      current += 1;
-      const next = form.querySelector(`.form-step[data-step="${current}"]`);
-      if (next) {
-        next.hidden = false;
-        next.classList.add('is-active');
-      }
-      updateSmartFormProgress(form, current);
-    });
-  });
-
-  form.querySelectorAll('[data-form-back]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (current <= 1) return;
-      const stepEl = form.querySelector(`.form-step[data-step="${current}"]`);
-      if (stepEl) {
-        stepEl.hidden = true;
-        stepEl.classList.remove('is-active');
-      }
-      current -= 1;
-      const prev = form.querySelector(`.form-step[data-step="${current}"]`);
-      if (prev) {
-        prev.hidden = false;
-        prev.classList.add('is-active');
-      }
-      updateSmartFormProgress(form, current);
-    });
-  });
+  syncUrgent();
 });
 document.querySelectorAll('.track-google').forEach(el => {
   el.addEventListener('click', () => {

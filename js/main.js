@@ -233,97 +233,35 @@ document.querySelectorAll('.track-form').forEach(form => {
   });
 });
 
-function updateSmartFormProgress(form, step) {
-  const bar = form.querySelector('[data-form-progress]');
-  const labels = form.querySelectorAll('[data-step-label]');
-  if (bar) bar.style.setProperty('--progress', (step / 4 * 100) + '%');
-  labels.forEach(li => {
-    const n = Number(li.getAttribute('data-step-label'));
-    li.classList.toggle('is-active', n === step);
-    li.classList.toggle('is-done', n < step);
-  });
-}
-
-function validateSmartStep(stepEl) {
-  const required = stepEl.querySelectorAll('[required]');
-  for (const el of required) {
-    if (el.type === 'radio') {
-      const name = el.name;
-      if (!stepEl.querySelector(`input[name="${name}"]:checked`)) {
-        const first = stepEl.querySelector(`input[name="${name}"]`);
-        if (first) first.focus();
-        return false;
-      }
-    } else if (!el.value.trim()) {
-      el.focus();
-      return false;
-    }
-  }
-  return true;
-}
-
-document.querySelectorAll('.contact-form--smart').forEach(form => {
-  const steps = Array.from(form.querySelectorAll('.form-step'));
-  let current = 1;
-  updateSmartFormProgress(form, current);
-
-  // Prefill from ?need=installation|maintenance|depannage
+/* Formulaire contact court — préremplissage ?need= + CTA urgence optionnelle */
+document.querySelectorAll('.contact-form--short').forEach(form => {
   try {
     const params = new URLSearchParams(window.location.search);
     const needMap = {
-      installation: 'Devis installation',
-      maintenance: 'Maintenance / entretien',
+      chauffage: 'Chauffage',
+      ventilation: 'Ventilation',
+      climatisation: 'Climatisation',
+      clim: 'Climatisation',
+      sanitaire: 'Sanitaire',
       depannage: 'Dépannage',
-      sprinkler: 'Sprinkler / incendie',
     };
     const needKey = (params.get('need') || '').toLowerCase();
     if (needMap[needKey]) {
-      const radio = form.querySelector(`input[name="need"][value="${needMap[needKey]}"]`);
-      if (radio) radio.checked = true;
+      const select = form.querySelector('select[name="need"]');
+      if (select) select.value = needMap[needKey];
     }
   } catch (_) {}
 
+  const urgentCta = form.querySelector('[data-urgent-cta]');
+  const syncUrgent = () => {
+    if (!urgentCta) return;
+    const checked = form.querySelector('input[name="urgency"]:checked');
+    urgentCta.hidden = !(checked && checked.value === 'Urgent');
+  };
   form.addEventListener('change', e => {
-    if (e.target && e.target.name === 'urgency') {
-      const urgent = form.querySelector('[data-urgent-cta]');
-      if (urgent) urgent.hidden = e.target.value !== 'Urgent';
-    }
+    if (e.target && e.target.name === 'urgency') syncUrgent();
   });
-
-  form.querySelectorAll('[data-form-next]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const stepEl = form.querySelector(`.form-step[data-step="${current}"]`);
-      if (!stepEl || !validateSmartStep(stepEl)) return;
-      if (current >= steps.length) return;
-      stepEl.hidden = true;
-      stepEl.classList.remove('is-active');
-      current += 1;
-      const next = form.querySelector(`.form-step[data-step="${current}"]`);
-      if (next) {
-        next.hidden = false;
-        next.classList.add('is-active');
-      }
-      updateSmartFormProgress(form, current);
-    });
-  });
-
-  form.querySelectorAll('[data-form-back]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (current <= 1) return;
-      const stepEl = form.querySelector(`.form-step[data-step="${current}"]`);
-      if (stepEl) {
-        stepEl.hidden = true;
-        stepEl.classList.remove('is-active');
-      }
-      current -= 1;
-      const prev = form.querySelector(`.form-step[data-step="${current}"]`);
-      if (prev) {
-        prev.hidden = false;
-        prev.classList.add('is-active');
-      }
-      updateSmartFormProgress(form, current);
-    });
-  });
+  syncUrgent();
 });
 document.querySelectorAll('.track-google').forEach(el => {
   el.addEventListener('click', () => {
