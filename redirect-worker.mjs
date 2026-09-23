@@ -63,9 +63,15 @@ export default {
       return Response.redirect(`${url.origin}${url.pathname}/`, 301);
     }
     const originRes = await fetch(request);
+    const headers = new Headers(originRes.headers);
+    const cacheAsset = url.pathname.startsWith("/assets/");
+    if (cacheAsset) {
+      headers.set("Cache-Control", "public, max-age=2592000");
+    }
     if (VERIFICATION_TXT.has(url.pathname)) {
-      const headers = new Headers(originRes.headers);
       headers.set("X-Robots-Tag", "noindex, nofollow");
+    }
+    if (cacheAsset || VERIFICATION_TXT.has(url.pathname)) {
       return new Response(originRes.body, {
         status: originRes.status,
         statusText: originRes.statusText,

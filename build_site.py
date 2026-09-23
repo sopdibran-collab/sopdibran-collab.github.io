@@ -643,7 +643,7 @@ def case_card_html(case, *, heading="h3"):
     href = case["href"]
     return f"""<article class="case-card">
   <a class="case-card__media" href="/realisations/#cas-chantiers" tabindex="-1">
-    <img src="/assets/realisations/{img}" alt="{title.replace(chr(34), '&quot;')} — {svc}, {loc}" width="640" height="480" loading="lazy" decoding="async">
+    {responsive_img(f"/assets/realisations/{img}", f"{title} — {svc}, {loc}", 640, 480, sizes=CARD_SIZES)}
   </a>
   <div class="case-card__body">
     <p class="case-card__meta"><span>{svc}</span> · <span>{loc}</span></p>
@@ -681,7 +681,7 @@ def gallery_html(images, cols=3):
     cards = []
     for fn, w, h, alt, cap in images:
         cards.append(f"""<figure class="gallery-card">
-  <img src="/assets/realisations/{fn}" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async">
+  {responsive_img(f"/assets/realisations/{fn}", alt, w, h, sizes=GALLERY_SIZES)}
   <figcaption>{cap}</figcaption>
 </figure>""")
     return f'<div class="gallery gallery-cols-{cols}">{"".join(cards)}</div>'
@@ -734,15 +734,14 @@ def magnetic_carousel_html(images, service_name):
         return ""
     bars = []
     for i, (fn, w, h, alt, cap) in enumerate(images):
-        safe_alt = alt.replace('"', "&quot;")
         safe_cap = cap.replace('"', "&quot;")
+        photo = f"/assets/realisations/{fn}"
         bars.append(
             f'<button type="button" class="magnetic-bar" data-index="{i}" '
-            f'data-src="/assets/realisations/{fn}" '
+            f'data-src="{largest_variant_url(photo)}" '
             f'aria-label="{safe_cap}" aria-expanded="false" '
-            f'style="background-image:url(\'/assets/realisations/{fn}\')">'
-            f'<img src="/assets/realisations/{fn}" alt="{safe_alt}" width="{w}" height="{h}" '
-            f'loading="lazy" decoding="async" class="magnetic-bar__img"></button>'
+            f'style="background-image:url(\'{largest_variant_url(photo)}\')">'
+            f'{responsive_img(photo, alt, w, h, sizes=CAROUSEL_SIZES, cls="magnetic-bar__img")}</button>'
         )
     return (
         f'<div class="magnetic-carousel" role="group" '
@@ -1249,7 +1248,7 @@ def _stars_svg(rating=5):
         '<path fill="currentColor" d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.47L12 17.77l-5.8 3.05 1.11-6.47-4.7-4.58 6.49-.94L12 2.5z"/>'
         "</svg>"
     )
-    return f'<span class="g-review__stars" aria-label="{full} sur 5">{star * full}</span>'
+    return f'<span class="g-review__stars" role="img" aria-label="{full} sur 5">{star * full}</span>'
 
 
 def google_g_mark():
@@ -1308,6 +1307,80 @@ def hero_image_for(key):
     return path
 
 
+HERO_SIZES = "100vw"
+CARD_SIZES = "(max-width: 800px) 92vw, 360px"
+GALLERY_SIZES = "(max-width: 800px) 92vw, 380px"
+TEAM_SIZES = "(max-width: 640px) 200px, 280px"
+CAROUSEL_SIZES = "(max-width: 800px) 46vw, 240px"
+
+
+def _attr(value):
+    return str(value).replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;")
+
+
+def image_variants(src):
+    """Variantes WebP déjà générées à côté du JPEG. Plus petite d'abord."""
+    rel = src.lstrip("/")
+    path = ROOT / rel
+    if "/heroes/" in src:
+        widths = (1024, 1600)
+    elif "/equipe/" in src:
+        widths = (400,)
+    else:
+        widths = (640,)
+    found = []
+    for width in widths:
+        variant = path.with_name(f"{path.stem}-{width}.webp")
+        if variant.is_file():
+            found.append((f"/{variant.relative_to(ROOT).as_posix()}", width))
+    return found
+
+
+def largest_variant_url(src):
+    variants = image_variants(src)
+    return variants[-1][0] if variants else src
+
+
+def responsive_img(src, alt, width, height, *, sizes, loading="lazy", fetchpriority=None, cls=""):
+    """srcset WebP. Le JPEG d'origine reste la repli si aucune variante n'existe."""
+    alt_attr = _attr(alt)
+    class_attr = f' class="{cls}"' if cls else ""
+    priority = f' fetchpriority="{fetchpriority}"' if fetchpriority else ""
+    lazy = f' loading="{loading}"' if loading else ""
+    # Le décodage async retarde l'affichage de l'image LCP.
+    decoding = "" if fetchpriority == "high" else ' decoding="async"'
+    variants = image_variants(src)
+    if not variants:
+        return (
+            f'<img src="{src}" alt="{alt_attr}" width="{width}" height="{height}"'
+            f'{lazy}{decoding}{priority}{class_attr}>'
+        )
+    srcset = ", ".join(f"{url} {w}w" for url, w in variants)
+    default = variants[0][0]
+    return (
+        f'<img src="{default}" srcset="{srcset}" sizes="{sizes}" alt="{alt_attr}" '
+        f'width="{width}" height="{height}"{lazy}{decoding}{priority}{class_attr}>'
+    )
+
+
+def lcp_preload_from_body(body):
+    match = re.search(r'<img\b[^>]*\bfetchpriority="high"[^>]*>', body)
+    if not match:
+        return ""
+    tag = match.group(0)
+    src = re.search(r'\bsrc="([^"]+)"', tag)
+    srcset = re.search(r'\bsrcset="([^"]+)"', tag)
+    sizes = re.search(r'\bsizes="([^"]+)"', tag)
+    if not src:
+        return ""
+    parts = [f'href="{src.group(1)}"']
+    if srcset:
+        parts.append(f'imagesrcset="{srcset.group(1)}"')
+    if sizes:
+        parts.append(f'imagesizes="{sizes.group(1)}"')
+    return f'  <link rel="preload" as="image" {" ".join(parts)} fetchpriority="high">\n'
+
+
 def page_hero(label, h1, sub, *, icon_html="", primary_href="/contact/", primary_label="Demander un devis", primary_class="btn-brand track-devis", secondary_href=None, secondary_label=None, secondary_class="btn-secondary-on-dark track-phone", show_ctas=True, image=None, image_alt=""):
     """Hero unifié — photo plein cadre + fondu navy si `image` fourni."""
     if secondary_href is None:
@@ -1328,10 +1401,11 @@ def page_hero(label, h1, sub, *, icon_html="", primary_href="/contact/", primary
         <a href="{secondary_href}" class="btn {secondary_class}">{secondary_label}</a>
       </div>"""
     if image:
-        alt = (image_alt or h1).replace('"', "&quot;")
+        alt = image_alt or h1
+        hero_img = responsive_img(image, alt, 2000, 1125, sizes=HERO_SIZES, loading="", fetchpriority="high")
         return f"""<section class="page-hero hero hero--photo" aria-labelledby="page-h1">
   <div class="hero-media">
-    <img src="{image}" alt="{alt}" width="2000" height="1125" fetchpriority="high" decoding="async">
+    {hero_img}
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="container hero-inner">
@@ -1425,10 +1499,7 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None, *
   <meta name="twitter:description" content="{safe_desc}">
   <meta name="twitter:image" content="{OG_IMAGE}">
   <meta name="twitter:image:alt" content="{COMPANY_NAME} — CVCS Suisse romande">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/main.css?v={int((ROOT / 'css' / 'main.css').stat().st_mtime)}">
+{lcp_preload_from_body(body)}  <link rel="stylesheet" href="/css/main.css?v={int((ROOT / 'css' / 'main.css').stat().st_mtime)}">
 {analytics_head()}
 {schema_tag}</head>
 <body>
@@ -1794,7 +1865,7 @@ def build_home():
     body = f"""
 <section class="hero hero--photo" aria-labelledby="hero-h1">
   <div class="hero-media">
-    <img src="/assets/heroes/home.jpg" alt="Centrale sprinkler installée par Sopjani-tech Sàrl — chantier réel en Suisse romande" width="2000" height="1125" fetchpriority="high" decoding="async">
+    {responsive_img("/assets/heroes/home.jpg", "Centrale sprinkler installée par Sopjani-tech Sàrl — chantier réel en Suisse romande", 2000, 1125, sizes=HERO_SIZES, loading="", fetchpriority="high")}
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="container hero-inner">
@@ -1842,12 +1913,12 @@ def build_home():
         <a href="/contact/#contact-form" class="text-link track-devis">Demander un devis</a>
       </p>
     </div>
-    <div class="about-photo-duo" aria-label="Équipe Sopjani-tech">
+    <div class="about-photo-duo">
       <figure class="about-photo">
-        <img src="/assets/equipe/equipe-soudure-logo-dos.jpg" alt="Technicien Sopjani-tech Sàrl en intervention" width="900" height="900" loading="lazy" decoding="async">
+        {responsive_img("/assets/equipe/equipe-soudure-logo-dos.jpg", "Technicien Sopjani-tech Sàrl en intervention", 900, 900, sizes=TEAM_SIZES)}
       </figure>
       <figure class="about-photo">
-        <img src="/assets/equipe/equipe-formation-logo-dos.jpg" alt="Collaborateur Sopjani-tech Sàrl en formation" width="775" height="1024" loading="lazy" decoding="async">
+        {responsive_img("/assets/equipe/equipe-formation-logo-dos.jpg", "Collaborateur Sopjani-tech Sàrl en formation", 775, 1024, sizes=TEAM_SIZES)}
       </figure>
     </div>
   </div>
@@ -2061,11 +2132,11 @@ def build_about():
     <p class="section-lead">Des professionnels Sopjani-tech Sàrl, identifiable à notre tenue — intervention technique et formation continue.</p>
     <div class="equipe-grid">
       <figure class="gallery-card">
-        <img src="/assets/equipe/equipe-soudure-logo-dos.jpg" alt="Technicien Sopjani-tech Sàrl en soudure — logo sur la tenue" width="900" height="900" loading="lazy" decoding="async">
+        {responsive_img("/assets/equipe/equipe-soudure-logo-dos.jpg", "Technicien Sopjani-tech Sàrl en soudure — logo sur la tenue", 900, 900, sizes=TEAM_SIZES)}
         <figcaption>Intervention terrain — tenue Sopjani-tech Sàrl</figcaption>
       </figure>
       <figure class="gallery-card">
-        <img src="/assets/equipe/equipe-formation-logo-dos.jpg" alt="Collaborateur Sopjani-tech Sàrl en formation sécurité" width="775" height="1024" loading="lazy" decoding="async">
+        {responsive_img("/assets/equipe/equipe-formation-logo-dos.jpg", "Collaborateur Sopjani-tech Sàrl en formation sécurité", 775, 1024, sizes=TEAM_SIZES)}
         <figcaption>Formation continue — normes et sécurité</figcaption>
       </figure>
     </div>
@@ -2135,7 +2206,7 @@ def build_contact():
           <a href="{MAP_URL}" class="contact-method" target="_blank" rel="noopener noreferrer">
             <div><div class="cm-label">Adresse</div><div class="cm-value">{ADDRESS_FULL}</div></div>
           </a>
-          <div class="contact-method contact-method--static" aria-label="Horaires">
+          <div class="contact-method contact-method--static">
             <div><div class="cm-label">Horaires</div><div class="cm-value">{HOURS}</div></div>
           </div>
           <a href="{GOOGLE_BUSINESS_URL}" class="contact-method contact-google-link track-google" target="_blank" rel="noopener noreferrer">
@@ -2318,12 +2389,12 @@ def _premium_gallery_block(slug, gallery_cat):
     featured, rest = gallery_imgs[0], gallery_imgs[1:5]
     fn, w, h, alt, cap = featured
     featured_html = f"""<figure class="svc-gallery__featured">
-  <img src="/assets/realisations/{fn}" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async">
+  {responsive_img(f"/assets/realisations/{fn}", alt, w, h, sizes=GALLERY_SIZES)}
   <figcaption>{cap}</figcaption>
 </figure>"""
     rest_html = "".join(
-        f'<figure class="svc-gallery__item"><img src="/assets/realisations/{fn}" alt="{alt}" '
-        f'width="{w}" height="{h}" loading="lazy" decoding="async"><figcaption>{cap}</figcaption></figure>'
+        f'<figure class="svc-gallery__item">{responsive_img(f"/assets/realisations/{fn}", alt, w, h, sizes=GALLERY_SIZES)}'
+        f'<figcaption>{cap}</figcaption></figure>'
         for fn, w, h, alt, cap in rest
     )
     block = f"""<div class="svc-gallery">{featured_html}<div class="svc-gallery__grid">{rest_html}</div></div>
@@ -2335,7 +2406,7 @@ def _premium_equip_visual(gallery_imgs):
     if gallery_imgs:
         fn, w, h, alt, cap = gallery_imgs[min(1, len(gallery_imgs) - 1)]
         return f"""<figure class="svc-equip__visual">
-  <img src="/assets/realisations/{fn}" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async">
+  {responsive_img(f"/assets/realisations/{fn}", alt, w, h, sizes=GALLERY_SIZES)}
 </figure>"""
     return """<aside class="svc-equip__panel" aria-label="Cadre suisse">
   <p class="svc-equip__panel-label">Cadre suisse</p>
@@ -3399,9 +3470,15 @@ export default {{
       return Response.redirect(`${{url.origin}}${{url.pathname}}/`, 301);
     }}
     const originRes = await fetch(request);
+    const headers = new Headers(originRes.headers);
+    const cacheAsset = url.pathname.startsWith("/assets/");
+    if (cacheAsset) {{
+      headers.set("Cache-Control", "public, max-age=2592000");
+    }}
     if (VERIFICATION_TXT.has(url.pathname)) {{
-      const headers = new Headers(originRes.headers);
       headers.set("X-Robots-Tag", "noindex, nofollow");
+    }}
+    if (cacheAsset || VERIFICATION_TXT.has(url.pathname)) {{
       return new Response(originRes.body, {{
         status: originRes.status,
         statusText: originRes.statusText,
@@ -3470,9 +3547,6 @@ def build_404():
   <meta name="twitter:description" content="{safe_desc}">
   <meta name="twitter:image" content="{OG_IMAGE}">
   <meta name="twitter:image:alt" content="{COMPANY_NAME} — CVCS Suisse romande">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css?v={css_ver}">
 {analytics_head()}
   <script type="application/ld+json">{schema_json(graph)}</script>
