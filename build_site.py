@@ -21,6 +21,8 @@ WA = "https://wa.me/41799326862"
 # --- MESURE DU TRAFIC (à renseigner puis régénérer : python3 build_site.py) ---
 # GA4 : https://analytics.google.com → Admin → Flux de données Web → ID (G-XXXXXXXXXX)
 GA4_MEASUREMENT_ID = "G-KXN3RQB89P"
+# Microsoft Clarity : https://clarity.microsoft.com → Settings → Setup → project id
+CLARITY_PROJECT_ID = "yrz84aaygw"
 # Search Console : https://search.google.com/search-console → Propriété → Vérification → Balise HTML
 GOOGLE_SITE_VERIFICATION = "ESyhz2gRqYIspy2MPXHOD9v4uMjd_KAdkQjRYWHWinw"
 # Formulaire contact → info@sopjanitech.ch via FormSubmit (AJAX).
@@ -1074,7 +1076,7 @@ def footer():
 def cookie_banner():
     return """<div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Information sur les cookies" aria-live="polite" hidden>
   <div class="cookie-banner__inner container">
-    <p class="cookie-banner__text">Ce site utilise des cookies techniques essentiels. En continuant, vous acceptez leur utilisation.</p>
+    <p class="cookie-banner__text">Ce site utilise des cookies techniques et Microsoft Clarity pour mesurer les visites. En continuant, vous acceptez leur utilisation.</p>
     <button type="button" class="btn btn-primary cookie-banner__accept" id="cookieAccept">Accepter</button>
   </div>
 </div>"""
@@ -1453,6 +1455,20 @@ def analytics_head():
     return """  <script>window.dataLayer = window.dataLayer || []; function gtag(){ dataLayer.push(arguments); }</script>"""
 
 
+def clarity_head():
+    """Snippet Microsoft Clarity, collé dans le <head> de chaque page."""
+    if not CLARITY_PROJECT_ID:
+        return ""
+    return f"""  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){{
+        c[a]=c[a]||function(){{(c[a].q=c[a].q||[]).push(arguments)}};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    }})(window, document, "clarity", "script", "{CLARITY_PROJECT_ID}");
+  </script>
+"""
+
+
 def page_shell(title, description, canonical, schema_graph, body, crumbs=None, *, robots="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"):
     # Fil d'Ariane : conservé en JSON-LD uniquement (pas d'affichage visible)
     crumbs_html = ""
@@ -1500,7 +1516,7 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None, *
   <meta name="twitter:image" content="{OG_IMAGE}">
   <meta name="twitter:image:alt" content="{COMPANY_NAME} — CVCS Suisse romande">
 {lcp_preload_from_body(body)}  <link rel="stylesheet" href="/css/main.css?v={int((ROOT / 'css' / 'main.css').stat().st_mtime)}">
-{analytics_head()}
+{clarity_head()}{analytics_head()}
 {schema_tag}</head>
 <body>
 {header()}
@@ -3332,11 +3348,13 @@ def build_legal_pages():
       <li><strong>{HOST_NAME}</strong> — hébergement du site ({HOST_ADDRESS}).</li>
       <li><strong>FormSubmit</strong> — transmission sécurisée des messages du formulaire de contact vers {EMAIL}.</li>
       {"<li><strong>Google LLC</strong> — mesure d'audience via Google Analytics 4.</li>" if GA4_MEASUREMENT_ID else ""}
+      <li><strong>Microsoft Clarity</strong> — mesure d'audience (pages consultées, clics, défilement). <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">Politique de confidentialité de Microsoft</a>.</li>
     </ul>
     <h3>Durée de conservation</h3>
     <p>Les demandes de contact sont conservées le temps nécessaire au traitement de votre demande et au suivi commercial, puis archivées ou supprimées selon les obligations légales applicables. Les données de mesure d'audience sont conservées selon les paramètres configurés dans l'outil concerné.</p>
     <h3>Cookies et mesure d'audience</h3>
     <p>{ga4_note}</p>
+    <p>Microsoft Clarity est chargé sur chaque page pour comprendre comment le site est utilisé (pages vues, clics, défilement). Microsoft peut déposer des cookies de mesure à cette fin.</p>
     <p>Vous pouvez limiter le dépôt de cookies via les paramètres de votre navigateur. La désactivation de certains cookies peut affecter le fonctionnement du site.</p>
     <h3>Vos droits</h3>
     <p>Conformément à la nLPD, vous disposez notamment d'un droit d'accès, de rectification et, le cas échéant, d'effacement de vos données personnelles, ainsi que du droit de vous opposer à certains traitements ou de demander leur limitation.</p>
@@ -3548,7 +3566,7 @@ def build_404():
   <meta name="twitter:image" content="{OG_IMAGE}">
   <meta name="twitter:image:alt" content="{COMPANY_NAME} — CVCS Suisse romande">
   <link rel="stylesheet" href="/css/main.css?v={css_ver}">
-{analytics_head()}
+{clarity_head()}{analytics_head()}
   <script type="application/ld+json">{schema_json(graph)}</script>
 </head>
 <body class="page-404">
