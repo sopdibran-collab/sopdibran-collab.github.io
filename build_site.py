@@ -3142,7 +3142,7 @@ def build_zones():
         META_DESCRIPTIONS["geneve"],
         "Chauffagiste et CVCS dans la région de Genève",
         p("Vous cherchez un chauffagiste à Genève ? Le canton présente un parc bâti dense — immeubles, PPE, commerces et tertiaire — avec des contraintes techniques variées (chauffage à distance, GeniLac, remplacement des chauffages fossiles).") +
-        p("Contactez-nous pour vérifier la disponibilité d'intervention dans votre secteur.") +
+        p('Contactez-nous pour vérifier la disponibilité d\'intervention dans votre secteur. Le canton voisin est décrit à part : <a href="/vaud/">Morges, Riviera, Chablais et Nord vaudois</a>.') +
         communes_block(["Genève", "Vernier", "Lancy", "Meyrin", "Carouge", "Onex", "Thônex", "Plan-les-Ouates", "Veyrier", "Grand-Saconnex", "Chêne-Bougeries", "Confignon"]) +
         SUBSIDY_NOTE.format(extra="À Genève, les demandes passent par l'Office cantonal de l'énergie (OCEN) et peuvent se combiner avec le programme SIG-éco21 des Services industriels de Genève."),
         zone_aeo_faq("Genève", "la région de Genève") + [
@@ -3151,27 +3151,41 @@ def build_zones():
         ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "nyon", "lausanne"],
         hero_sub=f"Chauffagiste et CVCS à Genève. Appelez le {PHONE_DISP} pour un devis ou un dépannage.")
 
+    vaud_faq = zone_aeo_faq("Vaud", "le canton de Vaud")
+    vaud_faq[0] = (
+        "Qui appeler pour un chauffagiste à Vaud ?",
+        f"{COMPANY_NAME} intervient comme chauffagiste à Morges, à Yverdon-les-Bains, sur la Riviera (Vevey, Montreux), dans le Chablais et le Nord vaudois : installation, entretien et dépannage de chaudières et pompes à chaleur. Appelez le {PHONE_DISP} ou passez par la page contact.",
+    )
+    vaud_faq[1] = (
+        "Qui appeler pour un dépannage CVCS à Vaud ?",
+        f'Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp. Indiquez votre commune, le type de bâtiment et la nature de la panne. Pour <a href="/lausanne/">Lausanne</a>, <a href="/nyon/">Nyon</a> ou <a href="/geneve/">Genève</a>, la page de la ville précise l\'intervention locale.',
+    )
     zone_page("vaud", "Vaud", "le canton de Vaud",
         PAGE_TITLES["vaud"],
         META_DESCRIPTIONS["vaud"],
         "Chauffagiste dans le canton de Vaud",
-        p("Chauffagiste dans le canton de Vaud : rives du Léman, Lausanne, Nyon, Riviera (Vevey, Montreux), Chablais et Nord vaudois (Yverdon-les-Bains). Du villa à l'immeuble locatif ou PPE, selon l'altitude et l'exposition.") +
-        p("À Yverdon et dans les zones d'activité du Nord vaudois, comme sur la Riviera, nous intervenons aussi pour le CVC et le sanitaire (plomberie) en bâtiments tertiaires, ateliers et halls — pas uniquement en habitat.") +
-        p("Pour les communes hors axes principaux, contactez-nous afin de confirmer la faisabilité.") +
-        communes_block(["Morges", "Yverdon-les-Bains", "Vevey", "Montreux", "Renens", "Pully", "Rolle", "Aigle", "Payerne", "Echallens", "Cossonay", "Orbe"]) +
+        p("Chauffagiste dans le canton de Vaud : district de Morges, Nord vaudois (Yverdon-les-Bains), Riviera (Vevey, Montreux) et Chablais (Aigle). Du villa à l'immeuble locatif ou PPE, selon l'altitude et l'exposition.") +
+        p("À Yverdon-les-Bains et dans les zones d'activité du Nord vaudois, comme sur la Riviera, nous intervenons aussi pour le CVC et le sanitaire (plomberie) en bâtiments tertiaires, ateliers et halls — pas uniquement en habitat.") +
+        p("Pour les communes hors de ces axes, contactez-nous afin de confirmer la faisabilité.") +
+        p('Lausanne, Nyon, Genève et le canton de Fribourg ont une page dédiée : '
+          '<a href="/lausanne/">chauffagiste, chauffage et dépannage à Lausanne</a> · '
+          '<a href="/nyon/">climatisation et chauffage à Nyon</a> · '
+          '<a href="/geneve/">chauffage et chauffagiste à Genève</a> · '
+          '<a href="/fribourg/">chauffagiste à Fribourg</a>.') +
+        communes_block(["Morges", "Yverdon-les-Bains", "Vevey", "Montreux", "Aigle", "Payerne", "Echallens", "Cossonay", "Orbe"]) +
         SUBSIDY_NOTE.format(extra="Dans le canton de Vaud, les demandes sont instruites par la Direction générale de l'environnement (DGE) / Direction de l'énergie."),
-        zone_aeo_faq("Vaud", "le canton de Vaud") + [
+        vaud_faq + [
             ("Le canton de Vaud subventionne-t-il les pompes à chaleur ?", "Oui, sous conditions, dans le cadre du Programme Bâtiments géré par la Direction de l'énergie du canton de Vaud. Les certificats de qualité requis (PAC système-module) et les barèmes évoluent chaque année : vérifiez les conditions en vigueur avant de commander votre matériel."),
         ],
         ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["lausanne", "nyon", "geneve", "fribourg"],
-        hero_sub=f"Chauffagiste dans le canton de Vaud. Appelez le {PHONE_DISP} pour un devis ou un dépannage.")
+        hero_sub=f"Morges, Yverdon, Riviera, Chablais et Nord vaudois. Appelez le {PHONE_DISP} pour un devis ou un dépannage.")
 
     zone_page("lausanne", "Lausanne", "Lausanne et environs",
         PAGE_TITLES["lausanne"],
         META_DESCRIPTIONS["lausanne"],
         "Chauffagiste à Lausanne : dépannage chauffage et CVCS",
         p("Vous cherchez un chauffagiste à Lausanne ? L'agglomération concentre immeubles, tertiaire et parc ancien — souvent à adapter lors d'une rénovation. Une partie de la ville est desservie par le chauffage à distance (SiL).") +
-        p('Nous intervenons aussi en dépannage chauffage. Pour la climatisation ou une pompe à chaleur, voir <a href="/climatisation/">climatisation</a> et <a href="/chauffage/">chauffage</a>. Nous intervenons également dans tout le canton, voir <a href="/vaud/">chauffagiste Vaud</a>.') +
+        p('Nous intervenons aussi en dépannage chauffage. Pour la climatisation ou une pompe à chaleur, voir <a href="/climatisation/">climatisation</a> et <a href="/chauffage/">chauffage</a>. Pour Morges, Yverdon, la Riviera ou le Chablais, voir le <a href="/vaud/">reste du canton de Vaud</a>.') +
         communes_block(["Renens", "Prilly", "Le Mont-sur-Lausanne", "Épalinges", "Pully", "Chavannes-près-Renens", "Ecublens", "Crissier"]) +
         SUBSIDY_NOTE.format(extra="Les demandes pour l'agglomération lausannoise sont instruites par la Direction de l'énergie du canton de Vaud."),
         zone_aeo_faq("Lausanne", "Lausanne et environs") + [
@@ -3185,8 +3199,8 @@ def build_zones():
         PAGE_TITLES["nyon"],
         META_DESCRIPTIONS["nyon"],
         "Climatisation et chauffagiste à Nyon",
-        p("Climatisation à Nyon et chauffagiste local : la région entre Genève et Lausanne combine constructions récentes (villas, PPE autour du lac) et bâti plus ancien dans les villages. Standards énergétiques élevés (Minergie) fréquents sur les neuves.") +
-        p('Nous installons et entretenons la climatisation (split, multi-split, PAC air-air) ainsi que le chauffage (pompes à chaleur, chaudières) à Nyon, Gland, Rolle, Coppet et environs. Demandez un devis via les pages <a href="/climatisation/">climatisation</a> ou <a href="/chauffage/">chauffage</a>, ou par téléphone.') +
+        p("Climatisation à Nyon et chauffagiste local : la région combine constructions récentes (villas, PPE autour du lac) et bâti plus ancien dans les villages. Standards énergétiques élevés (Minergie) fréquents sur les neuves.") +
+        p('Nous installons et entretenons la climatisation (split, multi-split, PAC air-air) ainsi que le chauffage (pompes à chaleur, chaudières) à Nyon, Gland, Rolle, Coppet et environs. Demandez un devis via les pages <a href="/climatisation/">climatisation</a> ou <a href="/chauffage/">chauffage</a>, ou par téléphone. Pour Morges, la Riviera, le Chablais et le Nord vaudois, voir les <a href="/vaud/">autres secteurs vaudois</a>.') +
         communes_block(["Gland", "Rolle", "Prangins", "Founex", "Coppet", "Genolier", "Duillier", "Trélex"]) +
         SUBSIDY_NOTE.format(extra="La région de Nyon dépend du barème et du guichet du canton de Vaud (Direction de l'énergie)."),
         zone_aeo_faq("Nyon", "la région de Nyon") + [
@@ -3216,7 +3230,7 @@ def build_zones():
         META_DESCRIPTIONS["fribourg"],
         "Chauffagiste dans le canton de Fribourg",
         p(f'Chauffagiste dans le canton de Fribourg : Fribourg-ville, Gruyère, Broye et Glâne. Notre <a href="/romont/">siège est à Romont</a> ({ADDRESS_LOCALITY}) — équipe mobile sur tout le canton.') +
-        p("Précisez la commune et l'urgence lors du premier contact.") +
+        p('Précisez la commune et l\'urgence lors du premier contact. Canton limitrophe : <a href="/vaud/">Morges, Riviera et Nord vaudois</a>.') +
         communes_block(["Fribourg", "Bulle", "Châtel-Saint-Denis", "Estavayer-le-Lac", "Domdidier", "Marly", "Villars-sur-Glâne", "Romont"]) +
         SUBSIDY_NOTE.format(extra="Dans le canton de Fribourg, les demandes sont instruites par le Service de l'énergie (SdE)."),
         zone_aeo_faq("Fribourg", "le canton de Fribourg") + [
