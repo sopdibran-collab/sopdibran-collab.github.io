@@ -35,7 +35,8 @@ USER_AGENT = "SopjaniTech-IndexNow/1.0"
 KEY_RE = re.compile(r"^[a-zA-Z0-9-]{8,128}$")
 LOC_RE = re.compile(r"<loc>\s*([^<]+?)\s*</loc>")
 
-ROBOTS_POLL_ATTEMPTS = 20
+# GitHub Pages met souvent un cache d'environ 10 minutes sur robots.txt.
+ROBOTS_POLL_ATTEMPTS = 40
 ROBOTS_POLL_SECONDS = 15
 
 
