@@ -1,82 +1,76 @@
+# Soumet le sitemap à IndexNow après un déploiement GitHub Pages.
+#
+# « pages build and deployment » est un workflow géré par GitHub. Un
+# workflow_run qui l'écoute ne part pas : la seule exécution historique
+# (19 août 2026) était un workflow_dispatch, et les déploiements Pages
+# suivants n'ont rien déclenché. On part donc sur le push vers main, puis
+# on attend le déploiement github-pages de ce même commit.
 name: IndexNow
 
 on:
-  workflow_run:
-    workflows:
-      - pages build and deployment
-    types:
-      - completed
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Simuler sans appeler l'API IndexNow
+        type: boolean
+        default: false
+  push:
+    branches:
+      - main
 
 permissions:
   contents: read
+  deployments: read
+
+concurrency:
+  group: indexnow-production
+  cancel-in-progress: true
 
 jobs:
   submit:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-
+    timeout-minutes: 20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
-      - name: Detect changed HTML pages
-        id: changed
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          HEAD_SHA="$(git rev-parse HEAD)"
-          echo "Commit analysé : ${HEAD_SHA}"
-
-          if git rev-parse --verify "${HEAD_SHA}^" >/dev/null 2>&1; then
-            FILES="$(git diff --name-only "${HEAD_SHA}^" "${HEAD_SHA}" -- '*.html')"
-          else
-            FILES="$(git diff-tree --no-commit-id --name-only -r "${HEAD_SHA}" -- '*.html')"
-          fi
-
-          URLS=""
-
-          while IFS= read -r file; do
-            [[ -z "$file" ]] && continue
-
-            if [[ "$file" == "index.html" ]]; then
-              url="https://sopjanitech.ch/"
-            elif [[ "$file" == */index.html ]]; then
-              directory="${file%/index.html}"
-              url="https://sopjanitech.ch/${directory}/"
-            else
-              url="https://sopjanitech.ch/${file}"
-            fi
-
-            URLS="${URLS}${url}"$'\n'
-          done <<< "$FILES"
-
-          printf '%s' "$URLS" > changed_urls.txt
-
-          if [[ -z "$URLS" ]]; then
-            echo "has_urls=false" >> "$GITHUB_OUTPUT"
-            echo "Aucun fichier HTML modifié. Pas de soumission IndexNow."
-          else
-            echo "has_urls=true" >> "$GITHUB_OUTPUT"
-            echo "URLs détectées :"
-            cat changed_urls.txt
-          fi
-
-      - name: Submit URLs to IndexNow
-        if: steps.changed.outputs.has_urls == 'true'
+      - name: Attendre le déploiement GitHub Pages
+        if: github.event_name == 'push'
         env:
-          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
-        shell: bash
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          sha="${{ github.sha }}"
+          for attempt in $(seq 1 40); do
+            id="$(gh api "repos/${{ github.repository }}/deployments?environment=github-pages&sha=${sha}&per_page=10" --jq "[.[] | select(.sha==\"${sha}\")] | .[0].id // empty")"
+            if [ -z "${id}" ]; then
+              echo "Tentative ${attempt}/40 — pas encore de déploiement github-pages pour ${sha}"
+              sleep 15
+              continue
+            fi
+            states="$(gh api "repos/${{ github.repository }}/deployments/${id}/statuses" --jq '[.[].state] | join(",")')"
+            latest="${states%%,*}"
+            echo "Tentative ${attempt}/40 — déploiement ${id} : ${states:-pending}"
+            case ",${states}," in
+              *,success,*)
+                echo "Déploiement GitHub Pages réussi pour ${sha}"
+                exit 0
+                ;;
+            esac
+            if [ "${latest}" = "failure" ] || [ "${latest}" = "error" ]; then
+              echo "Le déploiement GitHub Pages a échoué"
+              exit 1
+            fi
+            sleep 15
+          done
+          echo "Délai dépassé en attendant le déploiement github-pages de ${sha}"
+          exit 1
 
-          while IFS= read -r url; do
-            [[ -z "$url" ]] && continue
-
-            echo "Envoi IndexNow : $url"
-            python3 scripts/indexnow.py "$url"
-          done < changed_urls.txt
+      - name: Publier le sitemap vers IndexNow
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python3 scripts/indexnow.py --dry-run
+          else
+            python3 scripts/indexnow.py
+          fi

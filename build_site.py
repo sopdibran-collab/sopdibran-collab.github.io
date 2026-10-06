@@ -64,13 +64,12 @@ MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1481964.38067
 GOOGLE_BUSINESS_URL = "https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7"
 # robots Disallow (défense en profondeur). Ne pas lister des chemins junk déjà 404 —
 # ça n'ajoute rien au crawl budget et révèle l'existence d'outils internes.
-# Les .txt de vérification restent publics (GSC/IndexNow) ; noindex via Worker.
+# Les .txt de vérification (GSC / IndexNow) restent hors de cette liste : Bing doit
+# pouvoir télécharger la clé. Le noindex est posé par le Worker (X-Robots-Tag).
 JUNK_DISALLOW_PATHS = (
     "/AGENTS.md",
     "/README.md",
     "/.gitignore",
-    "/2a4c1f14188cf21440b6fdbad88d7e38.txt",
-    "/4e83fba7d06a413e96b4abe69b2f5256.txt",
 )
 # Fichiers de vérification Search Console : accessibles, mais X-Robots-Tag noindex via Worker
 VERIFICATION_TXT_PATHS = (
