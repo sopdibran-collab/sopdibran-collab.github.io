@@ -1419,7 +1419,14 @@
       margin: 0;
     }
 
-    .site-footer__linkedin {
+    .site-footer__socials {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.15rem;
+    }
+
+    .site-footer__linkedin,
+    .site-footer__whatsapp {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -1432,19 +1439,23 @@
       transition: color 0.15s, background 0.15s;
     }
 
-    .site-footer__linkedin svg {
+    .site-footer__linkedin svg,
+    .site-footer__whatsapp svg {
       width: 22px;
       height: 22px;
       display: block;
     }
 
     .site-footer__linkedin:hover,
-    .site-footer__linkedin:focus-visible {
+    .site-footer__linkedin:focus-visible,
+    .site-footer__whatsapp:hover,
+    .site-footer__whatsapp:focus-visible {
       color: var(--c-logo);
       background: rgba(96, 192, 236, 0.12);
     }
 
-    .site-footer__linkedin:focus-visible {
+    .site-footer__linkedin:focus-visible,
+    .site-footer__whatsapp:focus-visible {
       outline: 2px solid var(--c-logo);
       outline-offset: 2px;
     }
@@ -1556,7 +1567,7 @@
         display: none;
       }
       .site-footer__row--contact { margin-top: 0.1rem; }
-      .site-footer__contact li:nth-child(4) {
+      .site-footer__contact li:nth-child(3) {
         flex: 1 1 100%;
         font-size: 0.6875rem;
         opacity: 0.8;
