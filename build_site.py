@@ -62,6 +62,7 @@ MAP_URL = "https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+
 # Place ID Google (libellé fiche GBP « Sopjani-tech sàrl » — à aligner manuellement côté Google)
 MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1481964.3806735645!2d5.895466104411914!3d46.67378415677807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9458f52305e1fe3%3A0x31fd51d876fffe44!2sSopjani-tech%20s%C3%A0rl!5e1!3m2!1sfr!2sch!4v1781214251877!5m2!1sfr!2sch"
 GOOGLE_BUSINESS_URL = "https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7"
+LINKEDIN_URL = "https://www.linkedin.com/company/sopjanitech/"
 # robots Disallow (défense en profondeur). Ne pas lister des chemins junk déjà 404 —
 # ça n'ajoute rien au crawl budget et révèle l'existence d'outils internes.
 # Les .txt de vérification (GSC / IndexNow) restent hors de cette liste : Bing doit
@@ -399,7 +400,7 @@ ORG_SCHEMA = {
     "inLanguage": "fr-CH",
     "logo": LOGO_SCHEMA,
     "image": OG_IMAGE,
-    "sameAs": [GOOGLE_BUSINESS_URL],
+    "sameAs": [GOOGLE_BUSINESS_URL, LINKEDIN_URL],
 }
 
 WEBSITE_SCHEMA = {
@@ -1014,6 +1015,19 @@ def header():
 </nav>"""
 
 
+def linkedin_icon_link():
+    """Icône LinkedIn inline — pied de page uniquement (pas la barre d'appel mobile)."""
+    return (
+        f'<a class="site-footer__linkedin" href="{LINKEDIN_URL}" '
+        f'target="_blank" rel="noopener noreferrer" '
+        f'aria-label="{COMPANY_NAME} sur LinkedIn">'
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" '
+        'width="22" height="22" aria-hidden="true" focusable="false">'
+        '<path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>'
+        "</svg></a>"
+    )
+
+
 def footer():
     svc_chips = "".join(
         f'<li><a href="/{s}/">{n}</a></li>' for s, n, _ in SERVICES
@@ -1049,7 +1063,10 @@ def footer():
         </ul>
       </div>
       <div class="site-footer__row site-footer__row--contact">
-        <p class="site-footer__label">Contact</p>
+        <div class="site-footer__contact-head">
+          <p class="site-footer__label">Contact</p>
+          {linkedin_icon_link()}
+        </div>
         <ul class="site-footer__contact">
           <li><a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a></li>
           <li><a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a></li>
@@ -3595,6 +3612,7 @@ def build_404():
       <a href="/contact/" class="btn page-404__btn page-404__btn--secondary track-devis">Demander une intervention CVCS / Sprinkler</a>
     </div>
   </main>
+{footer()}
 {cookie_banner()}
 <script src="/js/main.js" defer></script>
 </body>
