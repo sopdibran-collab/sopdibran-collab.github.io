@@ -71,13 +71,16 @@ JUNK_DISALLOW_PATHS = (
     "/AGENTS.md",
     "/README.md",
     "/.gitignore",
+    # Site projet GitHub Pages d'un autre dépôt, monté par erreur sur ce domaine.
+    "/sopdibran-collab.github.io-gzimmo/",
 )
 # Fichiers de vérification Search Console : accessibles, mais X-Robots-Tag noindex via Worker
 VERIFICATION_TXT_PATHS = (
     "/2a4c1f14188cf21440b6fdbad88d7e38.txt",
     "/4e83fba7d06a413e96b4abe69b2f5256.txt",
 )
-# Masqués en HTTP 404 par le Worker Cloudflare (outilage repo servi par GitHub Pages)
+# Masqués en HTTP 404 par le Worker Cloudflare (outillage du repo, et le site
+# projet Pages /sopdibran-collab.github.io-gzimmo/ publié depuis un autre dépôt).
 WORKER_BLOCK_EXACT = (
     "/AGENTS.md",
     "/README.md",
@@ -97,6 +100,7 @@ WORKER_BLOCK_PREFIXES = (
     "/.cursor/",
     "/.github/",
     "/.wrangler/",
+    "/sopdibran-collab.github.io-gzimmo/",
 )
 
 # Avis Google réels affichés sur le site (texte = source Google Business Profile)
