@@ -3,4 +3,5 @@ Allow: /
 Disallow: /AGENTS.md
 Disallow: /README.md
 Disallow: /.gitignore
+Disallow: /sopdibran-collab.github.io-gzimmo/
 Sitemap: https://sopjanitech.ch/sitemap.xml
