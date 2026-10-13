@@ -3394,6 +3394,12 @@ def build_zones():
             "Pour savoir si nous intervenons dans votre commune, appelez-nous."
         )
         + p(
+            "Depuis la Glâne, la route du Plateau mène à Moudon en 15 minutes, à Oron en "
+            "18 minutes et à Payerne en 20 minutes. On n'emprunte ni l'A12 ni l'A1 pour "
+            "ces trois communes. Yverdon est plus loin : 35 à 40 minutes, et c'est là que "
+            "l'A1 passe, pas au départ de Romont. Aucune de ces durées n'est un créneau réservé."
+        )
+        + p(
             "Ce cadre cantonal couvre aussi une "
             '<a href="/ventilation/">ventilation</a>, une '
             '<a href="/climatisation/">climatisation</a> ou un réseau '
@@ -3422,6 +3428,11 @@ def build_zones():
                 "Où demander une aide pour un chauffage dans le canton de Vaud ?",
                 "À la Direction de l'énergie, avant le début des travaux. Ce sont les conditions "
                 "de l'année qui comptent. Nous n'indiquons pas de montants ici.",
+            ),
+            (
+                "Moudon, Oron ou Payerne sont-ils couverts dans le temps de route indiqué ?",
+                "Le temps de route n'ouvre pas un droit à un passage. Il situe ces communes "
+                "par rapport à la Glâne. L'intervention se confirme au téléphone.",
             ),
         ],
         ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
@@ -3462,6 +3473,11 @@ def build_zones():
             "nous intervenons. Pour le savoir, appelez-nous."
         )
         + p(
+            "La route entre Romont et Lausanne prend 35 à 40 minutes. Ce chiffre décrit "
+            "le trajet mesuré depuis le siège. Il ne réserve pas une équipe dans cette plage, "
+            "et la permanence de nuit n'existe pas : les horaires publiés restent ceux du siège."
+        )
+        + p(
             "Si la chaleur manque dans le circuit après l'échangeur, l'entrée est la page "
             '<a href="/depannage-sav/">dépannage</a>, distincte du contrat de fourniture des SiL.'
         )
@@ -3486,6 +3502,11 @@ def build_zones():
                 "Non. La directive des SiL fixe des seuils, et les SiL peuvent refuser un "
                 "raccordement même si ces seuils sont atteints. C'est à eux qu'il faut demander "
                 "si c'est faisable : nous ne pouvons pas le garantir.",
+            ),
+            (
+                "Peut-on être à Lausanne 35 à 40 minutes après l'appel ?",
+                "Non. Cette plage est celle du trajet en voiture depuis Romont. Elle ne "
+                "démarre pas à l'instant de l'appel.",
             ),
         ],
         ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
@@ -3662,6 +3683,16 @@ def build_zones():
             "intervenons dans votre commune, appelez-nous."
         )
         + p(
+            "Les sept districts du canton sont la Glâne, la Sarine, la Gruyère, la Veveyse, "
+            "la Broye, la Singine et le Lac. Bulle, en Gruyère, est le bourg que l'A12 dessert "
+            "au sud. On entre dans l'agglomération par Matran, porte de Fribourg-Sud, puis la "
+            "ville elle-même est à 25 minutes de Romont. Châtel-Saint-Denis, en Veveyse, est à "
+            "20 à 25 minutes par l'A12. Estavayer-le-Lac, en Broye fribourgeoise, est à 25 à "
+            "30 minutes par les routes de la Broye, sans autoroute. La Singine et le district "
+            "du Lac sont nommés ici sans durée chiffrée. Ces minutes mesurent la conduite. "
+            "Elles ne disent pas quand une équipe peut être sur place."
+        )
+        + p(
             "Les colonnes et les appareils d'eau sont présentés sur la page "
             '<a href="/sanitaire/">sanitaire</a>. Un arrêt de chaudière, de ventilation ou de froid '
             'se décrit sur la page <a href="/depannage-sav/">dépannage</a>, sans confondre cet échange '
@@ -3690,6 +3721,11 @@ def build_zones():
                 f"Non. La LEn s'applique dans tout le canton. La page Romont donne seulement "
                 f"l'adresse du siège de {COMPANY_NAME}.",
             ),
+            (
+                "Une durée de 25 minutes jusqu'à Fribourg garantit-elle le dépannage ?",
+                "Non. Vingt-cinq minutes, c'est la conduite depuis Romont. Le passage d'une "
+                "équipe se confirme par téléphone, dans les horaires publiés.",
+            ),
         ],
         ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
         ["romont", "vaud", "neuchatel"],
@@ -3704,6 +3740,15 @@ def build_zones():
         + p(
             f"Le siège de {COMPANY_NAME} est au {ADDRESS_STREET}, {ADDRESS_POSTAL} Romont, "
             "dans le district de la Glâne. Les règles sur l'énergie sont celles du canton de Fribourg."
+        )
+        + p(
+            "Au départ du siège, Bulle est à environ 16 km, soit 15 minutes : la ville est "
+            "en Gruyère, et l'A12 la dessert. Matran, porte de Fribourg-Sud, est à 18 à 20 km, "
+            "soit 15 à 20 minutes. On y va par la route de la Glâne ; l'A12 arrive à Matran "
+            "depuis le sud. Ces durées décrivent la route, pas une heure d'arrivée. Nous répondons "
+            "pendant les horaires du siège, sans permanence de nuit. Les autres durées de route "
+            'figurent sur les pages <a href="/fribourg/">Fribourg</a>, '
+            '<a href="/vaud/">Vaud</a> et <a href="/lausanne/">Lausanne</a>.'
         )
         + p(
             "Romont est une petite ville au centre ancien, avec des maisons mitoyennes, "
@@ -3733,6 +3778,11 @@ def build_zones():
                 "Non. Romont est notre siège. Les autres pages de zones présentent les bâtiments "
                 "et les règles de chaque canton. Notre adresse ne dit pas où nous pouvons intervenir : "
                 "pour le savoir, appelez-nous.",
+            ),
+            (
+                "Les minutes vers Bulle ou Matran sont-elles une heure d'arrivée ?",
+                "Non. Elles mesurent la route depuis le siège. Le planning du jour décide du "
+                "passage, et aucune permanence de nuit n'est ouverte.",
             ),
             (
                 "Quelle loi s'applique pour une maison à Romont ?",
