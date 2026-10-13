@@ -145,14 +145,14 @@ META_DESCRIPTIONS = {
     "climatisation": f"Climatisation à Nyon, Lausanne et Genève : étude, pose et dépannage de splits, multi-splits et PAC air-air. Devis gratuit — {PHONE_DISP}.",
     "sprinkler-protection-incendie": "Réseaux sprinkler en sous-traitance spécialisée : étude et installation pour ERP, parkings et bâtiments industriels en Suisse romande. Normes AEAI respectées.",
     "sanitaire": "Installations, rénovations et dépannages sanitaires : réseaux eau chaude/froide, fuites, chauffe-eau. Intervention en Suisse romande. Devis gratuit.",
-    "geneve": f"Chauffage et climatisation à Genève (Vernier, Meyrin, Carouge, Lancy) : installation, entretien et dépannage. Devis gratuit — {PHONE_DISP}.",
-    "vaud": "Entreprise de chauffage dans le canton de Vaud (Morges, Yverdon, Riviera, Chablais, Nord vaudois). Installation, entretien, dépannage. Devis gratuit.",
-    "lausanne": f"Dépannage chauffage à Lausanne (Renens, Prilly, Pully) : chaudières et pompes à chaleur. Devis gratuit, 7j/7 de 7h à 17h — {PHONE_DISP}.",
-    "nyon": f"Climatisation à Nyon (split, multi-split, PAC air-air) et chauffage pour Nyon, Gland, Rolle et Coppet. Dépannage et devis au {PHONE_DISP}.",
-    "valais": f"Chauffagiste en Valais : Sion, Martigny, Monthey, Sierre et stations. Chaudières, PAC, remise en service après hiver. Devis gratuit — {PHONE_DISP}.",
-    "fribourg": f"Chauffagiste dans le canton de Fribourg : Fribourg-ville, Gruyère, Broye et Glâne. Installation, dépannage et devis. Siège à Romont — {PHONE_DISP}.",
-    "romont": f"Siège à Romont FR : chauffage, ventilation, climatisation, sanitaire et dépannage SAV pour villas, immeubles, PPE et entreprises. Devis gratuit — {PHONE_DISP}.",
-    "neuchatel": "Chauffagiste dans le canton de Neuchâtel : littoral et Jura (La Chaux-de-Fonds, Le Locle). Chauffage, CVCS, entretien et dépannage. Devis gratuit.",
+    "geneve": "Chauffage, ventilation, climatisation et sanitaire à Genève : immeubles, GeniLac, GeniTerre et loi cantonale sur l'énergie (LEn).",
+    "vaud": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Vaud : loi actuelle jusqu'à fin 2026, LVLEne au 1er janvier 2027.",
+    "lausanne": "Chauffage, ventilation, climatisation et sanitaire à Lausanne : chauffage à distance des SiL et distribution interne de l'immeuble.",
+    "nyon": "Chauffage, ventilation, climatisation et sanitaire à Nyon : villas et PPE de La Côte, réseau ThermorésÔ, loi vaudoise.",
+    "valais": "Chauffage, ventilation, climatisation et sanitaire en Valais : loi LcEne, remplacement des chaudières fossiles et contraste plaine / altitude.",
+    "fribourg": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Fribourg : loi du 9 juin 2000 et article 16 sur la ventilation et le froid.",
+    "romont": f"Siège de {COMPANY_NAME} à Romont FR. Chauffage, ventilation, climatisation et sanitaire selon la loi fribourgeoise sur l'énergie.",
+    "neuchatel": "Chauffage, ventilation, climatisation et sanitaire à Neuchâtel : LCEn, stations climatiques du RELCEn et urbanisme horloger UNESCO.",
     "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
     "plan-du-site": f"Plan du site {COMPANY_NAME} : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
@@ -164,8 +164,20 @@ META_DESCRIPTIONS = {
     ),
 }
 
+# H1 des pages de zones — seule /chauffage/ garde « Chauffagiste en Suisse romande ».
+ZONE_H1 = {
+    "geneve": "Chauffage, ventilation, climatisation et sanitaire à Genève",
+    "vaud": "Chauffage, ventilation, climatisation et sanitaire à Vaud",
+    "lausanne": "Chauffage, ventilation, climatisation et sanitaire à Lausanne",
+    "nyon": "Chauffage, ventilation, climatisation et sanitaire à Nyon",
+    "valais": "Chauffage, ventilation, climatisation et sanitaire à Valais",
+    "fribourg": "Chauffage, ventilation, climatisation et sanitaire à Fribourg",
+    "romont": "Chauffage, ventilation, climatisation et sanitaire à Romont",
+    "neuchatel": "Chauffage, ventilation, climatisation et sanitaire à Neuchâtel",
+}
+
 PAGE_TITLES = {
-    "home": "Chauffage, ventilation, clim et sanitaire en Suisse romande | Sopjani-tech Sàrl",
+    "home": "Chauffage, ventilation, climatisation et sanitaire en Suisse romande | Sopjani-tech Sàrl",
     "a-propos": "Sopjani-tech Sàrl — chauffage, ventilation, clim et sanitaire | Romont",
     "contact": "Devis gratuit & dépannage CVCS | Sopjani-tech Sàrl",
     "prestations": "Prestations CVCS & sprinkler — Suisse romande | Sopjani-tech",
@@ -177,14 +189,14 @@ PAGE_TITLES = {
     "depannage-sav": "Dépannage CVCS urgent en Suisse romande | Sopjani-tech",
     "sanitaire": "Sanitaire en Suisse romande : installation & dépannage | Sopjani-tech",
     "sprinkler-protection-incendie": "Sprinkler & protection incendie en Suisse romande | Sopjani-tech",
-    "geneve": "Chauffage à Genève — dépannage & devis | Sopjani-tech",
-    "vaud": "Chauffagiste Vaud — entreprise de chauffage | Sopjani-tech",
-    "lausanne": "Chauffage à Lausanne — dépannage & devis | Sopjani-tech",
-    "nyon": "Climatisation et chauffage à Nyon — devis | Sopjani-tech",
-    "valais": "Chauffagiste en Valais : chauffage & climatisation | Sopjani-tech",
-    "fribourg": "Chauffagiste Fribourg — devis, siège à Romont | Sopjani-tech",
-    "romont": "Siège à Romont — chauffage, ventilation, clim, sanitaire | Sopjani-tech",
-    "neuchatel": "Chauffagiste Neuchâtel & La Chaux-de-Fonds | Sopjani-tech",
+    "geneve": f"{ZONE_H1['geneve']} | {COMPANY_NAME}",
+    "vaud": f"{ZONE_H1['vaud']} | {COMPANY_NAME}",
+    "lausanne": f"{ZONE_H1['lausanne']} | {COMPANY_NAME}",
+    "nyon": f"{ZONE_H1['nyon']} | {COMPANY_NAME}",
+    "valais": f"{ZONE_H1['valais']} | {COMPANY_NAME}",
+    "fribourg": f"{ZONE_H1['fribourg']} | {COMPANY_NAME}",
+    "romont": f"{ZONE_H1['romont']} | {COMPANY_NAME}",
+    "neuchatel": f"{ZONE_H1['neuchatel']} | {COMPANY_NAME}",
     "realisations": "Nos réalisations CVCS & sprinkler — Sopjani-tech Sàrl",
     "merci": f"Demande envoyée | {COMPANY_NAME}",
     "404": f"404 — Mauvais tuyau | {COMPANY_NAME}",
@@ -514,7 +526,7 @@ def urgence_band():
 def zone_aeo_faq(name, region):
     """FAQ locale compacte (3 items) — laisse de la place aux FAQ spécifiques zone (max 5 au total)."""
     return [
-        (f"Qui appeler pour un chauffagiste à {name} ?", f"{COMPANY_NAME} intervient comme chauffagiste dans {region} : installation, entretien et dépannage de chaudières et pompes à chaleur. Appelez le {PHONE_DISP} ou passez par la page contact."),
+        (f"Quel cadre énergétique s'applique à {name} ?", f"Le cadre est cantonal. La page {name} résume le bâti et la règle publique locale, avec un lien vers le <a href=\"/chauffage/\">chauffage</a>. La disponibilité d'intervention se confirme auprès de {COMPANY_NAME}."),
         (f"Qui appeler pour un dépannage CVCS à {name} ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp. Indiquez votre commune, le type de bâtiment et la nature de la panne."),
         (f"Comment obtenir un devis à {name} ?", f"Par téléphone au {PHONE_DISP} ou via la page contact : décrivez le bâtiment, la localisation et le type de travaux (installation, maintenance ou dépannage)."),
     ]
@@ -532,7 +544,7 @@ def chauffagiste_local_block():
         ("Vaud", "/vaud/"),
         ("Neuchâtel", "/neuchatel/"),
     )
-    pills = "".join(f'<a class="zone-pill" href="{href}">Chauffagiste {label}</a>' for label, href in links)
+    pills = "".join(f'<a class="zone-pill" href="{href}">{label}</a>' for label, href in links)
     return f"""<h3>Chauffagiste près de chez vous</h3>
 <p>Vous cherchez un chauffagiste à Nyon, Lausanne, Genève, Romont ou ailleurs en Suisse romande ? Nous intervenons pour l'installation, l'entretien et le dépannage — pompes à chaleur, chaudières et réseaux de chauffage.</p>
 <div class="zone-links">{pills}</div>
@@ -1741,11 +1753,11 @@ def zone_proof_quote():
 </figure>"""
 
 
-def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, related_zones, hero_sub=None):
+def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, related_zones, hero_sub=None, local_heading=None):
     """Page zone mobile-first : hero, local+preuve, actions, FAQ+CTA."""
     url = f"/{slug}/"
     crumbs = [("Accueil", "/"), ("Zones d'intervention", "/zones-intervention/"), (name, url)]
-    sub = hero_sub or f"Chauffagiste et CVCS dans {region}. Appelez le {PHONE_DISP} pour un devis ou un dépannage."
+    sub = hero_sub or f"Bâti et cadre énergétique dans {region}. Appelez le {PHONE_DISP} pour vérifier la disponibilité."
     hero = page_hero(
         "Zone d'intervention",
         h1,
@@ -1774,7 +1786,7 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
 {mobile_quick_bar(sticky=True)}
 <section class="content-section zone-local" aria-labelledby="local-title">
   <div class="container prose-block">
-    <h2 class="section-title" id="local-title">Interventions dans {region}</h2>
+    <h2 class="section-title" id="local-title">{local_heading or f"Interventions dans {region}"}</h2>
     {local_text}
     {zone_proof_quote()}
     <p class="geo-local-note">Siège à <strong>{ADDRESS_FULL}</strong> — équipe mobile. <a href="tel:{PHONE}" class="track-phone">Appelez le {PHONE_DISP}</a> pour vérifier la disponibilité à {name}.</p>
@@ -1922,7 +1934,7 @@ def build_home():
   <div class="container hero-inner">
     <div class="hero-content">
       <p class="hero-eyebrow">Suisse romande</p>
-      <h1 id="hero-h1">Chauffage, ventilation, climatisation et sanitaire.</h1>
+      <h1 id="hero-h1">Chauffage, ventilation, climatisation et sanitaire en Suisse romande.</h1>
       <p class="hero-sub">Projets CVCS de l'étude à la réalisation — villas, immeubles et appels d'offres en Suisse romande.</p>
       <div class="hero-ctas">
         <a href="/contact/#contact-form" class="btn btn-brand btn-brand--on-dark track-devis">Demander un devis</a>
@@ -2047,9 +2059,7 @@ def build_zones_hub():
         ("Avez-vous une agence dans chaque canton ?", f"Non. Nos interventions sont assurées par une équipe mobile depuis notre <a href=\"/romont/\">siège à {ADDRESS_LOCALITY}</a>."),
     ]
     def _zone_hub_blurb(z, r):
-        if z == "vaud":
-            return "Chauffagiste dans le canton de Vaud"
-        return f"Interventions CVCS dans {r}"
+        return f"Bâti et cadre énergétique : {r}"
 
     cards = "".join(
         f'<a class="hub-card" href="/{z}/"><h3>{n}</h3><p>{_zone_hub_blurb(z, r)}</p>'
@@ -2706,7 +2716,7 @@ def _premium_service_configs():
                 "de l'étude à la réalisation. Nous concevons des installations de chauffage "
                 "performantes et adaptées à chaque projet, en intégrant les exigences techniques, "
                 "énergétiques et réglementaires — villas, PPE, immeubles et appels d'offres. "
-                'Installation et dépannage, notamment comme <a href="/vaud/">chauffagiste Vaud</a>.'
+                'Installation et dépannage. Le cadre cantonal est décrit sur les pages de zones, par exemple <a href="/vaud/">le canton de Vaud</a>.'
             ),
             "problems_title": "Conception chauffage",
             "problems_lead": (
@@ -3187,142 +3197,487 @@ SUBSIDY_NOTE = (
 
 
 def build_zones():
-    p = lambda t: f"<p>{t}</p>"
-    zone_page("geneve", "Genève", "la région de Genève",
-        PAGE_TITLES["geneve"],
-        META_DESCRIPTIONS["geneve"],
-        "Chauffagiste et CVCS dans la région de Genève",
-        p("Vous cherchez un chauffagiste à Genève ? Le canton présente un parc bâti dense — immeubles, PPE, commerces et tertiaire — avec des contraintes techniques variées (chauffage à distance, GeniLac, remplacement des chauffages fossiles).") +
-        p('Contactez-nous pour vérifier la disponibilité d\'intervention dans votre secteur. Le canton voisin est décrit à part : <a href="/vaud/">Morges, Riviera, Chablais et Nord vaudois</a>.') +
-        communes_block(["Genève", "Vernier", "Lancy", "Meyrin", "Carouge", "Onex", "Thônex", "Plan-les-Ouates", "Veyrier", "Grand-Saconnex", "Chêne-Bougeries", "Confignon"]) +
-        SUBSIDY_NOTE.format(extra="À Genève, les demandes passent par l'Office cantonal de l'énergie (OCEN) et peuvent se combiner avec le programme SIG-éco21 des Services industriels de Genève."),
-        zone_aeo_faq("Genève", "la région de Genève") + [
-            ("Existe-t-il des aides pour rénover le chauffage à Genève ?", "Oui, via le Programme Bâtiments et le programme SIG-éco21 (Services industriels de Genève), sous conditions d'éligibilité et selon le barème en vigueur. Contactez-nous pour évaluer votre projet."),
-        ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "nyon", "lausanne"],
-        hero_sub=f"Chauffagiste et CVCS à Genève. Appelez le {PHONE_DISP} pour un devis ou un dépannage.")
+    """Pages de zones différenciées : bâti et droit cantonal publics, sans commune desservie inventée."""
 
-    vaud_faq = zone_aeo_faq("Vaud", "le canton de Vaud")
-    vaud_faq[0] = (
-        "Qui appeler pour un chauffagiste à Vaud ?",
-        f"{COMPANY_NAME} intervient comme chauffagiste à Morges, à Yverdon-les-Bains, sur la Riviera (Vevey, Montreux), dans le Chablais et le Nord vaudois : installation, entretien et dépannage de chaudières et pompes à chaleur. Appelez le {PHONE_DISP} ou passez par la page contact.",
-    )
-    vaud_faq[1] = (
-        "Qui appeler pour un dépannage CVCS à Vaud ?",
-        f'Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp. Indiquez votre commune, le type de bâtiment et la nature de la panne. Pour <a href="/lausanne/">Lausanne</a>, <a href="/nyon/">Nyon</a> ou <a href="/geneve/">Genève</a>, la page de la ville précise l\'intervention locale.',
-    )
-    zone_page("vaud", "Vaud", "le canton de Vaud",
-        PAGE_TITLES["vaud"],
-        META_DESCRIPTIONS["vaud"],
-        "Chauffagiste dans le canton de Vaud",
-        p("Chauffagiste dans le canton de Vaud : district de Morges, Nord vaudois (Yverdon-les-Bains), Riviera (Vevey, Montreux) et Chablais (Aigle). Du villa à l'immeuble locatif ou PPE, selon l'altitude et l'exposition.") +
-        p("À Yverdon-les-Bains et dans les zones d'activité du Nord vaudois, comme sur la Riviera, nous intervenons aussi pour le CVC et le sanitaire (plomberie) en bâtiments tertiaires, ateliers et halls — pas uniquement en habitat.") +
-        p("Pour les communes hors de ces axes, contactez-nous afin de confirmer la faisabilité.") +
-        p('Lausanne, Nyon, Genève et le canton de Fribourg ont une page dédiée : '
-          '<a href="/lausanne/">chauffagiste, chauffage et dépannage à Lausanne</a> · '
-          '<a href="/nyon/">climatisation et chauffage à Nyon</a> · '
-          '<a href="/geneve/">chauffage et chauffagiste à Genève</a> · '
-          '<a href="/fribourg/">chauffagiste à Fribourg</a>.') +
-        communes_block(["Morges", "Yverdon-les-Bains", "Vevey", "Montreux", "Aigle", "Payerne", "Echallens", "Cossonay", "Orbe"]) +
-        SUBSIDY_NOTE.format(extra="Dans le canton de Vaud, les demandes sont instruites par la Direction générale de l'environnement (DGE) / Direction de l'énergie."),
-        vaud_faq + [
-            ("Le canton de Vaud subventionne-t-il les pompes à chaleur ?", "Oui, sous conditions, dans le cadre du Programme Bâtiments géré par la Direction de l'énergie du canton de Vaud. Les certificats de qualité requis (PAC système-module) et les barèmes évoluent chaque année : vérifiez les conditions en vigueur avant de commander votre matériel."),
-        ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["lausanne", "nyon", "geneve", "fribourg"],
-        hero_sub=f"Morges, Yverdon, Riviera, Chablais et Nord vaudois. Appelez le {PHONE_DISP} pour un devis ou un dépannage.")
+    def p(t):
+        return f"<p>{t}</p>"
 
-    zone_page("lausanne", "Lausanne", "Lausanne et environs",
-        PAGE_TITLES["lausanne"],
-        META_DESCRIPTIONS["lausanne"],
-        "Chauffagiste à Lausanne : dépannage chauffage et CVCS",
-        p("Vous cherchez un chauffagiste à Lausanne ? L'agglomération concentre immeubles, tertiaire et parc ancien — souvent à adapter lors d'une rénovation. Une partie de la ville est desservie par le chauffage à distance (SiL).") +
-        p('Nous intervenons aussi en dépannage chauffage. Pour la climatisation ou une pompe à chaleur, voir <a href="/climatisation/">climatisation</a> et <a href="/chauffage/">chauffage</a>. Pour Morges, Yverdon, la Riviera ou le Chablais, voir le <a href="/vaud/">reste du canton de Vaud</a>.') +
-        communes_block(["Renens", "Prilly", "Le Mont-sur-Lausanne", "Épalinges", "Pully", "Chavannes-près-Renens", "Ecublens", "Crissier"]) +
-        SUBSIDY_NOTE.format(extra="Les demandes pour l'agglomération lausannoise sont instruites par la Direction de l'énergie du canton de Vaud."),
-        zone_aeo_faq("Lausanne", "Lausanne et environs") + [
-            ("Proposez-vous le dépannage chauffage à Lausanne ?", f"Oui. Appelez {COMPANY_NAME} au {PHONE_DISP} en indiquant votre adresse lausannoise et le type de panne (chaudière, PAC, radiateurs)."),
-            ("Mon immeuble est raccordé au chauffage à distance (CAD), intervenez-vous quand même ?", "Oui : nous intervenons sur les sous-stations, la distribution interne (radiateurs, vannes, régulation) et les réseaux sanitaires, même si la production de chaleur est assurée par un réseau CAD."),
-        ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["nyon", "vaud", "geneve"],
-        hero_sub=f"Chauffagiste et dépannage à Lausanne. Appelez le {PHONE_DISP}.")
+    def subsidy(body):
+        return (
+            '<details class="zone-details zone-details--subsidy">'
+            "<summary>Aides et subventions</summary>"
+            '<div class="zone-details__body">'
+            f"<p>{body}</p>"
+            "</div></details>"
+        )
 
-    zone_page("nyon", "Nyon", "la région de Nyon",
-        PAGE_TITLES["nyon"],
-        META_DESCRIPTIONS["nyon"],
-        "Climatisation et chauffagiste à Nyon",
-        p("Climatisation à Nyon et chauffagiste local : la région combine constructions récentes (villas, PPE autour du lac) et bâti plus ancien dans les villages. Standards énergétiques élevés (Minergie) fréquents sur les neuves.") +
-        p('Nous installons et entretenons la climatisation (split, multi-split, PAC air-air) ainsi que le chauffage (pompes à chaleur, chaudières) à Nyon, Gland, Rolle, Coppet et environs. Demandez un devis via les pages <a href="/climatisation/">climatisation</a> ou <a href="/chauffage/">chauffage</a>, ou par téléphone. Pour Morges, la Riviera, le Chablais et le Nord vaudois, voir les <a href="/vaud/">autres secteurs vaudois</a>.') +
-        communes_block(["Gland", "Rolle", "Prangins", "Founex", "Coppet", "Genolier", "Duillier", "Trélex"]) +
-        SUBSIDY_NOTE.format(extra="La région de Nyon dépend du barème et du guichet du canton de Vaud (Direction de l'énergie)."),
-        zone_aeo_faq("Nyon", "la région de Nyon") + [
-            ("Installez-vous la climatisation à Nyon ?", f"Oui. {COMPANY_NAME} étudie et installe la climatisation à Nyon et communes voisines (Gland, Rolle, Coppet…). Devis via la page contact ou au {PHONE_DISP}."),
-            ("Intervenez-vous sur des bâtiments Minergie récents ?", "Oui. Les constructions Minergie demandent une ventilation mécanique contrôlée bien réglée et un entretien régulier : nous pouvons intervenir sur ces installations comme sur du bâti plus ancien."),
-        ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["geneve", "lausanne", "vaud"],
-        hero_sub=f"Climatisation et chauffagiste à Nyon — devis ou appel au {PHONE_DISP}.")
+    def pending(name):
+        return (
+            f"<!-- [à compléter] {name} : communes réellement desservies, "
+            "chantiers, références et certifications. Ne publier que des faits "
+            f"confirmés par {COMPANY_NAME}. -->"
+        )
 
-    zone_page("valais", "Valais", "le canton du Valais",
-        PAGE_TITLES["valais"],
-        META_DESCRIPTIONS["valais"],
-        "Chauffagiste en Valais : chauffage, CVCS et climatisation",
-        p("Chauffagiste en Valais : de la plaine du Rhône (Sion, Martigny, Monthey, Sierre) aux stations, l'altitude influence le dimensionnement du chauffage. Résidences secondaires et chalets demandent souvent une attention hors gel / remise en service.") +
-        p("À Monthey et dans les zones d'activité de la plaine, nous intervenons aussi pour le CVC et le sanitaire (plomberie) en bâtiments tertiaires, ateliers et halls.") +
-        p("Contactez-nous avec votre commune pour vérifier la disponibilité.") +
-        communes_block(["Sion", "Martigny", "Monthey", "Sierre", "Crans-Montana", "Verbier", "Saint-Maurice", "Conthey"]) +
-        SUBSIDY_NOTE.format(extra="En Valais, les demandes sont instruites par le Service de l'énergie et des forces hydrauliques (SEFH) de l'État du Valais."),
-        zone_aeo_faq("Valais", "le canton du Valais") + [
-            ("Intervenez-vous sur un chalet ou une résidence secondaire ?", "Oui, en tenant compte des contraintes propres à ces logements (occupation partielle, altitude, risque de gel). Précisez l'altitude et le mode d'occupation lors de votre demande."),
-        ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav", "sprinkler-protection-incendie"], ["geneve", "vaud", "fribourg"],
-        hero_sub=f"Chauffagiste en Valais. Appelez le {PHONE_DISP} pour un devis ou un dépannage.")
-
-    zone_page("fribourg", "Fribourg", "le canton de Fribourg",
-        PAGE_TITLES["fribourg"],
-        META_DESCRIPTIONS["fribourg"],
-        "Chauffagiste dans le canton de Fribourg",
-        p(f'Chauffagiste dans le canton de Fribourg : Fribourg-ville, Gruyère, Broye et Glâne. Notre <a href="/romont/">siège est à Romont</a> ({ADDRESS_LOCALITY}) — équipe mobile sur tout le canton.') +
-        p('Précisez la commune et l\'urgence lors du premier contact. Canton limitrophe : <a href="/vaud/">Morges, Riviera et Nord vaudois</a>.') +
-        communes_block(["Fribourg", "Bulle", "Châtel-Saint-Denis", "Estavayer-le-Lac", "Domdidier", "Marly", "Villars-sur-Glâne", "Romont"]) +
-        SUBSIDY_NOTE.format(extra="Dans le canton de Fribourg, les demandes sont instruites par le Service de l'énergie (SdE)."),
-        zone_aeo_faq("Fribourg", "le canton de Fribourg") + [
-            ("Où se trouve le siège de Sopjani-tech Sàrl ?", f'À <a href="/romont/">{ADDRESS_FULL}</a>, dans le district de la Glâne. La page Romont détaille nos prestations CVCS locales.'),
-        ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["romont", "vaud", "lausanne", "neuchatel"],
-        hero_sub=f"Chauffagiste dans le canton de Fribourg. Appelez le {PHONE_DISP}.")
-
-    zone_page("romont", "Romont", "Romont et la Glâne",
-        PAGE_TITLES["romont"],
-        META_DESCRIPTIONS["romont"],
-        "Siège Sopjani-tech à Romont — chauffage, ventilation, clim et sanitaire",
-        p(f'<strong>{COMPANY_NAME}</strong> a son siège à <a href="{MAP_URL}" target="_blank" rel="noopener noreferrer">{ADDRESS_FULL}</a>. Depuis Romont, nous répondons aux demandes de devis et d\'appels d\'offres en chauffage, ventilation, climatisation, sanitaire et dépannage SAV — villas, immeubles, PPE, entreprises et collectivités.') +
-        p(f'Téléphone <a href="tel:{PHONE}" class="track-phone">{PHONE_DISP}</a> · <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a> · Horaires {HOURS}.') +
-        p('Prestations locales : <a href="/chauffage/">chauffage</a>, <a href="/ventilation/">ventilation</a>, <a href="/climatisation/">climatisation</a>, <a href="/sanitaire/">sanitaire</a> et <a href="/depannage-sav/">dépannage SAV</a>. Pour le canton élargi, voir aussi <a href="/fribourg/">chauffagiste Fribourg</a>.') +
-        p('Activité complémentaire : exécution sprinkler en <a href="/sprinkler-protection-incendie/">sous-traitance spécialisée</a>, selon mandat.') +
-        communes_block(["Romont", "Siviriez", "Ursy", "Mézières", "Vuisternens-devant-Romont", "Billens-Hennens", "Massonnens", "Villaz-Saint-Pierre"]) +
-        SUBSIDY_NOTE.format(extra="À Romont et dans la Glâne, les demandes d'aides passent par le Service de l'énergie (SdE) du canton de Fribourg."),
+    zone_page(
+        "geneve", "Genève", "la région de Genève",
+        PAGE_TITLES["geneve"], META_DESCRIPTIONS["geneve"], ZONE_H1["geneve"],
+        pending("Genève")
+        + p(
+            "Le canton de Genève est un territoire urbain serré. L'habitation collective, "
+            "les PPE et les immeubles tertiaires y occupent le devant de la scène, et la vieille "
+            "ville laisse peu de volume pour une chaufferie ou un groupe posé en façade."
+        )
+        + p(
+            "Deux réseaux des Services industriels de Genève structurent la production. "
+            "GeniTerre livre de la chaleur. GeniLac livre du chaud et du froid produits avec "
+            "l'eau du Léman. Depuis le 1<sup>er</sup> janvier 2025, un bâtiment situé dans la "
+            "zone d'influence d'un <a href=\"https://www.ge.ch/installer-remplacer-chauffage/reseaux-thermiques-structurants-rts\" "
+            "target=\"_blank\" rel=\"noopener noreferrer\">réseau thermique structurant</a> doit "
+            "s'y raccorder lorsqu'on installe ou que l'on renouvelle sa production de chaleur, "
+            "sauf dérogation de l'Office cantonal de l'énergie (OCEN). Le texte de base est la "
+            "loi cantonale sur l'énergie du 18 septembre 1986 (LEn, rsGE L 2 30), notamment "
+            "son article 22, complétée par le règlement d'application (REn)."
+        )
+        + p(
+            "Une fois le point de livraison passé, le travail se joue dans l'immeuble : "
+            "émetteurs, régulation, eau chaude, et, sur GeniLac, des températures de départ "
+            "plafonnées par la directive technique des SIG. Ces sujets relèvent du "
+            '<a href="/chauffage/">chauffage</a>, de la <a href="/climatisation/">climatisation</a> '
+            'et du <a href="/sanitaire/">sanitaire</a>. L\'emprise du réseau se lit sur le plan '
+            "directeur des énergies de réseau. Elle ne vaut pas liste de communes couvertes "
+            "par l'entreprise."
+        )
+        + subsidy(
+            "À Genève, l'OCEN instruit les demandes d'aide avant le début des travaux. "
+            "Le programme SIG-éco21 des Services industriels peut s'y combiner. Aucun montant "
+            "n'est repris sur cette page : le barème de l'année se vérifie auprès du canton."
+        ),
         [
-            (f"Qui appeler pour un chauffagiste à Romont ?", f"{COMPANY_NAME} est basée à Romont : installation, entretien et dépannage de chaudières et pompes à chaleur. Appelez le {PHONE_DISP} ou passez par la page contact."),
-            (f"Qui appeler pour un dépannage CVCS à Romont ?", f"Contactez {COMPANY_NAME} au {PHONE_DISP}, par email ({EMAIL}) ou WhatsApp. Indiquez l'adresse à Romont ou dans la Glâne, le type de bâtiment et la nature de la panne."),
-            ("Comment obtenir un devis à Romont ?", f"Par téléphone au {PHONE_DISP} ou via la <a href=\"/contact/#contact-form\">page contact</a> : décrivez le bâtiment, la localisation et le type de travaux (installation, maintenance ou dépannage)."),
-            ("Intervenez-vous aussi ailleurs dans le canton de Fribourg ?", f'Oui. Pour le canton (Fribourg-ville, Gruyère, Broye…), voir la page <a href="/fribourg/">chauffagiste Fribourg</a>. Le siège et les interventions locales Glâne sont détaillés ici.'),
-            ("Proposez-vous aussi le sprinkler ?", "Oui, en sous-traitance spécialisée selon le mandat — ce n'est pas notre canal commercial principal. Pour un devis CVCS (chauffage, clim, ventilation, sanitaire, dépannage), contactez-nous directement."),
+            (
+                "Peut-on remplacer une chaudière genevoise sans se raccorder à un réseau ?",
+                "Pas librement si le bâtiment est dans la zone d'influence d'un réseau thermique "
+                "structurant : le raccordement est alors la règle, après une demande d'information "
+                "thermique auprès des SIG. L'OCEN peut déroger dans les cas que la loi prévoit. "
+                "Hors de cette zone, c'est la LEn qui fixe les exigences de production de chaleur.",
+            ),
+            (
+                "GeniLac et GeniTerre demandent-ils la même installation dans l'immeuble ?",
+                "Non. GeniTerre livre de la chaleur. GeniLac livre du chaud et du froid, avec des "
+                "plafonds de température décrits dans la directive technique des SIG. Le circuit "
+                "du bâtiment (émetteurs, régulation, eau chaude) doit accepter ces niveaux.",
+            ),
+            (
+                "Qui instruit l'énergie des bâtiments à Genève ?",
+                "L'Office cantonal de l'énergie (OCEN), au titre de la loi sur l'énergie "
+                "(rsGE L 2 30). Une aide, lorsqu'elle existe, se demande avant les travaux.",
+            ),
         ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["fribourg", "vaud", "neuchatel"],
-        hero_sub=f"Siège à Romont — devis et dépannage. Appelez le {PHONE_DISP}.")
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
+        ["vaud", "nyon", "lausanne"],
+        hero_sub=f"Immeubles, GeniLac et GeniTerre. Disponibilité au {PHONE_DISP}.",
+        local_heading="Immeubles collectifs et réseaux GeniLac / GeniTerre",
+    )
 
-    zone_page("neuchatel", "Neuchâtel", "le canton de Neuchâtel",
-        PAGE_TITLES["neuchatel"],
-        META_DESCRIPTIONS["neuchatel"],
-        "Chauffagiste à Neuchâtel et La Chaux-de-Fonds",
-        p("Chauffagiste dans le canton de Neuchâtel : du littoral du lac aux hauteurs du Jura (La Chaux-de-Fonds, Le Locle). Immeubles, villas et bâtiments industriels ou horlogers.") +
-        p("Contactez-nous en précisant votre commune pour vérifier la disponibilité.") +
-        communes_block(["Neuchâtel", "La Chaux-de-Fonds", "Le Locle", "Peseux", "Boudry", "Cortaillod", "Saint-Blaise", "Val-de-Ruz"]) +
-        SUBSIDY_NOTE.format(extra="Dans le canton de Neuchâtel, les demandes sont instruites par le Service de l'énergie et de l'environnement (SENE)."),
-        zone_aeo_faq("Neuchâtel", "le canton de Neuchâtel") + [
-            ("Intervenez-vous à La Chaux-de-Fonds et dans le Haut ?", "Oui, sous réserve de planification. Précisez l'adresse et l'urgence lors du premier contact."),
+    zone_page(
+        "vaud", "Vaud", "le canton de Vaud",
+        PAGE_TITLES["vaud"], META_DESCRIPTIONS["vaud"], ZONE_H1["vaud"],
+        pending("Vaud")
+        + p(
+            "Vaud n'est pas une agglomération unique. Le plateau, le pied du Jura, les Préalpes "
+            "et les rives du Léman se succèdent. L'altitude de calcul d'un "
+            '<a href="/chauffage/">chauffage</a> change avec le site. Le texte légal, lui, est cantonal.'
+        )
+        + p(
+            "La loi sur l'énergie aujourd'hui en vigueur le reste jusqu'au 31 décembre 2026. "
+            "Le Grand Conseil a adopté le 3 février 2026 la nouvelle loi vaudoise sur l'énergie "
+            "(LVLEne). Elle prend effet le 1<sup>er</sup> janvier 2027, en même temps que son "
+            "règlement (RLVLEne), adopté par le Conseil d'État le 7 octobre 2026. La Direction "
+            "de l'énergie (DGE-DIREN), rattachée à la Direction générale de l'environnement, "
+            "est l'autorité de contact. Les prescriptions de bâtiment s'inscrivent dans le "
+            "Modèle de prescriptions énergétiques des cantons (MoPEC), préparé par la Conférence "
+            "des directeurs cantonaux de l'énergie : le modèle propose, le canton décide. "
+            'Le détail est sur <a href="https://www.vd.ch/environnement/energie/legislation" '
+            'target="_blank" rel="noopener noreferrer">la page officielle de la législation vaudoise</a>.'
+        )
+        + p(
+            "Lausanne et Nyon ont une page à part : leur tissu bâti et leurs réseaux de chaleur "
+            "ne ressemblent pas au reste du territoire. Ici, il s'agit du cadre commun, pour une "
+            "villa, un immeuble ou un bâtiment d'activité situés hors de ces deux pages. Aucune "
+            "commune n'y est annoncée comme desservie."
+        )
+        + subsidy(
+            "Le guichet vaudois est la Direction de l'énergie (DGE-DIREN). Un dossier d'aide "
+            "se dépose avant d'engager le chantier. Les barèmes annuels se contrôlent sur "
+            "leprogrammebatiments.ch. Cette page n'en publie aucun."
+        ),
+        [
+            (
+                "La LVLEne s'applique-t-elle déjà dans le canton de Vaud ?",
+                "Non, selon l'État de Vaud : la loi actuelle court jusqu'au 31 décembre 2026. "
+                "La LVLEne et le RLVLEne prennent effet le 1er janvier 2027. La date qui compte "
+                "pour un dossier se confirme auprès de la Direction de l'énergie.",
+            ),
+            (
+                "Le MoPEC est-il la loi du canton de Vaud ?",
+                "Non. C'est un modèle intercantonal. Vaud le transpose dans sa loi et son règlement. "
+                "Un projet identique déposé à Genève ne suit donc pas le même article.",
+            ),
+            (
+                "Où s'adresse une demande d'aide pour un chauffage vaudois ?",
+                "À la Direction de l'énergie, avant le début des travaux. Les conditions de l'année "
+                "priment sur tout résumé. Aucun montant n'est indiqué ici.",
+            ),
         ],
-        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"], ["vaud", "fribourg", "geneve"],
-        hero_sub=f"Chauffagiste à Neuchâtel et La Chaux-de-Fonds. Appelez le {PHONE_DISP}.")
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
+        ["lausanne", "nyon", "geneve", "fribourg"],
+        hero_sub=f"Loi vaudoise en vigueur, puis LVLEne en 2027. Appel au {PHONE_DISP}.",
+        local_heading="Plateau, Jura et Préalpes sous une seule loi",
+    )
+
+    zone_page(
+        "lausanne", "Lausanne", "Lausanne et environs",
+        PAGE_TITLES["lausanne"], META_DESCRIPTIONS["lausanne"], ZONE_H1["lausanne"],
+        pending("Lausanne")
+        + p(
+            "Lausanne n'édicte pas sa propre loi sur l'énergie. Le régime est celui du canton, "
+            'expliqué sur la page <a href="/vaud/">Vaud</a>, y compris la bascule de 2027. '
+            "Ce qui distingue la ville, c'est le chauffage à distance des Services industriels "
+            "(SiL), développé par la municipalité depuis 1934, et un parc d'immeubles posé en "
+            "terrasses : locatif, tertiaire, constructions plus anciennes sur les collines."
+        )
+        + p(
+            "Dans les conditions publiées par les SiL, le réseau primaire s'arrête à l'échangeur, "
+            "dans le bâtiment. Au-delà, radiateurs, plancher, vannes, régulation et eau chaude "
+            "appartiennent à l'immeuble. Se raccorder ne fait donc pas disparaître le "
+            '<a href="/chauffage/">chauffage</a> interne ni le <a href="/sanitaire/">sanitaire</a>. '
+            "Les SiL publient des seuils d'éligibilité (consommation annuelle et densité énergétique "
+            "du branchement) et rappellent qu'atteindre ces seuils ne crée pas, à lui seul, un "
+            'droit au raccordement. Source : <a href="https://www.lausanne.ch/vie-pratique/energies-et-eau/services-industriels/professionnels/les-offres/chaleur.html" '
+            'target="_blank" rel="noopener noreferrer">l\'offre de chaleur des SiL</a>.'
+        )
+        + p(
+            "La <a href=\"/ventilation/\">ventilation</a> d'un immeuble collectif et la "
+            '<a href="/climatisation/">climatisation</a> d\'un local tertiaire se jugent en plus '
+            "au regard de la loi cantonale. Les documents des SiL décrivent l'emprise de leur "
+            "réseau. Cette emprise n'est pas une zone d'intervention de l'entreprise, et aucune "
+            "commune n'est listée ici comme couverte."
+        )
+        + subsidy(
+            "Une aide éventuelle suit le guichet vaudois, pas un guichet de la Ville. "
+            "Le contrat de chaleur des SiL est une fourniture d'énergie. Il ne se confond pas "
+            "avec une subvention cantonale."
+        ),
+        [
+            (
+                "Un immeuble déjà relié aux SiL a-t-il encore un circuit de chauffage ?",
+                "Oui. Les SiL amènent la chaleur jusqu'à l'échangeur. Le circuit secondaire, "
+                "les émetteurs et l'eau chaude dans le bâtiment se traitent à part.",
+            ),
+            (
+                "Lausanne possède-t-elle une loi énergétique municipale distincte ?",
+                "Non. Le cadre est cantonal. La ville s'en distingue par l'exploitant de chaleur, "
+                "les SiL, et par un tissu urbain continu en pente.",
+            ),
+            (
+                "Tout bâtiment lausannois peut-il exiger un raccordement au réseau ?",
+                "Non. La directive des SiL fixe des seuils, et les services peuvent refuser un "
+                "branchement même lorsque ces seuils sont atteints. La faisabilité se leur demande. "
+                "Cette page ne la garantit pas.",
+            ),
+        ],
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
+        ["nyon", "vaud", "geneve"],
+        hero_sub=f"Sous-station SiL et circuit de l'immeuble. Appel au {PHONE_DISP}.",
+        local_heading="Échangeur des SiL et distribution dans l'immeuble",
+    )
+
+    zone_page(
+        "nyon", "Nyon", "la région de Nyon",
+        PAGE_TITLES["nyon"], META_DESCRIPTIONS["nyon"], ZONE_H1["nyon"],
+        pending("Nyon")
+        + p(
+            "Nyon et La Côte sont en droit vaudois : même autorité, même calendrier législatif "
+            "que le reste du canton. Le bâti, lui, n'est pas celui de Lausanne. Au bord du lac, "
+            "des villas et des PPE récentes côtoient des villages aux maisons plus anciennes."
+        )
+        + p(
+            "La Municipalité et les SI Nyon ont créé "
+            '<a href="https://www.thermoreso-nyon.ch/" target="_blank" rel="noopener noreferrer">ThermorésÔ Nyon</a>, '
+            "société de réseau urbain de chaleur. Le projet publié démarre au bois de la région "
+            "et prévoit d'y ajouter la géothermie d'EnergeÔ La Côte ainsi que l'eau du lac. "
+            "Il vise d'abord l'habitat collectif. Une villa hors de ce tracé reste sur une "
+            "production propre, souvent une pompe à chaleur, dans le cadre du "
+            '<a href="/chauffage/">chauffage</a> cantonal. La <a href="/climatisation/">climatisation</a> '
+            "d'une maison ou d'un petit local tertiaire n'est pas fournie par ce réseau."
+        )
+        + p(
+            "Minergie est un label volontaire, pas la loi vaudoise. Quand un projet le vise, "
+            "la <a href=\"/ventilation/\">ventilation</a> mécanique entre dans le dossier du label. "
+            "Cette page ne prétend pas connaître la part de maisons labellisées, ni les communes "
+            "où l'entreprise se déplace."
+        )
+        + subsidy(
+            "L'encouragement financier est celui du canton de Vaud, décrit sur la page homonyme. "
+            "Un raccordement à ThermorésÔ est un contrat de réseau. Ce n'est pas une subvention."
+        ),
+        [
+            (
+                "ThermorésÔ remplace-t-il les règles vaudoises à Nyon ?",
+                "Non. C'est un réseau communal, présenté par la Ville et les SI Nyon. L'enveloppe "
+                "du bâtiment et le renouvellement d'une production de chaleur restent du ressort "
+                "du canton, puis de la LVLEne à la date que l'État de Vaud a publiée.",
+            ),
+            (
+                "Une villa de La Côte est-elle concernée par ce réseau de chaleur ?",
+                "Seulement si elle se trouve sur le tracé publié. ThermorésÔ indique viser en "
+                "priorité les logements collectifs. Une maison hors tracé se traite comme une "
+                "production autonome.",
+            ),
+            (
+                "Minergie impose-t-il une ventilation double flux à Nyon ?",
+                "Non, tant que le label n'est pas visé. Minergie n'est pas une obligation cantonale. "
+                "S'il est recherché, le concept de ventilation suit son cahier. Sinon, ce sont la "
+                "loi vaudoise et les normes SIA du projet.",
+            ),
+        ],
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
+        ["geneve", "lausanne", "vaud"],
+        hero_sub=f"Villas de La Côte et réseau ThermorésÔ. Appel au {PHONE_DISP}.",
+        local_heading="Villas de La Côte et réseau ThermorésÔ",
+    )
+
+    zone_page(
+        "valais", "Valais", "le canton du Valais",
+        PAGE_TITLES["valais"], META_DESCRIPTIONS["valais"], ZONE_H1["valais"],
+        pending("Valais")
+        + p(
+            "Le Valais a adopté sa loi sur l'énergie (LcEne) le 8 septembre 2023. Elle est en "
+            "vigueur depuis le 1<sup>er</sup> janvier 2025, avec une ordonnance d'application. "
+            "Le Service de l'énergie et des forces hydrauliques (SEFH) préavise les autorisations "
+            "de construire lorsqu'une production de chaleur utilise encore un agent fossile."
+        )
+        + p(
+            "La règle publiée par l'État pour le remplacement d'une chaudière à mazout ou à gaz "
+            "demande de privilégier une production renouvelable. Une chaudière fossile reste "
+            "possible si les besoins de chaleur (chauffage et eau chaude) diminuent d'au moins "
+            "20 %, ou si le bâtiment atteint la classe D du CECB, ou mieux. Le modèle "
+            "intercantonal de 2014 évoque de son côté un équivalent d'au moins 10 % d'énergie "
+            "renouvelable, avec des exemptions et des solutions standard. Ce ne sont pas les "
+            "mêmes phrases, ni le même seuil. Le chiffre de 20 % est celui du "
+            '<a href="https://www.vs.ch/web/energie/nouvelle-l%C3%A9gislation-sur-l-%C3%A9nergie" '
+            'target="_blank" rel="noopener noreferrer">texte valaisan</a>, pas une moyenne de chantiers.'
+        )
+        + p(
+            "La géographie ajoute une contrainte que la plaine et les coteaux ne partagent pas. "
+            "En altitude, le hors-gel et l'occupation partielle des résidences secondaires pèsent "
+            'sur le <a href="/chauffage/">chauffage</a>. Dans la plaine du Rhône, l\'immeuble et '
+            "le bâtiment d'activité sont plus présents. Aucune station et aucune commune ne sont "
+            "citées ici comme secteur couvert."
+        )
+        + subsidy(
+            "La LcEne charge le département, et par délégation le SEFH, de fixer les conditions "
+            "des aides financières. Le barème se lit auprès de l'État du Valais. Il n'est pas recopié ici."
+        ),
+        [
+            (
+                "Peut-on reposer une chaudière à mazout en Valais ?",
+                "Seulement dans le cadre publié par le canton : baisse d'au moins 20 % des besoins "
+                "de chaleur, ou classe CECB D ou meilleure. Sinon, la loi oriente vers une production "
+                "renouvelable. Le SEFH préavise les dossiers fossiles.",
+            ),
+            (
+                "Le seuil de 10 % du modèle de 2014 est-il celui du Valais ?",
+                "Non. Le modèle intercantonal et la LcEne ne formulent pas la même exigence. "
+                "Pour une chaudière fossile encore admise, le canton publie une réduction d'au "
+                "moins 20 % des besoins, ou une classe CECB D ou meilleure.",
+            ),
+            (
+                "En quoi l'altitude modifie-t-elle un projet de chauffage valaisan ?",
+                "La température de dimensionnement et le risque de gel ne sont pas ceux de la plaine. "
+                "Une résidence occupée une partie de l'année n'a pas le même maintien hors gel "
+                "qu'un logement permanent. Ce sont des données de site à fournir avec la demande, "
+                "pas des références de travaux.",
+            ),
+        ],
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
+        ["geneve", "vaud", "fribourg"],
+        hero_sub=f"LcEne depuis 2025, plaine et altitude. Appel au {PHONE_DISP}.",
+        local_heading="Plaine du Rhône, altitude et loi LcEne",
+    )
+
+    zone_page(
+        "fribourg", "Fribourg", "le canton de Fribourg",
+        PAGE_TITLES["fribourg"], META_DESCRIPTIONS["fribourg"], ZONE_H1["fribourg"],
+        pending("Fribourg")
+        + p(
+            "Le canton de Fribourg applique la loi sur l'énergie (LEn) du 9 juin 2000, dans sa "
+            "teneur en vigueur au 1<sup>er</sup> juin 2023. Le Service de l'énergie (SdE) en est "
+            "l'organe d'exécution. Les justificatifs s'appuient sur la norme SIA 380/1 et sur le "
+            "MoPEC 2014, mais plusieurs articles cantonaux ajoutent des règles que le modèle ne "
+            "recopie pas tel quel."
+        )
+        + p(
+            "L'article 16 vise nommément les installations de ventilation, de refroidissement et "
+            "de climatisation : elles doivent limiter la consommation et valoriser des énergies "
+            "renouvelables ou des rejets de chaleur. Leur montage est soumis à autorisation du "
+            "Service. Depuis le 1<sup>er</sup> janvier 2015, une production de froid neuve ou "
+            "assainie, destinée au confort, doit être alimentée exclusivement par des énergies "
+            "renouvelables produites sur le site — ou par une production solaire équivalente hors "
+            "site si la technique l'impose. L'article 17 demande de valoriser les rejets des "
+            "installations d'extraction et de ventilation. D'où les pages "
+            '<a href="/ventilation/">ventilation</a>, <a href="/climatisation/">climatisation</a> '
+            'et <a href="/chauffage/">chauffage</a>. Le canton le résume sur sa page '
+            '<a href="https://www.fr.ch/energie-agriculture-et-environnement/energie/permis-de-construire-energie" '
+            'target="_blank" rel="noopener noreferrer">permis de construire et énergie</a>.'
+        )
+        + p(
+            "Le territoire réunit une ville historique compacte et des districts ruraux — Gruyère, "
+            "Broye, Glâne — où les maisons sont dispersées. Le siège de l'entreprise est à Romont, "
+            'dans la Glâne. La page <a href="/romont/">Romont</a> situe cette adresse. Elle ne crée '
+            "pas un second régime énergétique, et aucune commune n'est publiée comme couverte."
+        )
+        + subsidy(
+            "Le SdE publie les formulaires énergétiques, dont celui sur la chaleur renouvelable "
+            "lors du renouvellement d'une production de chaleur (EN-120). Une demande d'encouragement "
+            "se traite avec lui, avant d'engager les travaux. Aucun barème n'est recopié ici."
+        ),
+        [
+            (
+                "Faut-il une autorisation pour climatiser un local dans le canton de Fribourg ?",
+                "Oui. L'article 16 de la LEn soumet le montage d'une installation de refroidissement "
+                "ou de climatisation de locaux à une autorisation du Service de l'énergie. Le froid "
+                "de confort neuf ou assaini doit, depuis 2015, être couvert par du renouvelable "
+                "produit sur le site, avec l'exception photovoltaïque prévue par la loi.",
+            ),
+            (
+                "Qui reçoit les justificatifs énergétiques fribourgeois ?",
+                "Le Service de l'énergie. Les prescriptions qu'il publie renvoient à la SIA 380/1 "
+                "et au MoPEC 2014. Le CECB est prévu à l'article 11a de la LEn.",
+            ),
+            (
+                "Une maison de la Glâne suit-elle une autre loi que la ville de Fribourg ?",
+                "Non. La LEn est cantonale. La page Romont précise seulement l'adresse du siège "
+                f"de {COMPANY_NAME}.",
+            ),
+        ],
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
+        ["romont", "vaud", "neuchatel"],
+        hero_sub=f"Article 16 sur l'air et le froid de confort. Appel au {PHONE_DISP}.",
+        local_heading="Loi du 9 juin 2000 et article 16 sur l'air",
+    )
+
+    zone_page(
+        "romont", "Romont", "Romont et la Glâne",
+        PAGE_TITLES["romont"], META_DESCRIPTIONS["romont"], ZONE_H1["romont"],
+        pending("Romont")
+        + p(
+            f"{COMPANY_NAME} a son siège au {ADDRESS_STREET}, {ADDRESS_POSTAL} Romont, "
+            "dans le district de la Glâne. Cette page situe l'adresse de l'entreprise. "
+            "Elle ne fait pas de Romont un marché distinct du canton, et le régime énergétique "
+            "reste celui de Fribourg."
+        )
+        + p(
+            "Le bourg est une petite ville au tissu ancien, avec des maisons mitoyennes et, "
+            "autour, l'habitat dispersé de la Glâne. On y rencontre surtout des chaufferies "
+            "de maison, pas les sous-stations d'immeuble lausannoises ni les réseaux structurants "
+            "genevois. Remplacer une production de chaleur suit donc la loi fribourgeoise et les "
+            'formulaires du SdE, détaillés sur la page <a href="/fribourg/">Fribourg</a>, en '
+            'particulier pour le <a href="/chauffage/">chauffage</a>.'
+        )
+        + p(
+            "Les demandes qui partent de cette adresse peuvent aussi porter sur la "
+            '<a href="/ventilation/">ventilation</a>, la <a href="/climatisation/">climatisation</a> '
+            'ou le <a href="/sanitaire/">sanitaire</a>. L\'article 16 fribourgeois, qui encadre '
+            "le froid de confort, s'applique également ici. Il est expliqué une seule fois, sur "
+            "la page cantonale, afin de ne pas republier le même développement."
+        )
+        + subsidy(
+            "Il n'existe pas, sur cette page, de barème communal. L'encouragement est cantonal "
+            "et se lit avec le Service de l'énergie, comme pour le reste de Fribourg."
+        ),
+        [
+            (
+                "Romont est-il la cible commerciale du site ?",
+                "Non. C'est le siège. Les autres pages de zones décrivent un bâti et une règle "
+                "cantonale. La disponibilité réelle se demande à l'entreprise. Elle ne se déduit pas de l'adresse.",
+            ),
+            (
+                "Quelle loi lire pour une maison romontoise ?",
+                "La loi fribourgeoise du 9 juin 2000, exécutée par le SdE. Aucun règlement "
+                "énergétique communal n'est résumé ici.",
+            ),
+            (
+                "Le siège est-il une agence ouverte sans rendez-vous ?",
+                f"L'adresse légale est {ADDRESS_FULL}. Les horaires publiés sont : {HOURS}. "
+                "Un accueil libre, sans rendez-vous, n'est pas décrit sur cette page.",
+            ),
+        ],
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
+        ["fribourg", "vaud", "neuchatel"],
+        hero_sub=f"Siège à Romont, loi fribourgeoise. Appel au {PHONE_DISP}.",
+        local_heading="Siège dans la Glâne, même loi que le canton",
+    )
+
+    zone_page(
+        "neuchatel", "Neuchâtel", "le canton de Neuchâtel",
+        PAGE_TITLES["neuchatel"], META_DESCRIPTIONS["neuchatel"], ZONE_H1["neuchatel"],
+        pending("Neuchâtel")
+        + p(
+            "Le canton de Neuchâtel a adopté sa loi sur l'énergie (LCEn) le 1<sup>er</sup> septembre 2020. "
+            "Le règlement d'exécution (RELCEn) date du 17 mars 2021. Le service de l'énergie et de "
+            "l'environnement (SENE) est l'organe d'exécution et, sauf texte contraire, l'autorité "
+            "qui octroie les dérogations."
+        )
+        + p(
+            "Le règlement sépare deux climats de calcul. Pour la justification par performance "
+            "globale, les données de la station de Neuchâtel valent jusqu'à 800 mètres, celles "
+            "de La Chaux-de-Fonds au-dessus. Un "
+            '<a href="/chauffage/">chauffage</a> calé sur le littoral n\'est donc pas le calcul '
+            "d'un bâtiment des montagnes. Cette règle figure à l'article 16 du RELCEn. Les pages "
+            "vaudoise et valaisanne parlent d'altitude sans désigner deux stations dans le règlement."
+        )
+        + p(
+            "Le bâti ajoute une seconde contrainte. La Chaux-de-Fonds et Le Locle sont inscrits "
+            "depuis 2009 au patrimoine mondial de l'UNESCO pour leur "
+            '<a href="https://www.ne.ch/themes/culture-et-patrimoine/decouvrir-le-patrimoine-cantonal-et-unesco/patrimoine-mondial-de-lunesco" '
+            'target="_blank" rel="noopener noreferrer">urbanisme horloger</a> : plan orthogonal, '
+            "logements et ateliers conçus pour la lumière. Une unité extérieure, une grille de "
+            '<a href="/ventilation/">ventilation</a> ou un groupe de '
+            '<a href="/climatisation/">climatisation</a> visible s\'y juge aussi au regard de ce '
+            "tissu protégé. Le littoral, lui, est une ville au bord du lac, avec des immeubles "
+            "plus ordinaires. Décrire ces deux situations ne publie pas une liste de communes prises en charge. "
+            'Le SENE présente ses missions sur <a href="https://www.ne.ch/autorites/ddte/sene" '
+            'target="_blank" rel="noopener noreferrer">sa page officielle</a>.'
+        )
+        + subsidy(
+            "Le SENE encourage les énergies renouvelables et instruit les dérogations à la LCEn. "
+            "Les montants d'aide ne figurent pas ici. Ils se demandent au service, rue du Tombet 24 à Peseux."
+        ),
+        [
+            (
+                "Pourquoi le règlement neuchâtelois cite-t-il deux stations météo ?",
+                "L'article 16 du RELCEn impose les données de Neuchâtel jusqu'à 800 mètres et "
+                "celles de La Chaux-de-Fonds au-delà, pour la performance globale. Le calcul "
+                "change avec l'altitude. Ce n'est pas une préférence de l'entreprise.",
+            ),
+            (
+                "L'inscription UNESCO interdit-elle une installation technique ?",
+                "L'inscription de 2009 protège l'urbanisme horloger de La Chaux-de-Fonds et du Locle. "
+                "Elle ne remplace pas la LCEn. Elle implique que l'aspect des équipements en façade "
+                "ou en toiture se concilie avec ce patrimoine. Le détail se traite dans le permis, "
+                "pas par une interdiction générale écrite ici.",
+            ),
+            (
+                "Qui instruit une dérogation énergétique à Neuchâtel ?",
+                "Le SENE, dans le cadre de la LCEn et du RELCEn. L'accréditation du laboratoire "
+                f"du service est un fait public distinct. Elle n'est pas une certification de {COMPANY_NAME}.",
+            ),
+        ],
+        ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
+        ["vaud", "fribourg", "geneve"],
+        hero_sub=f"Littoral, montagnes et LCEn. Appel au {PHONE_DISP}.",
+        local_heading="Littoral et montagnes, deux stations climatiques",
+    )
 
 
 def legal_identity_block():
