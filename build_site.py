@@ -3395,9 +3395,9 @@ def build_zones():
         )
         + p(
             "Depuis la Glâne, la route du Plateau mène à Moudon en 15 minutes, à Oron en "
-            "18 minutes et à Payerne en 20 minutes. On n'emprunte ni l'A12 ni l'A1 pour "
-            "ces trois communes. Yverdon est plus loin : 35 à 40 minutes, et c'est là que "
-            "l'A1 passe, pas au départ de Romont. Aucune de ces durées n'est un créneau réservé."
+            "18 minutes et à Payerne en 20 minutes, sans passer par l'A12 ni l'A1. "
+            "Yverdon est plus loin, à 35 à 40 minutes : c'est là que passe l'A1, pas au "
+            "départ de Romont."
         )
         + p(
             "Ce cadre cantonal couvre aussi une "
@@ -3430,9 +3430,9 @@ def build_zones():
                 "de l'année qui comptent. Nous n'indiquons pas de montants ici.",
             ),
             (
-                "Moudon, Oron ou Payerne sont-ils couverts dans le temps de route indiqué ?",
-                "Le temps de route n'ouvre pas un droit à un passage. Il situe ces communes "
-                "par rapport à la Glâne. L'intervention se confirme au téléphone.",
+                "Intervenez-vous à Moudon, Oron ou Payerne dans le temps de route indiqué ?",
+                "Ces durées sont des temps de route. Elles situent ces communes par rapport "
+                "à la Glâne, sans réserver de créneau. Le passage se confirme par téléphone.",
             ),
         ],
         ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
@@ -3473,9 +3473,8 @@ def build_zones():
             "nous intervenons. Pour le savoir, appelez-nous."
         )
         + p(
-            "La route entre Romont et Lausanne prend 35 à 40 minutes. Ce chiffre décrit "
-            "le trajet mesuré depuis le siège. Il ne réserve pas une équipe dans cette plage, "
-            "et la permanence de nuit n'existe pas : les horaires publiés restent ceux du siège."
+            "Comptez 35 à 40 minutes de route entre notre siège de Romont et Lausanne. "
+            "Nos horaires restent ceux du siège."
         )
         + p(
             "Si la chaleur manque dans le circuit après l'échangeur, l'entrée est la page "
@@ -3504,9 +3503,9 @@ def build_zones():
                 "si c'est faisable : nous ne pouvons pas le garantir.",
             ),
             (
-                "Peut-on être à Lausanne 35 à 40 minutes après l'appel ?",
-                "Non. Cette plage est celle du trajet en voiture depuis Romont. Elle ne "
-                "démarre pas à l'instant de l'appel.",
+                "Pouvez-vous être à Lausanne 35 à 40 minutes après mon appel ?",
+                "Non. C'est la durée du trajet en voiture depuis Romont, pas un délai qui "
+                "commence à votre appel. Nous n'avons pas de permanence de nuit.",
             ),
         ],
         ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
@@ -3683,14 +3682,13 @@ def build_zones():
             "intervenons dans votre commune, appelez-nous."
         )
         + p(
-            "Les sept districts du canton sont la Glâne, la Sarine, la Gruyère, la Veveyse, "
-            "la Broye, la Singine et le Lac. Bulle, en Gruyère, est le bourg que l'A12 dessert "
-            "au sud. On entre dans l'agglomération par Matran, porte de Fribourg-Sud, puis la "
-            "ville elle-même est à 25 minutes de Romont. Châtel-Saint-Denis, en Veveyse, est à "
-            "20 à 25 minutes par l'A12. Estavayer-le-Lac, en Broye fribourgeoise, est à 25 à "
-            "30 minutes par les routes de la Broye, sans autoroute. La Singine et le district "
-            "du Lac sont nommés ici sans durée chiffrée. Ces minutes mesurent la conduite. "
-            "Elles ne disent pas quand une équipe peut être sur place."
+            "Le canton compte sept districts : la Glâne, la Sarine, la Gruyère, la Veveyse, "
+            "la Broye, la Singine et le Lac. Au sud, l'A12 dessert Bulle, en Gruyère. On entre "
+            "dans l'agglomération par Matran, à l'entrée de Fribourg-Sud, et la ville de Fribourg "
+            "est à 25 minutes de Romont. Châtel-Saint-Denis, en Veveyse, est à 20 à 25 minutes "
+            "par l'A12. Estavayer-le-Lac, dans la Broye fribourgeoise, est à 25 à 30 minutes par "
+            "les routes de la Broye, sans autoroute. Nous n'indiquons pas de durée pour la "
+            "Singine et le district du Lac."
         )
         + p(
             "Les colonnes et les appareils d'eau sont présentés sur la page "
@@ -3722,9 +3720,9 @@ def build_zones():
                 f"l'adresse du siège de {COMPANY_NAME}.",
             ),
             (
-                "Une durée de 25 minutes jusqu'à Fribourg garantit-elle le dépannage ?",
-                "Non. Vingt-cinq minutes, c'est la conduite depuis Romont. Le passage d'une "
-                "équipe se confirme par téléphone, dans les horaires publiés.",
+                "Les 25 minutes jusqu'à Fribourg garantissent-elles un dépannage dans ce délai ?",
+                "Non. C'est le temps de route depuis Romont. Le passage d'une équipe se "
+                "confirme par téléphone, pendant nos horaires.",
             ),
         ],
         ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
@@ -3742,13 +3740,12 @@ def build_zones():
             "dans le district de la Glâne. Les règles sur l'énergie sont celles du canton de Fribourg."
         )
         + p(
-            "Au départ du siège, Bulle est à environ 16 km, soit 15 minutes : la ville est "
-            "en Gruyère, et l'A12 la dessert. Matran, porte de Fribourg-Sud, est à 18 à 20 km, "
-            "soit 15 à 20 minutes. On y va par la route de la Glâne ; l'A12 arrive à Matran "
-            "depuis le sud. Ces durées décrivent la route, pas une heure d'arrivée. Nous répondons "
-            "pendant les horaires du siège, sans permanence de nuit. Les autres durées de route "
-            'figurent sur les pages <a href="/fribourg/">Fribourg</a>, '
-            '<a href="/vaud/">Vaud</a> et <a href="/lausanne/">Lausanne</a>.'
+            "Depuis notre siège, Bulle est à environ 16 km, soit 15 minutes de route. "
+            "La ville se trouve en Gruyère et l'A12 la dessert. Matran, à l'entrée de "
+            "Fribourg-Sud, est à 18 à 20 km, soit 15 à 20 minutes par la route de la Glâne ; "
+            "l'A12 arrive à Matran par le sud. Les autres durées sont sur les pages "
+            '<a href="/fribourg/">Fribourg</a>, <a href="/vaud/">Vaud</a> et '
+            '<a href="/lausanne/">Lausanne</a>.'
         )
         + p(
             "Romont est une petite ville au centre ancien, avec des maisons mitoyennes, "
@@ -3780,9 +3777,10 @@ def build_zones():
                 "pour le savoir, appelez-nous.",
             ),
             (
-                "Les minutes vers Bulle ou Matran sont-elles une heure d'arrivée ?",
-                "Non. Elles mesurent la route depuis le siège. Le planning du jour décide du "
-                "passage, et aucune permanence de nuit n'est ouverte.",
+                "Ces minutes vers Bulle ou Matran correspondent-elles à une heure d'arrivée ?",
+                "Non. Ce sont des temps de route depuis le siège. L'heure de passage dépend "
+                "du planning du jour. Nous répondons pendant les horaires du siège et n'avons "
+                "pas de permanence de nuit.",
             ),
             (
                 "Quelle loi s'applique pour une maison à Romont ?",
