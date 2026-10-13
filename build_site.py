@@ -152,7 +152,7 @@ META_DESCRIPTIONS = {
     "valais": "Chauffage, ventilation, climatisation et sanitaire en Valais : loi LcEne, remplacement des chaudières fossiles et contraste plaine / altitude.",
     "fribourg": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Fribourg : loi du 9 juin 2000 et article 16 sur la ventilation et le froid.",
     "romont": f"Siège de {COMPANY_NAME} à Romont FR. Chauffage, ventilation, climatisation et sanitaire selon la loi fribourgeoise sur l'énergie.",
-    "neuchatel": "Chauffage, ventilation, climatisation et sanitaire à Neuchâtel : LCEn, stations climatiques du RELCEn et urbanisme horloger UNESCO.",
+    "neuchatel": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Neuchâtel : LCEn, stations climatiques du RELCEn et urbanisme horloger UNESCO.",
     "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
     "plan-du-site": f"Plan du site {COMPANY_NAME} : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
@@ -167,13 +167,25 @@ META_DESCRIPTIONS = {
 # H1 des pages de zones — seule /chauffage/ garde « Chauffagiste en Suisse romande ».
 ZONE_H1 = {
     "geneve": "Chauffage, ventilation, climatisation et sanitaire à Genève",
-    "vaud": "Chauffage, ventilation, climatisation et sanitaire à Vaud",
+    "vaud": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Vaud",
     "lausanne": "Chauffage, ventilation, climatisation et sanitaire à Lausanne",
     "nyon": "Chauffage, ventilation, climatisation et sanitaire à Nyon",
-    "valais": "Chauffage, ventilation, climatisation et sanitaire à Valais",
-    "fribourg": "Chauffage, ventilation, climatisation et sanitaire à Fribourg",
+    "valais": "Chauffage, ventilation, climatisation et sanitaire en Valais",
+    "fribourg": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Fribourg",
     "romont": "Chauffage, ventilation, climatisation et sanitaire à Romont",
-    "neuchatel": "Chauffage, ventilation, climatisation et sanitaire à Neuchâtel",
+    "neuchatel": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Neuchâtel",
+}
+
+# Locatif visible (disponibilité, bandeau, actions). Les villes gardent « à ».
+ZONE_PLACE = {
+    "geneve": "à Genève",
+    "vaud": "dans le canton de Vaud",
+    "lausanne": "à Lausanne",
+    "nyon": "à Nyon",
+    "valais": "en Valais",
+    "fribourg": "dans le canton de Fribourg",
+    "romont": "à Romont",
+    "neuchatel": "dans le canton de Neuchâtel",
 }
 
 PAGE_TITLES = {
@@ -1688,7 +1700,7 @@ def service_page(slug, name, title, desc, h1, intro, problems, interventions, cl
     write_page([slug, "index.html"], page_shell(title, desc, SITE + url, graph, body, crumbs))
 
 
-def zone_action_paths(name):
+def zone_action_paths(place):
     """3 rangées d'action (pas de cards) — pages zone."""
     paths = [
         (
@@ -1728,7 +1740,7 @@ def zone_action_paths(name):
         )
     return f"""<section class="zone-actions" aria-labelledby="zone-actions-title">
   <div class="container">
-    <h2 class="zone-actions__title" id="zone-actions-title">Votre besoin à {name}</h2>
+    <h2 class="zone-actions__title" id="zone-actions-title">Votre besoin {place}</h2>
     <div class="zone-actions__list">{"".join(rows)}</div>
   </div>
 </section>"""
@@ -1756,6 +1768,7 @@ def zone_proof_quote():
 def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, related_zones, hero_sub=None, local_heading=None):
     """Page zone mobile-first : hero, local+preuve, actions, FAQ+CTA."""
     url = f"/{slug}/"
+    place = ZONE_PLACE.get(slug, f"à {name}")
     crumbs = [("Accueil", "/"), ("Zones d'intervention", "/zones-intervention/"), (name, url)]
     sub = hero_sub or f"Bâti et cadre énergétique dans {region}. Appelez le {PHONE_DISP} pour vérifier la disponibilité."
     hero = page_hero(
@@ -1789,17 +1802,17 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
     <h2 class="section-title" id="local-title">{local_heading or f"Interventions dans {region}"}</h2>
     {local_text}
     {zone_proof_quote()}
-    <p class="geo-local-note">Siège à <strong>{ADDRESS_FULL}</strong> — équipe mobile. <a href="tel:{PHONE}" class="track-phone">Appelez le {PHONE_DISP}</a> pour vérifier la disponibilité à {name}.</p>
+    <p class="geo-local-note">Siège à <strong>{ADDRESS_FULL}</strong> — équipe mobile. <a href="tel:{PHONE}" class="track-phone">Appelez le {PHONE_DISP}</a> pour vérifier la disponibilité {place}.</p>
   </div>
 </section>
-{zone_action_paths(name)}
+{zone_action_paths(place)}
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
     {faq_section_head(f"FAQ — {name}")}
     {faq_html(faq_trim)}
   </div>
 </section>
-{cta_band(f"Un projet à {name} ?", f"Appelez le {PHONE_DISP} ou décrivez votre besoin par WhatsApp / formulaire.", phone_first=True)}"""
+{cta_band(f"Un projet {place} ?", f"Appelez le {PHONE_DISP} ou décrivez votre besoin par WhatsApp / formulaire.", phone_first=True)}"""
     graph = base_graph(title, desc, SITE + url, crumbs, faq_trim)
     write_page([slug, "index.html"], page_shell(title, desc, SITE + url, graph, body, crumbs))
 
@@ -3271,13 +3284,17 @@ def build_zones():
         + p(
             "Deux réseaux des Services industriels de Genève structurent la production. "
             "GeniTerre livre de la chaleur. GeniLac livre du chaud et du froid produits avec "
-            "l'eau du Léman. Depuis le 1<sup>er</sup> janvier 2025, un bâtiment situé dans la "
-            "zone d'influence d'un <a href=\"https://www.ge.ch/installer-remplacer-chauffage/reseaux-thermiques-structurants-rts\" "
-            "target=\"_blank\" rel=\"noopener noreferrer\">réseau thermique structurant</a> doit "
-            "s'y raccorder lorsqu'on installe ou que l'on renouvelle sa production de chaleur, "
-            "sauf dérogation de l'Office cantonal de l'énergie (OCEN). Le texte de base est la "
-            "loi cantonale sur l'énergie du 18 septembre 1986 (LEn, rsGE L 2 30), notamment "
-            "son article 22, complétée par le règlement d'application (REn)."
+            "l'eau du Léman. Depuis le 1<sup>er</sup> janvier 2025, dans la zone d'influence "
+            "d'un <a href=\"https://www.ge.ch/installer-remplacer-chauffage/reseaux-thermiques-structurants-rts\" "
+            "target=\"_blank\" rel=\"noopener noreferrer\">réseau thermique structurant</a>, "
+            "le raccordement est obligatoire lorsqu'on installe ou renouvelle une production "
+            "de chaleur. Il ne s'impose pas aux villas et petits immeubles dont la sous-station "
+            "a une puissance thermique nominale inférieure à 50 kW : le raccordement y reste "
+            "volontaire. L'Office cantonal de l'énergie (OCEN) ne peut déroger que si deux "
+            "conditions sont réunies : le raccordement n'assure pas une utilisation plus "
+            "rationnelle de l'énergie, et il ne satisfait pas le principe de proportionnalité. "
+            "La base est l'article 22 de la loi cantonale sur l'énergie du 18 septembre 1986 "
+            "(LEn, rsGE L 2 30), complété par l'article 13P du règlement (REn, rsGE L 2 30.01)."
         )
         + p(
             "Une fois le point de livraison passé, le travail se joue dans l'immeuble : "
@@ -3295,17 +3312,21 @@ def build_zones():
             "pas du réseau GeniLac."
         )
         + subsidy(
-            "À Genève, l'OCEN instruit les demandes d'aide avant le début des travaux. "
-            "Le programme SIG-éco21 des Services industriels peut s'y combiner. Aucun montant "
-            "n'est repris sur cette page : le barème de l'année se vérifie auprès du canton."
+            "À Genève, la requête de subvention doit parvenir à l'OCEN au moins 14 jours "
+            "avant le début des travaux. Les aides du Programme Bâtiments et celles de "
+            "SIG-éco21 se demandent par des canaux distincts, décrits sur la "
+            '<a href="https://www.ge.ch/energie-aides-financieres/subvention-energie-batiments" '
+            'target="_blank" rel="noopener noreferrer">page cantonale des subventions</a>. '
+            "Aucun montant n'est repris ici."
         ),
         [
             (
                 "Peut-on remplacer une chaudière genevoise sans se raccorder à un réseau ?",
-                "Pas librement si le bâtiment est dans la zone d'influence d'un réseau thermique "
-                "structurant : le raccordement est alors la règle, après une demande d'information "
-                "thermique auprès des SIG. L'OCEN peut déroger dans les cas que la loi prévoit. "
-                "Hors de cette zone, c'est la LEn qui fixe les exigences de production de chaleur.",
+                "Pas librement si le bâtiment est dans la zone d'influence et que l'obligation "
+                "s'applique. Elle ne vise pas les villas et petits immeubles dont la sous-station "
+                "reste sous 50 kW. Sinon, le raccordement est la règle, après une demande "
+                "d'information thermique auprès des SIG. L'OCEN ne déroge que si le raccordement "
+                "n'est ni plus rationnel ni proportionné. Hors de cette zone, c'est la LEn.",
             ),
             (
                 "GeniLac et GeniTerre demandent-ils la même installation dans l'immeuble ?",
@@ -3400,9 +3421,11 @@ def build_zones():
             "terrasses : locatif, tertiaire, constructions plus anciennes sur les collines."
         )
         + p(
-            "Dans les conditions publiées par les SiL, le réseau primaire s'arrête à l'échangeur, "
-            "dans le bâtiment. Au-delà, radiateurs, plancher, vannes, régulation et eau chaude "
-            "appartiennent à l'immeuble. Se raccorder ne fait donc pas disparaître le "
+            "Dans les conditions publiées par les SiL, le réseau primaire relie la centrale "
+            "à l'échangeur situé dans le bâtiment. La limite de responsabilité des SiL est "
+            "le point de fourniture. À partir de ce point, le poste de raccordement et le "
+            "circuit secondaire appartiennent au propriétaire, qui les exploite et les "
+            "entretient. Se raccorder ne fait donc pas disparaître le "
             '<a href="/chauffage/">chauffage</a> interne ni le <a href="/sanitaire/">sanitaire</a>. '
             "Les SiL publient des seuils d'éligibilité (consommation annuelle et densité énergétique "
             "du branchement) et rappellent qu'atteindre ces seuils ne crée pas, à lui seul, un "
@@ -3428,8 +3451,8 @@ def build_zones():
         [
             (
                 "Un immeuble déjà relié aux SiL a-t-il encore un circuit de chauffage ?",
-                "Oui. Les SiL amènent la chaleur jusqu'à l'échangeur. Le circuit secondaire, "
-                "les émetteurs et l'eau chaude dans le bâtiment se traitent à part.",
+                "Oui. Les SiL livrent la chaleur jusqu'au point de fourniture. Le poste de "
+                "raccordement et le circuit secondaire appartiennent au propriétaire.",
             ),
             (
                 "Lausanne possède-t-elle une loi énergétique municipale distincte ?",
@@ -3459,11 +3482,12 @@ def build_zones():
             "des villas et des PPE récentes côtoient des villages aux maisons plus anciennes."
         )
         + p(
-            "La Municipalité et les SI Nyon ont créé "
-            '<a href="https://www.thermoreso-nyon.ch/" target="_blank" rel="noopener noreferrer">ThermorésÔ Nyon</a>, '
-            "société de réseau urbain de chaleur. Le projet publié démarre au bois de la région "
+            "La société "
+            '<a href="https://www.thermoreso-nyon.ch/" target="_blank" rel="noopener noreferrer">ThermorésÔ Nyon</a> '
+            "s'inscrit dans la feuille de route climatique « Nyon s'engage » de la Municipalité, "
+            "avec les SI Nyon et Romande Energie. Le projet publié démarre au bois de la région "
             "et prévoit d'y ajouter la géothermie d'EnergeÔ La Côte ainsi que l'eau du lac. "
-            "Il vise d'abord l'habitat collectif. Une villa hors de ce tracé reste sur une "
+            "Il s'adresse d'abord aux logements collectifs. Une villa hors de ce tracé reste sur une "
             "production propre, souvent une pompe à chaleur, dans le cadre du "
             '<a href="/chauffage/">chauffage</a> cantonal. La <a href="/climatisation/">climatisation</a> '
             "d'une maison ou d'un petit local tertiaire n'est pas fournie par ce réseau."
@@ -3516,19 +3540,22 @@ def build_zones():
         + p(
             "Le Valais a adopté sa loi sur l'énergie (LcEne) le 8 septembre 2023. Elle est en "
             "vigueur depuis le 1<sup>er</sup> janvier 2025, avec une ordonnance d'application. "
-            "Le Service de l'énergie et des forces hydrauliques (SEFH) préavise les autorisations "
-            "de construire lorsqu'une production de chaleur utilise encore un agent fossile."
+            "L'autorité compétente requiert un préavis du Service de l'énergie et des forces "
+            "hydrauliques (SEFH) pour toute installation de production de chaleur qui recourt "
+            "encore à un agent fossile."
         )
         + p(
-            "La règle publiée par l'État pour le remplacement d'une chaudière à mazout ou à gaz "
-            "demande de privilégier une production renouvelable. Une chaudière fossile reste "
-            "possible si les besoins de chaleur (chauffage et eau chaude) diminuent d'au moins "
-            "20 %, ou si le bâtiment atteint la classe D du CECB, ou mieux. Le modèle "
-            "intercantonal de 2014 évoque de son côté un équivalent d'au moins 10 % d'énergie "
-            "renouvelable, avec des exemptions et des solutions standard. Ce ne sont pas les "
-            "mêmes phrases, ni le même seuil. Le chiffre de 20 % est celui du "
-            '<a href="https://www.vs.ch/web/energie/nouvelle-l%C3%A9gislation-sur-l-%C3%A9nergie" '
-            'target="_blank" rel="noopener noreferrer">texte valaisan</a>, pas une moyenne de chantiers.'
+            "L'article 38 de la LcEne demande de privilégier une production renouvelable lors "
+            "du remplacement d'une chaudière à mazout ou à gaz, ou d'un chauffe-eau à gaz "
+            "centralisé, dans un bâtiment d'habitation existant. À défaut, la part d'énergies "
+            "non renouvelables qui couvre les besoins globaux (chaleur et eau chaude) doit "
+            "être réduite d'au moins 20 % par une production renouvelable ou par la réduction "
+            "des besoins de chaleur. Sont exemptés les bâtiments dont la classe de performance "
+            "énergétique globale du CECB est D ou meilleure. Le modèle intercantonal de 2014 "
+            "(MoPEC), à l'article 1.29, formule une autre exigence : cette part n'excède pas "
+            "90 % des besoins globaux. Ce n'est pas le seuil valaisan. Le chiffre de 20 % est "
+            'celui de la <a href="https://lex.vs.ch/app/fr/texts_of_law/730.1" '
+            'target="_blank" rel="noopener noreferrer">LcEne</a>, pas une moyenne de chantiers.'
         )
         + p(
             "La géographie ajoute une contrainte que la plaine et les coteaux ne partagent pas. "
@@ -3545,21 +3572,24 @@ def build_zones():
             'de gel, se décrit sur la page <a href="/depannage-sav/">dépannage</a>.'
         )
         + subsidy(
-            "La LcEne charge le département, et par délégation le SEFH, de fixer les conditions "
-            "des aides financières. Le barème se lit auprès de l'État du Valais. Il n'est pas recopié ici."
+            "La LcEne charge le département de fixer les conditions des aides financières. "
+            "Il peut déléguer ces tâches au service en charge de l'énergie. Le barème se lit "
+            "auprès de l'État du Valais. Il n'est pas recopié ici."
         ),
         [
             (
                 "Peut-on reposer une chaudière à mazout en Valais ?",
-                "Seulement dans le cadre publié par le canton : baisse d'au moins 20 % des besoins "
-                "de chaleur, ou classe CECB D ou meilleure. Sinon, la loi oriente vers une production "
-                "renouvelable. Le SEFH préavise les dossiers fossiles.",
+                "Seulement dans le cadre de l'article 38 : la part d'énergies non renouvelables "
+                "pour les besoins globaux (chaleur et eau chaude) doit baisser d'au moins 20 %, "
+                "par une production renouvelable ou par une réduction des besoins, ou le bâtiment "
+                "atteint la classe CECB D ou meilleure. Sinon, la loi oriente vers une production "
+                "renouvelable. L'autorité requiert un préavis du SEFH pour une installation fossile.",
             ),
             (
-                "Le seuil de 10 % du modèle de 2014 est-il celui du Valais ?",
-                "Non. Le modèle intercantonal et la LcEne ne formulent pas la même exigence. "
-                "Pour une chaudière fossile encore admise, le canton publie une réduction d'au "
-                "moins 20 % des besoins, ou une classe CECB D ou meilleure.",
+                "Le plafond de 90 % du modèle de 2014 est-il celui du Valais ?",
+                "Non. L'article 1.29 du MoPEC 2014 plafonne la part non renouvelable à 90 % des "
+                "besoins globaux. La LcEne, à l'article 38, demande une réduction d'au moins 20 % "
+                "de cette part, ou une classe CECB D ou meilleure.",
             ),
             (
                 "En quoi l'altitude modifie-t-elle un projet de chauffage valaisan ?",
@@ -3628,7 +3658,7 @@ def build_zones():
             (
                 "Qui reçoit les justificatifs énergétiques fribourgeois ?",
                 "Le Service de l'énergie. Les prescriptions qu'il publie renvoient à la SIA 380/1 "
-                "et au MoPEC 2014. Le CECB est prévu à l'article 11a de la LEn.",
+                "et au MoPEC 2014. L'article 11a de la LEn prévoit un certificat énergétique des bâtiments.",
             ),
             (
                 "Une maison de la Glâne suit-elle une autre loi que la ville de Fribourg ?",
@@ -3753,7 +3783,7 @@ def build_zones():
                 "pas par une interdiction générale écrite ici.",
             ),
             (
-                "Qui instruit une dérogation énergétique à Neuchâtel ?",
+                "Qui instruit une dérogation énergétique dans le canton de Neuchâtel ?",
                 "Le SENE, dans le cadre de la LCEn et du RELCEn. L'accréditation du laboratoire "
                 f"du service est un fait public distinct. Elle n'est pas une certification de {COMPANY_NAME}.",
             ),
