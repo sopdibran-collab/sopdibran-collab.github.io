@@ -1996,7 +1996,8 @@ def build_home():
 {cta_band()}"""
     home_title = PAGE_TITLES["home"]
     home_desc = META_DESCRIPTIONS["home"]
-    graph = base_graph(home_title, home_desc, SITE + "/", faq=faq)
+    home_crumbs = [("Accueil", "/")]
+    graph = base_graph(home_title, home_desc, SITE + "/", home_crumbs, faq=faq)
     write_page(["index.html"], page_shell(home_title, home_desc, SITE + "/", graph, body))
 
 
@@ -2307,6 +2308,7 @@ def build_contact():
         contact_title,
         contact_desc,
         SITE + "/contact/",
+        crumbs,
         faq=faq,
         extra={"@type": "ContactPage", "name": "Contact", "url": SITE + "/contact/"},
     )
@@ -2800,6 +2802,9 @@ def _premium_service_configs():
                 '<a href="/vaud/">Vaud</a>, <a href="/valais/">Valais</a>, '
                 '<a href="/nyon/">Nyon</a> et environs. '
                 "Confirmez la disponibilité via les pages zones ou le formulaire devis.</p>"
+                "<p>Le siège est décrit sur la page <a href=\"/romont/\">Romont</a>. "
+                "Cette adresse n'ouvre pas un second marché : le droit applicable y est celui "
+                "du canton de <a href=\"/fribourg/\">Fribourg</a>.</p>"
             ),
             "zone_slugs": ["geneve", "lausanne", "nyon", "vaud", "valais", "fribourg", "neuchatel"],
             "related_svc": ["ventilation", "climatisation", "sanitaire", "depannage-sav"],
@@ -2916,6 +2921,10 @@ def _premium_service_configs():
                 '<a href="/geneve/">Genève</a>, <a href="/lausanne/">Lausanne</a>, '
                 '<a href="/vaud/">Vaud</a> et <a href="/valais/">Valais</a> — '
                 "villas, immeubles et bâtiments tertiaires. Confirmez la disponibilité via les pages zones.</p>"
+                "<p>À <a href=\"/neuchatel/\">Neuchâtel</a>, une prise d'air visible sur le tissu "
+                "horloger de La Chaux-de-Fonds ou du Locle se concilie avec l'inscription UNESCO, "
+                "en plus de la loi cantonale. Depuis le siège de <a href=\"/romont/\">Romont</a>, "
+                "la même installation suit l'article 16 fribourgeois.</p>"
             ),
             "zone_slugs": ["nyon", "fribourg", "valais", "geneve", "lausanne", "vaud"],
             "related_svc": ["chauffage", "climatisation", "sanitaire", "depannage-sav"],
@@ -2986,6 +2995,16 @@ def _premium_service_configs():
             ],
             "zones_title": "Climatisation en Suisse romande",
             "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Nyon, Lausanne, Genève, en Valais et à Fribourg.",
+            "zones_prose": (
+                "<p>Le froid de confort ne suit pas le même article partout. À "
+                '<a href="/fribourg/">Fribourg</a>, la loi cantonale soumet la climatisation '
+                "de locaux à une autorisation. À <a href=\"/geneve/\">Genève</a>, GeniLac peut "
+                "livrer du froid. À <a href=\"/nyon/\">Nyon</a>, ThermorésÔ est un réseau de "
+                "chaleur, pas le rafraîchissement d'une villa. En <a href=\"/valais/\">Valais</a>, "
+                "la plaine et l'altitude ne posent pas le même besoin. <a href=\"/lausanne/\">Lausanne</a> "
+                "et le <a href=\"/vaud/\">canton de Vaud</a> restent sous la loi vaudoise. "
+                "Le siège est à <a href=\"/romont/\">Romont</a>.</p>"
+            ),
             "zone_slugs": ["geneve", "nyon", "lausanne", "valais", "vaud", "fribourg"],
             "related_svc": ["chauffage", "ventilation", "sanitaire", "depannage-sav"],
             "faq": [
@@ -3041,6 +3060,13 @@ def _premium_service_configs():
             ],
             "zones_title": "Sanitaire en Suisse romande",
             "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Genève, Lausanne, Nyon, Fribourg et dans le canton de Vaud.",
+            "zones_prose": (
+                "<p>Les colonnes et les appareils se jugent dans le bâtiment. C'est le circuit "
+                "après l'échangeur à <a href=\"/lausanne/\">Lausanne</a>, l'immeuble à "
+                '<a href="/geneve/">Genève</a>, la villa de <a href="/nyon/">Nyon</a> et la maison '
+                "dans le <a href=\"/vaud/\">canton de Vaud</a> ou à <a href=\"/fribourg/\">Fribourg</a>. "
+                "Le siège, à <a href=\"/romont/\">Romont</a>, ne change pas ce partage.</p>"
+            ),
             "zone_slugs": ["geneve", "lausanne", "nyon", "fribourg", "vaud"],
             "related_svc": ["chauffage", "ventilation", "climatisation", "depannage-sav"],
             "faq": [
@@ -3096,6 +3122,16 @@ def _premium_service_configs():
             ],
             "zones_title": "Dépannage en Suisse romande",
             "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Genève, Lausanne, Fribourg, en Vaud et en Valais.",
+            "zones_prose": (
+                "<p>Le signalement gagne à dire où se trouve l'installation : sous-station à "
+                '<a href="/lausanne/">Lausanne</a>, immeuble raccordé à un réseau structurant à '
+                '<a href="/geneve/">Genève</a>, villa à <a href="/nyon/">Nyon</a>, chaufferie de '
+                'maison depuis le siège de <a href="/romont/">Romont</a>, altitude en '
+                '<a href="/valais/">Valais</a>, cadre du <a href="/vaud/">canton de Vaud</a> ou '
+                'autorisation de l\'article 16 à <a href="/fribourg/">Fribourg</a>. À '
+                '<a href="/neuchatel/">Neuchâtel</a>, précisez si le bâtiment est sous ou au-dessus '
+                "de 800 mètres.</p>"
+            ),
             "zone_slugs": ["geneve", "lausanne", "fribourg", "vaud", "valais"],
             "related_svc": ["chauffage", "ventilation", "climatisation", "sanitaire"],
             "cta_title": "Besoin d'un dépannage ?",
@@ -3154,6 +3190,11 @@ def _premium_service_configs():
             ],
             "zones_title": "Intervention sprinkler en Suisse romande",
             "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Genève, en Vaud et en Valais.",
+            "zones_prose": (
+                "<p>Ces interventions restent de la sous-traitance, selon les plans du mandant. "
+                "Le cadre du chauffage, lorsqu'il est distinct, se lit à <a href=\"/geneve/\">Genève</a>, "
+                "dans le <a href=\"/vaud/\">canton de Vaud</a> et en <a href=\"/valais/\">Valais</a>.</p>"
+            ),
             "zone_slugs": ["geneve", "vaud", "valais"],
             "related_svc": ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
             "faq": [
@@ -3247,6 +3288,12 @@ def build_zones():
             "directeur des énergies de réseau. Elle ne vaut pas liste de communes couvertes "
             "par l'entreprise."
         )
+        + p(
+            "Une panne sur un circuit déjà en service se décrit sur la page "
+            '<a href="/depannage-sav/">dépannage</a>. La '
+            '<a href="/ventilation/">ventilation</a> d\'un immeuble tertiaire relève de la LEn, '
+            "pas du réseau GeniLac."
+        )
         + subsidy(
             "À Genève, l'OCEN instruit les demandes d'aide avant le début des travaux. "
             "Le programme SIG-éco21 des Services industriels peut s'y combiner. Aucun montant "
@@ -3305,6 +3352,13 @@ def build_zones():
             "villa, un immeuble ou un bâtiment d'activité situés hors de ces deux pages. Aucune "
             "commune n'y est annoncée comme desservie."
         )
+        + p(
+            "Ce cadre cantonal couvre aussi une "
+            '<a href="/ventilation/">ventilation</a>, une '
+            '<a href="/climatisation/">climatisation</a> ou un réseau '
+            '<a href="/sanitaire/">sanitaire</a>. Une installation à l\'arrêt se signale sur la page '
+            '<a href="/depannage-sav/">dépannage</a>. Aucun délai n\'est promis ici.'
+        )
         + subsidy(
             "Le guichet vaudois est la Direction de l'énergie (DGE-DIREN). Un dossier d'aide "
             "se dépose avant d'engager le chantier. Les barèmes annuels se contrôlent sur "
@@ -3362,6 +3416,10 @@ def build_zones():
             "réseau. Cette emprise n'est pas une zone d'intervention de l'entreprise, et aucune "
             "commune n'est listée ici comme couverte."
         )
+        + p(
+            "Si la chaleur manque dans le circuit après l'échangeur, l'entrée est la page "
+            '<a href="/depannage-sav/">dépannage</a>, distincte du contrat de fourniture des SiL.'
+        )
         + subsidy(
             "Une aide éventuelle suit le guichet vaudois, pas un guichet de la Ville. "
             "Le contrat de chaleur des SiL est une fourniture d'énergie. Il ne se confond pas "
@@ -3415,6 +3473,11 @@ def build_zones():
             "la <a href=\"/ventilation/\">ventilation</a> mécanique entre dans le dossier du label. "
             "Cette page ne prétend pas connaître la part de maisons labellisées, ni les communes "
             "où l'entreprise se déplace."
+        )
+        + p(
+            "L'eau froide, l'eau chaude et les évacuations d'une villa de La Côte sont sur la page "
+            '<a href="/sanitaire/">sanitaire</a>. Une machine à l\'arrêt se signale sur la page '
+            '<a href="/depannage-sav/">dépannage</a>.'
         )
         + subsidy(
             "L'encouragement financier est celui du canton de Vaud, décrit sur la page homonyme. "
@@ -3473,6 +3536,13 @@ def build_zones():
             'sur le <a href="/chauffage/">chauffage</a>. Dans la plaine du Rhône, l\'immeuble et '
             "le bâtiment d'activité sont plus présents. Aucune station et aucune commune ne sont "
             "citées ici comme secteur couvert."
+        )
+        + p(
+            "Le même dossier cantonal peut inclure une "
+            '<a href="/ventilation/">ventilation</a> de logement, une '
+            '<a href="/climatisation/">climatisation</a> en plaine ou un réseau '
+            '<a href="/sanitaire/">sanitaire</a>. L\'arrêt d\'une installation, y compris un risque '
+            'de gel, se décrit sur la page <a href="/depannage-sav/">dépannage</a>.'
         )
         + subsidy(
             "La LcEne charge le département, et par délégation le SEFH, de fixer les conditions "
@@ -3536,6 +3606,12 @@ def build_zones():
             'dans la Glâne. La page <a href="/romont/">Romont</a> situe cette adresse. Elle ne crée '
             "pas un second régime énergétique, et aucune commune n'est publiée comme couverte."
         )
+        + p(
+            "Les colonnes et les appareils d'eau sont présentés sur la page "
+            '<a href="/sanitaire/">sanitaire</a>. Un arrêt de chaudière, de ventilation ou de froid '
+            'se décrit sur la page <a href="/depannage-sav/">dépannage</a>, sans confondre cet échange '
+            "avec l'autorisation prévue à l'article 16."
+        )
         + subsidy(
             "Le SdE publie les formulaires énergétiques, dont celui sur la chaleur renouvelable "
             "lors du renouvellement d'une production de chaleur (EN-120). Une demande d'encouragement "
@@ -3590,6 +3666,10 @@ def build_zones():
             'ou le <a href="/sanitaire/">sanitaire</a>. L\'article 16 fribourgeois, qui encadre '
             "le froid de confort, s'applique également ici. Il est expliqué une seule fois, sur "
             "la page cantonale, afin de ne pas republier le même développement."
+        )
+        + p(
+            "Une panne sur une chaufferie de maison, signalée depuis cette adresse, se décrit sur "
+            'la page <a href="/depannage-sav/">dépannage</a>. Ce paragraphe ne répète pas l\'article 16.'
         )
         + subsidy(
             "Il n'existe pas, sur cette page, de barème communal. L'encouragement est cantonal "
@@ -3648,6 +3728,11 @@ def build_zones():
             "plus ordinaires. Décrire ces deux situations ne publie pas une liste de communes prises en charge. "
             'Le SENE présente ses missions sur <a href="https://www.ne.ch/autorites/ddte/sene" '
             'target="_blank" rel="noopener noreferrer">sa page officielle</a>.'
+        )
+        + p(
+            "Les colonnes d'eau d'un immeuble du littoral ou d'un atelier des montagnes sont sur "
+            'la page <a href="/sanitaire/">sanitaire</a>. Une installation arrêtée se signale via le '
+            '<a href="/depannage-sav/">dépannage</a>, en précisant si le bâtiment est sous ou au-dessus de 800 mètres.'
         )
         + subsidy(
             "Le SENE encourage les énergies renouvelables et instruit les dérogations à la LCEn. "
@@ -3932,7 +4017,8 @@ def build_404():
             "isPartOf": {"@id": f"{SITE}/#website"},
             "about": {"@id": f"{SITE}/#organization"},
             "inLanguage": "fr-CH",
-        }
+        },
+        breadcrumb_schema([("Accueil", "/"), ("Page introuvable", "/404.html")]),
     ]
     content = f"""<!DOCTYPE html>
 <html lang="fr-CH">
@@ -4324,6 +4410,7 @@ document.querySelectorAll('.track-phone').forEach(el => {
   el.addEventListener('click', () => {
     trackEvent('contact', { method: 'phone', event_category: 'contact' });
     trackEvent('click_phone', { event_category: 'contact', event_label: 'phone' });
+    trackEvent('generate_lead', { method: 'phone', event_category: 'conversion' });
   });
 });
 document.querySelectorAll('.track-email').forEach(el => {
@@ -4336,6 +4423,7 @@ document.querySelectorAll('.track-whatsapp').forEach(el => {
   el.addEventListener('click', () => {
     trackEvent('contact', { method: 'whatsapp', event_category: 'contact' });
     trackEvent('click_whatsapp', { event_category: 'contact', event_label: 'whatsapp' });
+    trackEvent('generate_lead', { method: 'whatsapp', event_category: 'conversion' });
   });
 });
 document.querySelectorAll('.track-devis').forEach(el => {

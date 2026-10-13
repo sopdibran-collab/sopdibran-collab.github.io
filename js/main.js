@@ -155,6 +155,7 @@ document.querySelectorAll('.track-phone').forEach(el => {
   el.addEventListener('click', () => {
     trackEvent('contact', { method: 'phone', event_category: 'contact' });
     trackEvent('click_phone', { event_category: 'contact', event_label: 'phone' });
+    trackEvent('generate_lead', { method: 'phone', event_category: 'conversion' });
   });
 });
 document.querySelectorAll('.track-email').forEach(el => {
@@ -167,6 +168,7 @@ document.querySelectorAll('.track-whatsapp').forEach(el => {
   el.addEventListener('click', () => {
     trackEvent('contact', { method: 'whatsapp', event_category: 'contact' });
     trackEvent('click_whatsapp', { event_category: 'contact', event_label: 'whatsapp' });
+    trackEvent('generate_lead', { method: 'whatsapp', event_category: 'conversion' });
   });
 });
 document.querySelectorAll('.track-devis').forEach(el => {
