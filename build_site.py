@@ -2832,8 +2832,8 @@ def _premium_service_configs():
             ],
             "zones_title": "Chauffagiste en Suisse romande",
             "zones_lead": (
-                f"{COMPANY_NAME} intervient comme chauffagiste dans toute la Suisse romande — "
-                "conception, pose, entretien et dépannage."
+                "Sopjani-tech Sàrl intervient comme chauffagiste dans toute la Suisse romande, "
+                "pour la conception, la pose, l'entretien et le dépannage."
             ),
             "zones_prose": (
                 "<p>Notre bassin d'intervention couvre notamment "
@@ -2953,7 +2953,7 @@ def _premium_service_configs():
             ],
             "zones_title": "Entreprise de ventilation en Suisse romande",
             "zones_lead": (
-                f"{COMPANY_NAME} intervient pour la conception et la réalisation de ventilation en Suisse romande."
+                "Sopjani-tech Sàrl conçoit et réalise des installations de ventilation en Suisse romande."
             ),
             "zones_prose": (
                 "<p>Interventions notamment à "
@@ -3667,10 +3667,8 @@ def build_zones():
             'target="_blank" rel="noopener noreferrer">permis de construire et énergie</a>.'
         )
         + p(
-            "Le canton réunit une ville historique compacte et des districts ruraux, la Gruyère, "
-            "la Broye et la Glâne, où les maisons sont dispersées. Les règles "
-            "sur l'énergie sont les mêmes dans chaque district. Pour savoir si nous "
-            "intervenons dans votre commune, appelez-nous."
+            "Le canton réunit une ville historique compacte et des districts ruraux "
+            "où les maisons sont dispersées, comme la Gruyère, la Broye et la Glâne."
         )
         + p(
             "Les colonnes et les appareils d'eau sont présentés sur la page "
