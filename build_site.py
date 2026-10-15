@@ -966,7 +966,7 @@ def mobile_quick_bar(*, sticky=False):
 </div>"""
 
 
-def header():
+def header(*, show_seat=True):
     svc_sub = '<a href="/prestations/" class="nav-submenu-all">Toutes les prestations</a>' + "".join(
         service_nav_link(s, n, submenu=True) for s, n, _ in SERVICES
     )
@@ -987,9 +987,15 @@ def header():
       <button type="button" class="mobile-nav-toggle" aria-expanded="false">Zones d'intervention</button>
       <div class="mobile-nav-panel">{mobile_zones_panel}</div>
     </div>"""
+    if show_seat:
+        topbar_left = (
+            f'Société basée à <a href="/romont/">{ADDRESS_LOCALITY}</a> — Interventions en Suisse romande'
+        )
+    else:
+        topbar_left = "Interventions en Suisse romande"
     return f"""<div class="topbar" role="complementary" aria-label="Coordonnées">
   <div class="container topbar-inner">
-    <p class="topbar-left">Société basée à <a href="/romont/">{ADDRESS_LOCALITY}</a> — Interventions en Suisse romande</p>
+    <p class="topbar-left">{topbar_left}</p>
     <p class="topbar-right">
       <a href="tel:{PHONE}" class="track-phone topbar-phone">{PHONE_DISP}</a>
       <span class="topbar-extra">
@@ -1542,7 +1548,7 @@ def clarity_head():
 """
 
 
-def page_shell(title, description, canonical, schema_graph, body, crumbs=None, *, robots="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"):
+def page_shell(title, description, canonical, schema_graph, body, crumbs=None, *, robots="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1", show_seat=True):
     # Fil d'Ariane : conservé en JSON-LD uniquement (pas d'affichage visible)
     crumbs_html = ""
     safe_title = title.replace('"', "&quot;")
@@ -1592,7 +1598,7 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None, *
 {clarity_head()}{analytics_head()}
 {schema_tag}</head>
 <body>
-{header()}
+{header(show_seat=show_seat)}
 <main>
 {crumbs_html}
 {body}
@@ -1808,6 +1814,13 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
         faq_trim.append((q, a))
         if len(faq_trim) >= 5:
             break
+    # Hors /romont/, le corps et le bandeau ne citent pas la ville du siège.
+    show_seat = slug == "romont"
+    seat_note = (
+        f"Siège à <strong>{ADDRESS_FULL}</strong> — équipe mobile. "
+        if show_seat
+        else ""
+    )
     body = f"""
 {hero}
 {mobile_quick_bar(sticky=True)}
@@ -1816,7 +1829,7 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
     <h2 class="section-title" id="local-title">{local_heading or f"Interventions dans {region}"}</h2>
     {local_text}
     {zone_proof_quote()}
-    <p class="geo-local-note">Siège à <strong>{ADDRESS_FULL}</strong> — équipe mobile. <a href="tel:{PHONE}" class="track-phone">Appelez le {PHONE_DISP}</a> pour vérifier la disponibilité {place}.</p>
+    <p class="geo-local-note">{seat_note}<a href="tel:{PHONE}" class="track-phone">Appelez le {PHONE_DISP}</a> pour vérifier la disponibilité {place}.</p>
   </div>
 </section>
 {zone_action_paths(place)}
@@ -1828,7 +1841,7 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
 </section>
 {cta_band(f"Un projet {place} ?", f"Appelez le {PHONE_DISP} ou décrivez votre besoin par WhatsApp / formulaire.", phone_first=True)}"""
     graph = base_graph(title, desc, SITE + url, crumbs, faq_trim)
-    write_page([slug, "index.html"], page_shell(title, desc, SITE + url, graph, body, crumbs))
+    write_page([slug, "index.html"], page_shell(title, desc, SITE + url, graph, body, crumbs, show_seat=show_seat))
 
 
 def svc_strip_card(slug, name, tag):
@@ -2819,8 +2832,8 @@ def _premium_service_configs():
             ],
             "zones_title": "Chauffagiste en Suisse romande",
             "zones_lead": (
-                f"{COMPANY_NAME} intervient comme chauffagiste dans toute la Suisse romande — "
-                f"conception, pose, entretien et dépannage. Siège à <a href=\"/romont/\">{ADDRESS_LOCALITY}</a>."
+                "Sopjani-tech Sàrl intervient comme chauffagiste dans toute la Suisse romande, "
+                "pour la conception, la pose, l'entretien et le dépannage."
             ),
             "zones_prose": (
                 "<p>Notre bassin d'intervention couvre notamment "
@@ -2940,8 +2953,7 @@ def _premium_service_configs():
             ],
             "zones_title": "Entreprise de ventilation en Suisse romande",
             "zones_lead": (
-                f"{COMPANY_NAME} intervient pour la conception et la réalisation de ventilation en Suisse romande. "
-                f"Siège à <a href=\"/romont/\">{ADDRESS_LOCALITY}</a>."
+                "Sopjani-tech Sàrl conçoit et réalise des installations de ventilation en Suisse romande."
             ),
             "zones_prose": (
                 "<p>Interventions notamment à "
@@ -3022,7 +3034,7 @@ def _premium_service_configs():
                  "Un contrôle annuel (nettoyage des filtres et de l'unité extérieure, vérification du bon fonctionnement) permet de préserver le rendement énergétique de l'installation et sa durée de vie."),
             ],
             "zones_title": "Climatisation en Suisse romande",
-            "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Nyon, Lausanne, Genève, en Valais et à Fribourg.",
+            "zones_lead": f"{COMPANY_NAME} intervient notamment à Nyon, Lausanne, Genève, en Valais et à Fribourg.",
             "zones_prose": (
                 "<p>Le froid de confort ne suit pas le même article partout. À "
                 '<a href="/fribourg/">Fribourg</a>, la loi cantonale soumet la climatisation '
@@ -3087,7 +3099,7 @@ def _premium_service_configs():
                  "Avant d'ouvrir une chape ou un mur, une recherche de fuite non destructive (contrôle de pression, écoute) permet souvent de localiser précisément le point de fuite et de limiter les travaux de reprise."),
             ],
             "zones_title": "Sanitaire en Suisse romande",
-            "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Genève, Lausanne, Nyon, Fribourg et dans le canton de Vaud.",
+            "zones_lead": f"{COMPANY_NAME} intervient notamment à Genève, Lausanne, Nyon, Fribourg et dans le canton de Vaud.",
             "zones_prose": (
                 "<p>Les colonnes et les appareils se jugent dans le bâtiment. C'est le circuit "
                 "après l'échangeur à <a href=\"/lausanne/\">Lausanne</a>, l'immeuble à "
@@ -3149,7 +3161,7 @@ def _premium_service_configs():
                  "Sauf urgence nécessitant une action immédiate, nous établissons un diagnostic et un devis avant toute intervention corrective, afin que vous validiez le coût et la nature des travaux avant leur réalisation."),
             ],
             "zones_title": "Dépannage en Suisse romande",
-            "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Genève, Lausanne, Fribourg, en Vaud et en Valais.",
+            "zones_lead": f"{COMPANY_NAME} intervient notamment à Genève, Lausanne, Fribourg, en Vaud et en Valais.",
             "zones_prose": (
                 "<p>Le signalement gagne à dire où se trouve l'installation : sous-station à "
                 '<a href="/lausanne/">Lausanne</a>, immeuble raccordé à un réseau structurant à '
@@ -3217,7 +3229,7 @@ def _premium_service_configs():
                  "Les exigences de protection incendie applicables (classes de risque, catégories de bâtiments concernées) sont définies par les directives de l'Association des établissements cantonaux d'assurance incendie (AEAI). Nous exécutons les réseaux selon les plans et spécifications du mandant et du bureau d'ingénieurs en charge du projet."),
             ],
             "zones_title": "Intervention sprinkler en Suisse romande",
-            "zones_lead": f"Basée à {ADDRESS_LOCALITY}, {COMPANY_NAME} intervient notamment à Genève, en Vaud et en Valais.",
+            "zones_lead": f"{COMPANY_NAME} intervient notamment à Genève, en Vaud et en Valais.",
             "zones_prose": (
                 "<p>Ces interventions restent de la sous-traitance, selon les plans du mandant. "
                 "Le cadre du chauffage, lorsqu'il est distinct, se lit à <a href=\"/geneve/\">Genève</a>, "
@@ -3655,11 +3667,8 @@ def build_zones():
             'target="_blank" rel="noopener noreferrer">permis de construire et énergie</a>.'
         )
         + p(
-            "Le canton réunit une ville historique compacte et des districts ruraux, la Gruyère, "
-            "la Broye et la Glâne, où les maisons sont dispersées. Notre siège est à Romont, "
-            'dans la Glâne : la page <a href="/romont/">Romont</a> donne l\'adresse. Les règles '
-            "sur l'énergie y sont les mêmes que dans tout le canton. Pour savoir si nous "
-            "intervenons dans votre commune, appelez-nous."
+            "Le canton réunit une ville historique compacte et des districts ruraux "
+            "où les maisons sont dispersées, comme la Gruyère, la Broye et la Glâne."
         )
         + p(
             "Les colonnes et les appareils d'eau sont présentés sur la page "
@@ -3687,8 +3696,7 @@ def build_zones():
             ),
             (
                 "Une maison de la Glâne suit-elle une autre loi que la ville de Fribourg ?",
-                f"Non. La LEn s'applique dans tout le canton. La page Romont donne seulement "
-                f"l'adresse du siège de {COMPANY_NAME}.",
+                "Non. La LEn s'applique dans tout le canton, y compris pour une maison de la Glâne.",
             ),
         ],
         ["chauffage", "ventilation", "climatisation", "sanitaire", "depannage-sav"],
