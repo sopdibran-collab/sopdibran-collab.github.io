@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr-CH">
 <head>
+<!--email_off-->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Devis gratuit & dépannage CVCS | Sopjani-tech Sàrl</title>
@@ -35,14 +36,9 @@
   <meta name="twitter:image" content="https://sopjanitech.ch/assets/og-default.jpg">
   <meta name="twitter:image:alt" content="Sopjani-tech Sàrl — CVCS Suisse romande">
   <link rel="preload" as="image" href="/assets/heroes/contact-1024.webp" imagesrcset="/assets/heroes/contact-1024.webp 1024w, /assets/heroes/contact-1600.webp 1600w" imagesizes="100vw" fetchpriority="high">
-  <link rel="stylesheet" href="/css/main.css?v=1791410396">
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "yrz84aaygw");
-  </script>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/outfit-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/source-sans-3-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="/css/main.css?v=1792442645">
   <script>window.dataLayer = window.dataLayer || []; function gtag(){ dataLayer.push(arguments); }</script>
   <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -300,7 +296,7 @@
           <div class="nav-submenu" role="menu"><a href="/zones-intervention/" class="nav-submenu-all">Toutes les zones</a><a href="/geneve/" role="menuitem">Genève</a><a href="/vaud/" role="menuitem">Vaud</a><a href="/lausanne/" role="menuitem">Lausanne</a><a href="/nyon/" role="menuitem">Nyon</a><a href="/valais/" role="menuitem">Valais</a><a href="/fribourg/" role="menuitem">Fribourg</a><a href="/romont/" role="menuitem">Romont</a><a href="/neuchatel/" role="menuitem">Neuchâtel</a></div>
         </div>
         <a href="/a-propos/">À propos</a>
-        <a href="/contact/">Contact</a>
+        <a href="/contact/" aria-current="page">Contact</a>
       </nav>
       <div class="header-cta">
         <a href="tel:+41799326862" class="tel-btn track-phone">
@@ -333,7 +329,7 @@
       <div class="mobile-nav-panel"><a href="/zones-intervention/">Toutes les zones</a><a href="/geneve/">Genève</a><a href="/vaud/">Vaud</a><a href="/lausanne/">Lausanne</a><a href="/nyon/">Nyon</a><a href="/valais/">Valais</a><a href="/fribourg/">Fribourg</a><a href="/romont/">Romont</a><a href="/neuchatel/">Neuchâtel</a></div>
     </div>
     <a href="/a-propos/" class="mobile-nav-link">À propos</a>
-    <a href="/contact/" class="mobile-nav-link">Contact</a>
+    <a href="/contact/" class="mobile-nav-link" aria-current="page">Contact</a>
     <div class="mobile-nav-cta">
       <a href="/contact/#contact-form" class="btn btn-brand track-devis">Demander un devis</a>
       <a href="tel:+41799326862" class="btn btn-secondary track-phone">Appeler · +41 79 932 68 62</a>
@@ -652,12 +648,14 @@
     </div>
   </div>
 </footer>
-<div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Information sur les cookies" aria-live="polite" hidden>
-  <div class="cookie-banner__inner container">
-    <p class="cookie-banner__text">Ce site utilise des cookies techniques et Microsoft Clarity pour mesurer les visites. En continuant, vous acceptez leur utilisation.</p>
-    <button type="button" class="btn btn-primary cookie-banner__accept" id="cookieAccept">Accepter</button>
+<div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Information sur les cookies" hidden>
+  <p class="cookie-banner__text">Statistiques de visite uniquement avec votre accord. <a href="/politique-confidentialite/">En savoir plus</a></p>
+  <div class="cookie-banner__actions">
+    <button type="button" class="cookie-banner__btn" id="cookieRefuse">Refuser</button>
+    <button type="button" class="cookie-banner__btn" id="cookieAccept">Accepter</button>
   </div>
 </div>
 <script src="/js/main.js" defer></script>
+<!--/email_off-->
 </body>
 </html>
