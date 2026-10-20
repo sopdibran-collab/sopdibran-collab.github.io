@@ -1,6 +1,18 @@
 const COOKIE_CONSENT_KEY = 'sopjanitech_cookie_consent';
 const cookieBanner = document.getElementById('cookieBanner');
 const cookieAccept = document.getElementById('cookieAccept');
+const cookieRefuse = document.getElementById('cookieRefuse');
+const CLARITY_ID = 'yrz84aaygw';
+let clarityLoaded = false;
+function loadClarity() {
+  if (!CLARITY_ID || clarityLoaded) return;
+  clarityLoaded = true;
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", CLARITY_ID);
+}
 
 const GA4_ID = 'G-KXN3RQB89P';
 let ga4Loaded = false;
@@ -30,25 +42,47 @@ function loadGA4() {
   };
 }
 
+function cookieChoiceMade() {
+  try { return localStorage.getItem(COOKIE_CONSENT_KEY) !== null; } catch (e) { return false; }
+}
+
+function syncCookiePadding() {
+  if (!cookieBanner || cookieBanner.hidden) { document.body.style.paddingBottom = ''; return; }
+  if (window.matchMedia('(max-width: 767px)').matches) {
+    document.body.style.paddingBottom = cookieBanner.offsetHeight + 'px';
+  } else {
+    document.body.style.paddingBottom = '';
+  }
+}
+
 function initCookieBanner() {
   if (!cookieBanner) return;
-  if (hasCookieConsent()) return;
+  if (cookieChoiceMade()) return;
+  document.body.classList.add('cookie-pending');
   cookieBanner.hidden = false;
+  syncCookiePadding();
+  window.addEventListener('resize', syncCookiePadding);
+  if (cookieRefuse) cookieRefuse.focus({ preventScroll: true });
+}
+
+function closeCookieBanner(value) {
+  try { localStorage.setItem(COOKIE_CONSENT_KEY, value); } catch (e) {}
+  if (cookieBanner) cookieBanner.hidden = true;
+  document.body.classList.remove('cookie-pending');
+  window.removeEventListener('resize', syncCookiePadding);
+  document.body.style.paddingBottom = '';
 }
 
 function acceptCookies() {
-  try {
-    localStorage.setItem(COOKIE_CONSENT_KEY, '1');
-  } catch (e) {}
-  if (cookieBanner) cookieBanner.hidden = true;
+  closeCookieBanner('1');
   loadGA4();
+  loadClarity();
 }
 
-if (cookieAccept) {
-  cookieAccept.addEventListener('click', acceptCookies);
-}
+if (cookieAccept) cookieAccept.addEventListener('click', acceptCookies);
+if (cookieRefuse) cookieRefuse.addEventListener('click', () => closeCookieBanner('0'));
 initCookieBanner();
-if (hasCookieConsent()) loadGA4();
+if (hasCookieConsent()) { loadGA4(); loadClarity(); }
 
 const burger = document.getElementById('burger');
 const mobileNav = document.getElementById('mobileNav');

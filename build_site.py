@@ -1153,10 +1153,12 @@ def footer():
 
 
 def cookie_banner():
-    return """<div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Information sur les cookies" aria-live="polite" hidden>
-  <div class="cookie-banner__inner container">
-    <p class="cookie-banner__text">Ce site utilise des cookies techniques et Microsoft Clarity pour mesurer les visites. En continuant, vous acceptez leur utilisation.</p>
-    <button type="button" class="btn btn-primary cookie-banner__accept" id="cookieAccept">Accepter</button>
+    # Barre compacte (mobile) / carte bas-gauche (desktop) : position fixe, aucun voile, zéro CLS.
+    return """<div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Information sur les cookies" hidden>
+  <p class="cookie-banner__text">Statistiques de visite uniquement avec votre accord. <a href="/politique-confidentialite/">En savoir plus</a></p>
+  <div class="cookie-banner__actions">
+    <button type="button" class="cookie-banner__btn" id="cookieRefuse">Refuser</button>
+    <button type="button" class="cookie-banner__btn" id="cookieAccept">Accepter</button>
   </div>
 </div>"""
 
@@ -1524,6 +1526,12 @@ def cta_band(title="Besoin d'un devis ou d'un dépannage ?", text="Contactez-nou
 </section>"""
 
 
+FONT_PRELOADS = (
+    '  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/outfit-latin.woff2" crossorigin>\n'
+    '  <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/source-sans-3-latin.woff2" crossorigin>\n'
+)
+
+
 def gsc_verification_meta():
     if GOOGLE_SITE_VERIFICATION:
         return f'  <meta name="google-site-verification" content="{GOOGLE_SITE_VERIFICATION}">\n'
@@ -1535,7 +1543,8 @@ def analytics_head():
 
 
 def clarity_head():
-    """Snippet Microsoft Clarity, collé dans le <head> de chaque page."""
+    """Microsoft Clarity : chargé par js/main.js seulement après « Accepter » (voir loadClarity)."""
+    return ""
     if not CLARITY_PROJECT_ID:
         return ""
     return f"""  <script type="text/javascript">
@@ -1594,7 +1603,7 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None, *
   <meta name="twitter:description" content="{safe_desc}">
   <meta name="twitter:image" content="{OG_IMAGE}">
   <meta name="twitter:image:alt" content="{COMPANY_NAME} — CVCS Suisse romande">
-{lcp_preload_from_body(body)}  <link rel="stylesheet" href="/css/main.css?v={int((ROOT / 'css' / 'main.css').stat().st_mtime)}">
+{lcp_preload_from_body(body)}{FONT_PRELOADS}  <link rel="stylesheet" href="/css/main.css?v={int((ROOT / 'css' / 'main.css').stat().st_mtime)}">
 {clarity_head()}{analytics_head()}
 {schema_tag}</head>
 <body>
@@ -1610,7 +1619,29 @@ def page_shell(title, description, canonical, schema_graph, body, crumbs=None, *
 </html>"""
 
 
+def email_off(content):
+    """Empêche l'obfuscation e-mail de Cloudflare (liens /cdn-cgi/l/email-protection en 404)."""
+    if "<!--email_off-->" in content or "@" not in content:
+        return content
+    content = content.replace("<head>", "<head>\n<!--email_off-->", 1)
+    return content.replace("</body>", "<!--/email_off-->\n</body>", 1)
+
+
+def mark_current_nav(path_parts, content):
+    """aria-current="page" sur le lien de navigation principale de la page courante."""
+    if path_parts[-1] != "index.html":
+        return content
+    url = "/" + "/".join(path_parts[:-1]) + ("/" if len(path_parts) > 1 else "")
+    def sub(m):
+        block = m.group(0)
+        return block.replace(f'<a href="{url}">', f'<a href="{url}" aria-current="page">', 1)
+    content = re.sub(r'<nav class="nav-main".*?</nav>', sub, content, count=1, flags=re.S)
+    return re.sub(r'<nav class="mobile-nav".*?</nav>', lambda m: m.group(0).replace(f'<a href="{url}" class="mobile-nav-link">', f'<a href="{url}" class="mobile-nav-link" aria-current="page">', 1), content, count=1, flags=re.S)
+
+
 def write_page(path_parts, content):
+    if str(path_parts[-1]).endswith(".html"):
+        content = mark_current_nav(path_parts, email_off(content))
     d = ROOT.joinpath(*path_parts[:-1])
     d.mkdir(parents=True, exist_ok=True)
     (d / path_parts[-1]).write_text(content, encoding="utf-8")
@@ -1968,7 +1999,7 @@ def build_home():
     body = f"""
 <section class="hero hero--photo" aria-labelledby="hero-h1">
   <div class="hero-media">
-    {responsive_img("/assets/heroes/home.jpg", "Centrale sprinkler installée par Sopjani-tech Sàrl — chantier réel en Suisse romande", 2000, 1125, sizes=HERO_SIZES, loading="", fetchpriority="high")}
+    {responsive_img("/assets/heroes/home.jpg", "Centrale sprinkler installée par Sopjani-tech Sàrl — chantier réel en Suisse romande", 2000, 1125, sizes=HERO_SIZES, loading="eager", fetchpriority="high")}
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="container hero-inner">
@@ -4110,7 +4141,7 @@ def build_404():
   <meta name="twitter:description" content="{safe_desc}">
   <meta name="twitter:image" content="{OG_IMAGE}">
   <meta name="twitter:image:alt" content="{COMPANY_NAME} — CVCS Suisse romande">
-  <link rel="stylesheet" href="/css/main.css?v={css_ver}">
+{FONT_PRELOADS}  <link rel="stylesheet" href="/css/main.css?v={css_ver}">
 {clarity_head()}{analytics_head()}
   <script type="application/ld+json">{schema_json(graph)}</script>
 </head>
@@ -4337,27 +4368,61 @@ function loadGA4() {}
     js_head = """const COOKIE_CONSENT_KEY = 'sopjanitech_cookie_consent';
 const cookieBanner = document.getElementById('cookieBanner');
 const cookieAccept = document.getElementById('cookieAccept');
-"""
+const cookieRefuse = document.getElementById('cookieRefuse');
+const CLARITY_ID = '%s';
+let clarityLoaded = false;
+function loadClarity() {
+  if (!CLARITY_ID || clarityLoaded) return;
+  clarityLoaded = true;
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", CLARITY_ID);
+}
+""" % CLARITY_PROJECT_ID
     js_cookie = """
+function cookieChoiceMade() {
+  try { return localStorage.getItem(COOKIE_CONSENT_KEY) !== null; } catch (e) { return false; }
+}
+
+function syncCookiePadding() {
+  if (!cookieBanner || cookieBanner.hidden) { document.body.style.paddingBottom = ''; return; }
+  if (window.matchMedia('(max-width: 767px)').matches) {
+    document.body.style.paddingBottom = cookieBanner.offsetHeight + 'px';
+  } else {
+    document.body.style.paddingBottom = '';
+  }
+}
+
 function initCookieBanner() {
   if (!cookieBanner) return;
-  if (hasCookieConsent()) return;
+  if (cookieChoiceMade()) return;
+  document.body.classList.add('cookie-pending');
   cookieBanner.hidden = false;
+  syncCookiePadding();
+  window.addEventListener('resize', syncCookiePadding);
+  if (cookieRefuse) cookieRefuse.focus({ preventScroll: true });
+}
+
+function closeCookieBanner(value) {
+  try { localStorage.setItem(COOKIE_CONSENT_KEY, value); } catch (e) {}
+  if (cookieBanner) cookieBanner.hidden = true;
+  document.body.classList.remove('cookie-pending');
+  window.removeEventListener('resize', syncCookiePadding);
+  document.body.style.paddingBottom = '';
 }
 
 function acceptCookies() {
-  try {
-    localStorage.setItem(COOKIE_CONSENT_KEY, '1');
-  } catch (e) {}
-  if (cookieBanner) cookieBanner.hidden = true;
+  closeCookieBanner('1');
   loadGA4();
+  loadClarity();
 }
 
-if (cookieAccept) {
-  cookieAccept.addEventListener('click', acceptCookies);
-}
+if (cookieAccept) cookieAccept.addEventListener('click', acceptCookies);
+if (cookieRefuse) cookieRefuse.addEventListener('click', () => closeCookieBanner('0'));
 initCookieBanner();
-if (hasCookieConsent()) loadGA4();
+if (hasCookieConsent()) { loadGA4(); loadClarity(); }
 """
     js_tail = """
 const burger = document.getElementById('burger');
