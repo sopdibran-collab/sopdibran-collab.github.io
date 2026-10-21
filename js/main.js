@@ -62,7 +62,14 @@ function initCookieBanner() {
   cookieBanner.hidden = false;
   syncCookiePadding();
   window.addEventListener('resize', syncCookiePadding);
-  if (cookieRefuse) cookieRefuse.focus({ preventScroll: true });
+  if (cookieRefuse) {
+    cookieBanner.classList.add('cookie-banner--quiet');
+    cookieRefuse.focus({ preventScroll: true });
+    document.addEventListener('keydown', function unquiet() {
+      cookieBanner.classList.remove('cookie-banner--quiet');
+      document.removeEventListener('keydown', unquiet);
+    });
+  }
 }
 
 function closeCookieBanner(value) {
