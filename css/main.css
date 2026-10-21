@@ -5845,13 +5845,16 @@ body.page-404 .cookie-banner {
   background: #fff; color: var(--c-navy); border: 1px solid var(--c-navy); cursor: pointer;
 }
 .cookie-banner__btn:hover { background: var(--c-navy); color: #fff; }
+.cookie-banner__btn:focus { outline: none; }
 .cookie-banner__btn:focus-visible,
 .cookie-banner__text a:focus-visible { outline: 2px solid var(--c-navy); outline-offset: 2px; }
+/* focus programmatique à l'ouverture : pas de contour tant qu'aucune touche clavier n'a été pressée */
+.cookie-banner--quiet .cookie-banner__btn:focus-visible { outline: none; }
 /* jamais deux barres empilées : Appeler/Devis masquée jusqu'au choix */
 body.cookie-pending .mobile-quick-bar--sticky { display: none !important; }
 @media (min-width: 768px) {
   .cookie-banner {
-    left: 24px; right: auto; bottom: 24px; width: calc(100% - 48px); max-width: 400px; max-height: none;
+    left: auto; right: 24px; bottom: 24px; width: calc(100% - 48px); max-width: 400px; max-height: none;
     padding: 16px; gap: 12px;
     border: 1px solid #E2E8F0; border-radius: var(--radius);
     box-shadow: 0 10px 30px rgba(11, 37, 69, 0.14);
@@ -5923,3 +5926,9 @@ header .nav-main > a[aria-current="page"] { color: #fff; }
 .path-grid { grid-template-columns: 1fr; }
 @media (min-width: 640px) { .path-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .path-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* Topbar mobile < 640px : téléphone seul, pas de débordement */
+@media (max-width: 639px) {
+  .topbar-extra { display: none !important; }
+  .topbar-right { overflow: visible; }
+}
