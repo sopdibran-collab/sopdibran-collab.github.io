@@ -3214,6 +3214,10 @@ header .header-cta .btn-primary:focus-visible {
   object-fit: cover;
   object-position: center;
 }
+/* Sujet collé à droite dans l'asset (équipe réelle) : garde le sujet dans le cadre */
+.hero--photo.hero--subject-right .hero-media img {
+  object-position: 70% center;
+}
 .hero--photo .hero-shade {
   position: absolute;
   inset: 0;
