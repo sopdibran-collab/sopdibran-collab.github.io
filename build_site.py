@@ -1464,7 +1464,7 @@ def lcp_preload_from_body(body):
     return f'  <link rel="preload" as="image" {" ".join(parts)} fetchpriority="high">\n'
 
 
-def page_hero(label, h1, sub, *, icon_html="", primary_href="/contact/", primary_label="Demander un devis", primary_class="btn-brand track-devis", secondary_href=None, secondary_label=None, secondary_class="btn-secondary-on-dark track-phone", show_ctas=True, image=None, image_alt=""):
+def page_hero(label, h1, sub, *, icon_html="", primary_href="/contact/", primary_label="Demander un devis", primary_class="btn-brand track-devis", secondary_href=None, secondary_label=None, secondary_class="btn-secondary-on-dark track-phone", show_ctas=True, image=None, image_alt="", subject_right=False):
     """Hero unifié — photo plein cadre + fondu navy si `image` fourni."""
     if secondary_href is None:
         secondary_href = f"tel:{PHONE}"
@@ -1486,7 +1486,8 @@ def page_hero(label, h1, sub, *, icon_html="", primary_href="/contact/", primary
     if image:
         alt = image_alt or h1
         hero_img = responsive_img(image, alt, 2000, 1125, sizes=HERO_SIZES, loading="", fetchpriority="high")
-        return f"""<section class="page-hero hero hero--photo" aria-labelledby="page-h1">
+        subject_cls = " hero--subject-right" if subject_right else ""
+        return f"""<section class="page-hero hero hero--photo{subject_cls}" aria-labelledby="page-h1">
   <div class="hero-media">
     {hero_img}
   </div>
@@ -2185,6 +2186,7 @@ def build_about():
         f"À propos de {COMPANY_NAME}",
         f"Entreprise technique spécialisée en {CVCS_ALL_PROSE} en Suisse romande.",
         image=hero_image_for("a-propos"),
+        subject_right=True,
     )
     zone_pills = "".join(f'<a class="zone-pill" href="/{z}/">{n}</a>' for z, n, _ in ZONES)
     body = f"""
@@ -2315,6 +2317,7 @@ def build_contact():
         f"Contactez {COMPANY_NAME}",
         "Devis, maintenance ou dépannage : décrivez votre besoin et nous vous orienterons vers la solution adaptée.",
         image=hero_image_for("contact"),
+        subject_right=True,
     )}
 {mobile_quick_bar(sticky=True)}
 <section class="contact content-section" aria-labelledby="contact-form-title">
