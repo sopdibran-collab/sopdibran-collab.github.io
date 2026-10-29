@@ -95,6 +95,29 @@ const burger = document.getElementById('burger');
 const mobileNav = document.getElementById('mobileNav');
 const mobileNavOverlay = document.getElementById('mobileNavOverlay');
 const mobileNavClose = document.getElementById('mobileNavClose');
+let mobileNavScrollY = 0;
+
+function lockPageScroll() {
+  mobileNavScrollY = window.scrollY || window.pageYOffset || 0;
+  document.documentElement.classList.add('nav-open');
+  document.body.classList.add('nav-open');
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${mobileNavScrollY}px`;
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+  document.body.style.width = '100%';
+}
+
+function unlockPageScroll() {
+  document.documentElement.classList.remove('nav-open');
+  document.body.classList.remove('nav-open');
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  document.body.style.width = '';
+  window.scrollTo(0, mobileNavScrollY);
+}
 
 function setMobileNav(open) {
   if (!mobileNav || !burger) return;
@@ -102,8 +125,12 @@ function setMobileNav(open) {
   burger.classList.toggle('open', open);
   burger.setAttribute('aria-expanded', open);
   burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
-  mobileNav.setAttribute('aria-hidden', !open);
-  document.body.classList.toggle('nav-open', open);
+  mobileNav.setAttribute('aria-hidden', String(!open));
+  if (open) {
+    lockPageScroll();
+  } else {
+    unlockPageScroll();
+  }
   if (mobileNavOverlay) {
     mobileNavOverlay.hidden = !open;
   }
