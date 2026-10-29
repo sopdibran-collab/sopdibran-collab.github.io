@@ -991,15 +991,19 @@ def header(*, show_seat=True):
         topbar_left = (
             f'Société basée à <a href="/romont/">{ADDRESS_LOCALITY}</a> — Interventions en Suisse romande'
         )
+        drawer_seat_line = (
+            f'<a href="/romont/" class="mobile-nav-contact__link">{ADDRESS_LOCALITY}</a>'
+            f' — Interventions en Suisse romande'
+        )
     else:
         topbar_left = "Interventions en Suisse romande"
+        drawer_seat_line = topbar_left
     mobile_nav_contact = f"""    <div class="mobile-nav-contact">
-      <p class="mobile-nav-contact__line">{topbar_left}</p>
-      <p class="mobile-nav-contact__line mobile-nav-contact__meta">
-        <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a>
-        <span aria-hidden="true"> · </span>
-        <span>Horaires&nbsp;: {HOURS}</span>
+      <p class="mobile-nav-contact__line">{drawer_seat_line}</p>
+      <p class="mobile-nav-contact__line">
+        <a href="mailto:{EMAIL}" class="mobile-nav-contact__link track-email">{EMAIL}</a>
       </p>
+      <p class="mobile-nav-contact__line">{HOURS}</p>
     </div>"""
     return f"""<div class="topbar" role="complementary" aria-label="Coordonnées">
   <div class="container topbar-inner">
