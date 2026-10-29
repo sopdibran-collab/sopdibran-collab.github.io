@@ -993,6 +993,14 @@ def header(*, show_seat=True):
         )
     else:
         topbar_left = "Interventions en Suisse romande"
+    mobile_nav_contact = f"""    <div class="mobile-nav-contact">
+      <p class="mobile-nav-contact__line">{topbar_left}</p>
+      <p class="mobile-nav-contact__line mobile-nav-contact__meta">
+        <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a>
+        <span aria-hidden="true"> · </span>
+        <span>Horaires&nbsp;: {HOURS}</span>
+      </p>
+    </div>"""
     return f"""<div class="topbar" role="complementary" aria-label="Coordonnées">
   <div class="container topbar-inner">
     <p class="topbar-left">{topbar_left}</p>
@@ -1048,6 +1056,7 @@ def header(*, show_seat=True):
         <span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
     </div>
+{mobile_nav_contact}
     <a href="/" class="mobile-nav-link">Accueil</a>
     {mobile_svc}
     <a href="/realisations/" class="mobile-nav-link">Réalisations</a>
@@ -1104,6 +1113,10 @@ def footer():
         <img class="logo-img logo-img--responsive" src="{LOGO_FOOTER}" alt="{COMPANY_NAME}" width="120" height="36" loading="lazy" decoding="async">
       </a>
       <p class="site-footer__tagline">{CVCS_GROUP} · Dépannage SAV · Suisse romande</p>
+    </div>
+    <div class="site-footer__mobile-cta">
+      <a href="/contact/#contact-form" class="btn btn-brand track-devis">Demander un devis</a>
+      <a href="tel:{PHONE}" class="btn btn-secondary track-phone">Appeler · {PHONE_DISP}</a>
     </div>
     <div class="site-footer__rows">
       <div class="site-footer__row">
@@ -4439,6 +4452,29 @@ const burger = document.getElementById('burger');
 const mobileNav = document.getElementById('mobileNav');
 const mobileNavOverlay = document.getElementById('mobileNavOverlay');
 const mobileNavClose = document.getElementById('mobileNavClose');
+let mobileNavScrollY = 0;
+
+function lockPageScroll() {
+  mobileNavScrollY = window.scrollY || window.pageYOffset || 0;
+  document.documentElement.classList.add('nav-open');
+  document.body.classList.add('nav-open');
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${mobileNavScrollY}px`;
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+  document.body.style.width = '100%';
+}
+
+function unlockPageScroll() {
+  document.documentElement.classList.remove('nav-open');
+  document.body.classList.remove('nav-open');
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  document.body.style.width = '';
+  window.scrollTo(0, mobileNavScrollY);
+}
 
 function setMobileNav(open) {
   if (!mobileNav || !burger) return;
@@ -4446,8 +4482,12 @@ function setMobileNav(open) {
   burger.classList.toggle('open', open);
   burger.setAttribute('aria-expanded', open);
   burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
-  mobileNav.setAttribute('aria-hidden', !open);
-  document.body.classList.toggle('nav-open', open);
+  mobileNav.setAttribute('aria-hidden', String(!open));
+  if (open) {
+    lockPageScroll();
+  } else {
+    unlockPageScroll();
+  }
   if (mobileNavOverlay) {
     mobileNavOverlay.hidden = !open;
   }

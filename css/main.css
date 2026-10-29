@@ -1573,26 +1573,114 @@
       color: var(--c-logo);
     }
 
-    /* Mobile : encore plus court */
+.site-footer__mobile-cta {
+  display: none;
+}
+
+    /* Mobile : colonne unique, CTAs + coordonnées */
     @media (max-width: 767px) {
-      .site-footer__tagline { display: none; }
-      .site-footer__rows {
-        grid-template-columns: 1fr;
-        gap: 0.4rem;
+      .site-footer__inner {
+        padding: 32px 20px;
       }
-      /* Entreprise = déjà dans le menu mobile */
+
+      .site-footer__top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 0;
+      }
+
+      .site-footer__tagline {
+        display: block;
+        font-size: 14px;
+        line-height: 1.55;
+        color: rgba(248, 250, 252, 0.72);
+        max-width: none;
+      }
+
+      .site-footer__mobile-cta {
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+        width: 100%;
+        margin-top: 22px;
+      }
+
+      .site-footer__mobile-cta .btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 48px;
+      }
+
+      .site-footer__mobile-cta .btn-brand {
+        background: var(--c-logo);
+        color: var(--c-navy) !important;
+        border-color: var(--c-logo);
+      }
+
+      .site-footer__mobile-cta .btn-secondary {
+        background: transparent;
+        color: rgba(248, 250, 252, 0.92);
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+
+      .site-footer__rows {
+        display: block;
+        margin-top: 22px;
+      }
+
+      .site-footer__rows > .site-footer__row:nth-child(1),
+      .site-footer__rows > .site-footer__row:nth-child(2),
       .site-footer__rows > .site-footer__row:nth-child(3) {
         display: none;
       }
-      .site-footer__row--contact { margin-top: 0.1rem; }
-      .site-footer__contact li:nth-child(3) {
-        flex: 1 1 100%;
-        font-size: 0.6875rem;
-        opacity: 0.8;
+
+      .site-footer__row--contact {
+        margin-top: 0;
+      }
+
+      .site-footer__contact-head {
+        display: none;
+      }
+
+      .site-footer__contact {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .site-footer__contact li:nth-child(3),
+      .site-footer__contact li:nth-child(5) {
+        display: none;
+      }
+
+      .site-footer__contact li:nth-child(4) {
+        flex: none;
+        font-size: 14px;
+        opacity: 1;
+      }
+
+      .site-footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-top: 22px;
+        padding-top: 20px;
+      }
+
+      .site-footer__legal a {
+        font-size: 12px;
+        line-height: 1.45;
       }
     }
 
     @media (min-width: 768px) {
+      .site-footer__mobile-cta {
+        display: none;
+      }
       .site-footer__inner {
         padding-top: 0.9rem;
         padding-left: var(--edge);
@@ -2617,26 +2705,29 @@ header .burger.open span:nth-child(2) { opacity: 0; }
 header .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 body.nav-open { overflow: hidden; }
+html.nav-open {
+  overflow: hidden;
+  height: 100%;
+}
 
 .mobile-nav-overlay {
   position: fixed;
   inset: 0;
   background: rgba(6, 12, 18, 0.55);
-  z-index: 900;
+  z-index: 999;
 }
 .mobile-nav-overlay[hidden] { display: none !important; }
 
 nav.mobile-nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 910;
+  inset: 0;
+  z-index: 1000;
   background: var(--c-dark);
-  overflow-y: auto;
+  overflow: hidden;
   -webkit-overflow-scrolling: touch;
   padding: 0;
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
   display: none !important;
   flex-direction: column;
   align-items: stretch;
@@ -2644,11 +2735,14 @@ nav.mobile-nav {
 }
 nav.mobile-nav.open { display: flex !important; }
 .mobile-nav-inner {
-  padding: 72px 20px 32px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 20px 32px;
   display: flex;
   flex-direction: column;
   gap: 0;
-  min-height: 100%;
 }
 .mobile-nav-link,
 .mobile-nav > .mobile-nav-inner > a.mobile-nav-link {
@@ -4071,23 +4165,24 @@ header .header-cta .btn-primary {
     display: none !important;
   }
 
-  /* Burger reste cliquable au-dessus du drawer */
+  body.nav-open .topbar,
   body.nav-open header.site-header {
-    z-index: 920;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .mobile-nav-overlay {
-    z-index: 900;
+    z-index: 999;
   }
 
   nav.mobile-nav {
-    z-index: 910;
-    top: 0;
+    z-index: 1000;
+    inset: 0;
     padding-top: env(safe-area-inset-top, 0);
   }
 
   .mobile-nav-inner {
-    padding: 12px 20px calc(28px + env(safe-area-inset-bottom, 0));
+    padding: 0 20px calc(28px + env(safe-area-inset-bottom, 0));
   }
 
   .mobile-nav-toolbar {
@@ -4095,9 +4190,46 @@ header .header-cta .btn-primary {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    margin-bottom: 8px;
-    padding-bottom: 12px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--c-dark);
+    margin-bottom: 0;
+    padding: 12px 0 12px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .mobile-nav-contact {
+    flex-shrink: 0;
+    padding: 14px 0 16px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mobile-nav-contact__line {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .mobile-nav-contact__line + .mobile-nav-contact__line {
+    margin-top: 6px;
+  }
+
+  .mobile-nav-contact a {
+    color: rgba(255, 255, 255, 0.88);
+    text-decoration: none;
+  }
+
+  .mobile-nav-contact a:hover {
+    color: var(--c-accent-on-dark);
+  }
+
+  .mobile-nav-contact__meta {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.62);
   }
 
   .mobile-nav-title {
