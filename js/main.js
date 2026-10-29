@@ -319,7 +319,7 @@ document.querySelectorAll('.track-form').forEach(form => {
         if (err && err.message === 'activation') {
           feedback.textContent = 'Le formulaire n’est pas encore activé. Ouvrez la boîte info@sopjanitech.ch (et les indésirables), cherchez l’e-mail FormSubmit « Activate Form », puis cliquez le lien. Ensuite renvoyez une demande.';
         } else {
-          feedback.textContent = 'Envoi impossible pour le moment. Appelez-nous au +41 79 932 68 62 ou écrivez à info@sopjanitech.ch.';
+          feedback.textContent = 'Envoi impossible pour le moment. Appelez-nous au +41 79 932 68 62 ou écrivez à info@sopjanitech.ch.';
         }
         feedback.hidden = false;
       }

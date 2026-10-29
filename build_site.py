@@ -15,7 +15,7 @@ LEGACY_REDIRECTS = {
     "politique-confidentialite.html": "/politique-confidentialite/",
 }
 PHONE = "+41799326862"
-PHONE_DISP = "+41 79 932 68 62"
+PHONE_DISP = "+41\u00a079\u00a0932\u00a068\u00a062"
 EMAIL = "info@sopjanitech.ch"
 WA = "https://wa.me/41799326862"
 # --- MESURE DU TRAFIC (à renseigner puis régénérer : python3 build_site.py) ---
@@ -1045,8 +1045,10 @@ def header(*, show_seat=True):
         </a>
         <a href="/contact/" class="btn btn-brand track-devis">Demander un devis</a>
       </div>
+      <div class="header-mobile-tools">
       <a href="tel:{PHONE}" class="header-phone track-phone" aria-label="{phone_aria}">{header_phone_svg}</a>
       <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-controls="mobileNav" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
     </div>
   </div>
 </header>
@@ -4674,7 +4676,7 @@ document.querySelectorAll('.track-form').forEach(form => {
         if (err && err.message === 'activation') {
           feedback.textContent = 'Le formulaire n’est pas encore activé. Ouvrez la boîte info@sopjanitech.ch (et les indésirables), cherchez l’e-mail FormSubmit « Activate Form », puis cliquez le lien. Ensuite renvoyez une demande.';
         } else {
-          feedback.textContent = 'Envoi impossible pour le moment. Appelez-nous au +41 79 932 68 62 ou écrivez à info@sopjanitech.ch.';
+          feedback.textContent = 'Envoi impossible pour le moment. Appelez-nous au +41\u00a079\u00a0932\u00a068\u00a062 ou écrivez à info@sopjanitech.ch.';
         }
         feedback.hidden = false;
       }
