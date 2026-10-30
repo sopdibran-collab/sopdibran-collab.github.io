@@ -15,7 +15,7 @@ LEGACY_REDIRECTS = {
     "politique-confidentialite.html": "/politique-confidentialite/",
 }
 PHONE = "+41799326862"
-PHONE_DISP = "+41 79 932 68 62"
+PHONE_DISP = "+41\u00a079\u00a0932\u00a068\u00a062"
 EMAIL = "info@sopjanitech.ch"
 WA = "https://wa.me/41799326862"
 # --- MESURE DU TRAFIC (à renseigner puis régénérer : python3 build_site.py) ---
@@ -959,10 +959,14 @@ def breadcrumbs_html(items):
 
 def mobile_quick_bar(*, sticky=False):
     cls = "mobile-quick-bar mobile-quick-bar--sticky" if sticky else "mobile-quick-bar"
-    return f"""<div class="{cls}" role="group" aria-label="Actions de contact rapides">
-  <a href="tel:{PHONE}" class="mobile-quick-btn track-phone">Appeler</a>
-  <a href="{WA}" class="mobile-quick-btn track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-  <a href="/contact/#contact-form" class="mobile-quick-btn track-devis">Devis</a>
+    wa_svg = (
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" '
+        'aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>'
+    )
+    return f"""<div class="{cls}" id="mobileStickyBar" role="group" aria-label="Actions de contact rapides">
+  <a href="{WA}" class="mobile-sticky-wa track-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">{wa_svg}</a>
+  <a href="tel:{PHONE}" class="mobile-sticky-call track-phone">Appeler</a>
+  <a href="/contact/#contact-form" class="mobile-sticky-devis track-devis">Devis</a>
 </div>"""
 
 
@@ -993,14 +997,12 @@ def header(*, show_seat=True):
         )
     else:
         topbar_left = "Interventions en Suisse romande"
-    mobile_nav_contact = f"""    <div class="mobile-nav-contact">
-      <p class="mobile-nav-contact__line">{topbar_left}</p>
-      <p class="mobile-nav-contact__line mobile-nav-contact__meta">
-        <a href="mailto:{EMAIL}" class="track-email">{EMAIL}</a>
-        <span aria-hidden="true"> · </span>
-        <span>Horaires&nbsp;: {HOURS}</span>
-      </p>
-    </div>"""
+    header_phone_svg = (
+        '<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+        '<path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/>'
+        "</svg>"
+    )
+    phone_aria = f"Appeler le {PHONE_DISP}"
     return f"""<div class="topbar" role="complementary" aria-label="Coordonnées">
   <div class="container topbar-inner">
     <p class="topbar-left">{topbar_left}</p>
@@ -1043,7 +1045,10 @@ def header(*, show_seat=True):
         </a>
         <a href="/contact/" class="btn btn-brand track-devis">Demander un devis</a>
       </div>
+      <div class="header-mobile-tools">
+      <a href="tel:{PHONE}" class="header-phone track-phone" aria-label="{phone_aria}">{header_phone_svg}</a>
       <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-controls="mobileNav" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
     </div>
   </div>
 </header>
@@ -1056,17 +1061,16 @@ def header(*, show_seat=True):
         <span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
     </div>
-{mobile_nav_contact}
+    <div class="mobile-nav-scroll">
     <a href="/" class="mobile-nav-link">Accueil</a>
     {mobile_svc}
     <a href="/realisations/" class="mobile-nav-link">Réalisations</a>
     {mobile_zones}
     <a href="/a-propos/" class="mobile-nav-link">À propos</a>
     <a href="/contact/" class="mobile-nav-link">Contact</a>
+    </div>
     <div class="mobile-nav-cta">
       <a href="/contact/#contact-form" class="btn btn-brand track-devis">Demander un devis</a>
-      <a href="tel:{PHONE}" class="btn btn-secondary track-phone">Appeler · {PHONE_DISP}</a>
-      <a href="{WA}" class="btn btn-secondary track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </div>
   </div>
 </nav>"""
@@ -1113,10 +1117,6 @@ def footer():
         <img class="logo-img logo-img--responsive" src="{LOGO_FOOTER}" alt="{COMPANY_NAME}" width="120" height="36" loading="lazy" decoding="async">
       </a>
       <p class="site-footer__tagline">{CVCS_GROUP} · Dépannage SAV · Suisse romande</p>
-    </div>
-    <div class="site-footer__mobile-cta">
-      <a href="/contact/#contact-form" class="btn btn-brand track-devis">Demander un devis</a>
-      <a href="tel:{PHONE}" class="btn btn-secondary track-phone">Appeler · {PHONE_DISP}</a>
     </div>
     <div class="site-footer__rows">
       <div class="site-footer__row">
@@ -4514,6 +4514,35 @@ if (burger && mobileNav) {
     if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeMobileNav();
   });
 }
+
+function initMobileStickyBar() {
+  const bar = document.getElementById('mobileStickyBar');
+  if (!bar) return;
+  const mq = window.matchMedia('(max-width: 639px)');
+  const anchors = document.querySelectorAll('.cta-band, .site-footer');
+  if (!anchors.length) return;
+  const visible = new Map();
+  anchors.forEach(el => visible.set(el, false));
+  const sync = () => {
+    if (!mq.matches) {
+      bar.classList.remove('is-retracted');
+      return;
+    }
+    const hide = Array.from(visible.values()).some(Boolean);
+    bar.classList.toggle('is-retracted', hide);
+  };
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      visible.set(entry.target, entry.isIntersecting);
+    });
+    sync();
+  }, { threshold: 0, rootMargin: '0px' });
+  anchors.forEach(el => observer.observe(el));
+  mq.addEventListener('change', sync);
+  sync();
+}
+initMobileStickyBar();
+
 function closeNavDropdowns() {
   document.querySelectorAll('.nav-item.is-open').forEach(item => {
     item.classList.remove('is-open');
@@ -4647,7 +4676,7 @@ document.querySelectorAll('.track-form').forEach(form => {
         if (err && err.message === 'activation') {
           feedback.textContent = 'Le formulaire n’est pas encore activé. Ouvrez la boîte info@sopjanitech.ch (et les indésirables), cherchez l’e-mail FormSubmit « Activate Form », puis cliquez le lien. Ensuite renvoyez une demande.';
         } else {
-          feedback.textContent = 'Envoi impossible pour le moment. Appelez-nous au +41 79 932 68 62 ou écrivez à info@sopjanitech.ch.';
+          feedback.textContent = 'Envoi impossible pour le moment. Appelez-nous au +41\u00a079\u00a0932\u00a068\u00a062 ou écrivez à info@sopjanitech.ch.';
         }
         feedback.hidden = false;
       }

@@ -157,6 +157,35 @@ if (burger && mobileNav) {
     if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeMobileNav();
   });
 }
+
+function initMobileStickyBar() {
+  const bar = document.getElementById('mobileStickyBar');
+  if (!bar) return;
+  const mq = window.matchMedia('(max-width: 639px)');
+  const anchors = document.querySelectorAll('.cta-band, .site-footer');
+  if (!anchors.length) return;
+  const visible = new Map();
+  anchors.forEach(el => visible.set(el, false));
+  const sync = () => {
+    if (!mq.matches) {
+      bar.classList.remove('is-retracted');
+      return;
+    }
+    const hide = Array.from(visible.values()).some(Boolean);
+    bar.classList.toggle('is-retracted', hide);
+  };
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      visible.set(entry.target, entry.isIntersecting);
+    });
+    sync();
+  }, { threshold: 0, rootMargin: '0px' });
+  anchors.forEach(el => observer.observe(el));
+  mq.addEventListener('change', sync);
+  sync();
+}
+initMobileStickyBar();
+
 function closeNavDropdowns() {
   document.querySelectorAll('.nav-item.is-open').forEach(item => {
     item.classList.remove('is-open');
@@ -290,7 +319,7 @@ document.querySelectorAll('.track-form').forEach(form => {
         if (err && err.message === 'activation') {
           feedback.textContent = 'Le formulaire n’est pas encore activé. Ouvrez la boîte info@sopjanitech.ch (et les indésirables), cherchez l’e-mail FormSubmit « Activate Form », puis cliquez le lien. Ensuite renvoyez une demande.';
         } else {
-          feedback.textContent = 'Envoi impossible pour le moment. Appelez-nous au +41 79 932 68 62 ou écrivez à info@sopjanitech.ch.';
+          feedback.textContent = 'Envoi impossible pour le moment. Appelez-nous au +41 79 932 68 62 ou écrivez à info@sopjanitech.ch.';
         }
         feedback.hidden = false;
       }

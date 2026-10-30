@@ -38,7 +38,7 @@
   <link rel="preload" as="image" href="/assets/heroes/a-propos-1024.webp" imagesrcset="/assets/heroes/a-propos-1024.webp 1024w, /assets/heroes/a-propos-1600.webp 1600w" imagesizes="100vw" fetchpriority="high">
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/outfit-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/source-sans-3-latin.woff2" crossorigin>
-  <link rel="stylesheet" href="/css/main.css?v=1793282518">
+  <link rel="stylesheet" href="/css/main.css?v=1793292527">
   <script>window.dataLayer = window.dataLayer || []; function gtag(){ dataLayer.push(arguments); }</script>
   <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -233,7 +233,7 @@
           "name": "Comment contacter Sopjani-tech Sàrl ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Par téléphone au +41 79 932 68 62, par email (info@sopjanitech.ch) ou via WhatsApp. Horaires : Tous les jours, 7h00 – 17h00."
+            "text": "Par téléphone au +41 79 932 68 62, par email (info@sopjanitech.ch) ou via WhatsApp. Horaires : Tous les jours, 7h00 – 17h00."
           }
         }
       ]
@@ -251,7 +251,7 @@
   <div class="container topbar-inner">
     <p class="topbar-left">Société basée à <a href="/romont/">Romont FR</a> — Interventions en Suisse romande</p>
     <p class="topbar-right">
-      <a href="tel:+41799326862" class="track-phone topbar-phone">+41 79 932 68 62</a>
+      <a href="tel:+41799326862" class="track-phone topbar-phone">+41 79 932 68 62</a>
       <span class="topbar-extra">
         <span aria-hidden="true">·</span>
         <a href="mailto:info@sopjanitech.ch" class="track-email">info@sopjanitech.ch</a>
@@ -285,11 +285,14 @@
       <div class="header-cta">
         <a href="tel:+41799326862" class="tel-btn track-phone">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.4 2 2 0 013.6 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.8a16 16 0 006.29 6.29l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          +41 79 932 68 62
+          +41 79 932 68 62
         </a>
         <a href="/contact/" class="btn btn-brand track-devis">Demander un devis</a>
       </div>
+      <div class="header-mobile-tools">
+      <a href="tel:+41799326862" class="header-phone track-phone" aria-label="Appeler le +41 79 932 68 62"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></a>
       <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-controls="mobileNav" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
     </div>
   </div>
 </header>
@@ -302,14 +305,7 @@
         <span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
     </div>
-    <div class="mobile-nav-contact">
-      <p class="mobile-nav-contact__line">Société basée à <a href="/romont/">Romont FR</a> — Interventions en Suisse romande</p>
-      <p class="mobile-nav-contact__line mobile-nav-contact__meta">
-        <a href="mailto:info@sopjanitech.ch" class="track-email">info@sopjanitech.ch</a>
-        <span aria-hidden="true"> · </span>
-        <span>Horaires&nbsp;: Tous les jours, 7h00 – 17h00</span>
-      </p>
-    </div>
+    <div class="mobile-nav-scroll">
     <a href="/" class="mobile-nav-link">Accueil</a>
     <div class="mobile-nav-group">
       <button type="button" class="mobile-nav-toggle" aria-expanded="false">Prestations</button>
@@ -322,10 +318,9 @@
     </div>
     <a href="/a-propos/" class="mobile-nav-link" aria-current="page">À propos</a>
     <a href="/contact/" class="mobile-nav-link">Contact</a>
+    </div>
     <div class="mobile-nav-cta">
       <a href="/contact/#contact-form" class="btn btn-brand track-devis">Demander un devis</a>
-      <a href="tel:+41799326862" class="btn btn-secondary track-phone">Appeler · +41 79 932 68 62</a>
-      <a href="https://wa.me/41799326862" class="btn btn-secondary track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
     </div>
   </div>
 </nav>
@@ -344,15 +339,15 @@
       <p class="hero-sub">Entreprise technique spécialisée en chauffage, ventilation, climatisation, sanitaire, dépannage SAV et sprinkler en Suisse romande.</p>
       <div class="hero-ctas">
         <a href="/contact/" class="btn btn-brand btn-brand--on-dark track-devis">Demander un devis</a>
-        <a href="tel:+41799326862" class="btn btn-secondary-on-dark track-phone">+41 79 932 68 62</a>
+        <a href="tel:+41799326862" class="btn btn-secondary-on-dark track-phone">+41 79 932 68 62</a>
       </div>
     </div>
   </div>
 </section>
-<div class="mobile-quick-bar mobile-quick-bar--sticky" role="group" aria-label="Actions de contact rapides">
-  <a href="tel:+41799326862" class="mobile-quick-btn track-phone">Appeler</a>
-  <a href="https://wa.me/41799326862" class="mobile-quick-btn track-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-  <a href="/contact/#contact-form" class="mobile-quick-btn track-devis">Devis</a>
+<div class="mobile-quick-bar mobile-quick-bar--sticky" id="mobileStickyBar" role="group" aria-label="Actions de contact rapides">
+  <a href="https://wa.me/41799326862" class="mobile-sticky-wa track-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg></a>
+  <a href="tel:+41799326862" class="mobile-sticky-call track-phone">Appeler</a>
+  <a href="/contact/#contact-form" class="mobile-sticky-devis track-devis">Devis</a>
 </div>
 <section class="about-intro content-section" aria-labelledby="about-who">
   <div class="container">
@@ -373,7 +368,7 @@
         <p class="about-contact-rail__title">Coordonnées</p>
         <a href="tel:+41799326862" class="about-contact-row track-phone">
           <span class="about-contact-row__k">Téléphone</span>
-          <span class="about-contact-row__v">+41 79 932 68 62</span>
+          <span class="about-contact-row__v">+41 79 932 68 62</span>
         </a>
         <a href="mailto:info@sopjanitech.ch" class="about-contact-row track-email">
           <span class="about-contact-row__k">Email</span>
@@ -504,7 +499,7 @@
     <span class="faq-q-text">Comment contacter Sopjani-tech Sàrl ?</span>
     <span class="faq-icon" aria-hidden="true"></span>
   </summary>
-  <div class="faq-a-panel"><p>Par téléphone au +41 79 932 68 62, par email (info@sopjanitech.ch) ou via WhatsApp. Horaires : Tous les jours, 7h00 – 17h00.</p></div>
+  <div class="faq-a-panel"><p>Par téléphone au +41 79 932 68 62, par email (info@sopjanitech.ch) ou via WhatsApp. Horaires : Tous les jours, 7h00 – 17h00.</p></div>
 </details></div>
   </div>
 </section>
@@ -540,7 +535,7 @@
     <p>Contactez-nous pour décrire votre besoin. Nous vous répondrons dans les meilleurs délais.</p>
     <div class="cta-band__actions">
     <a href="/contact/" class="btn btn-brand track-devis">Demander un devis</a>
-    <a href="tel:+41799326862" class="btn btn-secondary-on-dark track-phone">+41 79 932 68 62</a>
+    <a href="tel:+41799326862" class="btn btn-secondary-on-dark track-phone">+41 79 932 68 62</a>
     </div>
   </div>
 </section>
@@ -552,10 +547,6 @@
         <img class="logo-img logo-img--responsive" src="/assets/brand/logo-responsive.svg" alt="Sopjani-tech Sàrl" width="120" height="36" loading="lazy" decoding="async">
       </a>
       <p class="site-footer__tagline">Chauffage, Ventilation, Climatisation, Sanitaire · Dépannage SAV · Suisse romande</p>
-    </div>
-    <div class="site-footer__mobile-cta">
-      <a href="/contact/#contact-form" class="btn btn-brand track-devis">Demander un devis</a>
-      <a href="tel:+41799326862" class="btn btn-secondary track-phone">Appeler · +41 79 932 68 62</a>
     </div>
     <div class="site-footer__rows">
       <div class="site-footer__row">
@@ -584,7 +575,7 @@
           </span>
         </div>
         <ul class="site-footer__contact">
-          <li><a href="tel:+41799326862" class="track-phone">+41 79 932 68 62</a></li>
+          <li><a href="tel:+41799326862" class="track-phone">+41 79 932 68 62</a></li>
           <li><a href="mailto:info@sopjanitech.ch" class="track-email">info@sopjanitech.ch</a></li>
           <li><a href="https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+9,+1680+Romont" target="_blank" rel="noopener noreferrer">Rue Pierre de Savoie 9, 1680 Romont FR</a></li>
           <li>Tous les jours, 7h00 – 17h00</li>
