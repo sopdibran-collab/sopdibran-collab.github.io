@@ -10,6 +10,7 @@ Clé canonique : 4e83fba7d06a413e96b4abe69b2f5256
 Usage :
   python3 scripts/indexnow.py
   python3 scripts/indexnow.py --dry-run
+  python3 scripts/indexnow.py --dry-run --robots-file scripts/fixtures/robots_sopjanitech_live.txt
 """
 
 from __future__ import annotations
@@ -63,15 +64,59 @@ def load_canonical_key() -> str:
     return body
 
 
-def disallow_rules(robots_text: str) -> list[str]:
-    rules: list[str] = []
+# Groupes robots.txt pris en compte pour IndexNow (Bing / User-agent: *).
+INDEXNOW_USER_AGENTS = frozenset({"*", "bingbot"})
+
+
+def parse_robots_groups(
+    robots_text: str,
+) -> list[tuple[list[str], list[tuple[str, str]]]]:
+    """Découpe robots.txt en groupes (user-agents, directives field/value)."""
+    groups: list[tuple[list[str], list[tuple[str, str]]]] = []
+    agents: list[str] = []
+    directives: list[tuple[str, str]] = []
+
+    def flush() -> None:
+        nonlocal agents, directives
+        if agents:
+            groups.append((agents, directives))
+        agents = []
+        directives = []
+
     for raw in robots_text.splitlines():
         line = raw.split("#", 1)[0].strip()
-        if not line.lower().startswith("disallow:"):
+        if not line or ":" not in line:
             continue
-        path = line.split(":", 1)[1].strip()
-        if path:
-            rules.append(path)
+        field, _, value = line.partition(":")
+        field = field.strip().lower()
+        value = value.strip()
+        if field == "user-agent":
+            if agents and directives:
+                flush()
+            agents.append(value)
+        elif agents:
+            directives.append((field, value))
+    flush()
+    return groups
+
+
+def _group_targets_indexnow(agents: list[str]) -> bool:
+    for agent in agents:
+        lowered = agent.strip().lower()
+        if lowered in INDEXNOW_USER_AGENTS:
+            return True
+    return False
+
+
+def disallow_rules_for_indexnow(robots_text: str) -> list[str]:
+    """Règles Disallow des groupes * et Bingbot uniquement (ignore robots IA)."""
+    rules: list[str] = []
+    for agents, directives in parse_robots_groups(robots_text):
+        if not _group_targets_indexnow(agents):
+            continue
+        for field, value in directives:
+            if field == "disallow" and value:
+                rules.append(value)
     return rules
 
 
@@ -88,7 +133,7 @@ def path_is_disallowed(pathname: str, rules: list[str]) -> bool:
 def assert_local_robots_allows_verification_files() -> list[str]:
     robots_path = ROOT / "robots.txt"
     text = robots_path.read_text(encoding="utf-8")
-    rules = disallow_rules(text)
+    rules = disallow_rules_for_indexnow(text)
     blocked = [
         name
         for name in (CANONICAL_KEY_FILE, KEPT_KEY_FILE)
@@ -232,7 +277,7 @@ def live_robots_blocks_key(key: str) -> bool | None:
     except FetchError as error:
         print(f"robots.txt en ligne illisible : {error}")
         return None
-    return path_is_disallowed(f"/{key}.txt", disallow_rules(body))
+    return path_is_disallowed(f"/{key}.txt", disallow_rules_for_indexnow(body))
 
 
 def wait_until_live_robots_allows_key(key: str) -> None:
@@ -340,11 +385,41 @@ def submit_batch(key: str, url_list: list[str]) -> None:
         sys.exit(1)
 
 
+def print_robots_audit(key: str, rules: list[str], *, label: str) -> None:
+    key_path = f"/{key}.txt"
+    print(f"Audit robots ({label}) — {len(rules)} règle(s) Disallow (* / Bingbot)")
+    samples = [
+        ("fichier clé", key_path),
+        ("accueil", "/"),
+        ("/AGENTS.md", "/AGENTS.md"),
+    ]
+    for name, path in samples:
+        status = "interdit" if path_is_disallowed(path, rules) else "autorisé"
+        print(f"  {name}: {status}")
+
+
 def main(argv: list[str]) -> None:
-    if argv not in ([], ["--dry-run"]):
-        print("Utilisation : python3 scripts/indexnow.py [--dry-run]", file=sys.stderr)
-        sys.exit(1)
     dry_run = "--dry-run" in argv
+    robots_file: Path | None = None
+    if "--robots-file" in argv:
+        idx = argv.index("--robots-file")
+        if idx + 1 >= len(argv):
+            print(
+                "Utilisation : python3 scripts/indexnow.py [--dry-run] "
+                "[--robots-file CHEMIN]",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        robots_file = Path(argv[idx + 1])
+        argv = argv[:idx] + argv[idx + 2 :]
+    allowed = [[], ["--dry-run"]]
+    if argv not in allowed:
+        print(
+            "Utilisation : python3 scripts/indexnow.py [--dry-run] "
+            "[--robots-file CHEMIN]",
+            file=sys.stderr,
+        )
+        sys.exit(1)
 
     key = load_canonical_key()
     rules = assert_local_robots_allows_verification_files()
@@ -352,16 +427,34 @@ def main(argv: list[str]) -> None:
     print(f"keyLocation: https://{HOST}/{key}.txt")
     print(f"{KEPT_KEY_FILE} conservé, non utilisé pour la soumission.")
 
+    if robots_file is not None:
+        if not robots_file.is_file():
+            print(f"ERREUR : fichier robots introuvable : {robots_file}", file=sys.stderr)
+            sys.exit(1)
+        fixture_rules = disallow_rules_for_indexnow(
+            robots_file.read_text(encoding="utf-8")
+        )
+        print_robots_audit(key, fixture_rules, label=str(robots_file))
+        if path_is_disallowed(f"/{key}.txt", fixture_rules):
+            print(
+                "ERREUR : le robots fourni interdit encore le fichier clé.",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+
     assert_key_online(key)
     if dry_run:
-        blocked = live_robots_blocks_key(key)
-        if blocked is True:
-            print(
-                "AVERTISSEMENT : robots.txt en ligne interdit encore le fichier clé. "
-                "Un envoi réel attendra que cette règle disparaisse."
-            )
-        elif blocked is False:
-            print("robots.txt en ligne autorise le fichier clé.")
+        if robots_file is not None:
+            print("Dry-run (fixture) : robots en ligne non vérifié pour la clé.")
+        else:
+            blocked = live_robots_blocks_key(key)
+            if blocked is True:
+                print(
+                    "AVERTISSEMENT : robots.txt en ligne interdit encore le fichier clé. "
+                    "Un envoi réel attendra que cette règle disparaisse."
+                )
+            elif blocked is False:
+                print("robots.txt en ligne autorise le fichier clé.")
     else:
         wait_until_live_robots_allows_key(key)
 
