@@ -63,6 +63,8 @@ MAP_URL = "https://www.google.com/maps/search/?api=1&query=Rue+Pierre+de+Savoie+
 MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1481964.3806735645!2d5.895466104411914!3d46.67378415677807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9458f52305e1fe3%3A0x31fd51d876fffe44!2sSopjani-tech%20s%C3%A0rl!5e1!3m2!1sfr!2sch!4v1781214251877!5m2!1sfr!2sch"
 GOOGLE_BUSINESS_URL = "https://maps.app.goo.gl/hWWQCXAZzrTCgjFr7"
 LINKEDIN_URL = "https://www.linkedin.com/company/sopjanitech/"
+SITE_DEV_CREDIT_URL = "https://www.linkedin.com/in/dibransop"
+SITE_DEV_CREDIT_NAME = "Dibran Sopjani"
 # robots Disallow (défense en profondeur). Ne pas lister des chemins junk déjà 404 —
 # ça n'ajoute rien au crawl budget et révèle l'existence d'outils internes.
 # Les .txt de vérification (GSC / IndexNow) restent hors de cette liste : Bing doit
@@ -1102,6 +1104,20 @@ def whatsapp_icon_link():
     )
 
 
+def site_dev_credit_link():
+    return (
+        f'<a href="{SITE_DEV_CREDIT_URL}" target="_blank" rel="noopener">'
+        f"{SITE_DEV_CREDIT_NAME}</a>"
+    )
+
+
+def site_dev_credit_footer():
+    return (
+        f'<p class="site-footer__credit">Site, développement et référencement : '
+        f"{site_dev_credit_link()}</p>"
+    )
+
+
 def footer():
     svc_chips = "".join(
         f'<li><a href="/{s}/">{n}</a></li>' for s, n, _ in SERVICES
@@ -1160,6 +1176,7 @@ def footer():
         <a href="/politique-confidentialite/">Confidentialité</a>
         <a href="/plan-du-site/">Plan du site</a>
       </nav>
+      {site_dev_credit_footer()}
     </div>
   </div>
 </footer>"""
@@ -3898,6 +3915,8 @@ def build_legal_pages():
     <p>Le site peut contenir des liens vers des sites tiers. {COMPANY_NAME} n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.</p>
     <h3>Droit applicable</h3>
     <p>Le présent site et les présentes mentions légales sont soumis au droit suisse. Le for juridique est celui du siège de l'entreprise, sous réserve des dispositions légales impératives.</p>
+    <h3>Conception du site</h3>
+    <p>Site, développement et référencement : {site_dev_credit_link()}.</p>
     <p style="margin-top:28px;"><a href="/politique-confidentialite/" class="text-link">Politique de confidentialité</a></p>
   </div>
 </section>"""
