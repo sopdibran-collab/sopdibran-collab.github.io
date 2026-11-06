@@ -1415,7 +1415,7 @@ def google_reviews_section(*, heading_id="avis-google-title"):
 
 
 def hero_image_for(key):
-    """Chemin hero 16:9 (2000×1125). Sources stock + équipe réelle (a-propos/contact)."""
+    """Chemin hero JPEG/PNG (sources sous assets/heroes/ + variantes WebP générées)."""
     path = f"/assets/heroes/{key}.jpg"
     return path
 
@@ -1432,18 +1432,29 @@ def _attr(value):
 
 
 def image_variants(src):
-    """Variantes WebP déjà générées à côté du JPEG. Plus petite d'abord."""
+    """Variantes WebP déjà générées à côté du fichier source. Plus petite d'abord."""
     rel = src.lstrip("/")
     path = ROOT / rel
+    stem = path.stem
+    parent = path.parent
     if "/heroes/" in src:
-        widths = (1024, 1600)
-    elif "/equipe/" in src:
+        # Ex. home-1024.webp, a-propos-1600.webp — largeurs arbitraires (pas d'upscale au-delà du master).
+        found = []
+        for variant in sorted(parent.glob(f"{stem}-*.webp")):
+            m = re.fullmatch(re.escape(stem) + r"-(\d+)", variant.stem)
+            if not m:
+                continue
+            w = int(m.group(1))
+            found.append((f"/{variant.relative_to(ROOT).as_posix()}", w))
+        found.sort(key=lambda x: x[1])
+        return found
+    if "/equipe/" in src:
         widths = (400,)
     else:
         widths = (640,)
     found = []
     for width in widths:
-        variant = path.with_name(f"{path.stem}-{width}.webp")
+        variant = path.with_name(f"{stem}-{width}.webp")
         if variant.is_file():
             found.append((f"/{variant.relative_to(ROOT).as_posix()}", width))
     return found
@@ -2030,7 +2041,7 @@ def build_home():
     body = f"""
 <section class="hero hero--photo" aria-labelledby="hero-h1">
   <div class="hero-media">
-    {responsive_img("/assets/heroes/home.jpg", "Centrale sprinkler installée par Sopjani-tech Sàrl — chantier réel en Suisse romande", 2000, 1125, sizes=HERO_SIZES, loading="eager", fetchpriority="high")}
+    {responsive_img("/assets/heroes/home.png", "Centrale sprinkler installée par Sopjani-tech Sàrl — chantier réel en Suisse romande", 1672, 941, sizes=HERO_SIZES, loading="eager", fetchpriority="high")}
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="container hero-inner">
