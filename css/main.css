@@ -135,7 +135,7 @@
     /* ── UTILITY ─────────────────────────────── */
     .label {
       font-family: var(--font-display);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -1257,7 +1257,7 @@
     }
 
     .cm-label {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -1481,7 +1481,7 @@
     .site-footer__label {
       margin: 0 0 0.25rem;
       font-family: var(--font-display);
-      font-size: 0.625rem;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -3434,7 +3434,7 @@ header .header-cta .btn-primary:focus-visible {
 .topbar {
   background: #0B2545;
   color: rgba(248, 250, 252, 0.7);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.2;
   letter-spacing: 0.01em;
   border-bottom: 1px solid rgba(96, 192, 236, 0.12);
@@ -4547,7 +4547,7 @@ header .header-cta .btn-primary {
     flex: 0 0 auto;
     min-height: 0;
     margin-right: 0;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     white-space: nowrap;
   }
@@ -4555,7 +4555,7 @@ header .header-cta .btn-primary {
   .topbar-extra a,
   .topbar-extra > span:not([aria-hidden]) {
     white-space: nowrap;
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .topbar-extra > span[aria-hidden="true"] {
@@ -5518,14 +5518,22 @@ a.svc-reassure__google:focus-visible {
 }
 .form-choice-grid--2 { grid-template-columns: 1fr 1fr; }
 .form-choice {
+  position: relative;
   display: block;
   cursor: pointer;
   margin: 0;
 }
 .form-choice input {
   position: absolute;
-  opacity: 0;
-  pointer-events: none;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 .form-choice span {
   display: flex;
@@ -5679,7 +5687,7 @@ a.svc-reassure__google:focus-visible {
 .g-review__badge {
   display: inline-block;
   margin-top: 2px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -6628,36 +6636,33 @@ header .nav-main > a[aria-current="page"] { color: #fff; }
   }
 }
 
-/* 6) Bandeau cookies mobile compact ≤72px */
+/* 6) Bandeau cookies mobile compact (texte intégral sur 2 lignes max) */
 @media (max-width: 767px) {
   .cookie-banner {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-rows: auto;
-    align-items: center;
-    column-gap: 10px;
-    row-gap: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
     padding: 8px var(--edge) calc(8px + env(safe-area-inset-bottom, 0px));
-    max-height: 72px;
-    gap: 0;
+    max-height: none;
   }
 
   .cookie-banner__text {
     margin: 0;
     font-size: 12px;
     line-height: 1.25;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
     min-width: 0;
   }
 
   .cookie-banner__actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    width: auto;
-    min-width: 168px;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
     flex-shrink: 0;
   }
 
@@ -6665,6 +6670,7 @@ header .nav-main > a[aria-current="page"] { color: #fff; }
     min-height: 44px;
     padding: 0 10px;
     font-size: 13px;
+    font-weight: 600;
   }
 }
 
@@ -6700,4 +6706,26 @@ header .nav-main > a[aria-current="page"] { color: #fff; }
 .realisations-duo .section-lead {
   font-size: 13px;
   line-height: 1.45;
+}
+
+/* 7b) Retouches relecture — min 12 px (labels, topbar, footer) */
+.label {
+  font-size: 12px;
+}
+.topbar {
+  font-size: 12px;
+}
+.topbar-phone,
+.topbar-extra a,
+.topbar-extra > span:not([aria-hidden]) {
+  font-size: 12px;
+}
+.cm-label {
+  font-size: 12px;
+}
+.g-review__badge {
+  font-size: 12px;
+}
+.site-footer__label {
+  font-size: 12px;
 }
