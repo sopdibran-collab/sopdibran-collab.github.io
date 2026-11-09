@@ -1197,7 +1197,7 @@ def footer():
 def cookie_banner():
     # Barre compacte (mobile) / carte bas-gauche (desktop) : position fixe, aucun voile, zéro CLS.
     return """<div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Information sur les cookies" hidden>
-  <p class="cookie-banner__text">Statistiques de visite uniquement avec votre accord. <a href="/politique-confidentialite/">En savoir plus</a></p>
+  <p class="cookie-banner__text">Cookies de statistiques, au choix. <a href="/politique-confidentialite/">En savoir plus</a></p>
   <div class="cookie-banner__actions">
     <button type="button" class="cookie-banner__btn" id="cookieRefuse">Refuser</button>
     <button type="button" class="cookie-banner__btn" id="cookieAccept">Accepter</button>
@@ -1430,6 +1430,20 @@ def hero_image_for(key):
     """Chemin hero JPEG/PNG (sources sous assets/heroes/ + variantes WebP générées)."""
     path = f"/assets/heroes/{key}.jpg"
     return path
+
+
+# Alt factuels des photos hero (distincts du H1 — voir scripts/build-hero-from-realisations.py)
+HERO_IMAGE_ALTS = {
+    "chauffage": "Fabrication en atelier d'un assemblage de tuyauterie de chauffage par Sopjani-tech Sàrl",
+    "ventilation": "Conduit de ventilation en acier galvanisé installé sur chantier par Sopjani-tech Sàrl",
+    "sanitaire": "Local technique avec collecteurs sanitaires et réseaux métalliques par Sopjani-tech Sàrl",
+    "depannage-sav": "Local technique sanitaire avec tuyauterie, manomètre et réseaux suspendus par Sopjani-tech Sàrl",
+    "sprinkler-protection-incendie": "Centrale sprinkler sous eau avec tuyauterie rouge et vannes en local technique, par Sopjani-tech Sàrl",
+}
+
+
+def hero_alt_for(key):
+    return HERO_IMAGE_ALTS.get(key, "")
 
 
 HERO_SIZES = "100vw"
@@ -1851,6 +1865,29 @@ def zone_action_paths(place):
 </section>"""
 
 
+def zone_regional_project_block(project):
+    """Bloc « Chantier réalisé dans la région » — aucun HTML si la donnée est absente."""
+    if not project:
+        return ""
+    fn = project.get("image")
+    alt = project.get("alt", "")
+    caption = project.get("caption", "")
+    if not fn:
+        return ""
+    w, h = project.get("width", 1280), project.get("height", 720)
+    img = responsive_img(f"/assets/realisations/{fn}", alt, w, h, sizes=GALLERY_SIZES)
+    return f"""<section class="content-section zone-regional-project" aria-labelledby="zone-project-title">
+  <div class="container">
+    <h2 class="section-title" id="zone-project-title">Chantier réalisé dans la région</h2>
+    <figure class="zone-regional-project__figure">{img}<figcaption>{caption}</figcaption></figure>
+  </div>
+</section>"""
+
+
+# Pas de chantier local vérifié pour les pages villes (données vides = zéro HTML).
+ZONE_REGIONAL_PROJECTS = {z: None for z, _, _ in ZONES}
+
+
 def zone_proof_quote():
     """Pull-quote d'un avis Google réel — pas de bandeau compteur."""
     if not GOOGLE_REVIEWS:
@@ -1917,6 +1954,7 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
     <p class="geo-local-note">{seat_note}<a href="tel:{PHONE}" class="track-phone">Appelez le {PHONE_DISP}</a> pour vérifier la disponibilité {place}.</p>
   </div>
 </section>
+{zone_regional_project_block(ZONE_REGIONAL_PROJECTS.get(slug))}
 {zone_action_paths(place)}
 <section class="faq content-section alt" aria-labelledby="faq-title">
   <div class="container">
@@ -2154,13 +2192,13 @@ def build_prestations():
 <section class="content-section" aria-labelledby="presta-cvcs-title">
   <div class="container">
     <h2 class="section-title" id="presta-cvcs-title">{CVCS_GROUP}</h2>
-    <div class="hub-grid hub-grid--2">{cvcs_cards}</div>
+    <div class="hub-grid hub-grid--2 hub-grid--stack">{cvcs_cards}</div>
   </div>
 </section>
 <section class="content-section alt" aria-labelledby="presta-autres-title">
   <div class="container">
     <h2 class="section-title" id="presta-autres-title">Dépannage SAV et sprinkler</h2>
-    <div class="hub-grid hub-grid--2">{other_cards}</div>
+    <div class="hub-grid hub-grid--2 hub-grid--stack">{other_cards}</div>
   </div>
 </section>
 <section class="faq content-section" aria-labelledby="faq-title">
@@ -2643,7 +2681,7 @@ def write_premium_service_page(cfg):
             secondary_label="Demander un devis",
             secondary_class="btn-brand btn-brand--on-dark track-devis",
             image=hero_image_for(slug),
-            image_alt=cfg["h1"],
+            image_alt=hero_alt_for(slug) or cfg["h1"],
         )
     else:
         hero = page_hero(
@@ -2652,7 +2690,7 @@ def write_premium_service_page(cfg):
             cfg["intro"],
             icon_html=service_icon(slug, "hero"),
             image=hero_image_for(slug),
-            image_alt=cfg["h1"],
+            image_alt=hero_alt_for(slug) or cfg["h1"],
         )
 
     problem_cards = _premium_cards(cfg["problems"])
