@@ -1409,9 +1409,9 @@
 
     .site-footer__tagline {
       margin: 0;
-      font-size: 0.6875rem;
+      font-size: 12px;
       color: rgba(248, 250, 252, 0.55);
-      line-height: 1.35;
+      line-height: 1.45;
       max-width: 36rem;
     }
 
@@ -1504,9 +1504,9 @@
       border-radius: 4px;
       color: rgba(248, 250, 252, 0.82);
       text-decoration: none;
-      font-size: 0.6875rem;
+      font-size: 12px;
       font-weight: 500;
-      line-height: 1.2;
+      line-height: 1.45;
       transition: color 0.15s, background 0.15s;
     }
 
@@ -3970,7 +3970,7 @@ header .header-cta .btn-primary:focus-visible {
 }
 .about-contact-row:first-of-type { border-top: none; padding-top: 0; }
 .about-contact-row__k {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(248, 250, 252, 0.55);
@@ -6728,4 +6728,9 @@ header .nav-main > a[aria-current="page"] { color: #fff; }
 }
 .site-footer__label {
   font-size: 12px;
+}
+.site-footer__tagline,
+.site-footer__chips a {
+  font-size: 12px;
+  line-height: 1.45;
 }
