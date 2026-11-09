@@ -178,6 +178,18 @@ ZONE_H1 = {
     "neuchatel": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Neuchâtel",
 }
 
+# Titles des pages zones (brief SEO V2 — marque « Sopjani-tech », pas la raison sociale Sàrl).
+ZONE_PAGE_TITLES = {
+    "geneve": "Chauffagiste et sanitaire à Genève | Sopjani-tech",
+    "lausanne": "Chauffagiste et sanitaire à Lausanne | Sopjani-tech",
+    "vaud": "Chauffagiste et sanitaire – Canton de Vaud | Sopjani-tech",
+    "nyon": "Chauffagiste et sanitaire à Nyon | Sopjani-tech",
+    "valais": "Chauffagiste et sanitaire en Valais | Sopjani-tech",
+    "fribourg": "Chauffagiste et sanitaire – Canton de Fribourg | Sopjani-tech",
+    "romont": "Chauffagiste et sanitaire à Romont | Sopjani-tech",
+    "neuchatel": "Chauffagiste et sanitaire – Canton de Neuchâtel | Sopjani-tech",
+}
+
 # Locatif visible (disponibilité, bandeau, actions). Les villes gardent « à ».
 ZONE_PLACE = {
     "geneve": "à Genève",
@@ -203,14 +215,14 @@ PAGE_TITLES = {
     "depannage-sav": "Dépannage CVCS urgent en Suisse romande | Sopjani-tech",
     "sanitaire": "Sanitaire en Suisse romande : installation & dépannage | Sopjani-tech",
     "sprinkler-protection-incendie": "Sprinkler & protection incendie en Suisse romande | Sopjani-tech",
-    "geneve": f"{ZONE_H1['geneve']} | {COMPANY_NAME}",
-    "vaud": f"{ZONE_H1['vaud']} | {COMPANY_NAME}",
-    "lausanne": f"{ZONE_H1['lausanne']} | {COMPANY_NAME}",
-    "nyon": f"{ZONE_H1['nyon']} | {COMPANY_NAME}",
-    "valais": f"{ZONE_H1['valais']} | {COMPANY_NAME}",
-    "fribourg": f"{ZONE_H1['fribourg']} | {COMPANY_NAME}",
-    "romont": f"{ZONE_H1['romont']} | {COMPANY_NAME}",
-    "neuchatel": f"{ZONE_H1['neuchatel']} | {COMPANY_NAME}",
+    "geneve": ZONE_PAGE_TITLES["geneve"],
+    "vaud": ZONE_PAGE_TITLES["vaud"],
+    "lausanne": ZONE_PAGE_TITLES["lausanne"],
+    "nyon": ZONE_PAGE_TITLES["nyon"],
+    "valais": ZONE_PAGE_TITLES["valais"],
+    "fribourg": ZONE_PAGE_TITLES["fribourg"],
+    "romont": ZONE_PAGE_TITLES["romont"],
+    "neuchatel": ZONE_PAGE_TITLES["neuchatel"],
     "realisations": "Nos réalisations CVCS & sprinkler — Sopjani-tech Sàrl",
     "merci": f"Demande envoyée | {COMPANY_NAME}",
     "404": f"404 — Mauvais tuyau | {COMPANY_NAME}",
@@ -3402,7 +3414,7 @@ def build_zones():
         + p(
             "Après le point de livraison, le travail se fait dans l'immeuble : émetteurs, "
             "régulation, eau chaude. Sur GeniLac, la directive technique des SIG plafonne "
-            "en plus les températures de départ. Nous traitons ces sujets en "
+            "en plus les températures de départ. En chauffagiste, nous traitons ces sujets en "
             '<a href="/chauffage/">chauffage</a>, en '
             '<a href="/climatisation/">climatisation</a> et en '
             '<a href="/sanitaire/">sanitaire</a>. L\'emprise du réseau figure sur le plan '
@@ -3457,7 +3469,7 @@ def build_zones():
         pending("Vaud")
         + p(
             "Le canton de Vaud réunit le Plateau, le pied du Jura, les Préalpes et les rives "
-            "du Léman. L'altitude retenue pour calculer un "
+            "du Léman. Pour un chauffagiste, l'altitude retenue pour calculer un "
             '<a href="/chauffage/">chauffage</a> change donc d\'un site à l\'autre. La loi, '
             "elle, est la même pour tout le canton."
         )
@@ -3533,7 +3545,7 @@ def build_zones():
             "jusqu'à l'échangeur installé dans le bâtiment. La responsabilité des SiL s'arrête "
             "au point de fourniture. Après ce point, le poste de raccordement et le circuit "
             "secondaire appartiennent au propriétaire, qui les exploite et les entretient. "
-            "Un immeuble raccordé garde donc son installation de "
+            "Du côté chauffagiste, un immeuble raccordé garde donc son installation de "
             '<a href="/chauffage/">chauffage</a> et de '
             '<a href="/sanitaire/">sanitaire</a>. Les SiL fixent des seuils pour accepter un '
             "raccordement : la consommation annuelle et la densité énergétique du branchement. "
@@ -3597,7 +3609,7 @@ def build_zones():
             "avec les SI Nyon et Romande Energie. D'après le projet publié, le réseau démarre "
             "avec du bois de la région, puis doit ajouter la géothermie d'EnergeÔ La Côte et "
             "l'eau du lac. Il vise d'abord les logements collectifs. Une villa hors du tracé "
-            "garde sa propre production, selon les règles cantonales du "
+            "garde sa propre production, selon les règles cantonales que suit le chauffagiste pour le "
             '<a href="/chauffage/">chauffage</a>. Ce réseau ne fournit pas la '
             '<a href="/climatisation/">climatisation</a> d\'une maison ou d\'un petit local commercial.'
         )
@@ -3670,7 +3682,7 @@ def build_zones():
         + p(
             "Le relief ajoute ses propres contraintes. En altitude, la protection contre le gel "
             "et les résidences secondaires occupées une partie de l'année comptent beaucoup pour "
-            'le <a href="/chauffage/">chauffage</a>. Dans la plaine du Rhône, on trouve plus '
+            'le chauffagiste sur le <a href="/chauffage/">chauffage</a>. Dans la plaine du Rhône, on trouve plus '
             "d'immeubles et de bâtiments d'activité. Pour savoir si nous intervenons dans votre "
             "commune ou votre station, appelez-nous."
         )
@@ -3734,7 +3746,7 @@ def build_zones():
             "rénovée doit être alimentée uniquement par des énergies renouvelables produites sur "
             "place, ou par une production solaire équivalente ailleurs si la technique l'exige. "
             "L'article 17 demande de récupérer la chaleur rejetée par les installations d'extraction "
-            "et de ventilation. Ces règles concernent nos prestations en "
+            "et de ventilation. Ces règles concernent le chauffagiste comme nos prestations en "
             '<a href="/ventilation/">ventilation</a>, en '
             '<a href="/climatisation/">climatisation</a> et en '
             '<a href="/chauffage/">chauffage</a>. Le canton les résume sur sa page '
@@ -3792,8 +3804,8 @@ def build_zones():
             "Romont est une petite ville au centre ancien, avec des maisons mitoyennes, "
             "entourée de l'habitat dispersé de la Glâne. Pour remplacer une production de chaleur, "
             "vous suivez la loi fribourgeoise et les formulaires du SdE, présentés sur la page "
-            '<a href="/fribourg/">Fribourg</a>, en particulier pour le '
-            '<a href="/chauffage/">chauffage</a>.'
+            '<a href="/fribourg/">Fribourg</a>, en particulier pour le métier de '
+            'chauffagiste en <a href="/chauffage/">chauffage</a>.'
         )
         + p(
             "Nous traitons aussi depuis Romont les demandes en "
@@ -3848,7 +3860,7 @@ def build_zones():
             "Le règlement prévoit deux climats de calcul. Quand la performance globale doit être "
             "justifiée, on utilise les données de la station de Neuchâtel jusqu'à 800 mètres, et "
             "celles de La Chaux-de-Fonds au-dessus. Un "
-            '<a href="/chauffage/">chauffage</a> calculé pour le littoral ne convient donc pas '
+            '<a href="/chauffage/">chauffage</a> que le chauffagiste calcule pour le littoral ne convient donc pas '
             "pour un bâtiment des Montagnes. Cette règle figure à l'article 16 du RELCEn. Sur les "
             "pages Vaud et Valais, l'altitude compte aussi, mais aucun règlement n'y désigne deux stations."
         )
