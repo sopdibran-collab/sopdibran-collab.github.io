@@ -3545,9 +3545,9 @@ def build_zones():
             "jusqu'à l'échangeur installé dans le bâtiment. La responsabilité des SiL s'arrête "
             "au point de fourniture. Après ce point, le poste de raccordement et le circuit "
             "secondaire appartiennent au propriétaire, qui les exploite et les entretient. "
-            "Un immeuble raccordé garde donc son installation de "
-            '<a href="/chauffage/">chauffage</a>, qui reste le domaine du chauffagiste, et son '
-            '<a href="/sanitaire/">sanitaire</a>. Les SiL fixent des seuils pour accepter un '
+            "Un immeuble raccordé garde donc son installation "
+            '<a href="/sanitaire/">sanitaire</a> et son installation de '
+            '<a href="/chauffage/">chauffage</a>, qui reste l\'affaire du chauffagiste. Les SiL fixent des seuils pour accepter un '
             "raccordement : la consommation annuelle et la densité énergétique du branchement. "
             "Ils précisent qu'atteindre ces seuils ne donne pas, à lui seul, un droit au "
             "raccordement. Source : "
@@ -3681,7 +3681,7 @@ def build_zones():
         )
         + p(
             "Le relief ajoute ses propres contraintes. En altitude, la protection contre le gel "
-            "et les résidences secondaires occupées une partie de l'année comptent beaucoup quand un chauffagiste étudie un "
+            "et les résidences secondaires occupées une partie de l'année comptent beaucoup quand un chauffagiste étudie une installation de "
             '<a href="/chauffage/">chauffage</a>. Dans la plaine du Rhône, on trouve plus '
             "d'immeubles et de bâtiments d'activité. Pour savoir si nous intervenons dans votre "
             "commune ou votre station, appelez-nous."
@@ -3748,7 +3748,7 @@ def build_zones():
             "L'article 17 demande de récupérer la chaleur rejetée par les installations d'extraction "
             "et de ventilation. Ces règles concernent nos prestations en "
             '<a href="/ventilation/">ventilation</a>, en '
-            '<a href="/climatisation/">climatisation</a> et, côté chauffagiste, en '
+            '<a href="/climatisation/">climatisation</a> et, comme chauffagiste, en '
             '<a href="/chauffage/">chauffage</a>. Le canton les résume sur sa page '
             '<a href="https://www.fr.ch/energie-agriculture-et-environnement/energie/permis-de-construire-energie" '
             'target="_blank" rel="noopener noreferrer">permis de construire et énergie</a>.'
@@ -3859,8 +3859,8 @@ def build_zones():
         + p(
             "Le règlement prévoit deux climats de calcul. Quand la performance globale doit être "
             "justifiée, on utilise les données de la station de Neuchâtel jusqu'à 800 mètres, et "
-            "celles de La Chaux-de-Fonds au-dessus. Un chauffagiste ne peut donc pas reprendre pour un bâtiment des Montagnes un "
-            '<a href="/chauffage/">chauffage</a> calculé pour le littoral. Cette règle figure à l\'article 16 du RELCEn. Sur les '
+            "celles de La Chaux-de-Fonds au-dessus. Un "
+            '<a href="/chauffage/">chauffage</a> que le chauffagiste a calculé pour le littoral ne convient donc pas pour un bâtiment des Montagnes. Cette règle figure à l\'article 16 du RELCEn. Sur les '
             "pages Vaud et Valais, l'altitude compte aussi, mais aucun règlement n'y désigne deux stations."
         )
         + p(
