@@ -168,12 +168,12 @@ META_DESCRIPTIONS = {
 
 # H1 des pages de zones — seule /chauffage/ garde « Chauffagiste en Suisse romande ».
 ZONE_H1 = {
-    "geneve": "Chauffage, ventilation, climatisation et sanitaire à Genève",
-    "vaud": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Vaud",
-    "lausanne": "Chauffage, ventilation, climatisation et sanitaire à Lausanne",
-    "nyon": "Chauffage, ventilation, climatisation et sanitaire à Nyon",
+    "geneve": "Chauffagiste à Genève",
+    "vaud": "Chauffagiste dans le canton de Vaud",
+    "lausanne": "Chauffagiste à Lausanne",
+    "nyon": "Chauffagiste à Nyon",
     "valais": "Chauffage, ventilation, climatisation et sanitaire en Valais",
-    "fribourg": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Fribourg",
+    "fribourg": "Chauffagiste dans le canton de Fribourg",
     "romont": "Chauffage, ventilation, climatisation et sanitaire à Romont",
     "neuchatel": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Neuchâtel",
 }
