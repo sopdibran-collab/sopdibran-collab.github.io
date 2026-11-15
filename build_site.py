@@ -3419,8 +3419,8 @@ def build_zones():
 
     def pending(name):
         return (
-            f"<!-- [à compléter] {name} : communes réellement desservies, "
-            "chantiers, références et certifications. Ne publier que des faits "
+            f"<!-- [à compléter] {name} : références de chantiers, photos et certifications publiables. "
+            "Ne publier que des faits "
             f"confirmés par {COMPANY_NAME}. -->"
         )
 
