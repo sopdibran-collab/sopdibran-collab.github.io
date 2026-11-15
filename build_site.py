@@ -142,19 +142,19 @@ META_DESCRIPTIONS = {
     "a-propos": f"{COMPANY_NAME} (siège à Romont FR) : chauffage, ventilation, climatisation et sanitaire de l'étude à la réalisation en Suisse romande. Pilotage technique de chantier, normes SIA.",
     "contact": f"Demandez un devis gratuit ou un dépannage urgent (chauffage, clim, ventilation, sanitaire) en Suisse romande. Réponse rapide — {PHONE_DISP}.",
     "depannage-sav": f"Panne de chauffage, clim, ventilation ou sanitaire ? Dépannage CVCS urgent en Suisse romande, 7j/7 de 7h à 17h. Appelez le {PHONE_DISP}.",
-    "chauffage": "Chauffagiste en Suisse romande : conception SIA, installation et dépannage de pompes à chaleur et chaudières. Villas, PPE, immeubles et appels d'offres. Devis gratuit.",
+    "chauffage": "Chauffagiste en Suisse romande : étude et installation de pompes à chaleur et chaudières. Entretien et dépannage pour villas, PPE et immeubles. Devis sur demande.",
     "ventilation": "Entreprise de ventilation en Suisse romande : conception SIA, VMC simple/double flux, pose de réseaux et équilibrage. Villas, immeubles et AO. Devis gratuit.",
-    "climatisation": f"Climatisation à Nyon, Lausanne et Genève : étude, pose et dépannage de splits, multi-splits et PAC air-air. Devis gratuit — {PHONE_DISP}.",
+    "climatisation": "Étude et installation de climatisation split, multi-split et PAC air-air à Nyon, Lausanne et Genève. Entretien et diagnostic par Sopjani-tech.",
     "sprinkler-protection-incendie": "Réseaux sprinkler en sous-traitance spécialisée : étude et installation pour ERP, parkings et bâtiments industriels en Suisse romande. Normes AEAI respectées.",
-    "sanitaire": "Installations, rénovations et dépannages sanitaires : réseaux eau chaude/froide, fuites, chauffe-eau. Intervention en Suisse romande. Devis gratuit.",
-    "geneve": "Chauffage, ventilation, climatisation et sanitaire à Genève : immeubles, GeniLac, GeniTerre et loi cantonale sur l'énergie (LEn).",
-    "vaud": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Vaud : loi actuelle jusqu'à fin 2026, LVLEne au 1er janvier 2027.",
-    "lausanne": "Chauffage, ventilation, climatisation et sanitaire à Lausanne : chauffage à distance des SiL et distribution interne de l'immeuble.",
-    "nyon": "Chauffage, ventilation, climatisation et sanitaire à Nyon : villas et PPE de La Côte, réseau ThermorésÔ, loi vaudoise.",
-    "valais": "Chauffage, ventilation, climatisation et sanitaire en Valais : loi LcEne, remplacement des chaudières fossiles et contraste plaine / altitude.",
-    "fribourg": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Fribourg : loi du 9 juin 2000 et article 16 sur la ventilation et le froid.",
-    "romont": f"Siège de {COMPANY_NAME} à Romont FR. Chauffage, ventilation, climatisation et sanitaire selon la loi fribourgeoise sur l'énergie.",
-    "neuchatel": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Neuchâtel : LCEn, stations climatiques du RELCEn et urbanisme horloger UNESCO.",
+    "sanitaire": "Installation et rénovation sanitaire en Suisse romande : conduites d'eau, robinetterie, chauffe-eau, recherche de fuites et dépannage. Contactez Sopjani-tech.",
+    "geneve": "Chauffage, ventilation, climatisation et sanitaire à Genève. Prestations pour immeubles, PPE et bâtiments professionnels. Contactez Sopjani-tech.",
+    "vaud": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Vaud. Prestations de Sopjani-tech et repères sur le cadre énergétique cantonal.",
+    "lausanne": "Chauffage, ventilation, climatisation et sanitaire à Lausanne. Prestations pour immeubles et bâtiments professionnels, dont ceux raccordés au chauffage à distance.",
+    "nyon": "Chauffage, ventilation, climatisation et sanitaire à Nyon et sur La Côte. Prestations de Sopjani-tech, réseau ThermorésÔ et cadre énergétique vaudois.",
+    "valais": "Chauffage, ventilation, climatisation et sanitaire en Valais. Prestations de Sopjani-tech et règles cantonales pour remplacer une installation de chauffage.",
+    "fribourg": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Fribourg. Prestations de Sopjani-tech et repères sur les règles énergétiques cantonales.",
+    "romont": f"Siège de {COMPANY_NAME} à Romont FR : chauffage, ventilation, climatisation et sanitaire. Contactez-nous pour vérifier la disponibilité dans votre commune.",
+    "neuchatel": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Neuchâtel. Prestations de Sopjani-tech et particularités du littoral et des Montagnes.",
     "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
     "plan-du-site": f"Plan du site {COMPANY_NAME} : accès à toutes les pages prestations, zones d'intervention et contact en Suisse romande.",
@@ -180,14 +180,14 @@ ZONE_H1 = {
 
 # Titles des pages zones (brief SEO V2 — marque « Sopjani-tech », pas la raison sociale Sàrl).
 ZONE_PAGE_TITLES = {
-    "geneve": "Chauffagiste et sanitaire à Genève | Sopjani-tech",
-    "lausanne": "Chauffagiste et sanitaire à Lausanne | Sopjani-tech",
-    "vaud": "Chauffagiste et sanitaire – Canton de Vaud | Sopjani-tech",
-    "nyon": "Chauffagiste et sanitaire à Nyon | Sopjani-tech",
-    "valais": "Chauffagiste et sanitaire en Valais | Sopjani-tech",
-    "fribourg": "Chauffagiste et sanitaire – Canton de Fribourg | Sopjani-tech",
-    "romont": "Chauffagiste et sanitaire à Romont | Sopjani-tech",
-    "neuchatel": "Chauffagiste et sanitaire – Canton de Neuchâtel | Sopjani-tech",
+    "geneve": "Chauffagiste à Genève | Chauffage, ventilation & sanitaire",
+    "lausanne": "Chauffagiste à Lausanne | Chauffage, ventilation & sanitaire",
+    "vaud": "Chauffagiste dans le canton de Vaud | Sopjani-tech",
+    "nyon": "Chauffagiste à Nyon | Chauffage, climatisation & sanitaire",
+    "valais": "Chauffagiste en Valais | Chauffage & installations CVCS",
+    "fribourg": "Chauffagiste dans le canton de Fribourg | Sopjani-tech",
+    "romont": "Chauffagiste à Romont FR | Sopjani-tech",
+    "neuchatel": "Chauffagiste dans le canton de Neuchâtel | Sopjani-tech",
 }
 
 # Locatif visible (disponibilité, bandeau, actions). Les villes gardent « à ».
@@ -209,11 +209,11 @@ PAGE_TITLES = {
     "prestations": "Prestations CVCS & sprinkler — Suisse romande | Sopjani-tech",
     "zones-intervention": "Zones d'intervention | Suisse romande | Sopjani-tech Sàrl",
     "plan-du-site": "Plan du site | Sopjani-tech Sàrl",
-    "chauffage": "Chauffagiste en Suisse romande : PAC & chaudières | Sopjani-tech",
+    "chauffage": "Chauffagiste en Suisse romande | PAC, chaudières & dépannage",
     "ventilation": "Entreprise de ventilation en Suisse romande | Sopjani-tech",
-    "climatisation": "Climatisation à Nyon, Lausanne & Genève | Sopjani-tech Sàrl",
+    "climatisation": "Climatisation à Nyon, Lausanne & Genève | Sopjani-tech",
     "depannage-sav": "Dépannage CVCS urgent en Suisse romande | Sopjani-tech",
-    "sanitaire": "Sanitaire en Suisse romande : installation & dépannage | Sopjani-tech",
+    "sanitaire": "Installations sanitaires en Suisse romande | Sopjani-tech",
     "sprinkler-protection-incendie": "Sprinkler & protection incendie en Suisse romande | Sopjani-tech",
     "geneve": ZONE_PAGE_TITLES["geneve"],
     "vaud": ZONE_PAGE_TITLES["vaud"],
@@ -4688,7 +4688,6 @@ document.querySelectorAll('.track-phone').forEach(el => {
   el.addEventListener('click', () => {
     trackEvent('contact', { method: 'phone', event_category: 'contact' });
     trackEvent('click_phone', { event_category: 'contact', event_label: 'phone' });
-    trackEvent('generate_lead', { method: 'phone', event_category: 'conversion' });
   });
 });
 document.querySelectorAll('.track-email').forEach(el => {
@@ -4701,12 +4700,10 @@ document.querySelectorAll('.track-whatsapp').forEach(el => {
   el.addEventListener('click', () => {
     trackEvent('contact', { method: 'whatsapp', event_category: 'contact' });
     trackEvent('click_whatsapp', { event_category: 'contact', event_label: 'whatsapp' });
-    trackEvent('generate_lead', { method: 'whatsapp', event_category: 'conversion' });
   });
 });
 document.querySelectorAll('.track-devis').forEach(el => {
   el.addEventListener('click', () => {
-    trackEvent('generate_lead', { method: 'devis_button', event_category: 'conversion' });
     trackEvent('click_devis', { event_category: 'conversion', event_label: 'demande_devis' });
   });
 });
@@ -4716,10 +4713,10 @@ document.querySelectorAll('.track-form').forEach(form => {
     const endpoint = form.getAttribute('data-form-endpoint') || form.getAttribute('action') || '';
     const feedback = form.querySelector('.form-feedback');
     const submitBtn = form.querySelector('[type="submit"]');
-    trackEvent('generate_lead', { method: 'contact_form', event_category: 'conversion' });
     trackEvent('form_submit', { event_category: 'conversion', event_label: 'contact_form' });
 
     if (!endpoint || endpoint === '#') {
+      trackEvent('generate_lead', { method: 'contact_form', event_category: 'conversion' });
       window.location.assign('/merci/');
       return;
     }
@@ -4748,6 +4745,7 @@ document.querySelectorAll('.track-form').forEach(form => {
         }
         throw new Error(raw || 'send_failed');
       }
+      trackEvent('generate_lead', { method: 'contact_form', event_category: 'conversion' });
       window.location.assign('/merci/');
       return;
     } catch (err) {
