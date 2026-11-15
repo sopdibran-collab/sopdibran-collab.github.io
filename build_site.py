@@ -153,7 +153,7 @@ META_DESCRIPTIONS = {
     "nyon": "Chauffage, ventilation, climatisation et sanitaire à Nyon et sur La Côte. Prestations de Sopjani-tech, réseau ThermorésÔ et cadre énergétique vaudois.",
     "valais": "Chauffage, ventilation, climatisation et sanitaire en Valais. Prestations de Sopjani-tech et règles cantonales pour remplacer une installation de chauffage.",
     "fribourg": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Fribourg. Prestations de Sopjani-tech et repères sur les règles énergétiques cantonales.",
-    "romont": f"Siège de {COMPANY_NAME} à Romont FR : chauffage, ventilation, climatisation et sanitaire. Contactez-nous pour vérifier la disponibilité dans votre commune.",
+    "romont": f"Siège de {COMPANY_NAME} à Romont FR : chauffage, ventilation, climatisation et sanitaire dans toute la Suisse romande. Contactez-nous pour votre projet.",
     "neuchatel": "Chauffage, ventilation, climatisation et sanitaire dans le canton de Neuchâtel. Prestations de Sopjani-tech et particularités du littoral et des Montagnes.",
     "mentions-legales": f"Mentions légales de {COMPANY_NAME} : raison sociale, siège à {ADDRESS_FULL}, UID {COMPANY_UID} et contact.",
     "politique-confidentialite": f"Politique de confidentialité de {COMPANY_NAME} : traitement des données, cookies et droits selon la nLPD suisse.",
@@ -1951,7 +1951,7 @@ def zone_page(slug, name, region, title, desc, h1, local_text, faq, svc_slugs, r
     <h2 class="section-title" id="local-title">{local_heading or f"Interventions dans {region}"}</h2>
     {local_text}
     {zone_proof_quote()}
-    <p class="geo-local-note">{seat_note}<a href="tel:{PHONE}" class="track-phone">Appelez le {PHONE_DISP}</a> pour vérifier la disponibilité {place}.</p>
+    <p class="geo-local-note">{seat_note}{COMPANY_NAME} intervient dans toute la Suisse romande, y compris {place}. <a href="tel:{PHONE}" class="track-phone">Appelez le {PHONE_DISP}</a> pour discuter de votre projet.</p>
   </div>
 </section>
 {zone_regional_project_block(ZONE_REGIONAL_PROJECTS.get(slug))}
@@ -3419,8 +3419,8 @@ def build_zones():
 
     def pending(name):
         return (
-            f"<!-- [à compléter] {name} : communes réellement desservies, "
-            "chantiers, références et certifications. Ne publier que des faits "
+            f"<!-- [à compléter] {name} : références de chantiers, photos et certifications publiables. "
+            "Ne publier que des faits "
             f"confirmés par {COMPANY_NAME}. -->"
         )
 
@@ -3456,8 +3456,8 @@ def build_zones():
             '<a href="/chauffage/">chauffage</a>, ainsi qu\'en '
             '<a href="/climatisation/">climatisation</a> et en '
             '<a href="/sanitaire/">sanitaire</a>. L\'emprise du réseau figure sur le plan '
-            "directeur des énergies de réseau. Ce plan ne dit pas où nous intervenons : "
-            "pour le savoir, appelez-nous."
+            "directeur des énergies de réseau. Notre périmètre d'intervention couvre toute la Suisse romande : "
+            "contactez-nous pour discuter de votre projet."
         )
         + p(
             "Une panne sur un circuit déjà en service se décrit sur la page "
@@ -3528,7 +3528,7 @@ def build_zones():
             "Lausanne et Nyon ont chacune leur page, parce que leurs bâtiments et leurs réseaux "
             "de chaleur sont différents du reste du canton. Cette page présente le cadre commun "
             "pour une villa, un immeuble ou un bâtiment d'activité ailleurs dans le canton. "
-            "Pour savoir si nous intervenons dans votre commune, appelez-nous."
+            "Notre équipe mobile intervient dans toute la Suisse romande, y compris dans les communes de ce canton. Contactez-nous pour discuter de votre projet."
         )
         + p(
             "Ce cadre cantonal couvre aussi une "
@@ -3721,8 +3721,8 @@ def build_zones():
             "Le relief ajoute ses propres contraintes. En altitude, la protection contre le gel "
             "et les résidences secondaires occupées une partie de l'année comptent beaucoup quand un chauffagiste étudie une installation de "
             '<a href="/chauffage/">chauffage</a>. Dans la plaine du Rhône, on trouve plus '
-            "d'immeubles et de bâtiments d'activité. Pour savoir si nous intervenons dans votre "
-            "commune ou votre station, appelez-nous."
+            "d'immeubles et de bâtiments d'activité. Notre équipe mobile intervient dans toute la Suisse romande, y compris dans ce secteur. "
+            "commune ou votre station, contactez-nous pour discuter de votre projet."
         )
         + p(
             "Le même dossier cantonal peut inclure une "
